@@ -1,0 +1,45 @@
+name: example_federation
+helics_conf:
+  broker: true
+  federates:
+    - fed: fed1
+      n_inst: 1
+      model_name: Battery_dummy
+      host: localhost
+      fed_type: value
+    - fed: fed2
+      n_inst: 1
+      model_name: Charger_dummy
+      host: localhost
+      fed_type: value
+fed_conf:
+  - fed1:
+      core_type: zmq
+      log_level: warning
+      period: 60
+      uninterruptible: false
+      terminate_on_error: true
+      wait_for_current_time_update: true
+      input_names:
+        - voltage
+      output_names:
+        - current
+
+  - fed2:
+      core_type: zmq
+      log_level: warning
+      period: 60
+      uninterruptible: false
+      terminate_on_error: true
+      wait_for_current_time_update: true
+      input_names:
+        - current
+      output_names:
+        - voltage
+
+
+connections: [] # only to be used when using dedicated interfaces endpoint or input stile see helics
+
+init_conf: # kwargs of paths depending of what each federate model need
+  - fed1: {}
+    fed2: {}

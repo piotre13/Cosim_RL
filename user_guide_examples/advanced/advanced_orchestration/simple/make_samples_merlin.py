@@ -34,7 +34,7 @@ def main():
         send_name = "Battery"+str(i)
         s_json = json.dumps(
             { "federates": [{"directory": ".",
-                             "exec": "python3 -u Battery.py " + str(i),
+                             "exec": "python3 -u Battery_dummy.py " + str(i),
                              "host": "localhost",
                              "name": send_name}],
               "name" : send_name},

@@ -75,7 +75,7 @@ def main():
                 },
                 {
                     "directory": output_path,
-                    "exec": "python3 Battery.py --port 12345 --seed "+str(i+offset)+" --numEVs "+str(numEVs)+" --hours "+str(hours)+" --plot "+str(plot)+" --outdir "+out_data,
+                    "exec": "python3 Battery_dummy.py --port 12345 --seed "+str(i+offset)+" --numEVs "+str(numEVs)+" --hours "+str(hours)+" --plot "+str(plot)+" --outdir "+out_data,
                     "host": "localhost",
                     "name": "Battery_"+str(i),
                     "loglevel": "data"
