@@ -5,8 +5,8 @@ from Model import Model
 ''' NB is possible to add logs also here to better debug the model'''
 
 class Battery_dummy (Model):
-    def __init__(self, name, inputs_dict, outputs_dict, sim_params, params):
-        super().__init__(name,inputs_dict,outputs_dict,sim_params,params)
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
 
 
     def step(self):

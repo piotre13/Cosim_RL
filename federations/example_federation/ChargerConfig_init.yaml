@@ -1,16 +1,18 @@
-model_script : Charger_dummy.py
-class_name: Charger_dummy
-n_instances: 2
-stateful: true #this tell the federate wheter or not activate the memory dict for the model todo dovrei pensare a un modo per far scegliere cosa memorizzare pere ora memorizza automaticamente tutto da implementare ancora
-RL_training: false
+_model_script : Charger_dummy.py
+_class_name: Charger_dummy
+_n_instances: 2
+__stateful: false #this tell the federate wheter or not activate the memory dict for the model todo dovrei pensare a un modo per far scegliere cosa memorizzare pere ora memorizza automaticamente tutto da implementare ancora
+__mem_attrs: null
+__RL_training: false
 inputs:
-  - current
+  current: [0.0, 0.0]
 outputs:
-  - voltage
+  voltage: [0.0, 0.0]
+messages: {}
 params:
-    'charge_rate': [1.8,7.2]
-    'EV_lev': [1,2]
+  charge_rate: [1.8,7.2]
+  EV_lev: [1,2]
 sim_params:
-  'update_interval': [60,60]
-  'start_ts': [0,0]
-  'end_ts': [3600,3600]
+  update_interval: [60,60]
+  start_ts: [0,0]
+  end_ts: [3600,3600]

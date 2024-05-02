@@ -8,38 +8,42 @@ logger.setLevel(logging.DEBUG)
 
 
 class Model(ABC):
-    def __init__(self, name, inputs_dict, outputs_dict, sim_params, params):
-        self.name = name
-        self.inputs = inputs_dict
-        self.outputs = outputs_dict
-        self.sim_params = sim_params
-        self.params = params
-        self.initial_state = {}
-        self.memory = {}
-        self._init_memory = None
-        self._save_init_state = None
+#    def __init__(self, name, inputs_dict, outputs_dict, mess_dict, sim_params, params, **kwargs):
+    def __init__(self, **kwargs):
+        self.__dict__.update(kwargs)
+        #todo perform a chekc on strictly required arguments
+        #possible call of initialization() #todo think about it
+        logger.info(f"\t\tModel {self.model_name} instantiated with the following kwargs: {kwargs}!")
 
-        #todo execute initialstate_setting
-        logger.info(f"\t\tModel {self.name} instantiated!")
+        self._set_additionals()
 
-    def __setattr__(self, name, value):
-        if name == 'init_memory':
-            self._mem_callback(value)
-        elif name == 'save_init_state':
-            self._initial_state_callback(value)
-        super().__setattr__(name, value)
-    def _mem_callback(self, val):
-        if val:
-            logger.info(f"\t\tMemory of Model {self.name} initiated: \n{self.memory}")
-            #memorize everything
-            pass
-    def _initial_state_callback(self, val):
-        if val:
-            self.initial_state ['inputs'] = self.inputs
-            self.initial_state['outputs'] = self.outputs
-            self.initial_state['sim_params'] = self.sim_params
-            self.initial_state['params'] = self.params
-        logger.info(f"\t\tInitial state of Model {self.name} initiated and saved:\n{self.initial_state}")
+
+    def _set_additionals(self):
+        if getattr(self, '__stateful', None):
+            self._init_memory()
+            logger.info(f"\t\tMemory instantiated for Model {self.model_name}!") #todo better logging
+        if getattr(self, '__RL_training', None):
+            self._init_state()
+            logger.info(f"\t\tInitial state for Model {self.model_name} set as follow: {self.initial_state}")  # todo better logging
+
+    def _init_memory(self):
+        self.memory = {'inputs':{},
+                       'outputs':{},
+                       'messages':{},
+                       'params':{},
+                       'sim_params':{}}
+        if getattr(self, '__mem_attrs', None):
+            for attr in getattr(self, '__mem_attrs'):
+                self.memory[attr.split('.')[0]][attr.split('.')[1]] = []
+        else:
+            logger.warning('\t\tMemory attrs are not specified in the init_config. NO MEMORY WILL BE INITIATED!')
+
+    def _init_state(self):
+        self.initial_state = {'inputs': deepcopy(self.inputs),
+           'outputs': deepcopy(self.outputs),
+           'messages': deepcopy(self.messages),
+           'params': deepcopy(self.params),
+           'sim_params': deepcopy(self.sim_params)}
 
     def _fill_memory(self):
         if not self.memory:
@@ -47,13 +51,15 @@ class Model(ABC):
         else:
             for var in self.memory:
                 if var in self.inputs.keys():
-                    self.memory[var].append(deepcopy(self.inputs[var]))
+                    self.memory['inputs'][var].append(deepcopy(self.inputs[var]))
                 elif var in self.outputs.keys():
-                    self.memory[var].append(deepcopy(self.outputs[var]))
+                    self.memory['outputs'][var].append(deepcopy(self.outputs[var]))
+                elif var in self.messages.keys():
+                    self.memory['messages'][var].append(deepcopy(self.messages[var]))
                 elif var in self.sim_params.keys():
-                    self.memory[var].append(deepcopy(self.sim_params[var]))
+                    self.memory['sim_params'][var].append(deepcopy(self.sim_params[var]))
                 elif var in self.params.keys():
-                    self.memory[var].append((deepcopy(self.params[var])))
+                    self.memory['params'][var].append((deepcopy(self.params[var])))
                 else:
                     logger.error(f'\t\t{var} not defined in init config for memory')
 

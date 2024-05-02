@@ -5,18 +5,10 @@ from Model import Model
 ''' NB is possible to add logs also here to better debug the model'''
 
 class Charger_dummy (Model):
-    def __init__(self, name, inputs_dict, outputs_dict, sim_params, params):
-        super().__init__(name,inputs_dict,outputs_dict,sim_params,params)
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
 
-    def calc_chargingvoltage(self):
-        if self.params['EV_lev'] == 1:
-            self.params['charging_voltage'] = 120
-        elif self.params['EV_lev'] == 2:
-            self.params['charging_voltage']=240
-        elif self.params['EV_lev'] == 3:
-            self.params['charging_voltage']=630
-        else:
-            self.params['charging_voltage']=0
+
     def step(self):
 
         self.outputs['voltage'] = self.params['charging_voltage']
