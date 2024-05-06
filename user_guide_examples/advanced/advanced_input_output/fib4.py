@@ -55,6 +55,7 @@ if __name__ == "__main__":
         logger.debug(f'Granted_time: {granted_time}')
         
         if in1.is_updated() == True:
+            logger.debug(f'teeeeesttttttt: {in1}')
             in_values = in1.vector
             logger.debug(f'\tin1 value: {in_values}')
 

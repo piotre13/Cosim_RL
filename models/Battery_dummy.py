@@ -2,6 +2,8 @@ import sys
 import numpy as np
 import logging
 from Model import Model
+
+
 ''' NB is possible to add logs also here to better debug the model'''
 
 class Battery_dummy (Model):
@@ -9,8 +11,8 @@ class Battery_dummy (Model):
         super().__init__(**kwargs)
 
 
-    def step(self):
-        self.params['R'] = np.interp(self.params['current_soc'], self.params['socs'], self.params['effective_R'])
+    def step(self, ts):
+        self.params['R'] = np.interp(self.params['current_soc'], np.array([0,1]), np.array([8,150]))
 
         if self.params['current_soc'] >= 1:
             self.outputs['current'] = 0
@@ -18,13 +20,13 @@ class Battery_dummy (Model):
             self.outputs['current'] = self.inputs['voltage'] / self.params['R']
 
         self.params['added_energy'] = (self.outputs['current'] * self.inputs['voltage'] * self.params['update_interval'] / 3600) / 1000
-
         self.params['current_soc'] = self.params['current_soc'] + self.params['added_energy'] / self.params['size']
-
+        return super().step(ts) #for debugging
 
 
     def finalize(self):
-        pass
+        return super().finalize()
+
 
 
 

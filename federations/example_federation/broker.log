@@ -1,0 +1,2 @@
+[2024-05-06 10:29:25.994] [console] [warning] commWarning||9208-rwAQD-rIih7-xRZuh-lDKxh (1)[operating]::unknown route and no broker, dropping message pub:From (131073) handle(2) size 16 at 3600 to 131072
+[2024-05-06 10:29:25.995] [console] [warning] commWarning||9208-rwAQD-rIih7-xRZuh-lDKxh (1)[operating]::unknown route and no broker, dropping message pub:From (131073) handle(3) size 16 at 3600 to 131072

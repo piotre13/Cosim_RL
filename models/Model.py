@@ -11,6 +11,7 @@ class Model(ABC):
 #    def __init__(self, name, inputs_dict, outputs_dict, mess_dict, sim_params, params, **kwargs):
     def __init__(self, **kwargs):
         self.__dict__.update(kwargs)
+        self.ts = 0
         #todo perform a chekc on strictly required arguments
         #possible call of initialization() #todo think about it
         logger.info(f"\t\tModel {self.model_name} instantiated with the following kwargs: {kwargs}!")
@@ -19,70 +20,61 @@ class Model(ABC):
 
 
     def _set_additionals(self):
-        if getattr(self, '__stateful', None):
+        if getattr(self, 'stateful', None):
             self._init_memory()
             logger.info(f"\t\tMemory instantiated for Model {self.model_name}!") #todo better logging
-        if getattr(self, '__RL_training', None):
+        if getattr(self, 'RL_training', None):
             self._init_state()
             logger.info(f"\t\tInitial state for Model {self.model_name} set as follow: {self.initial_state}")  # todo better logging
 
     def _init_memory(self):
-        self.memory = {'inputs':{},
-                       'outputs':{},
-                       'messages':{},
-                       'params':{},
-                       'sim_params':{}}
-        if getattr(self, '__mem_attrs', None):
-            for attr in getattr(self, '__mem_attrs'):
+        self.memory = {'inputs': {},
+                       'outputs': {},
+                       'messages': {},
+                       'params': {}}
+        if getattr(self, 'mem_attrs', None):
+            for attr in getattr(self, 'mem_attrs'):
                 self.memory[attr.split('.')[0]][attr.split('.')[1]] = []
         else:
-            logger.warning('\t\tMemory attrs are not specified in the init_config. NO MEMORY WILL BE INITIATED!')
+            self.memory['inputs'] = {k:[] for k in self.inputs.keys()}
+            self.memory['outputs'] = {k:[] for k in self.outputs.keys()}
+            self.memory['messages'] = {k:[] for k in self.messages.keys()}
+            self.memory['params'] = {k:[] for k in self.params.keys()}
+            logger.warning('\t\tMemory attrs are not specified in the init_config. everything will be memorized.')
 
     def _init_state(self):
         self.initial_state = {'inputs': deepcopy(self.inputs),
            'outputs': deepcopy(self.outputs),
            'messages': deepcopy(self.messages),
-           'params': deepcopy(self.params),
-           'sim_params': deepcopy(self.sim_params)}
+           'params': deepcopy(self.params)}
 
     def _fill_memory(self):
         if not self.memory:
             return
         else:
-            for var in self.memory:
-                if var in self.inputs.keys():
-                    self.memory['inputs'][var].append(deepcopy(self.inputs[var]))
-                elif var in self.outputs.keys():
-                    self.memory['outputs'][var].append(deepcopy(self.outputs[var]))
-                elif var in self.messages.keys():
-                    self.memory['messages'][var].append(deepcopy(self.messages[var]))
-                elif var in self.sim_params.keys():
-                    self.memory['sim_params'][var].append(deepcopy(self.sim_params[var]))
-                elif var in self.params.keys():
-                    self.memory['params'][var].append((deepcopy(self.params[var])))
-                else:
-                    logger.error(f'\t\t{var} not defined in init config for memory')
+            for typ in self.memory:
+                for  var in self.memory[typ]:
+                    self.memory[typ][var].append(deepcopy(getattr(self, typ)[var]))
 
     def _reset(self):
         self.inputs = self.initial_state['inputs']
         self.outputs = self.initial_state['outputs']
-        self.sim_params = self.initial_state['sim_params']
         self.params = self.initial_state['params']
         for var in self.memory:
             self.memory[var] = []
-    def get_time(self):
-        return self.sim_params['time']
-    def _set_time(self, ts):
-        self.sim_params['time'] = ts
     @abstractmethod
-    def step(self):
+    def step(self, ts):
         '''overwrite this method with the actual model calculations:
         rememeber the needed inputs and outputs are in self.inputs[chosen_name] and self.outputs[chosen_name], these are variables that comes from outside the model and need tpo leave the model
         any paarameter for the physical model can be found in self.params[chosen_name],
         any parameter relative to the simulation can be found in self.sim_params[standard_name]'''
+
+        self._fill_memory()
+        logger.debug(f"\t\t Model {self.model_name} step completed.")
         return
     @abstractmethod
     def finalize(self):
+        logger.debug(f"\t\t Model {self.model_name} finalized with Memory : {self.memory}")
         pass
 
 
@@ -92,6 +84,5 @@ if __name__ == '__main__':
 
     inputs_dict = {'voltage': None}
     outputs_dict = {'current': None}
-    sim_params = {'update_interval': 60,
-                  'current_time': 0}
+    messages_dict ={}
     params = {}

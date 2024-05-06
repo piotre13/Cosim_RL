@@ -53,7 +53,8 @@ if __name__ == "__main__":
         
     while not done:
         time += 1
-        
+        logger.debug(f'teeeeesttttttt: {out1}')
+
         # Request time and get inputs
         granted_time = fed.request_time(time)
         logger.debug(f'Granted_time: {granted_time}')

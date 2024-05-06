@@ -1,0 +1,159 @@
+	Registered publication: <helics.HelicsPublication(name = "PV/0/pv", type = "double", units = "", info = "") at 0x2a9cc5f2ca0> for PV/0/pv
+		Model CSV.0 instantiated with the following kwargs: {'model_name': 'CSV.0', 'RL_training': True, 'stateful': True, 'mem_attrs': ['outputs.pv'], 'inputs': {}, 'outputs': {'pv': 0.0}, 'messages': {}, 'params': {'csv_file': 'user_guide_examples/test_case1/BUILD&PV.csv', 'multiplier': {'pv': 5}}}!
+		Memory instantiated for Model CSV.0!
+		Initial state for Model CSV.0 set as follow: {'inputs': {}, 'outputs': {'pv': 0.0}, 'messages': {}, 'params': {'csv_file': 'user_guide_examples/test_case1/BUILD&PV.csv', 'multiplier': {'pv': 5}}}
+	Models instantiation from fed: PV succesfull!
+	Model instances names: ['CSV.0']
+	Entered HELICS execution mode
+Requesting time 3600.0
+Granted time 3600.0
+	data from inputs {'inputs': {}, 'messages': {}}
+4444444 1.0
+		 Model CSV.0 step completed.
+	Publishing data : {'outputs': {'PV/0/pv': 0.0}, 'messages': {}}
+Requesting time 7200.0
+Granted time 7200.0
+	data from inputs {'inputs': {}, 'messages': {}}
+4444444 2.0
+		 Model CSV.0 step completed.
+	Publishing data : {'outputs': {'PV/0/pv': 0.0}, 'messages': {}}
+Requesting time 10800.0
+Granted time 10800.0
+	data from inputs {'inputs': {}, 'messages': {}}
+4444444 3.0
+		 Model CSV.0 step completed.
+	Publishing data : {'outputs': {'PV/0/pv': 0.0}, 'messages': {}}
+Requesting time 14400.0
+Granted time 14400.0
+	data from inputs {'inputs': {}, 'messages': {}}
+4444444 4.0
+		 Model CSV.0 step completed.
+	Publishing data : {'outputs': {'PV/0/pv': 0.0}, 'messages': {}}
+Requesting time 18000.0
+Granted time 18000.0
+	data from inputs {'inputs': {}, 'messages': {}}
+4444444 5.0
+		 Model CSV.0 step completed.
+	Publishing data : {'outputs': {'PV/0/pv': 0.0}, 'messages': {}}
+Requesting time 21600.0
+Granted time 21600.0
+	data from inputs {'inputs': {}, 'messages': {}}
+4444444 6.0
+		 Model CSV.0 step completed.
+	Publishing data : {'outputs': {'PV/0/pv': 0.0}, 'messages': {}}
+Requesting time 25200.0
+Granted time 25200.0
+	data from inputs {'inputs': {}, 'messages': {}}
+4444444 7.0
+		 Model CSV.0 step completed.
+	Publishing data : {'outputs': {'PV/0/pv': 0.0}, 'messages': {}}
+Requesting time 28800.0
+Granted time 28800.0
+	data from inputs {'inputs': {}, 'messages': {}}
+4444444 8.0
+		 Model CSV.0 step completed.
+	Publishing data : {'outputs': {'PV/0/pv': 1263.5608675}, 'messages': {}}
+Requesting time 32400.0
+Granted time 32400.0
+	data from inputs {'inputs': {}, 'messages': {}}
+4444444 9.0
+		 Model CSV.0 step completed.
+	Publishing data : {'outputs': {'PV/0/pv': 5557.663985}, 'messages': {}}
+Requesting time 36000.0
+Granted time 36000.0
+	data from inputs {'inputs': {}, 'messages': {}}
+4444444 10.0
+		 Model CSV.0 step completed.
+	Publishing data : {'outputs': {'PV/0/pv': 9242.35524}, 'messages': {}}
+Requesting time 39600.0
+Granted time 39600.0
+	data from inputs {'inputs': {}, 'messages': {}}
+4444444 11.0
+		 Model CSV.0 step completed.
+	Publishing data : {'outputs': {'PV/0/pv': 12721.6137}, 'messages': {}}
+Requesting time 43200.0
+Granted time 43200.0
+	data from inputs {'inputs': {}, 'messages': {}}
+4444444 12.0
+		 Model CSV.0 step completed.
+	Publishing data : {'outputs': {'PV/0/pv': 15282.213730000001}, 'messages': {}}
+Requesting time 46800.0
+Granted time 46800.0
+	data from inputs {'inputs': {}, 'messages': {}}
+4444444 13.0
+		 Model CSV.0 step completed.
+	Publishing data : {'outputs': {'PV/0/pv': 15666.097205000002}, 'messages': {}}
+Requesting time 50400.0
+Granted time 50400.0
+	data from inputs {'inputs': {}, 'messages': {}}
+4444444 14.0
+		 Model CSV.0 step completed.
+	Publishing data : {'outputs': {'PV/0/pv': 13975.945525}, 'messages': {}}
+Requesting time 54000.0
+Granted time 54000.0
+	data from inputs {'inputs': {}, 'messages': {}}
+4444444 15.0
+		 Model CSV.0 step completed.
+	Publishing data : {'outputs': {'PV/0/pv': 10064.57945}, 'messages': {}}
+Requesting time 57600.0
+Granted time 57600.0
+	data from inputs {'inputs': {}, 'messages': {}}
+4444444 16.0
+		 Model CSV.0 step completed.
+	Publishing data : {'outputs': {'PV/0/pv': 4854.130739}, 'messages': {}}
+Requesting time 61200.0
+Granted time 61200.0
+	data from inputs {'inputs': {}, 'messages': {}}
+4444444 17.0
+		 Model CSV.0 step completed.
+	Publishing data : {'outputs': {'PV/0/pv': 131.15325775}, 'messages': {}}
+Requesting time 64800.0
+Granted time 64800.0
+	data from inputs {'inputs': {}, 'messages': {}}
+4444444 18.0
+		 Model CSV.0 step completed.
+	Publishing data : {'outputs': {'PV/0/pv': 0.0}, 'messages': {}}
+Requesting time 68400.0
+Granted time 68400.0
+	data from inputs {'inputs': {}, 'messages': {}}
+4444444 19.0
+		 Model CSV.0 step completed.
+	Publishing data : {'outputs': {'PV/0/pv': 0.0}, 'messages': {}}
+Requesting time 72000.0
+Granted time 72000.0
+	data from inputs {'inputs': {}, 'messages': {}}
+4444444 20.0
+		 Model CSV.0 step completed.
+	Publishing data : {'outputs': {'PV/0/pv': 0.0}, 'messages': {}}
+Requesting time 75600.0
+Granted time 75600.0
+	data from inputs {'inputs': {}, 'messages': {}}
+4444444 21.0
+		 Model CSV.0 step completed.
+	Publishing data : {'outputs': {'PV/0/pv': 0.0}, 'messages': {}}
+Requesting time 79200.0
+Granted time 79200.0
+	data from inputs {'inputs': {}, 'messages': {}}
+4444444 22.0
+		 Model CSV.0 step completed.
+	Publishing data : {'outputs': {'PV/0/pv': 0.0}, 'messages': {}}
+Requesting time 82800.0
+Granted time 82800.0
+	data from inputs {'inputs': {}, 'messages': {}}
+4444444 23.0
+		 Model CSV.0 step completed.
+	Publishing data : {'outputs': {'PV/0/pv': 0.0}, 'messages': {}}
+Requesting time 86400.0
+Granted time 86400.0
+	data from inputs {'inputs': {}, 'messages': {}}
+4444444 24.0
+		 Model CSV.0 step completed.
+	Publishing data : {'outputs': {'PV/0/pv': 0.0}, 'messages': {}}
+Requesting time 90000.0
+Granted time 90000.0
+	data from inputs {'inputs': {}, 'messages': {}}
+4444444 25.0
+		 Model CSV.0 step completed.
+	Publishing data : {'outputs': {'PV/0/pv': 0.0}, 'messages': {}}
+		 Model CSV.0 finalized with Memory : {'inputs': {}, 'outputs': {'pv': [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1263.5608675, 5557.663985, 9242.35524, 12721.6137, 15282.213730000001, 15666.097205000002, 13975.945525, 10064.57945, 4854.130739, 131.15325775, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]}, 'messages': {}, 'params': {}}
+	Federate finalized

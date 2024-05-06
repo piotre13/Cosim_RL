@@ -1,0 +1,211 @@
+	Registered publication: <helics.HelicsPublication(name = "Battery/0/energy_out", type = "double", units = "", info = "") at 0x17b77201ca0> for Battery/0/energy_out
+	Registered subscription: <helics.HelicsInput(name = "_input_1", units = "", injection_units = "", publication_type = "", type = "", target = "Building/0/plug", info = "") at 0x17b77225640> for Building/0/plug
+	Registered subscription: <helics.HelicsInput(name = "_input_2", units = "", injection_units = "", publication_type = "", type = "", target = "PV/0/pv", info = "") at 0x17b77225880> for PV/0/pv
+		Model Battery.0 instantiated with the following kwargs: {'model_name': 'Battery.0', 'RL_training': True, 'stateful': True, 'mem_attrs': ['params.SOC'], 'inputs': {'power': 0.0}, 'outputs': {'energy_out': 0.0}, 'messages': {}, 'params': {'rated_capacity': 40000, 'maximum_charge_power': 8000, 'maximum_discharge_power': 8000, 'SOC_upper_limit': 0.95, 'SOC_lower_limit': 0.25, 'charge_efficiency': 1, 'discharge_efficiency': 1, 'self_discharge_rate': 0, 'SOC': 0.9}}!
+		Memory instantiated for Model Battery.0!
+		Initial state for Model Battery.0 set as follow: {'inputs': {'power': 0.0}, 'outputs': {'energy_out': 0.0}, 'messages': {}, 'params': {'rated_capacity': 40000, 'maximum_charge_power': 8000, 'maximum_discharge_power': 8000, 'SOC_upper_limit': 0.95, 'SOC_lower_limit': 0.25, 'charge_efficiency': 1, 'discharge_efficiency': 1, 'self_discharge_rate': 0, 'SOC': 0.9}}
+	Models instantiation from fed: Battery succesfull!
+	Model instances names: ['Battery.0']
+	Entered HELICS execution mode
+Requesting time 3600.0
+Granted time 3600.0
+	Received value -199.70 from topic Building/0/plug
+	Received value 0.00 from topic PV/0/pv
+	data from inputs {'inputs': {'Building/0/plug': -199.7027752, 'PV/0/pv': 0.0}, 'messages': {}}
+4444444 1.0
+		 Model Battery.0 step completed.
+	Publishing data : {'outputs': {'Battery/0/energy_out': -199.70277519999945}, 'messages': {}}
+Requesting time 7200.0
+Granted time 7200.0
+	Received value -199.70 from topic Building/0/plug
+	Received value 0.00 from topic PV/0/pv
+	data from inputs {'inputs': {'Building/0/plug': -199.7027752, 'PV/0/pv': 0.0}, 'messages': {}}
+4444444 2.0
+		 Model Battery.0 step completed.
+	Publishing data : {'outputs': {'Battery/0/energy_out': -399.4055503999989}, 'messages': {}}
+Requesting time 10800.0
+Granted time 10800.0
+	Received value -199.70 from topic Building/0/plug
+	Received value 0.00 from topic PV/0/pv
+	data from inputs {'inputs': {'Building/0/plug': -199.7027752, 'PV/0/pv': 0.0}, 'messages': {}}
+4444444 3.0
+		 Model Battery.0 step completed.
+	Publishing data : {'outputs': {'Battery/0/energy_out': -599.1083255999984}, 'messages': {}}
+Requesting time 14400.0
+Granted time 14400.0
+	Received value -199.70 from topic Building/0/plug
+	Received value 0.00 from topic PV/0/pv
+	data from inputs {'inputs': {'Building/0/plug': -199.7027752, 'PV/0/pv': 0.0}, 'messages': {}}
+4444444 4.0
+		 Model Battery.0 step completed.
+	Publishing data : {'outputs': {'Battery/0/energy_out': -798.8111007999978}, 'messages': {}}
+Requesting time 18000.0
+Granted time 18000.0
+	Received value -199.70 from topic Building/0/plug
+	Received value 0.00 from topic PV/0/pv
+	data from inputs {'inputs': {'Building/0/plug': -199.7027752, 'PV/0/pv': 0.0}, 'messages': {}}
+4444444 5.0
+		 Model Battery.0 step completed.
+	Publishing data : {'outputs': {'Battery/0/energy_out': -998.5138759999973}, 'messages': {}}
+Requesting time 21600.0
+Granted time 21600.0
+	Received value -816.58 from topic Building/0/plug
+	Received value 0.00 from topic PV/0/pv
+	data from inputs {'inputs': {'Building/0/plug': -816.582057, 'PV/0/pv': 0.0}, 'messages': {}}
+4444444 6.0
+		 Model Battery.0 step completed.
+	Publishing data : {'outputs': {'Battery/0/energy_out': -1815.0959330000005}, 'messages': {}}
+Requesting time 25200.0
+Granted time 25200.0
+	Received value -532.28 from topic Building/0/plug
+	Received value 0.00 from topic PV/0/pv
+	data from inputs {'inputs': {'Building/0/plug': -532.2761893, 'PV/0/pv': 0.0}, 'messages': {}}
+4444444 7.0
+		 Model Battery.0 step completed.
+	Publishing data : {'outputs': {'Battery/0/energy_out': -2347.3721222999957}, 'messages': {}}
+Requesting time 28800.0
+Granted time 28800.0
+	Received value -6197.65 from topic Building/0/plug
+	Received value 1263.56 from topic PV/0/pv
+	data from inputs {'inputs': {'Building/0/plug': -6197.654283, 'PV/0/pv': 1263.5608675}, 'messages': {}}
+4444444 8.0
+		 Model Battery.0 step completed.
+	Publishing data : {'outputs': {'Battery/0/energy_out': -7281.465537799999}, 'messages': {}}
+Requesting time 32400.0
+Granted time 32400.0
+	Received value -6380.45 from topic Building/0/plug
+	Received value 5557.66 from topic PV/0/pv
+	data from inputs {'inputs': {'Building/0/plug': -6380.450445, 'PV/0/pv': 5557.663985}, 'messages': {}}
+4444444 9.0
+		 Model Battery.0 step completed.
+	Publishing data : {'outputs': {'Battery/0/energy_out': -8000.0}, 'messages': {}}
+Requesting time 36000.0
+Granted time 36000.0
+	Received value -6710.98 from topic Building/0/plug
+	Received value 9242.36 from topic PV/0/pv
+	data from inputs {'inputs': {'Building/0/plug': -6710.982959, 'PV/0/pv': 9242.35524}, 'messages': {}}
+4444444 10.0
+		 Model Battery.0 step completed.
+	Publishing data : {'outputs': {'Battery/0/energy_out': -3560.524778900013}, 'messages': {}}
+Requesting time 39600.0
+Granted time 39600.0
+	Received value -6694.77 from topic Building/0/plug
+	Received value 12721.61 from topic PV/0/pv
+	data from inputs {'inputs': {'Building/0/plug': -6694.771598, 'PV/0/pv': 12721.6137}, 'messages': {}}
+4444444 11.0
+		 Model Battery.0 step completed.
+	Publishing data : {'outputs': {'Battery/0/energy_out': 453.96238520000225}, 'messages': {}}
+Requesting time 43200.0
+Granted time 43200.0
+	Received value -5134.42 from topic Building/0/plug
+	Received value 15282.21 from topic PV/0/pv
+	data from inputs {'inputs': {'Building/0/plug': -5134.42246, 'PV/0/pv': 15282.213730000001}, 'messages': {}}
+4444444 12.0
+		 Model Battery.0 step completed.
+	Publishing data : {'outputs': {'Battery/0/energy_out': 7999.999999999998}, 'messages': {}}
+Requesting time 46800.0
+Granted time 46800.0
+	Received value -6685.64 from topic Building/0/plug
+	Received value 15666.10 from topic PV/0/pv
+	data from inputs {'inputs': {'Building/0/plug': -6685.636175, 'PV/0/pv': 15666.097205000002}, 'messages': {}}
+4444444 13.0
+		 Model Battery.0 step completed.
+	Publishing data : {'outputs': {'Battery/0/energy_out': 8000.0}, 'messages': {}}
+Requesting time 50400.0
+Granted time 50400.0
+	Received value -6639.78 from topic Building/0/plug
+	Received value 13975.95 from topic PV/0/pv
+	data from inputs {'inputs': {'Building/0/plug': -6639.776894, 'PV/0/pv': 13975.945525}, 'messages': {}}
+4444444 14.0
+		 Model Battery.0 step completed.
+	Publishing data : {'outputs': {'Battery/0/energy_out': 8000.0}, 'messages': {}}
+Requesting time 54000.0
+Granted time 54000.0
+	Received value -6674.25 from topic Building/0/plug
+	Received value 10064.58 from topic PV/0/pv
+	data from inputs {'inputs': {'Building/0/plug': -6674.245276, 'PV/0/pv': 10064.57945}, 'messages': {}}
+4444444 15.0
+		 Model Battery.0 step completed.
+	Publishing data : {'outputs': {'Battery/0/energy_out': 3546.0376147999996}, 'messages': {}}
+Requesting time 57600.0
+Granted time 57600.0
+	Received value -6697.65 from topic Building/0/plug
+	Received value 4854.13 from topic PV/0/pv
+	data from inputs {'inputs': {'Building/0/plug': -6697.648432, 'PV/0/pv': 4854.130739}, 'messages': {}}
+4444444 16.0
+		 Model Battery.0 step completed.
+	Publishing data : {'outputs': {'Battery/0/energy_out': 0.0}, 'messages': {}}
+Requesting time 61200.0
+Granted time 61200.0
+	Received value -5735.77 from topic Building/0/plug
+	Received value 131.15 from topic PV/0/pv
+	data from inputs {'inputs': {'Building/0/plug': -5735.773153, 'PV/0/pv': 131.15325775}, 'messages': {}}
+4444444 17.0
+		 Model Battery.0 step completed.
+	Publishing data : {'outputs': {'Battery/0/energy_out': 0.0}, 'messages': {}}
+Requesting time 64800.0
+Granted time 64800.0
+	Received value -5029.05 from topic Building/0/plug
+	Received value 0.00 from topic PV/0/pv
+	data from inputs {'inputs': {'Building/0/plug': -5029.045706, 'PV/0/pv': 0.0}, 'messages': {}}
+4444444 18.0
+		 Model Battery.0 step completed.
+	Publishing data : {'outputs': {'Battery/0/energy_out': 0.0}, 'messages': {}}
+Requesting time 68400.0
+Granted time 68400.0
+	Received value -5061.81 from topic Building/0/plug
+	Received value 0.00 from topic PV/0/pv
+	data from inputs {'inputs': {'Building/0/plug': -5061.809277, 'PV/0/pv': 0.0}, 'messages': {}}
+4444444 19.0
+		 Model Battery.0 step completed.
+	Publishing data : {'outputs': {'Battery/0/energy_out': 0.0}, 'messages': {}}
+Requesting time 72000.0
+Granted time 72000.0
+	Received value -4819.16 from topic Building/0/plug
+	Received value 0.00 from topic PV/0/pv
+	data from inputs {'inputs': {'Building/0/plug': -4819.162584, 'PV/0/pv': 0.0}, 'messages': {}}
+4444444 20.0
+		 Model Battery.0 step completed.
+	Publishing data : {'outputs': {'Battery/0/energy_out': 0.0}, 'messages': {}}
+Requesting time 75600.0
+Granted time 75600.0
+	Received value -1055.53 from topic Building/0/plug
+	Received value 0.00 from topic PV/0/pv
+	data from inputs {'inputs': {'Building/0/plug': -1055.528528, 'PV/0/pv': 0.0}, 'messages': {}}
+4444444 21.0
+		 Model Battery.0 step completed.
+	Publishing data : {'outputs': {'Battery/0/energy_out': 0.0}, 'messages': {}}
+Requesting time 79200.0
+Granted time 79200.0
+	Received value -637.11 from topic Building/0/plug
+	Received value 0.00 from topic PV/0/pv
+	data from inputs {'inputs': {'Building/0/plug': -637.1074647, 'PV/0/pv': 0.0}, 'messages': {}}
+4444444 22.0
+		 Model Battery.0 step completed.
+	Publishing data : {'outputs': {'Battery/0/energy_out': 0.0}, 'messages': {}}
+Requesting time 82800.0
+Granted time 82800.0
+	Received value -242.38 from topic Building/0/plug
+	Received value 0.00 from topic PV/0/pv
+	data from inputs {'inputs': {'Building/0/plug': -242.3773895, 'PV/0/pv': 0.0}, 'messages': {}}
+4444444 23.0
+		 Model Battery.0 step completed.
+	Publishing data : {'outputs': {'Battery/0/energy_out': 0.0}, 'messages': {}}
+Requesting time 86400.0
+Granted time 86400.0
+	Received value -199.70 from topic Building/0/plug
+	Received value 0.00 from topic PV/0/pv
+	data from inputs {'inputs': {'Building/0/plug': -199.7027752, 'PV/0/pv': 0.0}, 'messages': {}}
+4444444 24.0
+		 Model Battery.0 step completed.
+	Publishing data : {'outputs': {'Battery/0/energy_out': 0.0}, 'messages': {}}
+Requesting time 90000.0
+Granted time 90000.0
+	Received value -199.70 from topic Building/0/plug
+	Received value 0.00 from topic PV/0/pv
+	data from inputs {'inputs': {'Building/0/plug': -199.7027752, 'PV/0/pv': 0.0}, 'messages': {}}
+4444444 25.0
+		 Model Battery.0 step completed.
+	Publishing data : {'outputs': {'Battery/0/energy_out': 0.0}, 'messages': {}}
+		 Model Battery.0 finalized with Memory : {'inputs': {}, 'outputs': {}, 'messages': {}, 'params': {'SOC': [0.89500743062, 0.88502229186, 0.87004458372, 0.8500743062000001, 0.8251114593000002, 0.7797340609750002, 0.7210497579175003, 0.5390131194725003, 0.33901311947250035, 0.25, 0.26134905963000005, 0.46134905963, 0.66134905963, 0.86134905963, 0.95, 0.95, 0.95, 0.95, 0.95, 0.95, 0.95, 0.95, 0.95, 0.95, 0.95]}}
+	Federate finalized

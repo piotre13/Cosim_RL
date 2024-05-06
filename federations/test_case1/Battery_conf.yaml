@@ -1,25 +1,25 @@
-fed_name: Charger
+fed_name: Battery
 fed_conf:
-  model_script : Charger_dummy.py
-  class_name: Charger_dummy
-  n_instances: 2
+  model_script : Battery.py
+  class_name: Battery
+  n_instances: 1
   stateful: true
   RL_training: true
-  mem_attrs: []
+  mem_attrs : [params.SOC]
 fed_info:
   broker: null
   broker_init: null
   broker_key: null
   broker_port: null
   core_init: null #for debugging only
-  core_name: charger_core
+  core_name: battery_core
   core_type: zmq
   local_port: null
   separator: null
 fed_flags:
   SLOW_RESPONDING: False
   DEBUGGING: False
-  TERMINATE_ON_ERROR: True
+  TERMINATE_ON_ERROR: true
   FORCE_LOGGING_FLUSH: False
   DUMPLOG: False
   OBSERVER: False
@@ -28,7 +28,7 @@ fed_flags:
   SOURCE_ONLY: False
   ONLY_TRANSMIT_ON_CHANGE: False
   ONLY_UPDATE_ON_CHANGE: False
-  WAIT_FOR_CURRENT_TIME_UPDATE: False
+  WAIT_FOR_CURRENT_TIME_UPDATE: True
   RESTRICTIVE_TIME_POLICY: False
   ROLLBACK: False
   FORWARD_COMPUTE: False
@@ -43,14 +43,14 @@ fed_flags:
   AUTOMATED_TIME_REQUEST: False
 fed_properties:
   TIME_DELTA: 1e-09
-  TIME_PERIOD: 60
+  TIME_PERIOD: 3600
   TIME_OFFSET: 0.0
   TIME_RT_LAG: 0.0
   TIME_RT_LEAD: 0.0
   TIME_RT_TOLERANCE: 0.0
   TIME_INPUT_DELAY: 0.0
   TIME_OUTPUT_DELAY: 0.0
-  TIME_STOPTIME: 3600.0
+  TIME_STOPTIME: 87400
   TIME_GRANT_TIMEOUT: 0.0
   INT_CURRENT_ITERATION: 0
   INT_MAX_ITERATIONS: 50
@@ -61,21 +61,23 @@ fed_properties:
   INT_INDEX_GROUP: -972
 fed_connections:
   sub:
-    0: [Battery/0/current]
-    1: [Battery/1/current]
-
+    0: [Building/0/plug, PV/0/pv]
   pub:
-    0: [Charger/0/voltage]
-    1: [Charger/1/voltage]
+    0: [Battery/0/energy_out]
   end: {}
-
 model_conf:
   params:
-    charge_rate: [ 1.8,7.2 ]
-    EV_lev: [ 1,2 ]
-    power: [0,0]
+    rated_capacity: [40000]
+    maximum_charge_power: [8000]
+    maximum_discharge_power: [8000]
+    SOC_upper_limit: [0.95]
+    SOC_lower_limit: [0.25]
+    charge_efficiency: [1]
+    discharge_efficiency: [1]
+    self_discharge_rate: [0]
+    SOC: [0.9]
   inputs:
-    current: [ 0.0, 0.0 ]
+    power: [0.0]   #for inputs from multiple source should see helics todo i use a dictionary and if a dict is present i register an input with targets istead of subscription
   outputs:
-    voltage: [ 240, 120 ]
+    energy_out: [0.0]
   messages: { } #todo could be removed
