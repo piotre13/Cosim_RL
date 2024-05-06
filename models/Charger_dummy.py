@@ -9,17 +9,15 @@ class Charger_dummy (Model):
         super().__init__(**kwargs)
 
 
-    def step(self):
-
-        self.outputs['voltage'] = self.params['charging_voltage']
-        total_power = 0
+    def step(self, ts):
 
         if self.inputs['current'] > 0:  # EV is still charging
-                self.outputs['tot_power'] += (self.outputs['voltage'] * self.inputs['current'])
+            self.params['power'] += (self.outputs['voltage'] * self.inputs['current'])
+        return super().step(ts)
 
 
     def finalize(self):
-        pass
+        return super().finalize()
 
 
 

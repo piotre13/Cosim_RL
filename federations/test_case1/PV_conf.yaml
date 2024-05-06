@@ -1,56 +1,56 @@
-fed_name: Battery
+fed_name: PV
 fed_conf:
-  model_script : Battery_dummy.py
-  class_name: Battery_dummy
-  n_instances: 2
+  model_script : Csv_reader.py
+  class_name: CSV
+  n_instances: 1
   stateful: true
   RL_training: true
-  mem_attrs : []
+  mem_attrs : [outputs.pv]
 fed_info:
   broker: null
   broker_init: null
   broker_key: null
   broker_port: null
   core_init: null #for debugging only
-  core_name: battery_core
+  core_name: pv_core
   core_type: zmq
   local_port: null
   separator: null
 fed_flags:
-  SLOW_RESPONDING: False 
-  DEBUGGING: False 
+  SLOW_RESPONDING: False
+  DEBUGGING: False
   TERMINATE_ON_ERROR: true
-  FORCE_LOGGING_FLUSH: False 
-  DUMPLOG: False 
-  OBSERVER: False 
-  UNINTERRUPTIBLE: False 
+  FORCE_LOGGING_FLUSH: False
+  DUMPLOG: False
+  OBSERVER: False
+  UNINTERRUPTIBLE: False
   INTERRUPTIBLE: True
-  SOURCE_ONLY: False 
-  ONLY_TRANSMIT_ON_CHANGE: False 
-  ONLY_UPDATE_ON_CHANGE: False 
+  SOURCE_ONLY: True
+  ONLY_TRANSMIT_ON_CHANGE: False
+  ONLY_UPDATE_ON_CHANGE: False
   WAIT_FOR_CURRENT_TIME_UPDATE: True
   RESTRICTIVE_TIME_POLICY: False
   ROLLBACK: False
   FORWARD_COMPUTE: False
   REALTIME: False
-  SINGLE_THREAD_FEDERATE: False 
+  SINGLE_THREAD_FEDERATE: False
   SINGLE_THREAD_CORE: False
-  REENTRANT: False 
-  IGNORE_TIME_MISMATCH_WARNINGS: False 
-  USE_JSON_SERIALIZATION: False 
-  EVENT_TRIGGERED: False 
-  CALLBACK_FEDERATE : False 
+  REENTRANT: False
+  IGNORE_TIME_MISMATCH_WARNINGS: False
+  USE_JSON_SERIALIZATION: False
+  EVENT_TRIGGERED: False
+  CALLBACK_FEDERATE : False
   AUTOMATED_TIME_REQUEST: False
 fed_properties:
   TIME_DELTA: 1e-09
-  TIME_PERIOD: 60
+  TIME_PERIOD: 3600
   TIME_OFFSET: 0.0
   TIME_RT_LAG: 0.0
   TIME_RT_LEAD: 0.0
   TIME_RT_TOLERANCE: 0.0
   TIME_INPUT_DELAY: 0.0
   TIME_OUTPUT_DELAY: 0.0
-  TIME_STOPTIME: 3600.0
+  TIME_STOPTIME: 87400
   TIME_GRANT_TIMEOUT: 0.0
   INT_CURRENT_ITERATION: 0
   INT_MAX_ITERATIONS: 50
@@ -60,24 +60,15 @@ fed_properties:
   INT_LOG_BUFFER: 0
   INT_INDEX_GROUP: -972
 fed_connections:
-  sub:
-    0: [Charger/0/voltage]
-    1: [Charger/1/voltage]
+  sub: {}
   pub:
-    0: [Battery/0/current]
-    1: [Battery/1/current]
+    0: [PV/0/pv]
   end: {}
 model_conf:
   params:
-    size: [25,3]
-    soc: [0,1]
-    effective_R: [8,150]
-    current_soc: [0.4,0]
-    R: [0,0]
-    added_energy: [0,0]
-    update_interval: [60,60]
-  inputs:
-    voltage: [ 0.0, 0.0 ]
+    csv_file: ['user_guide_examples/test_case1/BUILD&PV.csv']
+    multiplier: [{pv: 5}]
+  inputs: {}
   outputs:
-    current: [ 0.0, 0.0 ]
+    pv: [0.0]
   messages: { } #todo could be removed

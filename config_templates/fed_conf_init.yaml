@@ -1,4 +1,4 @@
-fed_name: Battery
+fed_name: Name
 fed_conf:
   model_script : Battery_dummy.py
   class_name: Battery_dummy
@@ -17,29 +17,29 @@ fed_info:
   local_port: null
   separator: null
 fed_flags:
-  SLOW_RESPONDING: False 
-  DEBUGGING: False 
+  SLOW_RESPONDING: False
+  DEBUGGING: False
   TERMINATE_ON_ERROR: true
-  FORCE_LOGGING_FLUSH: False 
-  DUMPLOG: False 
-  OBSERVER: False 
-  UNINTERRUPTIBLE: False 
+  FORCE_LOGGING_FLUSH: False
+  DUMPLOG: False
+  OBSERVER: False
+  UNINTERRUPTIBLE: False
   INTERRUPTIBLE: True
-  SOURCE_ONLY: False 
-  ONLY_TRANSMIT_ON_CHANGE: False 
-  ONLY_UPDATE_ON_CHANGE: False 
+  SOURCE_ONLY: False
+  ONLY_TRANSMIT_ON_CHANGE: False
+  ONLY_UPDATE_ON_CHANGE: False
   WAIT_FOR_CURRENT_TIME_UPDATE: True
   RESTRICTIVE_TIME_POLICY: False
   ROLLBACK: False
   FORWARD_COMPUTE: False
   REALTIME: False
-  SINGLE_THREAD_FEDERATE: False 
+  SINGLE_THREAD_FEDERATE: False
   SINGLE_THREAD_CORE: False
-  REENTRANT: False 
-  IGNORE_TIME_MISMATCH_WARNINGS: False 
-  USE_JSON_SERIALIZATION: False 
-  EVENT_TRIGGERED: False 
-  CALLBACK_FEDERATE : False 
+  REENTRANT: False
+  IGNORE_TIME_MISMATCH_WARNINGS: False
+  USE_JSON_SERIALIZATION: False
+  EVENT_TRIGGERED: False
+  CALLBACK_FEDERATE : False
   AUTOMATED_TIME_REQUEST: False
 fed_properties:
   TIME_DELTA: 1e-09

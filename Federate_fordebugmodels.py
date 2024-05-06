@@ -50,11 +50,15 @@ class Federate:
         init_config = read_yaml(os.path.join(os.getcwd(), 'federations', self.federation_name, args[1]))
         return init_config
     def registering(self):
+        #for debugging only #todo remove
+        broker = h.helicsCreateBroker("zmq", "", "-f 1 --name=mainbroker")
+
 
         fedInfo = h.helicsCreateFederateInfo()
         for info in self.init_config['fed_info']:
             if self.init_config['fed_info'][info]:
                 setattr(fedInfo, info, self.init_config['fed_info'][info])
+        setattr(fedInfo, 'core_init', "-f 1 --name=mainbroker")
 
         self.fed = h.helicsCreateCombinationFederate(self.init_config['fed_name'],fedInfo)
 
@@ -132,6 +136,7 @@ class Federate:
 
 
     def init_kwargs(self, i, class_name):
+        #todo generailze in for loops for each different data typology
         kwargs = {}
         kwargs['model_name'] = class_name + '.' + str(i)
         kwargs['RL_training'] = self.init_config['fed_conf']['RL_training']
@@ -188,7 +193,6 @@ class Federate:
 
             #++++++++++++++++++ models execution
             current_ts = h.helicsFederateGetCurrentTime(self.fed)/self.period
-            logger.debug(f"4444444 {current_ts}")
             for mod in self.mod_insts:
                 mod.step(current_ts)
             #****************************************************************************************
@@ -281,10 +285,9 @@ class Federate:
 
 if __name__ == "__main__":
     #args order 0: fed_conf path , 1: init_conf
-    #argv = ['federations/example_federation/BatteryConfig.json',
-    #       'federations/example_federation/BatteryConfig_init.yaml']
-    #fed = ValueFederate(argv)  # only for testing when launching this autonomously
-    fed = Federate(sys.argv) #giusto da usare quando si runna da helics passando gli argv
+    argv = [0,'PV_conf.yaml',
+          'test_case1']
 
-    #fed = ValueFederate([0,'BatteryConfig_init.yaml', 'example_federation'])
+
+    fed = Federate(argv)
 
