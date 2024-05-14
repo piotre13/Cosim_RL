@@ -7,5 +7,7 @@ import subprocess
 #subprocess.run(["pwd"])
 output_path = os.getcwd()
 
-run_path = output_path +'\\federations\\test_case1\\test_case1_runner.json'
+#run_path = output_path +'\\federations\\example_federation\\example_federation_runner.json'
+#run_path = output_path +'\\federations\\test_case1\\test_case1_runner.json'
+run_path = output_path +'\\federations\\test_case1_1\\test_case1_runner.json'
 subprocess.call('helics run --path='+run_path,shell=True)

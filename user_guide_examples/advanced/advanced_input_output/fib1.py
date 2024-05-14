@@ -65,7 +65,6 @@ if __name__ == "__main__":
         logger.debug(f'Granted_time: {granted_time}')
         
         if in1.is_updated() == True or granted_time == 1:
-            logger.debug(f'teeeeesttttttt: {in1}')
 
             input_values = in1.string
             logger.debug(f'\tin1 value: {input_values}')

@@ -1,7 +1,7 @@
 import sys
 import numpy as np
 import logging
-from Model import Model
+from ..Model import Model
 
 
 ''' NB is possible to add logs also here to better debug the model'''

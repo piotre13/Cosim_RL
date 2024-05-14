@@ -1,7 +1,7 @@
 import sys
 import numpy as np
 import logging
-from Model import Model
+from ..Model import Model
 ''' NB is possible to add logs also here to better debug the model'''
 
 class Charger_dummy (Model):
@@ -13,6 +13,7 @@ class Charger_dummy (Model):
 
         if self.inputs['current'] > 0:  # EV is still charging
             self.params['power'] += (self.outputs['voltage'] * self.inputs['current'])
+        self.outputs['voltage'] += 1
         return super().step(ts)
 
 

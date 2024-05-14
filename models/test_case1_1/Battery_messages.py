@@ -1,5 +1,9 @@
 import numpy as np
-from Model import Model
+from Model import Model #rember the top level running python script is al;ways main
+import logging
+logger = logging.getLogger(__name__)
+logger.addHandler(logging.StreamHandler())
+logger.setLevel(logging.DEBUG)
 
 class BESS:
     def __init__(self, **kwargs):
@@ -125,10 +129,13 @@ class Battery(Model):
         self.model.setSOC(self.model.SOC)
 
     def step(self, ts):
-        #esample on how to deal with aggregate values
-        self.inputs['power'] = sum([val for val in self.inputs.values()])
-        self.outputs['energy_out'] = self.model.calculatepower(self.inputs['power'], dt=3600)
+
+        logger.debug(f'messages {self.messages_in}')
+        input_power = sum([float(i) for i in self.messages_in['power']])
+
+        self.messages_out['energy_out'] = self.model.calculatepower(input_power, dt=3600)
         self.params['SOC'] = self.model.SOC
+
         return super().step(ts)
 
     def finalize(self):

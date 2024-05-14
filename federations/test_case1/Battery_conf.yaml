@@ -1,11 +1,11 @@
 fed_name: Battery
 fed_conf:
-  model_script : Battery.py
+  model_script : test_case1/Battery.py
   class_name: Battery
   n_instances: 1
   stateful: true
   RL_training: true
-  mem_attrs : [params.SOC]
+  mem_attrs : [params.SOC, outputs.energy_out]
 fed_info:
   broker: null
   broker_init: null
@@ -50,7 +50,7 @@ fed_properties:
   TIME_RT_TOLERANCE: 0.0
   TIME_INPUT_DELAY: 0.0
   TIME_OUTPUT_DELAY: 0.0
-  TIME_STOPTIME: 87400
+  TIME_STOPTIME: 86400
   TIME_GRANT_TIMEOUT: 0.0
   INT_CURRENT_ITERATION: 0
   INT_MAX_ITERATIONS: 50
@@ -60,11 +60,27 @@ fed_properties:
   INT_LOG_BUFFER: 0
   INT_INDEX_GROUP: -972
 fed_connections:
-  sub:
-    0: [Building/0/plug, PV/0/pv]
+  sub: {}
   pub:
-    0: [Battery/0/energy_out]
+    0: [{
+      "key": "Battery/0/energy_out",
+      "type": "double",
+      "units": "Wh",
+      "global": true
+    }]
   end: {}
+  inp:
+    0: [ {
+      "key": "0/power",
+      "type": "double",
+      "units": "W",
+      "global": true,
+      "multi_input_handling_method": "sum",
+      "targets": [
+        "PV/0/pv",
+        "Building/0/plug",
+      ]
+    }]
 model_conf:
   params:
     rated_capacity: [40000]
@@ -80,4 +96,5 @@ model_conf:
     power: [0.0]   #for inputs from multiple source should see helics todo i use a dictionary and if a dict is present i register an input with targets istead of subscription
   outputs:
     energy_out: [0.0]
-  messages: { } #todo could be removed
+  messages_in: {}
+  messages_out: {}

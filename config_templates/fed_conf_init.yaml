@@ -1,4 +1,4 @@
-fed_name: Name
+fed_name: Battery
 fed_conf:
   model_script : Battery_dummy.py
   class_name: Battery_dummy

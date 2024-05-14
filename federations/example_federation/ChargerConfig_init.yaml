@@ -60,15 +60,40 @@ fed_properties:
   INT_LOG_BUFFER: 0
   INT_INDEX_GROUP: -972
 fed_connections:
-  sub:
-    0: [Battery/0/current]
-    1: [Battery/1/current]
-
+  sub: {}
   pub:
-    0: [Charger/0/voltage]
-    1: [Charger/1/voltage]
+    0: [{
+      "key": "Charger/0/voltage",
+      "type": "double",
+      "units": "V",
+      "global": true
+    }]
+    1: [ {
+      "key": "Charger/1/voltage",
+      "type": "double",
+      "units": "V",
+      "global": true
+    } ]
   end: {}
-
+  inp:
+    0: [ {
+      "key": "0/current",
+      "type": "double",
+      "units": "A",
+      "global": true,
+      "targets": [
+        "Battery/0/current",
+      ]
+    }]
+    1: [ {
+      "key": "1/current",
+      "type": "double",
+      "units": "A",
+      "global": true,
+      "targets": [
+        "Battery/1/current",
+      ]
+    }]
 model_conf:
   params:
     charge_rate: [ 1.8,7.2 ]

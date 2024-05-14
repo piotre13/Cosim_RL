@@ -30,7 +30,8 @@ class Model(ABC):
     def _init_memory(self):
         self.memory = {'inputs': {},
                        'outputs': {},
-                       'messages': {},
+                       'messages_in': {},
+                       'messages_out':{},
                        'params': {}}
         if getattr(self, 'mem_attrs', None):
             for attr in getattr(self, 'mem_attrs'):
@@ -38,14 +39,16 @@ class Model(ABC):
         else:
             self.memory['inputs'] = {k:[] for k in self.inputs.keys()}
             self.memory['outputs'] = {k:[] for k in self.outputs.keys()}
-            self.memory['messages'] = {k:[] for k in self.messages.keys()}
+            self.memory['messages_in'] = {k:[] for k in self.messages_in.keys()}
+            self.memory['messages_out'] = {k:[] for k in self.messages_out.keys()}
             self.memory['params'] = {k:[] for k in self.params.keys()}
             logger.warning('\t\tMemory attrs are not specified in the init_config. everything will be memorized.')
 
     def _init_state(self):
         self.initial_state = {'inputs': deepcopy(self.inputs),
            'outputs': deepcopy(self.outputs),
-           'messages': deepcopy(self.messages),
+           'messages_in': deepcopy(self.messages_in),
+           'messages_out': deepcopy(self.messages_out),
            'params': deepcopy(self.params)}
 
     def _fill_memory(self):

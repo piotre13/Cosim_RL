@@ -105,12 +105,12 @@ if __name__ == "__main__":
     for i in range(0, end_count):
         endid[i] = h.helicsFederateGetEndpointByIndex(fed, i)
         end_name = h.helicsEndpointGetName(endid[i])
-        logger.debug(f'\tRegistered Endpoint ---> {end_name}')
+        logger.debug(f'\tRegistered Endpoint ---> {endid[i]}')
     subid = {}
     for i in range(0, sub_count):
         subid[i] = h.helicsFederateGetInputByIndex(fed, i)
         sub_name = h.helicsSubscriptionGetKey(subid[i])
-        logger.debug(f'\tRegistered subscription---> {sub_name}')
+        logger.debug(f'\tRegistered subscription---> {subid[i]}')
 
     pubid = {}
     for i in range(0, pub_count):
