@@ -1,7 +1,7 @@
-	Registered publication: <helics.HelicsPublication(name = "Battery/0/current", type = "double", units = "", info = "") at 0x222a422be80> for Battery/0/current
-	Registered publication: <helics.HelicsPublication(name = "Battery/1/current", type = "double", units = "", info = "") at 0x222a42e58b0> for Battery/1/current
-	Registered subscription: <helics.HelicsInput(name = "_input_2", units = "", injection_units = "", publication_type = "", type = "", target = "Charger/0/voltage", info = "") at 0x222a42e5a30> for Charger/0/voltage
-	Registered subscription: <helics.HelicsInput(name = "_input_3", units = "", injection_units = "", publication_type = "", type = "", target = "Charger/1/voltage", info = "") at 0x222a42e5c40> for Charger/1/voltage
+	Registered publication: <helics.HelicsPublication(name = "Battery/0/current", type = "double", units = "A", info = "") at 0x228d8eb28b0> for Battery/0/current
+	Registered publication: <helics.HelicsPublication(name = "Battery/1/current", type = "double", units = "A", info = "") at 0x228d91d6610> for Battery/1/current
+	Registered input: Battery/0/voltage for Battery/0/voltage from ['Charger/0/voltage']
+	Registered input: Battery/1/voltage for Battery/1/voltage from ['Charge/1/voltage']
 		Model Battery_dummy.0 instantiated with the following kwargs: {'model_name': 'Battery_dummy.0', 'RL_training': True, 'stateful': True, 'mem_attrs': [], 'inputs': {'voltage': 0.0}, 'outputs': {'current': 0.0}, 'messages': {}, 'params': {'size': 25, 'soc': 0, 'effective_R': 8, 'current_soc': 0.4, 'R': 0, 'added_energy': 0, 'update_interval': 60}}!
 		Memory attrs are not specified in the init_config. everything will be memorized.
 		Memory instantiated for Model Battery_dummy.0!
@@ -12,487 +12,428 @@
 		Initial state for Model Battery_dummy.1 set as follow: {'inputs': {'voltage': 0.0}, 'outputs': {'current': 0.0}, 'messages': {}, 'params': {'size': 3, 'soc': 1, 'effective_R': 150, 'current_soc': 0, 'R': 0, 'added_energy': 0, 'update_interval': 60}}
 	Models instantiation from fed: Battery succesfull!
 	Model instances names: ['Battery_dummy.0', 'Battery_dummy.1']
+[2024-05-08 11:25:34.955] [console] [warning] Battery (131072)[created]::Unable to connect to Publication target Charge/1/voltage
 	Entered HELICS execution mode
 Requesting time 60.0
 Granted time 60.0
-	Received value 240.00 from topic Charger/0/voltage
-	Received value 120.00 from topic Charger/1/voltage
-	data from inputs {'inputs': {'Charger/0/voltage': 240.0, 'Charger/1/voltage': 120.0}, 'messages': {}}
+	data from inputs {'inputs': {'Battery/0/voltage': 241.0, 'Battery/1/voltage': -1e+49}, 'messages': {}}
+4444444 1.0
 		 Model Battery_dummy.0 step completed.
 		 Model Battery_dummy.1 step completed.
-	Publishing data : {'outputs': {'Battery/0/current': 3.703703703703703, 'Battery/1/current': 15.0}, 'messages': {}}
+	Publishing data : {'outputs': {'Battery/0/current': 3.719135802469135, 'Battery/1/current': -1.25e+48}, 'messages': {}}
 Requesting time 120.0
 Granted time 120.0
-	Received value 240.00 from topic Charger/0/voltage
-	Received value 120.00 from topic Charger/1/voltage
-	data from inputs {'inputs': {'Charger/0/voltage': 240.0, 'Charger/1/voltage': 120.0}, 'messages': {}}
+	data from inputs {'inputs': {'Battery/0/voltage': 242.0, 'Battery/1/voltage': -1e+49}, 'messages': {}}
+4444444 2.0
 		 Model Battery_dummy.0 step completed.
 		 Model Battery_dummy.1 step completed.
-	Publishing data : {'outputs': {'Battery/0/current': 3.698900376283199, 'Battery/1/current': 12.738853503184714}, 'messages': {}}
+	Publishing data : {'outputs': {'Battery/0/current': 3.729684153597622, 'Battery/1/current': 0}, 'messages': {}}
 Requesting time 180.0
 Granted time 180.0
-	Received value 240.00 from topic Charger/0/voltage
-	Received value 120.00 from topic Charger/1/voltage
-	data from inputs {'inputs': {'Charger/0/voltage': 240.0, 'Charger/1/voltage': 120.0}, 'messages': {}}
+	data from inputs {'inputs': {'Battery/0/voltage': 243.0, 'Battery/1/voltage': -1e+49}, 'messages': {}}
+4444444 3.0
 		 Model Battery_dummy.0 step completed.
 		 Model Battery_dummy.1 step completed.
-	Publishing data : {'outputs': {'Battery/0/current': 3.6941156968346545, 'Battery/1/current': 11.293113438645147}, 'messages': {}}
+	Publishing data : {'outputs': {'Battery/0/current': 3.740170772272521, 'Battery/1/current': 0}, 'messages': {}}
 Requesting time 240.0
 Granted time 240.0
-	Received value 240.00 from topic Charger/0/voltage
-	Received value 120.00 from topic Charger/1/voltage
-	data from inputs {'inputs': {'Charger/0/voltage': 240.0, 'Charger/1/voltage': 120.0}, 'messages': {}}
+	data from inputs {'inputs': {'Battery/0/voltage': 244.0, 'Battery/1/voltage': -1e+49}, 'messages': {}}
+4444444 4.0
 		 Model Battery_dummy.0 step completed.
 		 Model Battery_dummy.1 step completed.
-	Publishing data : {'outputs': {'Battery/0/current': 3.689349544976721, 'Battery/1/current': 10.260772221334273}, 'messages': {}}
+	Publishing data : {'outputs': {'Battery/0/current': 3.7505955813453884, 'Battery/1/current': 0}, 'messages': {}}
 Requesting time 300.0
 Granted time 300.0
-	Received value 240.00 from topic Charger/0/voltage
-	Received value 120.00 from topic Charger/1/voltage
-	data from inputs {'inputs': {'Charger/0/voltage': 240.0, 'Charger/1/voltage': 120.0}, 'messages': {}}
+	data from inputs {'inputs': {'Battery/0/voltage': 245.0, 'Battery/1/voltage': -1e+49}, 'messages': {}}
+4444444 5.0
 		 Model Battery_dummy.0 step completed.
 		 Model Battery_dummy.1 step completed.
-	Publishing data : {'outputs': {'Battery/0/current': 3.684601801413415, 'Battery/1/current': 9.473899137810866}, 'messages': {}}
+	Publishing data : {'outputs': {'Battery/0/current': 3.760958508201943, 'Battery/1/current': 0}, 'messages': {}}
 Requesting time 360.0
 Granted time 360.0
-	Received value 240.00 from topic Charger/0/voltage
-	Received value 120.00 from topic Charger/1/voltage
-	data from inputs {'inputs': {'Charger/0/voltage': 240.0, 'Charger/1/voltage': 120.0}, 'messages': {}}
+	data from inputs {'inputs': {'Battery/0/voltage': 246.0, 'Battery/1/voltage': -1e+49}, 'messages': {}}
+4444444 6.0
 		 Model Battery_dummy.0 step completed.
 		 Model Battery_dummy.1 step completed.
-	Publishing data : {'outputs': {'Battery/0/current': 3.67987234792156, 'Battery/1/current': 8.84744238367399}, 'messages': {}}
+	Publishing data : {'outputs': {'Battery/0/current': 3.771259484755125, 'Battery/1/current': 0}, 'messages': {}}
 Requesting time 420.0
 Granted time 420.0
-	Received value 240.00 from topic Charger/0/voltage
-	Received value 120.00 from topic Charger/1/voltage
-	data from inputs {'inputs': {'Charger/0/voltage': 240.0, 'Charger/1/voltage': 120.0}, 'messages': {}}
+	data from inputs {'inputs': {'Battery/0/voltage': 247.0, 'Battery/1/voltage': -1e+49}, 'messages': {}}
+4444444 7.0
 		 Model Battery_dummy.0 step completed.
 		 Model Battery_dummy.1 step completed.
-	Publishing data : {'outputs': {'Battery/0/current': 3.6751610673384185, 'Battery/1/current': 8.33287060547165}, 'messages': {}}
+	Publishing data : {'outputs': {'Battery/0/current': 3.781498447437117, 'Battery/1/current': 0}, 'messages': {}}
 Requesting time 480.0
 Granted time 480.0
-	Received value 240.00 from topic Charger/0/voltage
-	Received value 120.00 from topic Charger/1/voltage
-	data from inputs {'inputs': {'Charger/0/voltage': 240.0, 'Charger/1/voltage': 120.0}, 'messages': {}}
+	data from inputs {'inputs': {'Battery/0/voltage': 248.0, 'Battery/1/voltage': -1e+49}, 'messages': {}}
+4444444 8.0
 		 Model Battery_dummy.0 step completed.
 		 Model Battery_dummy.1 step completed.
-	Publishing data : {'outputs': {'Battery/0/current': 3.6704678435494893, 'Battery/1/current': 7.900118942555592}, 'messages': {}}
+	Publishing data : {'outputs': {'Battery/0/current': 3.7916753371903837, 'Battery/1/current': 0}, 'messages': {}}
 Requesting time 540.0
 Granted time 540.0
-	Received value 240.00 from topic Charger/0/voltage
-	Received value 120.00 from topic Charger/1/voltage
-	data from inputs {'inputs': {'Charger/0/voltage': 240.0, 'Charger/1/voltage': 120.0}, 'messages': {}}
+	data from inputs {'inputs': {'Battery/0/voltage': 249.0, 'Battery/1/voltage': -1e+49}, 'messages': {}}
+4444444 9.0
 		 Model Battery_dummy.0 step completed.
 		 Model Battery_dummy.1 step completed.
-	Publishing data : {'outputs': {'Battery/0/current': 3.6657925614764792, 'Battery/1/current': 7.5294010647155565}, 'messages': {}}
+	Publishing data : {'outputs': {'Battery/0/current': 3.801790099457709, 'Battery/1/current': 0}, 'messages': {}}
 Requesting time 600.0
 Granted time 600.0
-	Received value 240.00 from topic Charger/0/voltage
-	Received value 120.00 from topic Charger/1/voltage
-	data from inputs {'inputs': {'Charger/0/voltage': 240.0, 'Charger/1/voltage': 120.0}, 'messages': {}}
+	data from inputs {'inputs': {'Battery/0/voltage': 250.0, 'Battery/1/voltage': -1e+49}, 'messages': {}}
+4444444 10.0
 		 Model Battery_dummy.0 step completed.
 		 Model Battery_dummy.1 step completed.
-	Publishing data : {'outputs': {'Battery/0/current': 3.6611351070654425, 'Battery/1/current': 7.207074774725169}, 'messages': {}}
+	Publishing data : {'outputs': {'Battery/0/current': 3.8118426841712547, 'Battery/1/current': 0}, 'messages': {}}
 Requesting time 660.0
 Granted time 660.0
-	Received value 240.00 from topic Charger/0/voltage
-	Received value 120.00 from topic Charger/1/voltage
-	data from inputs {'inputs': {'Charger/0/voltage': 240.0, 'Charger/1/voltage': 120.0}, 'messages': {}}
+	data from inputs {'inputs': {'Battery/0/voltage': 251.0, 'Battery/1/voltage': -1e+49}, 'messages': {}}
+4444444 11.0
 		 Model Battery_dummy.0 step completed.
 		 Model Battery_dummy.1 step completed.
-	Publishing data : {'outputs': {'Battery/0/current': 3.6564953672750864, 'Battery/1/current': 6.923379543400128}, 'messages': {}}
+	Publishing data : {'outputs': {'Battery/0/current': 3.821833045740647, 'Battery/1/current': 0}, 'messages': {}}
 Requesting time 720.0
 Granted time 720.0
-	Received value 240.00 from topic Charger/0/voltage
-	Received value 120.00 from topic Charger/1/voltage
-	data from inputs {'inputs': {'Charger/0/voltage': 240.0, 'Charger/1/voltage': 120.0}, 'messages': {}}
+	data from inputs {'inputs': {'Battery/0/voltage': 252.0, 'Battery/1/voltage': -1e+49}, 'messages': {}}
+4444444 12.0
 		 Model Battery_dummy.0 step completed.
 		 Model Battery_dummy.1 step completed.
-	Publishing data : {'outputs': {'Battery/0/current': 3.6518732300652372, 'Battery/1/current': 6.671118171041397}, 'messages': {}}
+	Publishing data : {'outputs': {'Battery/0/current': 3.831761143040105, 'Battery/1/current': 0}, 'messages': {}}
 Requesting time 780.0
 Granted time 780.0
-	Received value 240.00 from topic Charger/0/voltage
-	Received value 120.00 from topic Charger/1/voltage
-	data from inputs {'inputs': {'Charger/0/voltage': 240.0, 'Charger/1/voltage': 120.0}, 'messages': {}}
+	data from inputs {'inputs': {'Battery/0/voltage': 253.0, 'Battery/1/voltage': -1e+49}, 'messages': {}}
+4444444 13.0
 		 Model Battery_dummy.0 step completed.
 		 Model Battery_dummy.1 step completed.
-	Publishing data : {'outputs': {'Battery/0/current': 3.6472685843854675, 'Battery/1/current': 6.444848764712694}, 'messages': {}}
+	Publishing data : {'outputs': {'Battery/0/current': 3.8416269393946174, 'Battery/1/current': 0}, 'messages': {}}
 Requesting time 840.0
 Granted time 840.0
-	Received value 240.00 from topic Charger/0/voltage
-	Received value 120.00 from topic Charger/1/voltage
-	data from inputs {'inputs': {'Charger/0/voltage': 240.0, 'Charger/1/voltage': 120.0}, 'messages': {}}
+	data from inputs {'inputs': {'Battery/0/voltage': 254.0, 'Battery/1/voltage': -1e+49}, 'messages': {}}
+4444444 14.0
 		 Model Battery_dummy.0 step completed.
 		 Model Battery_dummy.1 step completed.
-	Publishing data : {'outputs': {'Battery/0/current': 3.642681320163889, 'Battery/1/current': 6.240368437182758}, 'messages': {}}
+	Publishing data : {'outputs': {'Battery/0/current': 3.85143040256519, 'Battery/1/current': 0}, 'messages': {}}
 Requesting time 900.0
 Granted time 900.0
-	Received value 240.00 from topic Charger/0/voltage
-	Received value 120.00 from topic Charger/1/voltage
-	data from inputs {'inputs': {'Charger/0/voltage': 240.0, 'Charger/1/voltage': 120.0}, 'messages': {}}
+	data from inputs {'inputs': {'Battery/0/voltage': 255.0, 'Battery/1/voltage': -1e+49}, 'messages': {}}
+4444444 15.0
 		 Model Battery_dummy.0 step completed.
 		 Model Battery_dummy.1 step completed.
-	Publishing data : {'outputs': {'Battery/0/current': 3.6381113282960786, 'Battery/1/current': 6.054371676282143}, 'messages': {}}
+	Publishing data : {'outputs': {'Battery/0/current': 3.861171504733167, 'Battery/1/current': 0}, 'messages': {}}
 Requesting time 960.0
 Granted time 960.0
-	Received value 240.00 from topic Charger/0/voltage
-	Received value 120.00 from topic Charger/1/voltage
-	data from inputs {'inputs': {'Charger/0/voltage': 240.0, 'Charger/1/voltage': 120.0}, 'messages': {}}
+	data from inputs {'inputs': {'Battery/0/voltage': 256.0, 'Battery/1/voltage': -1e+49}, 'messages': {}}
+4444444 16.0
 		 Model Battery_dummy.0 step completed.
 		 Model Battery_dummy.1 step completed.
-	Publishing data : {'outputs': {'Battery/0/current': 3.6335585006341855, 'Battery/1/current': 5.88421746155035}, 'messages': {}}
+	Publishing data : {'outputs': {'Battery/0/current': 3.8708502224836336, 'Battery/1/current': 0}, 'messages': {}}
 Requesting time 1020.0
 Granted time 1020.0
-	Received value 240.00 from topic Charger/0/voltage
-	Received value 120.00 from topic Charger/1/voltage
-	data from inputs {'inputs': {'Charger/0/voltage': 240.0, 'Charger/1/voltage': 120.0}, 'messages': {}}
+	data from inputs {'inputs': {'Battery/0/voltage': 257.0, 'Battery/1/voltage': -1e+49}, 'messages': {}}
+4444444 17.0
 		 Model Battery_dummy.0 step completed.
 		 Model Battery_dummy.1 step completed.
-	Publishing data : {'outputs': {'Battery/0/current': 3.629022729976167, 'Battery/1/current': 5.7277663819643}, 'messages': {}}
+	Publishing data : {'outputs': {'Battery/0/current': 3.880466536787933, 'Battery/1/current': 0}, 'messages': {}}
 Requesting time 1080.0
 Granted time 1080.0
-	Received value 240.00 from topic Charger/0/voltage
-	Received value 120.00 from topic Charger/1/voltage
-	data from inputs {'inputs': {'Charger/0/voltage': 240.0, 'Charger/1/voltage': 120.0}, 'messages': {}}
+	data from inputs {'inputs': {'Battery/0/voltage': 258.0, 'Battery/1/voltage': -1e+49}, 'messages': {}}
+4444444 18.0
 		 Model Battery_dummy.0 step completed.
 		 Model Battery_dummy.1 step completed.
-	Publishing data : {'outputs': {'Battery/0/current': 3.6245039100551755, 'Battery/1/current': 5.583264133273331}, 'messages': {}}
+	Publishing data : {'outputs': {'Battery/0/current': 3.8900204329852865, 'Battery/1/current': 0}, 'messages': {}}
 Requesting time 1140.0
 Granted time 1140.0
-	Received value 240.00 from topic Charger/0/voltage
-	Received value 120.00 from topic Charger/1/voltage
-	data from inputs {'inputs': {'Charger/0/voltage': 240.0, 'Charger/1/voltage': 120.0}, 'messages': {}}
+	data from inputs {'inputs': {'Battery/0/voltage': 259.0, 'Battery/1/voltage': -1e+49}, 'messages': {}}
+4444444 19.0
 		 Model Battery_dummy.0 step completed.
 		 Model Battery_dummy.1 step completed.
-	Publishing data : {'outputs': {'Battery/0/current': 3.620001935529101, 'Battery/1/current': 5.449256529823297}, 'messages': {}}
+	Publishing data : {'outputs': {'Battery/0/current': 3.8995119007635477, 'Battery/1/current': 0}, 'messages': {}}
 Requesting time 1200.0
 Granted time 1200.0
-	Received value 240.00 from topic Charger/0/voltage
-	Received value 120.00 from topic Charger/1/voltage
-	data from inputs {'inputs': {'Charger/0/voltage': 240.0, 'Charger/1/voltage': 120.0}, 'messages': {}}
+	data from inputs {'inputs': {'Battery/0/voltage': 260.0, 'Battery/1/voltage': -1e+49}, 'messages': {}}
+4444444 20.0
 		 Model Battery_dummy.0 step completed.
 		 Model Battery_dummy.1 step completed.
-	Publishing data : {'outputs': {'Battery/0/current': 3.6155167019702463, 'Battery/1/current': 5.3245264123021725}, 'messages': {}}
+	Publishing data : {'outputs': {'Battery/0/current': 3.9089409341390993, 'Battery/1/current': 0}, 'messages': {}}
 Requesting time 1260.0
 Granted time 1260.0
-	Received value 240.00 from topic Charger/0/voltage
-	Received value 120.00 from topic Charger/1/voltage
-	data from inputs {'inputs': {'Charger/0/voltage': 240.0, 'Charger/1/voltage': 120.0}, 'messages': {}}
+	data from inputs {'inputs': {'Battery/0/voltage': 261.0, 'Battery/1/voltage': -1e+49}, 'messages': {}}
+4444444 21.0
 		 Model Battery_dummy.0 step completed.
 		 Model Battery_dummy.1 step completed.
-	Publishing data : {'outputs': {'Battery/0/current': 3.6110481058551422, 'Battery/1/current': 5.208046072690308}, 'messages': {}}
+	Publishing data : {'outputs': {'Battery/0/current': 3.9183075314358984, 'Battery/1/current': 0}, 'messages': {}}
 Requesting time 1320.0
 Granted time 1320.0
-	Received value 240.00 from topic Charger/0/voltage
-	Received value 120.00 from topic Charger/1/voltage
-	data from inputs {'inputs': {'Charger/0/voltage': 240.0, 'Charger/1/voltage': 120.0}, 'messages': {}}
+	data from inputs {'inputs': {'Battery/0/voltage': 262.0, 'Battery/1/voltage': -1e+49}, 'messages': {}}
+4444444 22.0
 		 Model Battery_dummy.0 step completed.
 		 Model Battery_dummy.1 step completed.
-	Publishing data : {'outputs': {'Battery/0/current': 3.60659604455451, 'Battery/1/current': 5.098940872558415}, 'messages': {}}
+	Publishing data : {'outputs': {'Battery/0/current': 3.9276116952637, 'Battery/1/current': 0}, 'messages': {}}
 Requesting time 1380.0
 Granted time 1380.0
-	Received value 240.00 from topic Charger/0/voltage
-	Received value 120.00 from topic Charger/1/voltage
-	data from inputs {'inputs': {'Charger/0/voltage': 240.0, 'Charger/1/voltage': 120.0}, 'messages': {}}
+	data from inputs {'inputs': {'Battery/0/voltage': 263.0, 'Battery/1/voltage': -1e+49}, 'messages': {}}
+4444444 23.0
 		 Model Battery_dummy.0 step completed.
 		 Model Battery_dummy.1 step completed.
-	Publishing data : {'outputs': {'Battery/0/current': 3.60216041632335, 'Battery/1/current': 4.996461065598863}, 'messages': {}}
+	Publishing data : {'outputs': {'Battery/0/current': 3.936853432495452, 'Battery/1/current': 0}, 'messages': {}}
 Requesting time 1440.0
 Granted time 1440.0
-	Received value 240.00 from topic Charger/0/voltage
-	Received value 120.00 from topic Charger/1/voltage
-	data from inputs {'inputs': {'Charger/0/voltage': 240.0, 'Charger/1/voltage': 120.0}, 'messages': {}}
+	data from inputs {'inputs': {'Battery/0/voltage': 264.0, 'Battery/1/voltage': -1e+49}, 'messages': {}}
+4444444 24.0
 		 Model Battery_dummy.0 step completed.
 		 Model Battery_dummy.1 step completed.
-	Publishing data : {'outputs': {'Battery/0/current': 3.5977411202911687, 'Battery/1/current': 4.89995972103938}, 'messages': {}}
+	Publishing data : {'outputs': {'Battery/0/current': 3.946032754243906, 'Battery/1/current': 0}, 'messages': {}}
 Requesting time 1500.0
 Granted time 1500.0
-	Received value 240.00 from topic Charger/0/voltage
-	Received value 120.00 from topic Charger/1/voltage
-	data from inputs {'inputs': {'Charger/0/voltage': 240.0, 'Charger/1/voltage': 120.0}, 'messages': {}}
+	data from inputs {'inputs': {'Battery/0/voltage': 265.0, 'Battery/1/voltage': -1e+49}, 'messages': {}}
+4444444 25.0
 		 Model Battery_dummy.0 step completed.
 		 Model Battery_dummy.1 step completed.
-	Publishing data : {'outputs': {'Battery/0/current': 3.593338056452338, 'Battery/1/current': 4.808875243888918}, 'messages': {}}
+	Publishing data : {'outputs': {'Battery/0/current': 3.9551496758374234, 'Battery/1/current': 0}, 'messages': {}}
 Requesting time 1560.0
 Granted time 1560.0
-	Received value 240.00 from topic Charger/0/voltage
-	Received value 120.00 from topic Charger/1/voltage
-	data from inputs {'inputs': {'Charger/0/voltage': 240.0, 'Charger/1/voltage': 120.0}, 'messages': {}}
+	data from inputs {'inputs': {'Battery/0/voltage': 266.0, 'Battery/1/voltage': -1e+49}, 'messages': {}}
+4444444 26.0
 		 Model Battery_dummy.0 step completed.
 		 Model Battery_dummy.1 step completed.
-	Publishing data : {'outputs': {'Battery/0/current': 3.588951125656585, 'Battery/1/current': 4.722717400639736}, 'messages': {}}
+	Publishing data : {'outputs': {'Battery/0/current': 3.9642042167950193, 'Battery/1/current': 0}, 'messages': {}}
 Requesting time 1620.0
 Granted time 1620.0
-	Received value 240.00 from topic Charger/0/voltage
-	Received value 120.00 from topic Charger/1/voltage
-	data from inputs {'inputs': {'Charger/0/voltage': 240.0, 'Charger/1/voltage': 120.0}, 'messages': {}}
+	data from inputs {'inputs': {'Battery/0/voltage': 267.0, 'Battery/1/voltage': -1e+49}, 'messages': {}}
+4444444 27.0
 		 Model Battery_dummy.0 step completed.
 		 Model Battery_dummy.1 step completed.
-	Publishing data : {'outputs': {'Battery/0/current': 3.584580229599604, 'Battery/1/current': 4.641056047809018}, 'messages': {}}
+	Publishing data : {'outputs': {'Battery/0/current': 3.973196400800644, 'Battery/1/current': 0}, 'messages': {}}
 Requesting time 1680.0
 Granted time 1680.0
-	Received value 240.00 from topic Charger/0/voltage
-	Received value 120.00 from topic Charger/1/voltage
-	data from inputs {'inputs': {'Charger/0/voltage': 240.0, 'Charger/1/voltage': 120.0}, 'messages': {}}
+	data from inputs {'inputs': {'Battery/0/voltage': 268.0, 'Battery/1/voltage': -1e+49}, 'messages': {}}
+4444444 28.0
 		 Model Battery_dummy.0 step completed.
 		 Model Battery_dummy.1 step completed.
-	Publishing data : {'outputs': {'Battery/0/current': 3.5802252708138, 'Battery/1/current': 4.563511965747865}, 'messages': {}}
+	Publishing data : {'outputs': {'Battery/0/current': 3.982126255676731, 'Battery/1/current': 0}, 'messages': {}}
 Requesting time 1740.0
 Granted time 1740.0
-	Received value 240.00 from topic Charger/0/voltage
-	Received value 120.00 from topic Charger/1/voltage
-	data from inputs {'inputs': {'Charger/0/voltage': 240.0, 'Charger/1/voltage': 120.0}, 'messages': {}}
+	data from inputs {'inputs': {'Battery/0/voltage': 269.0, 'Battery/1/voltage': -1e+49}, 'messages': {}}
+4444444 29.0
 		 Model Battery_dummy.0 step completed.
 		 Model Battery_dummy.1 step completed.
-	Publishing data : {'outputs': {'Battery/0/current': 3.575886152659152, 'Battery/1/current': 4.4897493477265495}, 'messages': {}}
+	Publishing data : {'outputs': {'Battery/0/current': 3.9909938133570018, 'Battery/1/current': 0}, 'messages': {}}
 Requesting time 1800.0
 Granted time 1800.0
-	Received value 240.00 from topic Charger/0/voltage
-	Received value 120.00 from topic Charger/1/voltage
-	data from inputs {'inputs': {'Charger/0/voltage': 240.0, 'Charger/1/voltage': 120.0}, 'messages': {}}
+	data from inputs {'inputs': {'Battery/0/voltage': 270.0, 'Battery/1/voltage': -1e+49}, 'messages': {}}
+4444444 30.0
 		 Model Battery_dummy.0 step completed.
 		 Model Battery_dummy.1 step completed.
-	Publishing data : {'outputs': {'Battery/0/current': 3.5715627793141995, 'Battery/1/current': 4.419469601860371}, 'messages': {}}
+	Publishing data : {'outputs': {'Battery/0/current': 3.9997991098585852, 'Battery/1/current': 0}, 'messages': {}}
 Requesting time 1860.0
 Granted time 1860.0
-	Received value 240.00 from topic Charger/0/voltage
-	Received value 120.00 from topic Charger/1/voltage
-	data from inputs {'inputs': {'Charger/0/voltage': 240.0, 'Charger/1/voltage': 120.0}, 'messages': {}}
+	data from inputs {'inputs': {'Battery/0/voltage': 271.0, 'Battery/1/voltage': -1e+49}, 'messages': {}}
+4444444 31.0
 		 Model Battery_dummy.0 step completed.
 		 Model Battery_dummy.1 step completed.
-	Publishing data : {'outputs': {'Battery/0/current': 3.567255055767149, 'Battery/1/current': 4.352406202736412}, 'messages': {}}
+	Publishing data : {'outputs': {'Battery/0/current': 4.008542185253411, 'Battery/1/current': 0}, 'messages': {}}
 Requesting time 1920.0
 Granted time 1920.0
-	Received value 240.00 from topic Charger/0/voltage
-	Received value 120.00 from topic Charger/1/voltage
-	data from inputs {'inputs': {'Charger/0/voltage': 240.0, 'Charger/1/voltage': 120.0}, 'messages': {}}
+	data from inputs {'inputs': {'Battery/0/voltage': 272.0, 'Battery/1/voltage': -1e+49}, 'messages': {}}
+4444444 32.0
 		 Model Battery_dummy.0 step completed.
 		 Model Battery_dummy.1 step completed.
-	Publishing data : {'outputs': {'Battery/0/current': 3.562962887807098, 'Battery/1/current': 4.288320388693661}, 'messages': {}}
+	Publishing data : {'outputs': {'Battery/0/current': 4.01722308363895, 'Battery/1/current': 0}, 'messages': {}}
 Requesting time 1980.0
 Granted time 1980.0
-	Received value 240.00 from topic Charger/0/voltage
-	Received value 120.00 from topic Charger/1/voltage
-	data from inputs {'inputs': {'Charger/0/voltage': 240.0, 'Charger/1/voltage': 120.0}, 'messages': {}}
+	data from inputs {'inputs': {'Battery/0/voltage': 273.0, 'Battery/1/voltage': -1e+49}, 'messages': {}}
+4444444 33.0
 		 Model Battery_dummy.0 step completed.
 		 Model Battery_dummy.1 step completed.
-	Publishing data : {'outputs': {'Battery/0/current': 3.558686182015376, 'Battery/1/current': 4.226997545187102}, 'messages': {}}
+	Publishing data : {'outputs': {'Battery/0/current': 4.025841853108278, 'Battery/1/current': 0}, 'messages': {}}
 Requesting time 2040.0
 Granted time 2040.0
-	Received value 240.00 from topic Charger/0/voltage
-	Received value 120.00 from topic Charger/1/voltage
-	data from inputs {'inputs': {'Charger/0/voltage': 240.0, 'Charger/1/voltage': 120.0}, 'messages': {}}
+	data from inputs {'inputs': {'Battery/0/voltage': 274.0, 'Battery/1/voltage': -1e+49}, 'messages': {}}
+4444444 34.0
 		 Model Battery_dummy.0 step completed.
 		 Model Battery_dummy.1 step completed.
-	Publishing data : {'outputs': {'Battery/0/current': 3.554424845756992, 'Battery/1/current': 4.168244148458548}, 'messages': {}}
+	Publishing data : {'outputs': {'Battery/0/current': 4.034398545719489, 'Battery/1/current': 0}, 'messages': {}}
 Requesting time 2100.0
 Granted time 2100.0
-	Received value 240.00 from topic Charger/0/voltage
-	Received value 120.00 from topic Charger/1/voltage
-	data from inputs {'inputs': {'Charger/0/voltage': 240.0, 'Charger/1/voltage': 120.0}, 'messages': {}}
+	data from inputs {'inputs': {'Battery/0/voltage': 275.0, 'Battery/1/voltage': -1e+49}, 'messages': {}}
+4444444 35.0
 		 Model Battery_dummy.0 step completed.
 		 Model Battery_dummy.1 step completed.
-	Publishing data : {'outputs': {'Battery/0/current': 3.5501787871722117, 'Battery/1/current': 4.111885169635399}, 'messages': {}}
+	Publishing data : {'outputs': {'Battery/0/current': 4.042893217464491, 'Battery/1/current': 0}, 'messages': {}}
 Requesting time 2160.0
 Granted time 2160.0
-	Received value 240.00 from topic Charger/0/voltage
-	Received value 120.00 from topic Charger/1/voltage
-	data from inputs {'inputs': {'Charger/0/voltage': 240.0, 'Charger/1/voltage': 120.0}, 'messages': {}}
+	data from inputs {'inputs': {'Battery/0/voltage': 276.0, 'Battery/1/voltage': -1e+49}, 'messages': {}}
+4444444 36.0
 		 Model Battery_dummy.0 step completed.
 		 Model Battery_dummy.1 step completed.
-	Publishing data : {'outputs': {'Battery/0/current': 3.5459479151682265, 'Battery/1/current': 4.057761859390428}, 'messages': {}}
+	Publishing data : {'outputs': {'Battery/0/current': 4.05132592823717, 'Battery/1/current': 0}, 'messages': {}}
 Requesting time 2220.0
 Granted time 2220.0
-	Received value 240.00 from topic Charger/0/voltage
-	Received value 120.00 from topic Charger/1/voltage
-	data from inputs {'inputs': {'Charger/0/voltage': 240.0, 'Charger/1/voltage': 120.0}, 'messages': {}}
+	data from inputs {'inputs': {'Battery/0/voltage': 277.0, 'Battery/1/voltage': -1e+49}, 'messages': {}}
+4444444 37.0
 		 Model Battery_dummy.0 step completed.
 		 Model Battery_dummy.1 step completed.
-	Publishing data : {'outputs': {'Battery/0/current': 3.5417321394109402, 'Battery/1/current': 4.005729848878345}, 'messages': {}}
+	Publishing data : {'outputs': {'Battery/0/current': 4.059696741800967, 'Battery/1/current': 0}, 'messages': {}}
 Requesting time 2280.0
 Granted time 2280.0
-	Received value 240.00 from topic Charger/0/voltage
-	Received value 120.00 from topic Charger/1/voltage
-	data from inputs {'inputs': {'Charger/0/voltage': 240.0, 'Charger/1/voltage': 120.0}, 'messages': {}}
+	data from inputs {'inputs': {'Battery/0/voltage': 278.0, 'Battery/1/voltage': -1e+49}, 'messages': {}}
+4444444 38.0
 		 Model Battery_dummy.0 step completed.
 		 Model Battery_dummy.1 step completed.
-	Publishing data : {'outputs': {'Battery/0/current': 3.537531370316867, 'Battery/1/current': 3.9556575148868736}, 'messages': {}}
+	Publishing data : {'outputs': {'Battery/0/current': 4.068005725755871, 'Battery/1/current': 0}, 'messages': {}}
 Requesting time 2340.0
 Granted time 2340.0
-	Received value 240.00 from topic Charger/0/voltage
-	Received value 120.00 from topic Charger/1/voltage
-	data from inputs {'inputs': {'Charger/0/voltage': 240.0, 'Charger/1/voltage': 120.0}, 'messages': {}}
+	data from inputs {'inputs': {'Battery/0/voltage': 279.0, 'Battery/1/voltage': -1e+49}, 'messages': {}}
+4444444 39.0
 		 Model Battery_dummy.0 step completed.
 		 Model Battery_dummy.1 step completed.
-	Publishing data : {'outputs': {'Battery/0/current': 3.5333455190451244, 'Battery/1/current': 3.90742456679187}, 'messages': {}}
+	Publishing data : {'outputs': {'Battery/0/current': 4.076252951504836, 'Battery/1/current': 0}, 'messages': {}}
 Requesting time 2400.0
 Granted time 2400.0
-	Received value 240.00 from topic Charger/0/voltage
-	Received value 120.00 from topic Charger/1/voltage
-	data from inputs {'inputs': {'Charger/0/voltage': 240.0, 'Charger/1/voltage': 120.0}, 'messages': {}}
+	data from inputs {'inputs': {'Battery/0/voltage': 280.0, 'Battery/1/voltage': -1e+49}, 'messages': {}}
+4444444 40.0
 		 Model Battery_dummy.0 step completed.
 		 Model Battery_dummy.1 step completed.
-	Publishing data : {'outputs': {'Battery/0/current': 3.529174497489543, 'Battery/1/current': 3.860920820577473}, 'messages': {}}
+	Publishing data : {'outputs': {'Battery/0/current': 4.084438494219666, 'Battery/1/current': 0}, 'messages': {}}
 Requesting time 2460.0
 Granted time 2460.0
-	Received value 240.00 from topic Charger/0/voltage
-	Received value 120.00 from topic Charger/1/voltage
-	data from inputs {'inputs': {'Charger/0/voltage': 240.0, 'Charger/1/voltage': 120.0}, 'messages': {}}
+	data from inputs {'inputs': {'Battery/0/voltage': 281.0, 'Battery/1/voltage': -1e+49}, 'messages': {}}
+4444444 41.0
 		 Model Battery_dummy.0 step completed.
 		 Model Battery_dummy.1 step completed.
-	Publishing data : {'outputs': {'Battery/0/current': 3.5250182182708647, 'Battery/1/current': 3.8160451313170625}, 'messages': {}}
+	Publishing data : {'outputs': {'Battery/0/current': 4.092562432806346, 'Battery/1/current': 0}, 'messages': {}}
 Requesting time 2520.0
 Granted time 2520.0
-	Received value 240.00 from topic Charger/0/voltage
-	Received value 120.00 from topic Charger/1/voltage
-	data from inputs {'inputs': {'Charger/0/voltage': 240.0, 'Charger/1/voltage': 120.0}, 'messages': {}}
+	data from inputs {'inputs': {'Battery/0/voltage': 282.0, 'Battery/1/voltage': -1e+49}, 'messages': {}}
+4444444 42.0
 		 Model Battery_dummy.0 step completed.
 		 Model Battery_dummy.1 step completed.
-	Publishing data : {'outputs': {'Battery/0/current': 3.5208765947290543, 'Battery/1/current': 3.772704460445241}, 'messages': {}}
+	Publishing data : {'outputs': {'Battery/0/current': 4.100624849869877, 'Battery/1/current': 0}, 'messages': {}}
 Requesting time 2580.0
 Granted time 2580.0
-	Received value 240.00 from topic Charger/0/voltage
-	Received value 120.00 from topic Charger/1/voltage
-	data from inputs {'inputs': {'Charger/0/voltage': 240.0, 'Charger/1/voltage': 120.0}, 'messages': {}}
+	data from inputs {'inputs': {'Battery/0/voltage': 283.0, 'Battery/1/voltage': -1e+49}, 'messages': {}}
+4444444 43.0
 		 Model Battery_dummy.0 step completed.
 		 Model Battery_dummy.1 step completed.
-	Publishing data : {'outputs': {'Battery/0/current': 3.5167495409157024, 'Battery/1/current': 3.7308130581418615}, 'messages': {}}
+	Publishing data : {'outputs': {'Battery/0/current': 4.108625831678597, 'Battery/1/current': 0}, 'messages': {}}
 Requesting time 2640.0
 Granted time 2640.0
-	Received value 240.00 from topic Charger/0/voltage
-	Received value 120.00 from topic Charger/1/voltage
-	data from inputs {'inputs': {'Charger/0/voltage': 240.0, 'Charger/1/voltage': 120.0}, 'messages': {}}
+	data from inputs {'inputs': {'Battery/0/voltage': 284.0, 'Battery/1/voltage': -1e+49}, 'messages': {}}
+4444444 44.0
 		 Model Battery_dummy.0 step completed.
 		 Model Battery_dummy.1 step completed.
-	Publishing data : {'outputs': {'Battery/0/current': 3.5126369715865295, 'Battery/1/current': 3.6902917443936416}, 'messages': {}}
+	Publishing data : {'outputs': {'Battery/0/current': 4.116565468128023, 'Battery/1/current': 0}, 'messages': {}}
 Requesting time 2700.0
 Granted time 2700.0
-	Received value 240.00 from topic Charger/0/voltage
-	Received value 120.00 from topic Charger/1/voltage
-	data from inputs {'inputs': {'Charger/0/voltage': 240.0, 'Charger/1/voltage': 120.0}, 'messages': {}}
+	data from inputs {'inputs': {'Battery/0/voltage': 285.0, 'Battery/1/voltage': -1e+49}, 'messages': {}}
+4444444 45.0
 		 Model Battery_dummy.0 step completed.
 		 Model Battery_dummy.1 step completed.
-	Publishing data : {'outputs': {'Battery/0/current': 3.508538802193986, 'Battery/1/current': 3.651067274949865}, 'messages': {}}
+	Publishing data : {'outputs': {'Battery/0/current': 4.124443852704227, 'Battery/1/current': 0}, 'messages': {}}
 Requesting time 2760.0
 Granted time 2760.0
-	Received value 240.00 from topic Charger/0/voltage
-	Received value 120.00 from topic Charger/1/voltage
-	data from inputs {'inputs': {'Charger/0/voltage': 240.0, 'Charger/1/voltage': 120.0}, 'messages': {}}
+	data from inputs {'inputs': {'Battery/0/voltage': 286.0, 'Battery/1/voltage': -1e+49}, 'messages': {}}
+4444444 46.0
 		 Model Battery_dummy.0 step completed.
 		 Model Battery_dummy.1 step completed.
-	Publishing data : {'outputs': {'Battery/0/current': 3.504454948879947, 'Battery/1/current': 3.6130717805649315}, 'messages': {}}
+	Publishing data : {'outputs': {'Battery/0/current': 4.132261082446762, 'Battery/1/current': 0}, 'messages': {}}
 Requesting time 2820.0
 Granted time 2820.0
-	Received value 240.00 from topic Charger/0/voltage
-	Received value 120.00 from topic Charger/1/voltage
-	data from inputs {'inputs': {'Charger/0/voltage': 240.0, 'Charger/1/voltage': 120.0}, 'messages': {}}
+	data from inputs {'inputs': {'Battery/0/voltage': 287.0, 'Battery/1/voltage': -1e+49}, 'messages': {}}
+4444444 47.0
 		 Model Battery_dummy.0 step completed.
 		 Model Battery_dummy.1 step completed.
-	Publishing data : {'outputs': {'Battery/0/current': 3.5003853284684974, 'Battery/1/current': 3.5762422697151255}, 'messages': {}}
+	Publishing data : {'outputs': {'Battery/0/current': 4.140017257911147, 'Battery/1/current': 0}, 'messages': {}}
 Requesting time 2880.0
 Granted time 2880.0
-	Received value 240.00 from topic Charger/0/voltage
-	Received value 120.00 from topic Charger/1/voltage
-	data from inputs {'inputs': {'Charger/0/voltage': 240.0, 'Charger/1/voltage': 120.0}, 'messages': {}}
+	data from inputs {'inputs': {'Battery/0/voltage': 288.0, 'Battery/1/voltage': -1e+49}, 'messages': {}}
+4444444 48.0
 		 Model Battery_dummy.0 step completed.
 		 Model Battery_dummy.1 step completed.
-	Publishing data : {'outputs': {'Battery/0/current': 3.496329858458816, 'Battery/1/current': 3.5405201864633344}, 'messages': {}}
+	Publishing data : {'outputs': {'Battery/0/current': 4.147712483130953, 'Battery/1/current': 0}, 'messages': {}}
 Requesting time 2940.0
 Granted time 2940.0
-	Received value 240.00 from topic Charger/0/voltage
-	Received value 120.00 from topic Charger/1/voltage
-	data from inputs {'inputs': {'Charger/0/voltage': 240.0, 'Charger/1/voltage': 120.0}, 'messages': {}}
+	data from inputs {'inputs': {'Battery/0/voltage': 289.0, 'Battery/1/voltage': -1e+49}, 'messages': {}}
+4444444 49.0
 		 Model Battery_dummy.0 step completed.
 		 Model Battery_dummy.1 step completed.
-	Publishing data : {'outputs': {'Battery/0/current': 3.4922884570181427, 'Battery/1/current': 3.505851016381551}, 'messages': {}}
+	Publishing data : {'outputs': {'Battery/0/current': 4.155346865579466, 'Battery/1/current': 0}, 'messages': {}}
 Requesting time 3000.0
 Granted time 3000.0
-	Received value 240.00 from topic Charger/0/voltage
-	Received value 120.00 from topic Charger/1/voltage
-	data from inputs {'inputs': {'Charger/0/voltage': 240.0, 'Charger/1/voltage': 120.0}, 'messages': {}}
+	data from inputs {'inputs': {'Battery/0/voltage': 290.0, 'Battery/1/voltage': -1e+49}, 'messages': {}}
+4444444 50.0
 		 Model Battery_dummy.0 step completed.
 		 Model Battery_dummy.1 step completed.
-	Publishing data : {'outputs': {'Battery/0/current': 3.4882610429748397, 'Battery/1/current': 3.472183934473012}, 'messages': {}}
+	Publishing data : {'outputs': {'Battery/0/current': 4.162920516130978, 'Battery/1/current': 0}, 'messages': {}}
 Requesting time 3060.0
 Granted time 3060.0
-	Received value 240.00 from topic Charger/0/voltage
-	Received value 120.00 from topic Charger/1/voltage
-	data from inputs {'inputs': {'Charger/0/voltage': 240.0, 'Charger/1/voltage': 120.0}, 'messages': {}}
+	data from inputs {'inputs': {'Battery/0/voltage': 291.0, 'Battery/1/voltage': -1e+49}, 'messages': {}}
+4444444 51.0
 		 Model Battery_dummy.0 step completed.
 		 Model Battery_dummy.1 step completed.
-	Publishing data : {'outputs': {'Battery/0/current': 3.4842475358115395, 'Battery/1/current': 3.4394714899007868}, 'messages': {}}
+	Publishing data : {'outputs': {'Battery/0/current': 4.17043354902171, 'Battery/1/current': 0}, 'messages': {}}
 Requesting time 3120.0
 Granted time 3120.0
-	Received value 240.00 from topic Charger/0/voltage
-	Received value 120.00 from topic Charger/1/voltage
-	data from inputs {'inputs': {'Charger/0/voltage': 240.0, 'Charger/1/voltage': 120.0}, 'messages': {}}
+	data from inputs {'inputs': {'Battery/0/voltage': 292.0, 'Battery/1/voltage': -1e+49}, 'messages': {}}
+4444444 52.0
 		 Model Battery_dummy.0 step completed.
 		 Model Battery_dummy.1 step completed.
-	Publishing data : {'outputs': {'Battery/0/current': 3.480247855658378, 'Battery/1/current': 3.407669323057156}, 'messages': {}}
+	Publishing data : {'outputs': {'Battery/0/current': 4.177886081810382, 'Battery/1/current': 0}, 'messages': {}}
 Requesting time 3180.0
 Granted time 3180.0
-	Received value 240.00 from topic Charger/0/voltage
-	Received value 120.00 from topic Charger/1/voltage
-	data from inputs {'inputs': {'Charger/0/voltage': 240.0, 'Charger/1/voltage': 120.0}, 'messages': {}}
+	data from inputs {'inputs': {'Battery/0/voltage': 293.0, 'Battery/1/voltage': -1e+49}, 'messages': {}}
+4444444 53.0
 		 Model Battery_dummy.0 step completed.
 		 Model Battery_dummy.1 step completed.
-	Publishing data : {'outputs': {'Battery/0/current': 3.4762619232863163, 'Battery/1/current': 3.37673591112218}, 'messages': {}}
+	Publishing data : {'outputs': {'Battery/0/current': 4.1852782353384415, 'Battery/1/current': 0}, 'messages': {}}
 Requesting time 3240.0
 Granted time 3240.0
-	Received value 240.00 from topic Charger/0/voltage
-	Received value 120.00 from topic Charger/1/voltage
-	data from inputs {'inputs': {'Charger/0/voltage': 240.0, 'Charger/1/voltage': 120.0}, 'messages': {}}
+	data from inputs {'inputs': {'Battery/0/voltage': 294.0, 'Battery/1/voltage': -1e+49}, 'messages': {}}
+4444444 54.0
 		 Model Battery_dummy.0 step completed.
 		 Model Battery_dummy.1 step completed.
-	Publishing data : {'outputs': {'Battery/0/current': 3.4722896601005417, 'Battery/1/current': 3.346632338779926}, 'messages': {}}
+	Publishing data : {'outputs': {'Battery/0/current': 4.192610133689985, 'Battery/1/current': 0}, 'messages': {}}
 Requesting time 3300.0
 Granted time 3300.0
-	Received value 240.00 from topic Charger/0/voltage
-	Received value 120.00 from topic Charger/1/voltage
-	data from inputs {'inputs': {'Charger/0/voltage': 240.0, 'Charger/1/voltage': 120.0}, 'messages': {}}
+	data from inputs {'inputs': {'Battery/0/voltage': 295.0, 'Battery/1/voltage': -1e+49}, 'messages': {}}
+4444444 55.0
 		 Model Battery_dummy.0 step completed.
 		 Model Battery_dummy.1 step completed.
-	Publishing data : {'outputs': {'Battery/0/current': 3.4683309881339563, 'Battery/1/current': 3.317322091202655}, 'messages': {}}
+	Publishing data : {'outputs': {'Battery/0/current': 4.199881904151366, 'Battery/1/current': 0}, 'messages': {}}
 Requesting time 3360.0
 Granted time 3360.0
-	Received value 240.00 from topic Charger/0/voltage
-	Received value 120.00 from topic Charger/1/voltage
-	data from inputs {'inputs': {'Charger/0/voltage': 240.0, 'Charger/1/voltage': 120.0}, 'messages': {}}
+	data from inputs {'inputs': {'Battery/0/voltage': 296.0, 'Battery/1/voltage': -1e+49}, 'messages': {}}
+4444444 56.0
 		 Model Battery_dummy.0 step completed.
 		 Model Battery_dummy.1 step completed.
-	Publishing data : {'outputs': {'Battery/0/current': 3.464385830040744, 'Battery/1/current': 3.2887708667898004}, 'messages': {}}
+	Publishing data : {'outputs': {'Battery/0/current': 4.207093677170518, 'Battery/1/current': 0}, 'messages': {}}
 Requesting time 3420.0
 Granted time 3420.0
-	Received value 240.00 from topic Charger/0/voltage
-	Received value 120.00 from topic Charger/1/voltage
-	data from inputs {'inputs': {'Charger/0/voltage': 240.0, 'Charger/1/voltage': 120.0}, 'messages': {}}
+	data from inputs {'inputs': {'Battery/0/voltage': 297.0, 'Battery/1/voltage': -1e+49}, 'messages': {}}
+4444444 57.0
 		 Model Battery_dummy.0 step completed.
 		 Model Battery_dummy.1 step completed.
-	Publishing data : {'outputs': {'Battery/0/current': 3.4604541090900205, 'Battery/1/current': 3.260946407470459}, 'messages': {}}
+	Publishing data : {'outputs': {'Battery/0/current': 4.214245586316013, 'Battery/1/current': 0}, 'messages': {}}
 Requesting time 3480.0
 Granted time 3480.0
-	Received value 240.00 from topic Charger/0/voltage
-	Received value 120.00 from topic Charger/1/voltage
-	data from inputs {'inputs': {'Charger/0/voltage': 240.0, 'Charger/1/voltage': 120.0}, 'messages': {}}
+	data from inputs {'inputs': {'Battery/0/voltage': 298.0, 'Battery/1/voltage': -1e+49}, 'messages': {}}
+4444444 58.0
 		 Model Battery_dummy.0 step completed.
 		 Model Battery_dummy.1 step completed.
-	Publishing data : {'outputs': {'Battery/0/current': 3.456535749159558, 'Battery/1/current': 3.233818344654009}, 'messages': {}}
+	Publishing data : {'outputs': {'Battery/0/current': 4.221337768235848, 'Battery/1/current': 0}, 'messages': {}}
 Requesting time 3540.0
 Granted time 3540.0
-	Received value 240.00 from topic Charger/0/voltage
-	Received value 120.00 from topic Charger/1/voltage
-	data from inputs {'inputs': {'Charger/0/voltage': 240.0, 'Charger/1/voltage': 120.0}, 'messages': {}}
+	data from inputs {'inputs': {'Battery/0/voltage': 299.0, 'Battery/1/voltage': -1e+49}, 'messages': {}}
+4444444 59.0
 		 Model Battery_dummy.0 step completed.
 		 Model Battery_dummy.1 step completed.
-	Publishing data : {'outputs': {'Battery/0/current': 3.4526306747295945, 'Battery/1/current': 3.207358059150632}, 'messages': {}}
+	Publishing data : {'outputs': {'Battery/0/current': 4.228370362616019, 'Battery/1/current': 0}, 'messages': {}}
 Requesting time 3600.0
 Granted time 3600.0
-	Received value 240.00 from topic Charger/0/voltage
-	Received value 120.00 from topic Charger/1/voltage
-	data from inputs {'inputs': {'Charger/0/voltage': 240.0, 'Charger/1/voltage': 120.0}, 'messages': {}}
+	data from inputs {'inputs': {'Battery/0/voltage': 300.0, 'Battery/1/voltage': -1e+49}, 'messages': {}}
+4444444 60.0
 		 Model Battery_dummy.0 step completed.
 		 Model Battery_dummy.1 step completed.
-	Publishing data : {'outputs': {'Battery/0/current': 3.448738810876713, 'Battery/1/current': 3.181538553587934}, 'messages': {}}
-		 Model Battery_dummy.0 finalized with Memory : {'inputs': {'voltage': [240.0, 240.0, 240.0, 240.0, 240.0, 240.0, 240.0, 240.0, 240.0, 240.0, 240.0, 240.0, 240.0, 240.0, 240.0, 240.0, 240.0, 240.0, 240.0, 240.0, 240.0, 240.0, 240.0, 240.0, 240.0, 240.0, 240.0, 240.0, 240.0, 240.0, 240.0, 240.0, 240.0, 240.0, 240.0, 240.0, 240.0, 240.0, 240.0, 240.0, 240.0, 240.0, 240.0, 240.0, 240.0, 240.0, 240.0, 240.0, 240.0, 240.0, 240.0, 240.0, 240.0, 240.0, 240.0, 240.0, 240.0, 240.0, 240.0, 240.0]}, 'outputs': {'current': [3.703703703703703, 3.698900376283199, 3.6941156968346545, 3.689349544976721, 3.684601801413415, 3.67987234792156, 3.6751610673384185, 3.6704678435494893, 3.6657925614764792, 3.6611351070654425, 3.6564953672750864, 3.6518732300652372, 3.6472685843854675, 3.642681320163889, 3.6381113282960786, 3.6335585006341855, 3.629022729976167, 3.6245039100551755, 3.620001935529101, 3.6155167019702463, 3.6110481058551422, 3.60659604455451, 3.60216041632335, 3.5977411202911687, 3.593338056452338, 3.588951125656585, 3.584580229599604, 3.5802252708138, 3.575886152659152, 3.5715627793141995, 3.567255055767149, 3.562962887807098, 3.558686182015376, 3.554424845756992, 3.5501787871722117, 3.5459479151682265, 3.5417321394109402, 3.537531370316867, 3.5333455190451244, 3.529174497489543, 3.5250182182708647, 3.5208765947290543, 3.5167495409157024, 3.5126369715865295, 3.508538802193986, 3.504454948879947, 3.5003853284684974, 3.496329858458816, 3.4922884570181427, 3.4882610429748397, 3.4842475358115395, 3.480247855658378, 3.4762619232863163, 3.4722896601005417, 3.4683309881339563, 3.464385830040744, 3.4604541090900205, 3.456535749159558, 3.4526306747295945, 3.448738810876713]}, 'messages': {}, 'params': {'size': [25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25], 'soc': [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], 'effective_R': [8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8], 'current_soc': [0.4005925925925926, 0.4011844166527979, 0.40177547516429146, 0.40236577109148775, 0.4029553073797139, 0.40354408695538135, 0.4041321127261555, 0.4047193875811234, 0.40530591439095964, 0.4058916960080901, 0.40647673526685413, 0.4070610349836646, 0.40764459795716623, 0.4082274269683925, 0.40880952478091986, 0.4093908941410213, 0.4099715377778175, 0.41055145840342633, 0.411130658713111, 0.41170914138542625, 0.4122869090823631, 0.4128639644494918, 0.41344031011610355, 0.41401594869535013, 0.4145908827843825, 0.41516511496448755, 0.4157386478012235, 0.4163114838445537, 0.4168836256289791, 0.4174550756736694, 0.4180258364825922, 0.4185959105446413, 0.41916530033376376, 0.41973400830908486, 0.42030203691503243, 0.42086938858145934, 0.4214360657237651, 0.42200207074301577, 0.42256740602606296, 0.42313207394566127, 0.4236960768605846, 0.4242594171157412, 0.42482209704228774, 0.4253841189577416, 0.4259454851660926, 0.4265061979579134, 0.42706625961046835, 0.42762567238782173, 0.4281844385409446, 0.4287425603078206, 0.4293000399135504, 0.42985687957045576, 0.4304130814781816, 0.4309686478237977, 0.4315235807818991, 0.43207788251470564, 0.43263155517216006, 0.4331846008920256, 0.4337370217999823, 0.4342888200097226], 'R': [64.80000000000001, 64.88414814814814, 64.9681871646973, 65.05211747332939, 65.13593949499126, 65.21965364791937, 65.30326034766415, 65.38676000711408, 65.47015303651952, 65.55343984351627, 65.6366208331488, 65.71969640789328, 65.80266696768038, 65.8855329099176, 65.96829462951173, 66.05095251889063, 66.13350696802502, 66.21595836445007, 66.29830709328654, 66.38055353726176, 66.46269807673053, 66.54474108969556, 66.62668295182783, 66.7085240364867, 66.79026471473972, 66.87190535538232, 66.95344632495724, 67.03488798777374, 67.11623070592663, 67.19747483931503, 67.27862074566106, 67.3596687805281, 67.44061929733905, 67.52147264739446, 67.60222917989006, 67.6828892419346, 67.76345317856723, 67.84392133277464, 67.92429404550825, 68.00457165570094, 68.0847545002839, 68.164842914203, 68.24483723043525, 68.32473778000485, 68.40454489199931, 68.48425889358515, 68.5638801100237, 68.6434088646865, 68.72284547907068, 68.80219027281413, 68.88144356371052, 68.96060566772417, 69.03967689900472, 69.11865756990179, 69.19754799097927, 69.27634847102968, 69.3550593170882, 69.43368083444673, 69.51221332666763, 69.59065709559749], 'added_energy': [0.014814814814814812, 0.014795601505132795, 0.014776462787338619, 0.014757398179906884, 0.014738407205653658, 0.01471948939168624, 0.014700644269353672, 0.014681871374197956, 0.014663170245905917, 0.01464454042826177, 0.014625981469100345, 0.01460749292026095, 0.01458907433754187, 0.014570725280655556, 0.014552445313184316, 0.014534234002536742, 0.014516090919904669, 0.014498015640220702, 0.014480007742116403, 0.014462066807880987, 0.01444419242342057, 0.01442638417821804, 0.0144086416652934, 0.014390964481164675, 0.014373352225809353, 0.014355804502626338, 0.014338320918398418, 0.0143209010832552, 0.014303544610636609, 0.014286251117256798, 0.014269020223068597, 0.01425185155122839, 0.014234744728061504, 0.014217699383027969, 0.014200715148688847, 0.014183791660672905, 0.014166928557643762, 0.014150125481267468, 0.014133382076180496, 0.014116697989958172, 0.01410007287308346, 0.014083506378916217, 0.01406699816366281, 0.014050547886346116, 0.014034155208775944, 0.014017819795519788, 0.01400154131387399, 0.013985319433835264, 0.013969153828072572, 0.013953044171899359, 0.013936990143246156, 0.01392099142263351, 0.013905047693145265, 0.013889158640402167, 0.013873323952535826, 0.013857543320162974, 0.013841816436360082, 0.013826142996638233, 0.013810522698918378, 0.013794955243506851], 'update_interval': [60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60]}}
-		 Model Battery_dummy.1 finalized with Memory : {'inputs': {'voltage': [120.0, 120.0, 120.0, 120.0, 120.0, 120.0, 120.0, 120.0, 120.0, 120.0, 120.0, 120.0, 120.0, 120.0, 120.0, 120.0, 120.0, 120.0, 120.0, 120.0, 120.0, 120.0, 120.0, 120.0, 120.0, 120.0, 120.0, 120.0, 120.0, 120.0, 120.0, 120.0, 120.0, 120.0, 120.0, 120.0, 120.0, 120.0, 120.0, 120.0, 120.0, 120.0, 120.0, 120.0, 120.0, 120.0, 120.0, 120.0, 120.0, 120.0, 120.0, 120.0, 120.0, 120.0, 120.0, 120.0, 120.0, 120.0, 120.0, 120.0]}, 'outputs': {'current': [15.0, 12.738853503184714, 11.293113438645147, 10.260772221334273, 9.473899137810866, 8.84744238367399, 8.33287060547165, 7.900118942555592, 7.5294010647155565, 7.207074774725169, 6.923379543400128, 6.671118171041397, 6.444848764712694, 6.240368437182758, 6.054371676282143, 5.88421746155035, 5.7277663819643, 5.583264133273331, 5.449256529823297, 5.3245264123021725, 5.208046072690308, 5.098940872558415, 4.996461065598863, 4.89995972103938, 4.808875243888918, 4.722717400639736, 4.641056047809018, 4.563511965747865, 4.4897493477265495, 4.419469601860371, 4.352406202736412, 4.288320388693661, 4.226997545187102, 4.168244148458548, 4.111885169635399, 4.057761859390428, 4.005729848878345, 3.9556575148868736, 3.90742456679187, 3.860920820577473, 3.8160451313170625, 3.772704460445241, 3.7308130581418615, 3.6902917443936416, 3.651067274949865, 3.6130717805649315, 3.5762422697151255, 3.5405201864633344, 3.505851016381551, 3.472183934473012, 3.4394714899007868, 3.407669323057156, 3.37673591112218, 3.346632338779926, 3.317322091202655, 3.2887708667898004, 3.260946407470459, 3.233818344654009, 3.207358059150632, 3.181538553587934]}, 'messages': {}, 'params': {'size': [3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3], 'soc': [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], 'effective_R': [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150], 'current_soc': [0.01, 0.018492569002123142, 0.02602131129455324, 0.03286182610877609, 0.03917775886731667, 0.045076053789765994, 0.05063130086008043, 0.055898046821784154, 0.060917647531594524, 0.06572236404807796, 0.07033795041034471, 0.0747853625243723, 0.0790819283675141, 0.0832421739923026, 0.0872784217764907, 0.09120123341752427, 0.09501974433883381, 0.0987419204276827, 0.10237475811423156, 0.10592444238909968, 0.10939647310422655, 0.1127957670192655, 0.11612674106299807, 0.11939338087702432, 0.1225992977062836, 0.12574777597337675, 0.12884181333858274, 0.13188415464908132, 0.13487732088089902, 0.13782363394880592, 0.14072523808396353, 0.14358411834309265, 0.1464021167065507, 0.1491809461388564, 0.15192220291861333, 0.1546273774915403, 0.15729786405745919, 0.15993496906738378, 0.16253991877857835, 0.16511386599229666, 0.16765789607984136, 0.17017303238680484, 0.17266024109223274, 0.17512043558849516, 0.17755448043846173, 0.17996319495883834, 0.18234735647198175, 0.1847077032629573, 0.18704493727387833, 0.189359726563527, 0.1916527075567942, 0.19392448710549898, 0.19617564437958043, 0.1984067326054337, 0.20061828066623547, 0.20281079457742868, 0.20498475884907566, 0.20714063774551167, 0.20927887645161208, 0.21139990215400403], 'R': [8.0, 9.42, 10.625944798301486, 11.695026203826561, 12.666379307446205, 13.563241759158966, 14.400799638146772, 15.18964472213142, 15.93752264869335, 16.650305949486423, 17.33257569482707, 17.98798895826895, 18.619521478460868, 19.229633828187, 19.820388706906968, 20.39353589226168, 20.950575145288447, 21.4928036961144, 22.021352700730944, 22.53721565222088, 23.041270819252155, 23.53429918080017, 24.0169989167357, 24.489997230945725, 24.953860084537453, 25.40910027429227, 25.856184188219498, 26.29553749407875, 26.727549960169547, 27.15257956508766, 27.570956020730442, 27.98298380792282, 28.388944804719156, 28.7891005723302, 29.18369435171761, 29.57295281444309, 29.957087603798723, 30.336296696159206, 30.710765607568497, 31.080668466558127, 31.446168970906125, 31.807421243337473, 32.16457059892629, 32.517754235097044, 32.86710185356631, 33.21273622226157, 33.554773684155045, 33.893324619021406, 34.228493863339935, 34.56038109289072, 34.88908117202084, 35.21468447306478, 35.53727716898085, 35.85694150190042, 36.173756029971585, 36.48779585460544, 36.799132829994875, 37.10783575656875, 37.41397055986266, 37.71760045612892], 'added_energy': [0.03, 0.025477707006369428, 0.022586226877290293, 0.02052154444266855, 0.018947798275621732, 0.017694884767347978, 0.0166657412109433, 0.01580023788511118, 0.015058802129431113, 0.014414149549450337, 0.013846759086800256, 0.013342236342082791, 0.01288969752942539, 0.012480736874365517, 0.012108743352564285, 0.011768434923100701, 0.0114555327639286, 0.011166528266546662, 0.010898513059646594, 0.010649052824604346, 0.010416092145380616, 0.01019788174511683, 0.009992922131197726, 0.00979991944207876, 0.009617750487777837, 0.009445434801279472, 0.009282112095618036, 0.00912702393149573, 0.0089794986954531, 0.008838939203720742, 0.008704812405472823, 0.008576640777387321, 0.008453995090374204, 0.008336488296917096, 0.008223770339270799, 0.008115523718780857, 0.00801145969775669, 0.007911315029773746, 0.007814849133583742, 0.007721841641154946, 0.007632090262634126, 0.007545408920890482, 0.007461626116283723, 0.007380583488787284, 0.00730213454989973, 0.007226143561129864, 0.007152484539430251, 0.007081040372926669, 0.007011702032763102, 0.006944367868946024, 0.006878942979801574, 0.006815338646114312, 0.006753471822244359, 0.006693264677559852, 0.00663464418240531, 0.0065775417335796, 0.006521892814940918, 0.006467636689308018, 0.006414716118301264, 0.006363077107175868], 'update_interval': [60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60]}}
+	Publishing data : {'outputs': {'Battery/0/current': 4.235343512138839, 'Battery/1/current': 0}, 'messages': {}}
+		 Model Battery_dummy.0 finalized with Memory : {'inputs': {'voltage': [241.0, 242.0, 243.0, 244.0, 245.0, 246.0, 247.0, 248.0, 249.0, 250.0, 251.0, 252.0, 253.0, 254.0, 255.0, 256.0, 257.0, 258.0, 259.0, 260.0, 261.0, 262.0, 263.0, 264.0, 265.0, 266.0, 267.0, 268.0, 269.0, 270.0, 271.0, 272.0, 273.0, 274.0, 275.0, 276.0, 277.0, 278.0, 279.0, 280.0, 281.0, 282.0, 283.0, 284.0, 285.0, 286.0, 287.0, 288.0, 289.0, 290.0, 291.0, 292.0, 293.0, 294.0, 295.0, 296.0, 297.0, 298.0, 299.0, 300.0]}, 'outputs': {'current': [3.719135802469135, 3.729684153597622, 3.740170772272521, 3.7505955813453884, 3.760958508201943, 3.771259484755125, 3.781498447437117, 3.7916753371903837, 3.801790099457709, 3.8118426841712547, 3.821833045740647, 3.831761143040105, 3.8416269393946174, 3.85143040256519, 3.861171504733167, 3.8708502224836336, 3.880466536787933, 3.8900204329852865, 3.8995119007635477, 3.9089409341390993, 3.9183075314358984, 3.9276116952637, 3.936853432495452, 3.946032754243906, 3.9551496758374234, 3.9642042167950193, 3.973196400800644, 3.982126255676731, 3.9909938133570018, 3.9997991098585852, 4.008542185253411, 4.01722308363895, 4.025841853108278, 4.034398545719489, 4.042893217464491, 4.05132592823717, 4.059696741800967, 4.068005725755871, 4.076252951504836, 4.084438494219666, 4.092562432806346, 4.100624849869877, 4.108625831678597, 4.116565468128023, 4.124443852704227, 4.132261082446762, 4.140017257911147, 4.147712483130953, 4.155346865579466, 4.162920516130978, 4.17043354902171, 4.177886081810382, 4.1852782353384415, 4.192610133689985, 4.199881904151366, 4.207093677170518, 4.214245586316013, 4.221337768235848, 4.228370362616019, 4.235343512138839]}, 'messages': {}, 'params': {'size': [25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25], 'soc': [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], 'effective_R': [8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8], 'current_soc': [0.40059754115226337, 0.4011992635290438, 0.40180517119415193, 0.40241526807538414, 0.40302955796505713, 0.40364804452055697, 0.4042707312649016, 0.40489762158731707, 0.40552871874382707, 0.4061640258578556, 0.4068035459208429, 0.40744728179287365, 0.4080952362033182, 0.40874741175148593, 0.40940381090729056, 0.41006443601192777, 0.4107292892785641, 0.4113983727930376, 0.41207168851456943, 0.41274923827648685, 0.4134310237869567, 0.4141170466297294, 0.41480730826489365, 0.4155018100296406, 0.41620055313903853, 0.41690353868681684, 0.41761076764615934, 0.4183222408705069, 0.4190379590943689, 0.41975792293414343, 0.42048213288894587, 0.42121058934144573, 0.42194329255871144, 0.42268024269306287, 0.42342143978293134, 0.42416688375372696, 0.4249165744187129, 0.4256705114798863, 0.4264286945288662, 0.4271911230477872, 0.4279577964101996, 0.42872871388197514, 0.4295038746222185, 0.43028327768418406, 0.43106692201619784, 0.43185480646258434, 0.432646929764598, 0.43344329056135916, 0.4342438873907941, 0.43504871869057943, 0.43585778279908965, 0.43667107795634874, 0.4374886023049849, 0.4383103538911881, 0.4391363306656712, 0.43996653048463286, 0.4408009511107234, 0.44163959021401294, 0.44248244537296105, 0.44332951407538884], 'R': [64.80000000000001, 64.8848508436214, 64.97029542112422, 65.05633430956956, 65.14296806670455, 65.23019723103812, 65.31802232191909, 65.40644383961603, 65.49546226539903, 65.58507806162345, 65.6752916718155, 65.76610352075969, 65.85751401458805, 65.94952354087118, 66.042132468711, 66.13534114883527, 66.22914991369375, 66.3235590775561, 66.41856893661134, 66.51417976906886, 66.61039183526114, 66.70720537774784, 66.80462062142158, 66.9026377736149, 67.00125702420897, 67.10047854574347, 67.200302493528, 67.30072900575462, 67.40175820361199, 67.50339019140038, 67.60562505664836, 67.7084628702303, 67.8119036864853, 67.91594754333703, 68.02059446241492, 68.12584444917624, 68.23169749302923, 68.33815356745723, 68.44521263014386, 68.552874623099, 68.66113947278578, 68.77000709024834, 68.87947737124047, 68.98955019635503, 69.10022543115414, 69.21150292630008, 69.32338251768698, 69.43586402657292, 69.548947259713, 69.66263200949277, 69.77691805406228, 69.89180515747073, 70.00729306980152, 70.12338152730786, 70.24007025254872, 70.35735895452531, 70.47524732881786, 70.59373505772272, 70.71282181038984, 70.83250724296047], 'added_energy': [0.01493852880658436, 0.01504305941951041, 0.01514769162770371, 0.01525242203080458, 0.015357247241824601, 0.015462163887496013, 0.015567168608616132, 0.01567225806038692, 0.015777428912749494, 0.01588267785071356, 0.015988001574681707, 0.01609339680076844, 0.01619886026111397, 0.01630438870419264, 0.01640997889511596, 0.01651562761593017, 0.01662133166590831, 0.016727087861836732, 0.016832893038295983, 0.016938744047936098, 0.01704463776174616, 0.01715057106931816, 0.017256540879105064, 0.01736254411867319, 0.017468577734948622, 0.01757463869445792, 0.017680723983562865, 0.0177868306086894, 0.017892955596550558, 0.017999095994363636, 0.018105248870061243, 0.018211411312496574, 0.01831758043164267, 0.018423753358785665, 0.018529927246712253, 0.018636099269890984, 0.018742266624647796, 0.018848426529335535, 0.01895457622449749, 0.01906071297302511, 0.01916683406030972, 0.01927293679438842, 0.019379018506084048, 0.019485076549139307, 0.019591108300345078, 0.0196971111596629, 0.019803082550341654, 0.019909019919028572, 0.020014920735874422, 0.020120782494633057, 0.020226602712755296, 0.020332378931477192, 0.020438108715902722, 0.02054378965508092, 0.020649419362077547, 0.020754995474041225, 0.020860515652264263, 0.020965977582238046, 0.02107137897370316, 0.021176717560694197], 'update_interval': [60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60]}}
+		 Model Battery_dummy.1 finalized with Memory : {'inputs': {'voltage': [-1e+49, -1e+49, -1e+49, -1e+49, -1e+49, -1e+49, -1e+49, -1e+49, -1e+49, -1e+49, -1e+49, -1e+49, -1e+49, -1e+49, -1e+49, -1e+49, -1e+49, -1e+49, -1e+49, -1e+49, -1e+49, -1e+49, -1e+49, -1e+49, -1e+49, -1e+49, -1e+49, -1e+49, -1e+49, -1e+49, -1e+49, -1e+49, -1e+49, -1e+49, -1e+49, -1e+49, -1e+49, -1e+49, -1e+49, -1e+49, -1e+49, -1e+49, -1e+49, -1e+49, -1e+49, -1e+49, -1e+49, -1e+49, -1e+49, -1e+49, -1e+49, -1e+49, -1e+49, -1e+49, -1e+49, -1e+49, -1e+49, -1e+49, -1e+49, -1e+49]}, 'outputs': {'current': [-1.25e+48, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]}, 'messages': {}, 'params': {'size': [3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3], 'soc': [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], 'effective_R': [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150], 'current_soc': [6.944444444444443e+91, 6.944444444444443e+91, 6.944444444444443e+91, 6.944444444444443e+91, 6.944444444444443e+91, 6.944444444444443e+91, 6.944444444444443e+91, 6.944444444444443e+91, 6.944444444444443e+91, 6.944444444444443e+91, 6.944444444444443e+91, 6.944444444444443e+91, 6.944444444444443e+91, 6.944444444444443e+91, 6.944444444444443e+91, 6.944444444444443e+91, 6.944444444444443e+91, 6.944444444444443e+91, 6.944444444444443e+91, 6.944444444444443e+91, 6.944444444444443e+91, 6.944444444444443e+91, 6.944444444444443e+91, 6.944444444444443e+91, 6.944444444444443e+91, 6.944444444444443e+91, 6.944444444444443e+91, 6.944444444444443e+91, 6.944444444444443e+91, 6.944444444444443e+91, 6.944444444444443e+91, 6.944444444444443e+91, 6.944444444444443e+91, 6.944444444444443e+91, 6.944444444444443e+91, 6.944444444444443e+91, 6.944444444444443e+91, 6.944444444444443e+91, 6.944444444444443e+91, 6.944444444444443e+91, 6.944444444444443e+91, 6.944444444444443e+91, 6.944444444444443e+91, 6.944444444444443e+91, 6.944444444444443e+91, 6.944444444444443e+91, 6.944444444444443e+91, 6.944444444444443e+91, 6.944444444444443e+91, 6.944444444444443e+91, 6.944444444444443e+91, 6.944444444444443e+91, 6.944444444444443e+91, 6.944444444444443e+91, 6.944444444444443e+91, 6.944444444444443e+91, 6.944444444444443e+91, 6.944444444444443e+91, 6.944444444444443e+91, 6.944444444444443e+91], 'R': [8.0, 150.0, 150.0, 150.0, 150.0, 150.0, 150.0, 150.0, 150.0, 150.0, 150.0, 150.0, 150.0, 150.0, 150.0, 150.0, 150.0, 150.0, 150.0, 150.0, 150.0, 150.0, 150.0, 150.0, 150.0, 150.0, 150.0, 150.0, 150.0, 150.0, 150.0, 150.0, 150.0, 150.0, 150.0, 150.0, 150.0, 150.0, 150.0, 150.0, 150.0, 150.0, 150.0, 150.0, 150.0, 150.0, 150.0, 150.0, 150.0, 150.0, 150.0, 150.0, 150.0, 150.0, 150.0, 150.0, 150.0, 150.0, 150.0, 150.0], 'added_energy': [2.083333333333333e+92, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0], 'update_interval': [60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60]}}
 	Federate finalized

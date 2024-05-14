@@ -1,2 +1,3 @@
-[2024-05-06 10:29:25.994] [console] [warning] commWarning||9208-rwAQD-rIih7-xRZuh-lDKxh (1)[operating]::unknown route and no broker, dropping message pub:From (131073) handle(2) size 16 at 3600 to 131072
-[2024-05-06 10:29:25.995] [console] [warning] commWarning||9208-rwAQD-rIih7-xRZuh-lDKxh (1)[operating]::unknown route and no broker, dropping message pub:From (131073) handle(3) size 16 at 3600 to 131072
+[2024-05-08 11:25:34.953] [console] [warning] 2152-LMVXS-P0kgy-6y70Y-cJyNx::Unable to connect to Publication target Charge/1/voltage
+[2024-05-08 11:25:35.016] [console] [warning] commWarning||2152-LMVXS-P0kgy-6y70Y-cJyNx (1)[operating]::unknown route and no broker, dropping message pub:From (131072) handle(2) size 16 at 3600 to 131073
+[2024-05-08 11:25:35.016] [console] [warning] commWarning||2152-LMVXS-P0kgy-6y70Y-cJyNx (1)[operating]::unknown route and no broker, dropping message pub:From (131072) handle(3) size 16 at 3600 to 131073

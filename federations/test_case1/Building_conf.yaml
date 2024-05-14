@@ -1,6 +1,6 @@
 fed_name: Building
 fed_conf:
-  model_script : Csv_reader.py
+  model_script : Csv_out.py
   class_name: CSV
   n_instances: 1
   stateful: true
@@ -23,12 +23,11 @@ fed_flags:
   FORCE_LOGGING_FLUSH: False
   DUMPLOG: False
   OBSERVER: False
-  UNINTERRUPTIBLE: False
-  INTERRUPTIBLE: True
+  INTERRUPTIBLE: False
   SOURCE_ONLY: True
   ONLY_TRANSMIT_ON_CHANGE: False
   ONLY_UPDATE_ON_CHANGE: False
-  WAIT_FOR_CURRENT_TIME_UPDATE: True
+  WAIT_FOR_CURRENT_TIME_UPDATE: False
   RESTRICTIVE_TIME_POLICY: False
   ROLLBACK: False
   FORWARD_COMPUTE: False
@@ -50,7 +49,7 @@ fed_properties:
   TIME_RT_TOLERANCE: 0.0
   TIME_INPUT_DELAY: 0.0
   TIME_OUTPUT_DELAY: 0.0
-  TIME_STOPTIME: 87400
+  TIME_STOPTIME: 86400
   TIME_GRANT_TIMEOUT: 0.0
   INT_CURRENT_ITERATION: 0
   INT_MAX_ITERATIONS: 50
@@ -62,8 +61,14 @@ fed_properties:
 fed_connections:
   sub: {}
   pub:
-    0: [Building/0/plug]
+    0: [ {
+      "key": "Building/0/plug",
+      "type": "double",
+      "units": "W",
+      "global": true
+    } ]
   end: {}
+  inp: {}
 model_conf:
   params:
     csv_file: ['user_guide_examples/test_case1/BUILD&PV.csv']
@@ -71,4 +76,5 @@ model_conf:
   inputs: {}
   outputs:
     plug: [0.0]
-  messages: { } #todo could be removed
+  messages_in: { } #todo could be removed
+  messages_out: {}

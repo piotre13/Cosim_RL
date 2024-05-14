@@ -1,0 +1,178 @@
+	Registered endpoint: Battery/0/power with destinations [] and sources []
+	Registered endpoint: Battery/0/energy_out with destinations ['Building/0/plug', 'PV/0/pv'] and sources []
+		Model Battery.0 instantiated with the following kwargs: {'model_name': 'Battery.0', 'RL_training': True, 'stateful': True, 'mem_attrs': ['params.SOC', 'messages_out.energy_out'], 'inputs': {}, 'outputs': {'energy_out': 0.0}, 'messages_in': {'power': []}, 'messages_out': {}, 'params': {'rated_capacity': 40000, 'maximum_charge_power': 8000, 'maximum_discharge_power': 8000, 'SOC_upper_limit': 0.95, 'SOC_lower_limit': 0.25, 'charge_efficiency': 1, 'discharge_efficiency': 1, 'self_discharge_rate': 0, 'SOC': 0.9}}!
+		Memory instantiated for Model Battery.0!
+		Initial state for Model Battery.0 set as follow: {'inputs': {}, 'outputs': {'energy_out': 0.0}, 'messages_in': {'power': []}, 'messages_out': {}, 'params': {'rated_capacity': 40000, 'maximum_charge_power': 8000, 'maximum_discharge_power': 8000, 'SOC_upper_limit': 0.95, 'SOC_lower_limit': 0.25, 'charge_efficiency': 1, 'discharge_efficiency': 1, 'self_discharge_rate': 0, 'SOC': 0.9}}
+	Models instantiation from fed: Battery succesfull!
+	Model instances names: ['Battery.0']
+	Entered HELICS execution mode
+************* Requesting time 3600.0 -- Granted time 3600.0 **************
+	current timestep: 3600.0
+	Received data as inputs or subscription {}  and as messages {'Battery/0/power': ['-199.7027752', '0.0'], 'Battery/0/energy_out': []}
+messages {'power': ['-199.7027752', '0.0'], 'energy_out': []}
+		 Model Battery.0 step completed.
+testtest {'outputs': {}, 'messages_out': {'Battery/0/energy_out': -199.70277519999945}}
+	 Sent data as publications {} and as messages {'Battery/0/energy_out': -199.70277519999945}
+************* Requesting time 7200.0 -- Granted time 7200.0 **************
+	current timestep: 7200.0
+	Received data as inputs or subscription {}  and as messages {'Battery/0/power': ['-199.7027752', '0.0'], 'Battery/0/energy_out': []}
+messages {'power': ['-199.7027752', '0.0'], 'energy_out': []}
+		 Model Battery.0 step completed.
+testtest {'outputs': {}, 'messages_out': {'Battery/0/energy_out': -199.70277519999945}}
+	 Sent data as publications {} and as messages {'Battery/0/energy_out': -199.70277519999945}
+************* Requesting time 10800.0 -- Granted time 10800.0 **************
+	current timestep: 10800.0
+	Received data as inputs or subscription {}  and as messages {'Battery/0/power': ['-199.7027752', '0.0'], 'Battery/0/energy_out': []}
+messages {'power': ['-199.7027752', '0.0'], 'energy_out': []}
+		 Model Battery.0 step completed.
+testtest {'outputs': {}, 'messages_out': {'Battery/0/energy_out': -199.70277519999945}}
+	 Sent data as publications {} and as messages {'Battery/0/energy_out': -199.70277519999945}
+************* Requesting time 14400.0 -- Granted time 14400.0 **************
+	current timestep: 14400.0
+	Received data as inputs or subscription {}  and as messages {'Battery/0/power': ['-199.7027752', '0.0'], 'Battery/0/energy_out': []}
+messages {'power': ['-199.7027752', '0.0'], 'energy_out': []}
+		 Model Battery.0 step completed.
+testtest {'outputs': {}, 'messages_out': {'Battery/0/energy_out': -199.70277519999945}}
+	 Sent data as publications {} and as messages {'Battery/0/energy_out': -199.70277519999945}
+************* Requesting time 18000.0 -- Granted time 18000.0 **************
+	current timestep: 18000.0
+	Received data as inputs or subscription {}  and as messages {'Battery/0/power': ['-199.7027752', '0.0'], 'Battery/0/energy_out': []}
+messages {'power': ['-199.7027752', '0.0'], 'energy_out': []}
+		 Model Battery.0 step completed.
+testtest {'outputs': {}, 'messages_out': {'Battery/0/energy_out': -199.70277519999945}}
+	 Sent data as publications {} and as messages {'Battery/0/energy_out': -199.70277519999945}
+************* Requesting time 21600.0 -- Granted time 21600.0 **************
+	current timestep: 21600.0
+	Received data as inputs or subscription {}  and as messages {'Battery/0/power': ['-816.582057', '0.0'], 'Battery/0/energy_out': []}
+messages {'power': ['-816.582057', '0.0'], 'energy_out': []}
+		 Model Battery.0 step completed.
+testtest {'outputs': {}, 'messages_out': {'Battery/0/energy_out': -816.5820569999996}}
+	 Sent data as publications {} and as messages {'Battery/0/energy_out': -816.5820569999996}
+************* Requesting time 25200.0 -- Granted time 25200.0 **************
+	current timestep: 25200.0
+	Received data as inputs or subscription {}  and as messages {'Battery/0/power': ['-532.2761893', '0.0'], 'Battery/0/energy_out': []}
+messages {'power': ['-532.2761893', '0.0'], 'energy_out': []}
+		 Model Battery.0 step completed.
+testtest {'outputs': {}, 'messages_out': {'Battery/0/energy_out': -532.2761892999988}}
+	 Sent data as publications {} and as messages {'Battery/0/energy_out': -532.2761892999988}
+************* Requesting time 28800.0 -- Granted time 28800.0 **************
+	current timestep: 28800.0
+	Received data as inputs or subscription {}  and as messages {'Battery/0/power': ['-6197.654283', '252.7121735'], 'Battery/0/energy_out': []}
+messages {'power': ['-6197.654283', '252.7121735'], 'energy_out': []}
+		 Model Battery.0 step completed.
+testtest {'outputs': {}, 'messages_out': {'Battery/0/energy_out': -5944.9421095}}
+	 Sent data as publications {} and as messages {'Battery/0/energy_out': -5944.9421095}
+************* Requesting time 32400.0 -- Granted time 32400.0 **************
+	current timestep: 32400.0
+	Received data as inputs or subscription {}  and as messages {'Battery/0/power': ['-6380.450445', '1111.532797'], 'Battery/0/energy_out': []}
+messages {'power': ['-6380.450445', '1111.532797'], 'energy_out': []}
+		 Model Battery.0 step completed.
+testtest {'outputs': {}, 'messages_out': {'Battery/0/energy_out': -5268.917647999995}}
+	 Sent data as publications {} and as messages {'Battery/0/energy_out': -5268.917647999995}
+************* Requesting time 36000.0 -- Granted time 36000.0 **************
+	current timestep: 36000.0
+	Received data as inputs or subscription {}  and as messages {'Battery/0/power': ['-6710.982959', '1848.471048'], 'Battery/0/energy_out': []}
+messages {'power': ['-6710.982959', '1848.471048'], 'energy_out': []}
+		 Model Battery.0 step completed.
+testtest {'outputs': {}, 'messages_out': {'Battery/0/energy_out': -4862.511911000001}}
+	 Sent data as publications {} and as messages {'Battery/0/energy_out': -4862.511911000001}
+************* Requesting time 39600.0 -- Granted time 39600.0 **************
+	current timestep: 39600.0
+	Received data as inputs or subscription {}  and as messages {'Battery/0/power': ['-6694.771598', '2544.32274'], 'Battery/0/energy_out': []}
+messages {'power': ['-6694.771598', '2544.32274'], 'energy_out': []}
+		 Model Battery.0 step completed.
+testtest {'outputs': {}, 'messages_out': {'Battery/0/energy_out': -4150.448858}}
+	 Sent data as publications {} and as messages {'Battery/0/energy_out': -4150.448858}
+************* Requesting time 43200.0 -- Granted time 43200.0 **************
+	current timestep: 43200.0
+	Received data as inputs or subscription {}  and as messages {'Battery/0/power': ['-5134.42246', '3056.442746'], 'Battery/0/energy_out': []}
+messages {'power': ['-5134.42246', '3056.442746'], 'energy_out': []}
+		 Model Battery.0 step completed.
+testtest {'outputs': {}, 'messages_out': {'Battery/0/energy_out': -2077.979713999999}}
+	 Sent data as publications {} and as messages {'Battery/0/energy_out': -2077.979713999999}
+************* Requesting time 46800.0 -- Granted time 46800.0 **************
+	current timestep: 46800.0
+	Received data as inputs or subscription {}  and as messages {'Battery/0/power': ['-6685.636175', '3133.219441'], 'Battery/0/energy_out': []}
+messages {'power': ['-6685.636175', '3133.219441'], 'energy_out': []}
+		 Model Battery.0 step completed.
+testtest {'outputs': {}, 'messages_out': {'Battery/0/energy_out': -1347.8276372000091}}
+	 Sent data as publications {} and as messages {'Battery/0/energy_out': -1347.8276372000091}
+************* Requesting time 50400.0 -- Granted time 50400.0 **************
+	current timestep: 50400.0
+	Received data as inputs or subscription {}  and as messages {'Battery/0/power': ['-6639.776894', '2795.189105'], 'Battery/0/energy_out': []}
+messages {'power': ['-6639.776894', '2795.189105'], 'energy_out': []}
+		 Model Battery.0 step completed.
+testtest {'outputs': {}, 'messages_out': {'Battery/0/energy_out': 0.0}}
+	 Sent data as publications {} and as messages {'Battery/0/energy_out': 0.0}
+************* Requesting time 54000.0 -- Granted time 54000.0 **************
+	current timestep: 54000.0
+	Received data as inputs or subscription {}  and as messages {'Battery/0/power': ['-6674.245276', '2012.91589'], 'Battery/0/energy_out': []}
+messages {'power': ['-6674.245276', '2012.91589'], 'energy_out': []}
+		 Model Battery.0 step completed.
+testtest {'outputs': {}, 'messages_out': {'Battery/0/energy_out': 0.0}}
+	 Sent data as publications {} and as messages {'Battery/0/energy_out': 0.0}
+************* Requesting time 57600.0 -- Granted time 57600.0 **************
+	current timestep: 57600.0
+	Received data as inputs or subscription {}  and as messages {'Battery/0/power': ['-6697.648432', '970.8261478'], 'Battery/0/energy_out': []}
+messages {'power': ['-6697.648432', '970.8261478'], 'energy_out': []}
+		 Model Battery.0 step completed.
+testtest {'outputs': {}, 'messages_out': {'Battery/0/energy_out': 0.0}}
+	 Sent data as publications {} and as messages {'Battery/0/energy_out': 0.0}
+************* Requesting time 61200.0 -- Granted time 61200.0 **************
+	current timestep: 61200.0
+	Received data as inputs or subscription {}  and as messages {'Battery/0/power': ['-5735.773153', '26.23065155'], 'Battery/0/energy_out': []}
+messages {'power': ['-5735.773153', '26.23065155'], 'energy_out': []}
+		 Model Battery.0 step completed.
+testtest {'outputs': {}, 'messages_out': {'Battery/0/energy_out': 0.0}}
+	 Sent data as publications {} and as messages {'Battery/0/energy_out': 0.0}
+************* Requesting time 64800.0 -- Granted time 64800.0 **************
+	current timestep: 64800.0
+	Received data as inputs or subscription {}  and as messages {'Battery/0/power': ['-5029.045706', '0.0'], 'Battery/0/energy_out': []}
+messages {'power': ['-5029.045706', '0.0'], 'energy_out': []}
+		 Model Battery.0 step completed.
+testtest {'outputs': {}, 'messages_out': {'Battery/0/energy_out': 0.0}}
+	 Sent data as publications {} and as messages {'Battery/0/energy_out': 0.0}
+************* Requesting time 68400.0 -- Granted time 68400.0 **************
+	current timestep: 68400.0
+	Received data as inputs or subscription {}  and as messages {'Battery/0/power': ['-5061.809277', '0.0'], 'Battery/0/energy_out': []}
+messages {'power': ['-5061.809277', '0.0'], 'energy_out': []}
+		 Model Battery.0 step completed.
+testtest {'outputs': {}, 'messages_out': {'Battery/0/energy_out': 0.0}}
+	 Sent data as publications {} and as messages {'Battery/0/energy_out': 0.0}
+************* Requesting time 72000.0 -- Granted time 72000.0 **************
+	current timestep: 72000.0
+	Received data as inputs or subscription {}  and as messages {'Battery/0/power': ['-4819.162584', '0.0'], 'Battery/0/energy_out': []}
+messages {'power': ['-4819.162584', '0.0'], 'energy_out': []}
+		 Model Battery.0 step completed.
+testtest {'outputs': {}, 'messages_out': {'Battery/0/energy_out': 0.0}}
+	 Sent data as publications {} and as messages {'Battery/0/energy_out': 0.0}
+************* Requesting time 75600.0 -- Granted time 75600.0 **************
+	current timestep: 75600.0
+	Received data as inputs or subscription {}  and as messages {'Battery/0/power': ['-1055.528528', '0.0'], 'Battery/0/energy_out': []}
+messages {'power': ['-1055.528528', '0.0'], 'energy_out': []}
+		 Model Battery.0 step completed.
+testtest {'outputs': {}, 'messages_out': {'Battery/0/energy_out': 0.0}}
+	 Sent data as publications {} and as messages {'Battery/0/energy_out': 0.0}
+************* Requesting time 79200.0 -- Granted time 79200.0 **************
+	current timestep: 79200.0
+	Received data as inputs or subscription {}  and as messages {'Battery/0/power': ['-637.1074647', '0.0'], 'Battery/0/energy_out': []}
+messages {'power': ['-637.1074647', '0.0'], 'energy_out': []}
+		 Model Battery.0 step completed.
+testtest {'outputs': {}, 'messages_out': {'Battery/0/energy_out': 0.0}}
+	 Sent data as publications {} and as messages {'Battery/0/energy_out': 0.0}
+************* Requesting time 82800.0 -- Granted time 82800.0 **************
+	current timestep: 82800.0
+	Received data as inputs or subscription {}  and as messages {'Battery/0/power': ['-242.3773895', '0.0'], 'Battery/0/energy_out': []}
+messages {'power': ['-242.3773895', '0.0'], 'energy_out': []}
+		 Model Battery.0 step completed.
+testtest {'outputs': {}, 'messages_out': {'Battery/0/energy_out': 0.0}}
+	 Sent data as publications {} and as messages {'Battery/0/energy_out': 0.0}
+************* Requesting time 86400.0 -- Granted time 86400.0 **************
+	current timestep: 86400.0
+	Received data as inputs or subscription {}  and as messages {'Battery/0/power': ['-199.7027752', '0.0'], 'Battery/0/energy_out': []}
+messages {'power': ['-199.7027752', '0.0'], 'energy_out': []}
+		 Model Battery.0 step completed.
+testtest {'outputs': {}, 'messages_out': {'Battery/0/energy_out': 0.0}}
+	 Sent data as publications {} and as messages {'Battery/0/energy_out': 0.0}
+		 Model Battery.0 finalized with Memory : {'inputs': {}, 'outputs': {}, 'messages_in': {}, 'messages_out': {'energy_out': [-199.70277519999945, -199.70277519999945, -199.70277519999945, -199.70277519999945, -199.70277519999945, -816.5820569999996, -532.2761892999988, -5944.9421095, -5268.917647999995, -4862.511911000001, -4150.448858, -2077.979713999999, -1347.8276372000091, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]}, 'params': {'SOC': [0.89500743062, 0.8900148612400001, 0.88502229186, 0.8800297224800001, 0.8750371531000001, 0.854622601675, 0.8413156969425001, 0.6926921442050001, 0.5609692030050002, 0.4394064052300002, 0.3356451837800002, 0.28369569093000024, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25]}}
+	Federate finalized

@@ -1,0 +1,24 @@
+{
+  "name": "test_case1_1",
+  "broker": true,
+  "federates": [
+    {
+      "directory": "../..",
+      "exec": "python -u Federate.py Building_conf.yaml test_case1_1",
+      "host": "localhost",
+      "name": "Building"
+    },
+    {
+      "directory": "../..",
+      "exec": "python -u Federate.py PV_conf.yaml test_case1_1",
+      "host": "localhost",
+      "name": "PV"
+    },
+    {
+      "directory": "../..",
+      "exec": "python -u Federate.py Battery_conf.yaml test_case1_1",
+      "host": "localhost",
+      "name": "Battery"
+    }
+  ]
+}

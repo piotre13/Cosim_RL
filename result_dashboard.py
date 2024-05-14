@@ -131,8 +131,10 @@ def selection_db(db):
                     ret2[fed_name+'.'+k][var] = data[k]['inputs'][var]
                 for var in data[k]['outputs'].keys():
                     ret2[fed_name + '.' + k][var] = data[k]['outputs'][var]
-                for var in data[k]['messages'].keys():
-                    ret2[fed_name + '.' + k][var] = data[k]['messages'][var]
+                for var in data[k]['messages_out'].keys():
+                    ret2[fed_name + '.' + k][var] = data[k]['messages_out'][var]
+                for var in data[k]['messages_in'].keys():
+                    ret2[fed_name + '.' + k][var] = data[k]['messages_in'][var]
                 for var in data[k]['params'].keys():
                     ret2[fed_name + '.' + k][var] = data[k]['params'][var]
         return [ret1, json.dumps(ret2)]
@@ -187,7 +189,7 @@ def update_graph_attr(attrs, entities, data):
                         if attr in list(d[entity].keys()):
                             fig = go.Scatter(line={'shape': 'hv'},
                                              y=d[entity][attr],
-                                             x=[start_time + datetime.timedelta(seconds=x) for x in d['time']['t']],
+                                             # x=[start_time + datetime.timedelta(seconds=x) for x in d['time']['t']],
                                              name=entity + '.' + attr,
                                              mode='lines+markers',
                                              # fill='tozeroy',
