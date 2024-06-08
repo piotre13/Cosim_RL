@@ -2,10 +2,10 @@ fed_name: Battery
 fed_conf:
   model_script : test_case1/Battery.py
   class_name: Battery
-  n_instances: 1
-  stateful: true
+  n_instances: 2
   RL_training: true
-  mem_attrs : [params.SOC, outputs.energy_out]
+  mem_attrs : [params.SOC, outputs.energy_out, inputs.power] # possibilities None no memory, [empty list] memorize all
+  real_period: 3600
 fed_info:
   broker: null
   broker_init: null
@@ -50,7 +50,7 @@ fed_properties:
   TIME_RT_TOLERANCE: 0.0
   TIME_INPUT_DELAY: 0.0
   TIME_OUTPUT_DELAY: 0.0
-  TIME_STOPTIME: 86400
+  TIME_STOPTIME: 172800
   TIME_GRANT_TIMEOUT: 0.0
   INT_CURRENT_ITERATION: 0
   INT_MAX_ITERATIONS: 50
@@ -63,38 +63,46 @@ fed_connections:
   sub: {}
   pub:
     0: [{
-      "key": "Battery/0/energy_out",
+      "key": "energy_out",
       "type": "double",
       "units": "Wh",
-      "global": true
+    }]
+    1: [{
+      "key": "energy_out",
+      "type": "double",
+      "units": "Wh",
     }]
   end: {}
   inp:
     0: [ {
-      "key": "0/power",
+      "key": "power",
       "type": "double",
       "units": "W",
-      "global": true,
       "multi_input_handling_method": "sum",
       "targets": [
         "PV/0/pv",
         "Building/0/plug",
       ]
     }]
+    1: [ {
+      "key": "power",
+      "type": "double",
+      "units": "W",
+      "multi_input_handling_method": "sum",
+      "targets": [
+        "PV/1/pv",
+        "Building/1/plug",
+      ]
+    }]
 model_conf:
   params:
-    rated_capacity: [40000]
-    maximum_charge_power: [8000]
-    maximum_discharge_power: [8000]
-    SOC_upper_limit: [0.95]
-    SOC_lower_limit: [0.25]
-    charge_efficiency: [1]
-    discharge_efficiency: [1]
-    self_discharge_rate: [0]
-    SOC: [0.9]
-  inputs:
-    power: [0.0]   #for inputs from multiple source should see helics todo i use a dictionary and if a dict is present i register an input with targets istead of subscription
-  outputs:
-    energy_out: [0.0]
-  messages_in: {}
-  messages_out: {}
+    rated_capacity: [40000,50000]
+    maximum_charge_power: [8000, 6000]
+    maximum_discharge_power: [8000, 6000]
+    SOC_upper_limit: [0.95, 0.95]
+    SOC_lower_limit: [0.25, 0.25]
+    charge_efficiency: [1, 1]
+    discharge_efficiency: [1, 1]
+    self_discharge_rate: [0, 0]
+    SOC: [0.25, 0.30]
+  init_state: {}

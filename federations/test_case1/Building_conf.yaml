@@ -2,10 +2,11 @@ fed_name: Building
 fed_conf:
   model_script : Csv_out.py
   class_name: CSV
-  n_instances: 1
-  stateful: true
+  n_instances: 2
   RL_training: true
   mem_attrs : [outputs.plug]
+  real_period: 3600
+
 fed_info:
   broker: null
   broker_init: null
@@ -49,7 +50,7 @@ fed_properties:
   TIME_RT_TOLERANCE: 0.0
   TIME_INPUT_DELAY: 0.0
   TIME_OUTPUT_DELAY: 0.0
-  TIME_STOPTIME: 86400
+  TIME_STOPTIME: 172800
   TIME_GRANT_TIMEOUT: 0.0
   INT_CURRENT_ITERATION: 0
   INT_MAX_ITERATIONS: 50
@@ -62,7 +63,13 @@ fed_connections:
   sub: {}
   pub:
     0: [ {
-      "key": "Building/0/plug",
+      "key": "plug",
+      "type": "double",
+      "units": "W",
+      "global": true
+    } ]
+    1: [ {
+      "key": "plug",
       "type": "double",
       "units": "W",
       "global": true
@@ -71,10 +78,6 @@ fed_connections:
   inp: {}
 model_conf:
   params:
-    csv_file: ['user_guide_examples/test_case1/BUILD&PV.csv']
-    multiplier: [{plug: -1}]
-  inputs: {}
-  outputs:
-    plug: [0.0]
-  messages_in: { } #todo could be removed
-  messages_out: {}
+    csv_file: ['data/BUILD&PV.csv', 'data/BUILD&PV.csv']
+    multiplier: [{plug: -1},{plug: -1}]
+  init_state: {}

@@ -1,0 +1,115 @@
+fed_name: PV
+fed_conf:
+  model_script : model_Dest/PV.py
+  class_name: PV
+  n_instances: 1
+  RL_training: true
+  mem_attrs : [outputs.Power_PV, inputs.G_H_R] # possibilities None no memory, [empty list] memorize all
+  real_period: 3600
+fed_info:
+  broker: null
+  broker_init: null
+  broker_key: null
+  broker_port: null
+  core_init: null #for debugging only
+  core_name: pv_core
+  core_type: zmq
+  local_port: null
+  separator: null
+fed_flags:
+  SLOW_RESPONDING: False
+  DEBUGGING: False
+  TERMINATE_ON_ERROR: true
+  FORCE_LOGGING_FLUSH: False
+  DUMPLOG: False
+  OBSERVER: False
+  UNINTERRUPTIBLE: False
+  INTERRUPTIBLE: True
+  SOURCE_ONLY: False
+  ONLY_TRANSMIT_ON_CHANGE: False
+  ONLY_UPDATE_ON_CHANGE: False
+  WAIT_FOR_CURRENT_TIME_UPDATE: True
+  RESTRICTIVE_TIME_POLICY: False
+  ROLLBACK: False
+  FORWARD_COMPUTE: False
+  REALTIME: False
+  SINGLE_THREAD_FEDERATE: False
+  SINGLE_THREAD_CORE: False
+  REENTRANT: False
+  IGNORE_TIME_MISMATCH_WARNINGS: False
+  USE_JSON_SERIALIZATION: False
+  EVENT_TRIGGERED: False
+  CALLBACK_FEDERATE : False
+  AUTOMATED_TIME_REQUEST: False
+fed_properties:
+  TIME_DELTA: 1e-09
+  TIME_PERIOD: 3600
+  TIME_OFFSET: 0.0
+  TIME_RT_LAG: 0.0
+  TIME_RT_LEAD: 0.0
+  TIME_RT_TOLERANCE: 0.0
+  TIME_INPUT_DELAY: 0.0
+  TIME_OUTPUT_DELAY: 0.0
+  TIME_STOPTIME: 172800
+  TIME_GRANT_TIMEOUT: 0.0
+  INT_CURRENT_ITERATION: 0
+  INT_MAX_ITERATIONS: 50
+  INT_LOG_LEVEL: 3
+  INT_FILE_LOG_LEVEL: 3
+  INT_CONSOLE_LOG_LEVEL: 3
+  INT_LOG_BUFFER: 0
+  INT_INDEX_GROUP: -972
+fed_connections:
+  sub: {}
+  pub:
+    0: [{
+      "key": "Power_PV",
+      "type": "double",
+      "units": "W",
+    }]
+
+  end: {}
+  inp:
+    0: [ {
+      "key": "G_H_R",
+      "type": "double",
+      "units": "W/m2",
+      "targets": [
+        "Weather/0/glohorzrad",
+       ]
+    },
+      {
+        "key": "D_H_R",
+        "type": "double",
+        "units": "W/m2",
+        "targets": [
+          "Weather/0/difhorzrad",
+        ]
+      },
+      {
+        "key": "Ambient_temperature",
+        "type": "double",
+        "units": "C",
+        "targets": [
+          "Weather/0/drybulb",
+        ]
+      }]
+model_conf:
+  params:
+    lat: [39.8]
+    long: [116.467]
+    calc_area: [200]
+    #Tilt_angle: 2.05*1.02*27.25/180*math.pi ,
+    #Azimuth_angle: 44.24/180*math.pi ,
+    Tilt_angle: [0.6981317010]
+    Azimuth_angle: [0.9]
+    area_ratio: [1]
+    SVF_hori: [1]
+    Reflectance: [0.2]
+    eta_pv_stc: [0.21] # no longer used todo cancel
+    NOCT: [45]
+    Power_rated_pv: [410]
+    length: [2.05]
+    width: [1.02]
+    solar_constant: [1353]
+    std_long: [120]

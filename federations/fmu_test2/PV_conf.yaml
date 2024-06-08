@@ -1,0 +1,112 @@
+fed_name: PV
+fed_conf:
+  model_script : FMU_standard.py
+  class_name: FMU
+  n_instances: 1
+  RL_training: true
+  mem_attrs : [outputs.DCOutputPower] # possibilities None no memory, [empty list] memorize all
+  fmu: PV_simple_final
+  real_period: 3600
+fed_info:
+  broker: null
+  broker_init: null
+  broker_key: null
+  broker_port: null
+  core_init: null #for debugging only
+  core_name: pv_core
+  core_type: zmq
+  local_port: null
+  separator: null
+fed_flags:
+  SLOW_RESPONDING: False
+  DEBUGGING: False
+  TERMINATE_ON_ERROR: true
+  FORCE_LOGGING_FLUSH: False
+  DUMPLOG: False
+  OBSERVER: False
+  UNINTERRUPTIBLE: False
+  INTERRUPTIBLE: True
+  SOURCE_ONLY: False
+  ONLY_TRANSMIT_ON_CHANGE: False
+  ONLY_UPDATE_ON_CHANGE: False
+  WAIT_FOR_CURRENT_TIME_UPDATE: True
+  RESTRICTIVE_TIME_POLICY: False
+  ROLLBACK: False
+  FORWARD_COMPUTE: False
+  REALTIME: False
+  SINGLE_THREAD_FEDERATE: False
+  SINGLE_THREAD_CORE: False
+  REENTRANT: False
+  IGNORE_TIME_MISMATCH_WARNINGS: False
+  USE_JSON_SERIALIZATION: False
+  EVENT_TRIGGERED: False
+  CALLBACK_FEDERATE : False
+  AUTOMATED_TIME_REQUEST: False
+fed_properties:
+  TIME_DELTA: 1e-09
+  TIME_PERIOD: 3600
+  TIME_OFFSET: 0.0
+  TIME_RT_LAG: 0.0
+  TIME_RT_LEAD: 0.0
+  TIME_RT_TOLERANCE: 0.0
+  TIME_INPUT_DELAY: 0.0
+  TIME_OUTPUT_DELAY: 0.0
+  TIME_STOPTIME: 172800
+  TIME_GRANT_TIMEOUT: 0.0
+  INT_CURRENT_ITERATION: 0
+  INT_MAX_ITERATIONS: 50
+  INT_LOG_LEVEL: 3
+  INT_FILE_LOG_LEVEL: 3
+  INT_CONSOLE_LOG_LEVEL: 3
+  INT_LOG_BUFFER: 0
+  INT_INDEX_GROUP: -972
+fed_connections:
+  sub: {}
+  pub:
+    0: [{
+      "key": "DCOutputPower",
+      "type": "double",
+      "units": "W"
+    }]
+  end: {}
+  inp:
+    0: [ {
+      "key": "T_ext",
+      "type": "double",
+      "units": "C",
+      "targets": [
+        "Weather/0/drybulb",
+      ]
+    },
+      {
+        "key": "wind_speed",
+        "type": "double",
+        "units": "m/s",
+        "targets": [
+          "Weather/0/windspd",
+        ]
+      },
+      {
+        "key": "H_glo_hor",
+        "type": "double",
+        "units": "W/m2",
+        "targets": [
+          "Weather/0/glohorzrad",
+        ]
+      },
+      {
+        "key": "H_diff_hor",
+        "type": "double",
+        "units": "W/m2",
+        "targets": [
+          "Weather/0/difhorzrad",
+        ]
+      }]
+
+model_conf:
+  params: {}
+  init_state:
+    inputs.H_diff_hor: [1.0]
+    inputs.T_ext : [293.15]
+    inputs.wind_speed: [1.0]
+    inputs.H_glo_hor: [1.0]

@@ -1,0 +1,102 @@
+fed_name: Receiver
+fed_conf:
+  model_script : test_case1_1/Receiver.py
+  class_name: Receiver
+  n_instances: 2
+  RL_training: true
+  mem_attrs : none
+  real_period: 3600
+fed_info:
+  broker: null
+  broker_init: null
+  broker_key: null
+  broker_port: null
+  core_init: null #for debugging only
+  core_name: receiver_core
+  core_type: zmq
+  local_port: null
+  separator: null
+fed_flags:
+  SLOW_RESPONDING: False
+  DEBUGGING: False
+  TERMINATE_ON_ERROR: true
+  FORCE_LOGGING_FLUSH: False
+  DUMPLOG: False
+  OBSERVER: False
+  UNINTERRUPTIBLE: False
+  SOURCE_ONLY: False
+  ONLY_TRANSMIT_ON_CHANGE: False
+  ONLY_UPDATE_ON_CHANGE: False
+  WAIT_FOR_CURRENT_TIME_UPDATE: True
+  RESTRICTIVE_TIME_POLICY: False
+  ROLLBACK: False
+  FORWARD_COMPUTE: False
+  REALTIME: False
+  SINGLE_THREAD_FEDERATE: False
+  SINGLE_THREAD_CORE: False
+  REENTRANT: False
+  IGNORE_TIME_MISMATCH_WARNINGS: False
+  USE_JSON_SERIALIZATION: False
+  EVENT_TRIGGERED: False
+  CALLBACK_FEDERATE : False
+  AUTOMATED_TIME_REQUEST: False
+fed_properties:
+  TIME_DELTA: 1e-09
+  TIME_PERIOD: 3600
+  TIME_OFFSET: 0.0
+  TIME_RT_LAG: 0.0
+  TIME_RT_LEAD: 0.0
+  TIME_RT_TOLERANCE: 0.0
+  TIME_INPUT_DELAY: 0.0
+  TIME_OUTPUT_DELAY: 0.0
+  TIME_STOPTIME: 86400
+  TIME_GRANT_TIMEOUT: 0.0
+  INT_CURRENT_ITERATION: 0
+  INT_MAX_ITERATIONS: 50
+  INT_LOG_LEVEL: 3
+  INT_FILE_LOG_LEVEL: 3
+  INT_CONSOLE_LOG_LEVEL: 3
+  INT_LOG_BUFFER: 0
+  INT_INDEX_GROUP: -972
+fed_connections:
+  sub: {}
+  pub: {}
+  end: {}
+#    0:
+#      "destinations": []
+#      "sources": [ ] #this works if i want to subscribe to a value (e.g. pubblication) is useful to read data from sims that do not have endpoints and do not receive messages
+#      "var_in": [ test_message ]
+#      "var_out": [  ]
+#    1:
+#      "destinations": [ ]
+#      "sources": [] #this works if i want to subscribe to a value (e.g. pubblication) is useful to read data from sims that do not have endpoints and do not receive messages
+#      "var_in": [test_message]
+#      "var_out": []
+  inp:
+    0: [ {
+      "key": "energy_out",
+      "type": "double",
+      "units": "Wh",
+      "targets": [Battery/0/energy_out]
+    },
+      {
+        "key": "power",
+        "type": "double",
+        "units": "W",
+        "targets": [ PV/0/pv ]
+      } ]
+    1: [ {
+      "key": "energy_out",
+      "type": "double",
+      "units": "Wh",
+      "targets": [ Battery/1/energy_out ]
+    },
+      {
+        "key": "power",
+        "type": "double",
+        "units": "W",
+        "targets": [ PV/1/pv ]
+      } ]
+model_conf:
+  params: {}
+  init_state: {}

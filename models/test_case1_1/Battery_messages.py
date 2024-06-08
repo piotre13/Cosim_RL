@@ -128,15 +128,21 @@ class Battery(Model):
             setattr(self.model, par, self.params[par])
         self.model.setSOC(self.model.SOC)
 
-    def step(self, ts):
+    def step(self, ts, **kwargs):
+        for msg in self.messages_in:
+            logger.debug(f"\t\t\tmessage_received: {msg}")
 
-        logger.debug(f'messages {self.messages_in}')
-        input_power = sum([float(i) for i in self.messages_in['power']])
-
-        self.messages_out['energy_out'] = self.model.calculatepower(input_power, dt=3600)
+        self.outputs['energy_out'] = self.model.calculatepower(self.inputs['power'], dt=self.real_period)
         self.params['SOC'] = self.model.SOC
 
+        for dest in self.msg_var_dest:
+            for var in self.msg_var_dest[dest]:
+                msg = {'var_name': var, 'value': f"ciao sono le {ts}", 'dest':dest}
+
+            self.messages_out.append(msg)
+
         return super().step(ts)
+
 
     def finalize(self):
         return super().finalize()
