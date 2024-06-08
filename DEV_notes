@@ -1,8 +1,0 @@
-remember to kill brokers helics comes with some command line commands
-
-
-# nomenclature standard
-
-enpoint_name :  Federate_name/mod_num/var_name
-destination
-l'endpoint name funziona sia per mod_receiver che per ep_name

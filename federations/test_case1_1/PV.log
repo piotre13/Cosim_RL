@@ -1,153 +1,198 @@
-	Registered endpoint: PV/0/pv with destinations ['Battery/0/power'] and sources []
-		Model CSV.0 instantiated with the following kwargs: {'model_name': 'CSV.0', 'RL_training': True, 'stateful': True, 'mem_attrs': ['messages_out.pv'], 'inputs': {}, 'outputs': {}, 'messages_in': {}, 'messages_out': {'pv': []}, 'params': {'csv_file': 'data/BUILD&PV.csv', 'multiplier': {'pv': 1}}}!
+	Registered publication: <helics.HelicsPublication(name = "PV/0/pv", type = "double", units = "W", info = "") at 0x24ef5ee9190> for PV/0/pv
+	Registered publication: <helics.HelicsPublication(name = "PV/1/pv", type = "double", units = "W", info = "") at 0x24ef5ee9730> for PV/1/pv
+testetstetste {}
+ {0: {'pv': <helics.HelicsPublication(name = "PV/0/pv", type = "double", units = "W", info = "") at 0x24ef5ee9190>}, 1: {'pv': <helics.HelicsPublication(name = "PV/1/pv", type = "double", units = "W", info = "") at 0x24ef5ee9730>}}
+{}
+	Registering connections ended for fed PV list of output vars ['pv'], list for in_vars[]
+Data-flow graph :
+{   'attributes': {   'id': 1,
+                      'name': '20996-HPvZ9-Hm1Ar-Pbv2B-Ew1z1',
+                      'parent': 0},
+    'brokers': [],
+    'cores': [   {   'attributes': {   'id': 1879048192,
+                                       'name': 'pv_core',
+                                       'parent': 1},
+                     'federates': [   {   'attributes': {   'id': 131072,
+                                                            'name': 'PV',
+                                                            'parent': 1879048192},
+                                          'publications': [   {   'federate': 131072,
+                                                                  'handle': 0,
+                                                                  'key': 'PV/0/pv'},
+                                                              {   'federate': 131072,
+                                                                  'handle': 1,
+                                                                  'key': 'PV/1/pv'}]}]},
+                 {   'attributes': {   'id': 1879048194,
+                                       'name': 'receiver_core',
+                                       'parent': 1}},
+                 {   'attributes': {   'id': 1879048193,
+                                       'name': 'building_core',
+                                       'parent': 1},
+                     'federates': [   {   'attributes': {   'id': 131073,
+                                                            'name': 'Building',
+                                                            'parent': 1879048193},
+                                          'publications': [   {   'federate': 131073,
+                                                                  'handle': 0,
+                                                                  'key': 'Building/0/plug'}]}]},
+                 {   'attributes': {   'id': 1879048195,
+                                       'name': 'battery_core',
+                                       'parent': 1}}]}
+Dependency graph :
+{   'attributes': {'id': 131072, 'name': 'PV', 'parent': 1879048192},
+    'dependencies': [],
+    'dependents': []}
 		Memory instantiated for Model CSV.0!
-		Initial state for Model CSV.0 set as follow: {'inputs': {}, 'outputs': {}, 'messages_in': {}, 'messages_out': {'pv': []}, 'params': {'csv_file': 'data/BUILD&PV.csv', 'multiplier': {'pv': 1}}}
+		Initial state for Model CSV.0 set as follow: {'inputs': {}, 'outputs': {}, 'messages_in': {}, 'messages_out': {}, 'params': {'csv_file': 'data/BUILD&PV_test.csv', 'multiplier': {'pv': 1}}}
+		Model CSV.0 instantiated with the following kwargs: {'model_name': 'CSV.0', 'inputs': {}, 'outputs': {'pv': 0.0}, 'messages_in': [], 'messages_out': [], 'params': {'csv_file': 'data/BUILD&PV_test.csv', 'multiplier': {'pv': 1}}, 'msg_var_dest': {}, 'RL_training': True, 'mem_attrs': ['outputs.pv'], 'init_state': {}, 'real_period': 3600, 'end_time': 86400.0}!
+		Memory instantiated for Model CSV.1!
+		Initial state for Model CSV.1 set as follow: {'inputs': {}, 'outputs': {}, 'messages_in': {}, 'messages_out': {}, 'params': {'csv_file': 'data/BUILD&PV.csv', 'multiplier': {'pv': 1000}}}
+		Model CSV.1 instantiated with the following kwargs: {'model_name': 'CSV.1', 'inputs': {}, 'outputs': {'pv': 0.0}, 'messages_in': [], 'messages_out': [], 'params': {'csv_file': 'data/BUILD&PV.csv', 'multiplier': {'pv': 1000}}, 'msg_var_dest': {}, 'RL_training': True, 'mem_attrs': ['outputs.pv'], 'init_state': {}, 'real_period': 3600, 'end_time': 86400.0}!
 	Models instantiation from fed: PV succesfull!
-	Model instances names: ['CSV.0']
+	Model instances names: ['CSV.0', 'CSV.1']
 	Entered HELICS execution mode
 ************* Requesting time 3600.0 -- Granted time 3600.0 **************
 	current timestep: 3600.0
-	Received data as inputs or subscription {}  and as messages {'PV/0/pv': []}
-		 Model CSV.0 step completed.
-testtest {'outputs': {}, 'messages_out': {'PV/0/pv': 0.0}}
-	 Sent data as publications {} and as messages {'PV/0/pv': 0.0}
+		 Model {self.model_name} step completed.
+		 Model {self.model_name} step completed.
+	Model_0 published output pv=1.0
+	Model_1 published output pv=0.0
 ************* Requesting time 7200.0 -- Granted time 7200.0 **************
 	current timestep: 7200.0
-	Received data as inputs or subscription {}  and as messages {'PV/0/pv': ['-199.70277519999945']}
-		 Model CSV.0 step completed.
-testtest {'outputs': {}, 'messages_out': {'PV/0/pv': 0.0}}
-	 Sent data as publications {} and as messages {'PV/0/pv': 0.0}
+		 Model {self.model_name} step completed.
+		 Model {self.model_name} step completed.
+	Model_0 published output pv=2.0
+	Model_1 published output pv=0.0
 ************* Requesting time 10800.0 -- Granted time 10800.0 **************
 	current timestep: 10800.0
-	Received data as inputs or subscription {}  and as messages {'PV/0/pv': ['-199.70277519999945']}
-		 Model CSV.0 step completed.
-testtest {'outputs': {}, 'messages_out': {'PV/0/pv': 0.0}}
-	 Sent data as publications {} and as messages {'PV/0/pv': 0.0}
+		 Model {self.model_name} step completed.
+		 Model {self.model_name} step completed.
+	Model_0 published output pv=3.0
+	Model_1 published output pv=0.0
 ************* Requesting time 14400.0 -- Granted time 14400.0 **************
 	current timestep: 14400.0
-	Received data as inputs or subscription {}  and as messages {'PV/0/pv': ['-199.70277519999945']}
-		 Model CSV.0 step completed.
-testtest {'outputs': {}, 'messages_out': {'PV/0/pv': 0.0}}
-	 Sent data as publications {} and as messages {'PV/0/pv': 0.0}
+		 Model {self.model_name} step completed.
+		 Model {self.model_name} step completed.
+	Model_0 published output pv=4.0
+	Model_1 published output pv=0.0
 ************* Requesting time 18000.0 -- Granted time 18000.0 **************
 	current timestep: 18000.0
-	Received data as inputs or subscription {}  and as messages {'PV/0/pv': ['-199.70277519999945']}
-		 Model CSV.0 step completed.
-testtest {'outputs': {}, 'messages_out': {'PV/0/pv': 0.0}}
-	 Sent data as publications {} and as messages {'PV/0/pv': 0.0}
+		 Model {self.model_name} step completed.
+		 Model {self.model_name} step completed.
+	Model_0 published output pv=5.0
+	Model_1 published output pv=0.0
 ************* Requesting time 21600.0 -- Granted time 21600.0 **************
 	current timestep: 21600.0
-	Received data as inputs or subscription {}  and as messages {'PV/0/pv': ['-199.70277519999945']}
-		 Model CSV.0 step completed.
-testtest {'outputs': {}, 'messages_out': {'PV/0/pv': 0.0}}
-	 Sent data as publications {} and as messages {'PV/0/pv': 0.0}
+		 Model {self.model_name} step completed.
+		 Model {self.model_name} step completed.
+	Model_0 published output pv=6.0
+	Model_1 published output pv=0.0
 ************* Requesting time 25200.0 -- Granted time 25200.0 **************
 	current timestep: 25200.0
-	Received data as inputs or subscription {}  and as messages {'PV/0/pv': ['-816.5820569999996']}
-		 Model CSV.0 step completed.
-testtest {'outputs': {}, 'messages_out': {'PV/0/pv': 0.0}}
-	 Sent data as publications {} and as messages {'PV/0/pv': 0.0}
+		 Model {self.model_name} step completed.
+		 Model {self.model_name} step completed.
+	Model_0 published output pv=0.0
+	Model_1 published output pv=0.0
 ************* Requesting time 28800.0 -- Granted time 28800.0 **************
 	current timestep: 28800.0
-	Received data as inputs or subscription {}  and as messages {'PV/0/pv': ['-532.2761892999988']}
-		 Model CSV.0 step completed.
-testtest {'outputs': {}, 'messages_out': {'PV/0/pv': 252.7121735}}
-	 Sent data as publications {} and as messages {'PV/0/pv': 252.7121735}
+		 Model {self.model_name} step completed.
+		 Model {self.model_name} step completed.
+	Model_0 published output pv=0.0
+	Model_1 published output pv=0.0
 ************* Requesting time 32400.0 -- Granted time 32400.0 **************
 	current timestep: 32400.0
-	Received data as inputs or subscription {}  and as messages {'PV/0/pv': ['-5944.9421095']}
-		 Model CSV.0 step completed.
-testtest {'outputs': {}, 'messages_out': {'PV/0/pv': 1111.532797}}
-	 Sent data as publications {} and as messages {'PV/0/pv': 1111.532797}
+		 Model {self.model_name} step completed.
+		 Model {self.model_name} step completed.
+	Model_0 published output pv=252.7121735
+	Model_1 published output pv=252712.1735
 ************* Requesting time 36000.0 -- Granted time 36000.0 **************
 	current timestep: 36000.0
-	Received data as inputs or subscription {}  and as messages {'PV/0/pv': ['-5268.917647999995']}
-		 Model CSV.0 step completed.
-testtest {'outputs': {}, 'messages_out': {'PV/0/pv': 1848.471048}}
-	 Sent data as publications {} and as messages {'PV/0/pv': 1848.471048}
+		 Model {self.model_name} step completed.
+		 Model {self.model_name} step completed.
+	Model_0 published output pv=1111.532797
+	Model_1 published output pv=1111532.797
 ************* Requesting time 39600.0 -- Granted time 39600.0 **************
 	current timestep: 39600.0
-	Received data as inputs or subscription {}  and as messages {'PV/0/pv': ['-4862.511911000001']}
-		 Model CSV.0 step completed.
-testtest {'outputs': {}, 'messages_out': {'PV/0/pv': 2544.32274}}
-	 Sent data as publications {} and as messages {'PV/0/pv': 2544.32274}
+		 Model {self.model_name} step completed.
+		 Model {self.model_name} step completed.
+	Model_0 published output pv=1848.471048
+	Model_1 published output pv=1848471.0480000002
 ************* Requesting time 43200.0 -- Granted time 43200.0 **************
 	current timestep: 43200.0
-	Received data as inputs or subscription {}  and as messages {'PV/0/pv': ['-4150.448858']}
-		 Model CSV.0 step completed.
-testtest {'outputs': {}, 'messages_out': {'PV/0/pv': 3056.442746}}
-	 Sent data as publications {} and as messages {'PV/0/pv': 3056.442746}
+		 Model {self.model_name} step completed.
+		 Model {self.model_name} step completed.
+	Model_0 published output pv=2544.32274
+	Model_1 published output pv=2544322.74
 ************* Requesting time 46800.0 -- Granted time 46800.0 **************
 	current timestep: 46800.0
-	Received data as inputs or subscription {}  and as messages {'PV/0/pv': ['-2077.979713999999']}
-		 Model CSV.0 step completed.
-testtest {'outputs': {}, 'messages_out': {'PV/0/pv': 3133.219441}}
-	 Sent data as publications {} and as messages {'PV/0/pv': 3133.219441}
+		 Model {self.model_name} step completed.
+		 Model {self.model_name} step completed.
+	Model_0 published output pv=3056.442746
+	Model_1 published output pv=3056442.7460000003
 ************* Requesting time 50400.0 -- Granted time 50400.0 **************
 	current timestep: 50400.0
-	Received data as inputs or subscription {}  and as messages {'PV/0/pv': ['-1347.8276372000091']}
-		 Model CSV.0 step completed.
-testtest {'outputs': {}, 'messages_out': {'PV/0/pv': 2795.189105}}
-	 Sent data as publications {} and as messages {'PV/0/pv': 2795.189105}
+		 Model {self.model_name} step completed.
+		 Model {self.model_name} step completed.
+	Model_0 published output pv=3133.219441
+	Model_1 published output pv=3133219.441
 ************* Requesting time 54000.0 -- Granted time 54000.0 **************
 	current timestep: 54000.0
-	Received data as inputs or subscription {}  and as messages {'PV/0/pv': ['0.0']}
-		 Model CSV.0 step completed.
-testtest {'outputs': {}, 'messages_out': {'PV/0/pv': 2012.91589}}
-	 Sent data as publications {} and as messages {'PV/0/pv': 2012.91589}
+		 Model {self.model_name} step completed.
+		 Model {self.model_name} step completed.
+	Model_0 published output pv=2795.189105
+	Model_1 published output pv=2795189.105
 ************* Requesting time 57600.0 -- Granted time 57600.0 **************
 	current timestep: 57600.0
-	Received data as inputs or subscription {}  and as messages {'PV/0/pv': ['0.0']}
-		 Model CSV.0 step completed.
-testtest {'outputs': {}, 'messages_out': {'PV/0/pv': 970.8261478}}
-	 Sent data as publications {} and as messages {'PV/0/pv': 970.8261478}
+		 Model {self.model_name} step completed.
+		 Model {self.model_name} step completed.
+	Model_0 published output pv=2012.91589
+	Model_1 published output pv=2012915.89
 ************* Requesting time 61200.0 -- Granted time 61200.0 **************
 	current timestep: 61200.0
-	Received data as inputs or subscription {}  and as messages {'PV/0/pv': ['0.0']}
-		 Model CSV.0 step completed.
-testtest {'outputs': {}, 'messages_out': {'PV/0/pv': 26.23065155}}
-	 Sent data as publications {} and as messages {'PV/0/pv': 26.23065155}
+		 Model {self.model_name} step completed.
+		 Model {self.model_name} step completed.
+	Model_0 published output pv=970.8261478
+	Model_1 published output pv=970826.1477999999
 ************* Requesting time 64800.0 -- Granted time 64800.0 **************
 	current timestep: 64800.0
-	Received data as inputs or subscription {}  and as messages {'PV/0/pv': ['0.0']}
-		 Model CSV.0 step completed.
-testtest {'outputs': {}, 'messages_out': {'PV/0/pv': 0.0}}
-	 Sent data as publications {} and as messages {'PV/0/pv': 0.0}
+		 Model {self.model_name} step completed.
+		 Model {self.model_name} step completed.
+	Model_0 published output pv=26.23065155
+	Model_1 published output pv=26230.651550000002
 ************* Requesting time 68400.0 -- Granted time 68400.0 **************
 	current timestep: 68400.0
-	Received data as inputs or subscription {}  and as messages {'PV/0/pv': ['0.0']}
-		 Model CSV.0 step completed.
-testtest {'outputs': {}, 'messages_out': {'PV/0/pv': 0.0}}
-	 Sent data as publications {} and as messages {'PV/0/pv': 0.0}
+		 Model {self.model_name} step completed.
+		 Model {self.model_name} step completed.
+	Model_0 published output pv=0.0
+	Model_1 published output pv=0.0
 ************* Requesting time 72000.0 -- Granted time 72000.0 **************
 	current timestep: 72000.0
-	Received data as inputs or subscription {}  and as messages {'PV/0/pv': ['0.0']}
-		 Model CSV.0 step completed.
-testtest {'outputs': {}, 'messages_out': {'PV/0/pv': 0.0}}
-	 Sent data as publications {} and as messages {'PV/0/pv': 0.0}
+		 Model {self.model_name} step completed.
+		 Model {self.model_name} step completed.
+	Model_0 published output pv=0.0
+	Model_1 published output pv=0.0
 ************* Requesting time 75600.0 -- Granted time 75600.0 **************
 	current timestep: 75600.0
-	Received data as inputs or subscription {}  and as messages {'PV/0/pv': ['0.0']}
-		 Model CSV.0 step completed.
-testtest {'outputs': {}, 'messages_out': {'PV/0/pv': 0.0}}
-	 Sent data as publications {} and as messages {'PV/0/pv': 0.0}
+		 Model {self.model_name} step completed.
+		 Model {self.model_name} step completed.
+	Model_0 published output pv=0.0
+	Model_1 published output pv=0.0
 ************* Requesting time 79200.0 -- Granted time 79200.0 **************
 	current timestep: 79200.0
-	Received data as inputs or subscription {}  and as messages {'PV/0/pv': ['0.0']}
-		 Model CSV.0 step completed.
-testtest {'outputs': {}, 'messages_out': {'PV/0/pv': 0.0}}
-	 Sent data as publications {} and as messages {'PV/0/pv': 0.0}
+		 Model {self.model_name} step completed.
+		 Model {self.model_name} step completed.
+	Model_0 published output pv=0.0
+	Model_1 published output pv=0.0
 ************* Requesting time 82800.0 -- Granted time 82800.0 **************
 	current timestep: 82800.0
-	Received data as inputs or subscription {}  and as messages {'PV/0/pv': ['0.0']}
-		 Model CSV.0 step completed.
-testtest {'outputs': {}, 'messages_out': {'PV/0/pv': 0.0}}
-	 Sent data as publications {} and as messages {'PV/0/pv': 0.0}
+		 Model {self.model_name} step completed.
+		 Model {self.model_name} step completed.
+	Model_0 published output pv=0.0
+	Model_1 published output pv=0.0
 ************* Requesting time 86400.0 -- Granted time 86400.0 **************
 	current timestep: 86400.0
-	Received data as inputs or subscription {}  and as messages {'PV/0/pv': ['0.0']}
-		 Model CSV.0 step completed.
-testtest {'outputs': {}, 'messages_out': {'PV/0/pv': 0.0}}
-	 Sent data as publications {} and as messages {'PV/0/pv': 0.0}
-		 Model CSV.0 finalized with Memory : {'inputs': {}, 'outputs': {}, 'messages_in': {}, 'messages_out': {'pv': [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 252.7121735, 1111.532797, 1848.471048, 2544.32274, 3056.442746, 3133.219441, 2795.189105, 2012.91589, 970.8261478, 26.23065155, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]}, 'params': {}}
+		 Model {self.model_name} step completed.
+		 Model {self.model_name} step completed.
+	Model_0 published output pv=0.0
+	Model_1 published output pv=0.0
+		 Model CSV.0 finalized with Memory : {'inputs': {}, 'outputs': {'pv': [1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 0.0, 0.0, 252.7121735, 1111.532797, 1848.471048, 2544.32274, 3056.442746, 3133.219441, 2795.189105, 2012.91589, 970.8261478, 26.23065155, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]}, 'params': {}}
+		 Model CSV.1 finalized with Memory : {'inputs': {}, 'outputs': {'pv': [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 252712.1735, 1111532.797, 1848471.0480000002, 2544322.74, 3056442.7460000003, 3133219.441, 2795189.105, 2012915.89, 970826.1477999999, 26230.651550000002, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]}, 'params': {}}
 	Federate finalized

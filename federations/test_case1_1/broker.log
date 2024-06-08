@@ -1,2 +1,0 @@
-[2024-05-14 11:09:21.762] [console] [warning] commWarning||6744-xJ7aQ-oGzsQ-vevbS-pC7bF (1)[operating]::unknown route and no broker, dropping message send_message:From (Battery/0/energy_out)(131073:1) To Building/0/plug size 3 at 86400
-[2024-05-14 11:09:21.763] [console] [warning] commWarning||6744-xJ7aQ-oGzsQ-vevbS-pC7bF (1)[operating]::unknown route and no broker, dropping message send_message:From (Battery/0/energy_out)(131073:1) To PV/0/pv size 3 at 86400

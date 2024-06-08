@@ -4,9 +4,10 @@ import helics as h
 import logging
 from utils import read_yaml, save_json
 import importlib.util
+import pprint
 import json
 import copy
-
+pp = pprint.PrettyPrinter(indent=4)
 sys.path.append('models/')
 
 logger = logging.getLogger(__name__)
@@ -25,9 +26,13 @@ class Federate:
         #connections
         self.connection_ref = self.init_config['fed_connections']
         self.pubs = {}
-        self.subs = {}
+        self.out_vars = []
+        #self.subs = {} will not use this
         self.ends = {}
         self.inps = {}
+        self.in_vars = []
+        self.in_vars = []
+        self.msg_var_dest = {}
 
         #models
         self.mod_insts = []
@@ -35,6 +40,7 @@ class Federate:
 
         #time synchronization
         self.period = None #will be set when the federate is created
+        self.real_period = None
         self.offset = None #will be set when the federate is created
         self.granted_time = None #will be set when the federate is created
         self.tot_time = None #will be set when the federate is created
@@ -42,9 +48,12 @@ class Federate:
 
         #performing tasks
         self.registering()
+
         self.register_connections()
+        #self.eval_data_flow_graph()
+        #self.eval_dependency_graph()
         self.model_instantiation()
-        self.execution()
+
 
 
     def set_conf(self, args):
@@ -65,7 +74,8 @@ class Federate:
             prop_name = 'HELICS_PROPERTY_{}'.format(prop)
             if self.init_config['fed_properties'][prop]:
                 if prop.startswith('INT'):
-                    self.fed.property[getattr(h,prop_name)] = int(self.init_config['fed_properties'][prop])
+                    h.helicsFederateSetIntegerProperty(self.fed,getattr(h,prop_name),int(self.init_config['fed_properties'][prop]))
+                    #self.fed.property[getattr(h,prop_name)] = int(self.init_config['fed_properties'][prop])
                 else:
                     self.fed.property[getattr(h,prop_name)] = float(self.init_config['fed_properties'][prop])
 
@@ -81,69 +91,65 @@ class Federate:
         self.tot_time = int((h.helicsFederateGetTimeProperty(self.fed, h.HELICS_PROPERTY_TIME_STOPTIME)))
 
 
+        self.real_period = self.init_config['fed_conf']['real_period']
+
+
 
     def register_connections(self):
 
-        # for mod_num in self.connection_ref['pub']:
-        #     for topic in self.connection_ref['pub'][mod_num]:
-        #         if topic not in self.pubs.keys():
-        #             pubid =self.fed.register_publication(topic, kind='double', local=False)
-        #             self.pubs[topic] = pubid # todo what to do with the unit of measurement?
-        #             logger.debug(f"\tRegistered publication: {pubid} for {topic}")
-        #         else:
-        #             logger.error('ERROR Publication for topic {} already registered'.format(topic)) # todo raise something?
-
         for mod_num in self.connection_ref['pub']:
+            self.pubs[mod_num] = {}
             for pub_info in self.connection_ref['pub'][mod_num]:
-                topic = pub_info['key']
-                if topic not in self.pubs.keys():
-                    pubid =self.fed.register_publication(topic, kind=pub_info['type'], local=not pub_info['global'], units=pub_info['units'])
+                var_name = pub_info['key']
+                if var_name not in self.out_vars: self.out_vars.append(var_name)
+                if var_name not in self.pubs[mod_num].keys():
+                    topic = self.fed.name + '/' + str(mod_num) + '/' + var_name
+                    pubid = self.fed.register_global_publication(topic, kind=pub_info['type'], units=pub_info['units'])
                     if 'targets' in pub_info:
                         for t in pub_info['targets']:
                             pubid.add_target(t)
-                    self.pubs[topic] = pubid # todo what to do with the unit of measurement?
+                    self.pubs[mod_num][var_name] = pubid
                     logger.debug(f"\tRegistered publication: {pubid} for {topic}")
                 else:
-                    logger.error('ERROR Publication for topic {} already registered'.format(topic)) # todo raise something?
-        for mod_num in self.connection_ref['sub']: #todo this will probably be deprecated in favor of inputs
-            for topic in self.connection_ref['sub'][mod_num]:
-                if topic not in self.subs.keys():
-                    subid =self.fed.register_subscription(topic)
-                    mod_receiver = self.fed.name +'/'+ str(mod_num)+'/'+topic.split('/')[-1]
-                    self.subs[mod_receiver] = subid
-                    logger.debug(f"\tRegistered subscription: {subid} for {mod_receiver} from {topic}")
+                    logger.error('ERROR Publication for topic {} already registered'.format(topic))
 
-                else:
-                    logger.error('\tERROR Subscription for topic {} already registered'.format(topic))
         for mod_num in self.connection_ref['inp']:
+            self.inps[mod_num] = {}
             for inp_info in self.connection_ref['inp'][mod_num]:
-                mod_receiver = self.fed.name+'/'+inp_info['key']
-                if mod_receiver not in self.inps.keys():
-                    inpid = self.fed.register_input(name=inp_info['key'],kind=inp_info['type'], units=inp_info['units'])
-                    if 'targets' in inp_info.keys():
+                var_name = inp_info['key']
+                if var_name not in self.in_vars: self.in_vars.append(var_name)
+                if var_name not in self.inps[mod_num].keys():
+                    inp_name = self.fed.name + '/'+ str(mod_num) + '/' + var_name
+                    inpid = self.fed.register_global_input(name=inp_name,kind=inp_info['type'], units=inp_info['units'])
+                    if 'targets' in inp_info:
                         for t in inp_info['targets']:
                             inpid.add_target(t)
                     else:
-                        logger.error(f'\tERROR Input {inpid.name} does not have targets!')
-                    if "multi_input_handling_method" in inp_info.keys():
-                        inpid.option['MULTI_INPUT_HANDLING_METHOD'] = h.helicsGetOptionValue('sum') #todo raise error
-                    self.inps[mod_receiver]= inpid
-                    logger.debug(f"\tRegistered input: {inpid.name} for {mod_receiver} from {inp_info['targets']}")
-                else:
-                    logger.debug('\tERROR Input for model and var {} already registered'.format(mod_receiver))
-        for mod_num in self.connection_ref['end']:
-            for end_info in self.connection_ref['end'][mod_num]:
-                ep = self.fed.register_global_endpoint(end_info['key'])
-                if end_info['destinations']:
-                    ep.destination_target = end_info['destinations']
-                if end_info['sources']:
-                    for src in end_info['sources']:
-                        ep.subscribe(src)
-                if end_info['key'] not in self.ends.keys(): #end_info key must be the same of mod_receiver
-                    self.ends[end_info['key']] = ep
-                    logger.debug(f"\tRegistered endpoint: {ep.name} with destinations {end_info['destinations']} and sources {end_info['sources']}")
+                        logger.error(f'\tInput {inp_name} does not have any target!')
+                        raise Exception(f'\tInput {inp_name} does not have any target!')
 
-        #todo properly understand and implment endpoints and inputs
+                    if "multi_input_handling_method" in inp_info.keys():
+                        inpid.option['MULTI_INPUT_HANDLING_METHOD'] = h.helicsGetOptionValue(inp_info['multi_input_handling_method'])
+                    else:
+                        if len(inp_info['targets']) > 1:
+                            logger.error(f'\tInput {inp_name} has more than 1 target and no multi inputs handling method!')
+                            raise Exception(f'\tInput {inp_name} no specified MULTI INPUT HANDLING METHOD')
+
+                    self.inps[mod_num][var_name] = inpid
+                    logger.debug(f"\tRegistered input: {inpid.name} for {mod_num} from {inp_info['targets']}")
+
+        for mod_num, ep_info in self.connection_ref['end'].items(): #ep_name and mod_num are the same ONLY one endpoint per model instance
+            ep = self.fed.register_endpoint(str(mod_num))
+            if str(mod_num) not in self.ends.keys(): #end_info key must be the same of mod_receiver
+                self.ends[mod_num] = ep
+                logger.debug(f"\tRegistered endpoint: {ep.name} ")
+
+        logger.debug(f"testetstetste {self.ends}\n {self.pubs}\n{self.inps}")
+
+
+        logger.debug(f"\tRegistering connections ended for fed {self.fed.name} list of output vars {self.out_vars}, list for in_vars{self.in_vars}")
+
+
 
 
 
@@ -177,25 +183,41 @@ class Federate:
     def init_kwargs(self, i, class_name):
         kwargs = {}
         kwargs['model_name'] = class_name + '.' + str(i)
+        kwargs['inputs'] = { k: 0.0 for k in self.in_vars}
+        kwargs['outputs'] = { k: 0.0 for k in self.out_vars}
+        kwargs['messages_in'] = []
+        kwargs['messages_out'] = []
+        kwargs['params'] = {k: self.init_config['model_conf']['params'][k][i] for k in self.init_config['model_conf']['params']}
+
+        if self.msg_var_dest: kwargs['msg_var_dest'] = self.msg_var_dest[i]
+        else: kwargs['msg_var_dest'] = {}
+
+        #kwargs['msg_in'] =
         kwargs['RL_training'] = self.init_config['fed_conf']['RL_training']
-        kwargs['stateful'] = self.init_config['fed_conf']['stateful']
+        #kwargs['stateful'] = self.init_config['fed_conf']['stateful']
         kwargs['mem_attrs'] = self.init_config['fed_conf']['mem_attrs']
-        kwargs['inputs'] = {k: self.init_config['model_conf']['inputs'][k][i] for k in self.init_config['model_conf']['inputs']}
-        kwargs['outputs'] = {k: self.init_config['model_conf']['outputs'][k][i] for k in self.init_config['model_conf']['outputs']}
-        kwargs['messages_in'] = {k:[] for k in self.init_config['model_conf']['messages_in']}
-        kwargs['messages_out'] = {k:[] for k in self.init_config['model_conf']['messages_out']}
-        kwargs['params'] = {k: self.init_config['model_conf']['params'][k][i] for k in
-                              self.init_config['model_conf']['params']}
+        if 'fmu' in self.init_config['fed_conf'].keys():
+            kwargs['fmu'] = self.init_config['fed_conf']['fmu']
+        if 'init_state' in self.init_config['model_conf']:
+            kwargs['init_state'] = {k:val[i] for k, val in self.init_config['model_conf']['init_state'].items()}
+        else:
+            kwargs['init_state'] = {}
+
+        kwargs['real_period'] = self.init_config['fed_conf']['real_period']
+        kwargs['end_time'] = h.helicsFederateGetTimeProperty(self.fed,h.HELICS_PROPERTY_TIME_STOPTIME)
         return  kwargs
 
 
-    def execution(self):
+    def execution(self): # execution base for inp out exchange and message receiver
         # +++++++++++++++++++ enetering execution mode++++++++++++++++++
         h.helicsFederateEnterExecutingMode(self.fed)
         logger.info("\tEntered HELICS execution mode")
         self.granted_time = h.helicsFederateGetCurrentTime(self.fed)
 
         while self.granted_time < self.tot_time: #start the wrapping while loop
+
+
+
             #++++++++++++++++++ setting time synchronization #todo this is the basic default example may require to build a more structured method for time synchornization
             requested_time = self.granted_time + self.period + self.offset
             self.granted_time = h.helicsFederateRequestTime(self.fed, requested_time)
@@ -204,30 +226,28 @@ class Federate:
             logger.debug(f"\tcurrent timestep: {current_ts}")
             #*****************************************************************************************
 
-            #++++++++++++++++++ getting inputs
-            inputs = self.communication_management()
-            #*****************************************************************************************
-
-            #++++++++++++++++++ set inputs to model instances
-            self.set_inputs(inputs)
-            #****************************************************************************************
+            #++++++++++++++++++ getting inputs & messages
+            #self.receive_messages()
+            for var in self.in_vars:
+                self.receive_inputs(var)
 
             #++++++++++++++++++ models execution
+            ts_idx = (int(current_ts-self.offset) / self.period) - 1
+            #ts_idx = (current_ts / self.real_period) - 1
+
             for mod in self.mod_insts:
-                mod.step(current_ts/self.period)
-            #****************************************************************************************
-
-            #++++++++++++++++++ get models values
-            outputs = self.get_outputs()
+                mod.step(ts_idx, **{}) # passing the index of timestep starting from 0
             #****************************************************************************************
 
 
-            #++++++++++++++++++ publish models data
-            self.communication_management(send=True, data=outputs)
+            #++++++++++++++++++ sending ouytputs & messages
+            for var in self.out_vars:
+                self.publish(var)
+            #self.send_messages()
+            #self.reset_messages() # remember to always reset the messages
             #****************************************************************************************
 
 
-        #when final time and granted time are equal, sto the execution and destry the federate todo this wil be embedded in the while loop
         for mod in self.mod_insts:
             mod.finalize()
         self.save_results()
@@ -235,90 +255,118 @@ class Federate:
 
 
 
-
-    def communication_management(self, send=False, data=None):
-        if send: #SENDING  # todo just testing
-            for topic, pubid in self.pubs.items():
-                # Publish out
-                h.helicsPublicationPublishDouble(pubid, data['outputs'][topic]) # todo generalize pubblication type
-            for ep_name, ep in self.ends.items():
-                if ep_name in data['messages_out'].keys():
-                    for dest in ep.destination_target:
-
-                        ep.send_data(str(data['messages_out'][ep_name]), destination=dest) # this only works if in data there is a message for the specific endpoint, menaing that the key must be the same of the endpoint name
-            logger.debug(f"\t Sent data as publications {data['outputs']} and as messages {data['messages_out']}")
-
-        else: #RECEIVING
-            data = {'inputs': {},
-                    'messages_in': {}}
-            #subscriptions
-            for mod_receiver, subid in self.subs.items():
-                value = h.helicsInputGetDouble(subid)
-                data['inputs'][mod_receiver] = value
-
-            #inputs
-            for mod_receiver, inpid in self.inps.items():
-                value = h.helicsInputGetDouble(inpid)
-                data['inputs'][mod_receiver] = value
-
-            # MESSAGES ( NO WAITING ONLY READING IF A MESSAGE IS PRESENT)
-            for mod_receiver, ep in self.ends.items():
-                data['messages_in'][mod_receiver] = []
+    def receive_messages(self):
+        if self.ends:
+            for mod_num in range(len(self.mod_insts)):
+                ep = self.ends[mod_num][0]
                 while ep.has_message():
                     msg = ep.get_message()
-                    data['messages_in'][mod_receiver].append(msg.data)
+                    msg_data = json.loads(msg.data)
+                    data = {'var_name':msg_data['var_name'] , 'value':msg_data['value'] ,'source':msg.source}
+                    self.mod_insts[mod_num].messages_in.append(data)
 
 
-            logger.debug(f"\tReceived data as inputs or subscription {data['inputs']}  and as messages {data['messages_in']}")
-            return data
+    def receive_inputs(self, var_name):
+        if self.inps:
+            for mod_num in range(len(self.mod_insts)):
+                inpid = self.inps[mod_num][var_name]
+                if inpid.is_updated(): # todo check understand properly what this means
+                    value = h.helicsInputGetDouble(inpid)
+                    getattr(self.mod_insts[mod_num], 'inputs')[var_name]= value
+                    logger.debug(f"\tModel_{mod_num} received input {var_name}={value}")
+
+    def publish(self, var_name):
+        ''' this method when is called on a specific ver_name allows all the model instances to publish their value on their specific topic'''
+        if self.pubs:
+            for mod_num in range(len(self.mod_insts)):
+                pubid = self.pubs[mod_num][var_name]
+                value = getattr(self.mod_insts[mod_num],'outputs')[var_name]
+                h.helicsPublicationPublishDouble(pubid, value)
+                logger.debug(f"\tModel_{mod_num} published output {var_name}={value}")
+
+    def send_messages(self):
+        if self.ends:
+            for mod_num in range(len(self.mod_insts)):
+                ep = self.ends[mod_num][0]
+                for msg in getattr(self.mod_insts[mod_num], 'messages_out'):
+                    out_msg = ep.create_message()
+                    out_msg.data = json.dumps({'value':msg['value'], 'var_name':msg['var_name']})
+                    out_msg.destination = msg['dest']
+                    ep.send_data(out_msg)
+    def check_for_reset(self):
+        if self.ends:
+            for mod_num, ep in self.ends.items():
+                while ep.has_message():
+                    msg = ep.get_message()
+                    msg_data = json.loads(msg.data)
+                    if 'RESET' in msg_data.keys():
+                        if msg_data['RESET']:
+                            #do reset
+                            self.reset()
+                        else:
+                            pass
+                    else:
+                        pass
+    def reset(self):
+        logger.debug(f"*************** Federate{self.fed} RESETTING! ***********************")
+        pass
 
 
-    def set_inputs(self, data):
-        try:
-            for typology in data: # questo serve per discriminare tra subscritpions e messages, todo implementare parte messages potrebbe essere ridotta senza if
-                if typology == 'inputs':
-                    for mod_receiver in data[typology]:
-                        mod_num = int(mod_receiver.split('/')[1])
-                        var_name = mod_receiver.split('/')[-1]
-                        val = data[typology][mod_receiver]
-                        getattr(self.mod_insts[mod_num], typology)[var_name] = val
-                elif typology == 'messages_in':
-                    for mod_receiver in data[typology]:
-                        mod_num = int(mod_receiver.split('/')[1])
-                        var_name = mod_receiver.split('/')[-1]
-                        val = data[typology][mod_receiver]
-                        getattr(self.mod_insts[mod_num], typology)[var_name] = val
-        except Exception as e:
-            logger.error(f"\t ERROR: {e} ---> {data} at ts: {h.helicsFederateGetCurrentTime(self.fed)}")
-            return
-
-    def get_outputs(self):
-        data = {'outputs':{},
-                'messages_out':{}}
-        for typology in data:
-            if typology == 'outputs':
-                for k, list_of_pubs in self.connection_ref['pub'].items():
-                    mod_num = int(k)
-                    for pub in list_of_pubs:
-                        topic = pub['key']
-                        var_name = topic.split('/')[-1]
-                        val = getattr(self.mod_insts[mod_num], typology)[var_name]
-                        if topic in data[typology].keys(): logger.error(f"\tERROR multiple models instances publish on same topic: {topic}") #todo should assert or raise error
-                        data[typology][topic] = val
-            elif typology =='messages_out':
-                for ep_name, ep in self.ends.items():
-                    mod_num = int(ep_name.split('/')[1])
-                    var_name = ep_name.split('/')[-1]
-                    sending_endpoint =  [i['destinations'] for i in self.connection_ref['end'][mod_num] if i['key']== ep_name and len(i['destinations'])>0]
-                    if self.connection_ref['end'][mod_num] and  sending_endpoint:
-                        val = getattr(self.mod_insts[mod_num], typology)[var_name] #only one message per endpoint per var per model
-                        data['messages_out'][ep_name]={}
-                        data['messages_out'][ep_name]= val
+    # def reset_messages(self):
+    #     for mod in self.mod_insts:
+    #         mod.messages_in = []
+    #         mod.messages_out = []
 
 
-
-        logger.debug(f"testtest {data}")
-        return data
+    #***************************** new methods Testing block
+    # def set_inputs(self, data):
+    #     try:
+    #         for typology in data: # questo serve per discriminare tra subscritpions e messages, todo implementare parte messages potrebbe essere ridotta senza if
+    #             if typology == 'inputs':
+    #                 for mod_num in data[typology]:
+    #                     #mod_num = int(mod_receiver.split('/')[1])
+    #                     for k, val in data[typology][mod_num]:
+    #                     #var_name = mod_receiver.split('/')[-1]
+    #                     #val = data[typology][mod_receiver]
+    #                         getattr(self.mod_insts[mod_num], typology)[k] = val
+    #             elif typology == 'messages_in':
+    #                 for mod_num in data[typology]:
+    #
+    #                     #mod_num = int(mod_receiver.split('/')[1])
+    #                     #var_name = mod_receiver.split('/')[-1]
+    #                     #val = data[typology][mod_receiver]
+    #                     setattr(self.mod_insts[mod_num], typology, data[typology][mod_num])
+    #     except Exception as e:
+    #         logger.error(f"\t ERROR: {e} ---> {data} at ts: {h.helicsFederateGetCurrentTime(self.fed)}")
+    #         return
+    #
+    # def get_outputs(self):
+    #     data = {'outputs':{},
+    #             'messages_out':{}}
+    #     for typology in data:
+    #         if typology == 'outputs':
+    #             for k, list_of_pubs in self.connection_ref['pub'].items():
+    #                 mod_num = int(k)
+    #                 for pub in list_of_pubs:
+    #                     topic = pub['key']
+    #                     var_name = topic.split('/')[-1]
+    #                     val = getattr(self.mod_insts[mod_num], typology)[var_name]
+    #                     if topic in data[typology].keys(): logger.error(f"\tERROR multiple models instances publish on same topic: {topic}") #todo should assert or raise error
+    #                     data[typology][topic] = val
+    #         elif typology =='messages_out':
+    #             for ep_name, ep in self.ends.items():
+    #                 mod_num = int(ep_name.split('/')[1])
+    #                 var_name = ep_name.split('/')[-1]
+    #                 sending_endpoint =  [i['destinations'] for i in self.connection_ref['end'][mod_num] if i['key']== ep_name and len(i['destinations'])>0]
+    #                 if self.connection_ref['end'][mod_num] and  sending_endpoint:
+    #                     val = getattr(self.mod_insts[mod_num], typology)[var_name] #only one message per endpoint per var per model
+    #                     data['messages_out'][ep_name]={}
+    #                     data['messages_out'][ep_name]= val
+    #
+    #
+    #
+    #     logger.debug(f"testtest {data}")
+    #     return data
     def save_results(self):
         res_file = self.fed.name+'.json'
         path = os.path.join(os.getcwd(), 'federations', self.federation_name, 'results',res_file)
@@ -326,6 +374,21 @@ class Federate:
         for mod in self.mod_insts:
             fed_res[mod.model_name]= mod.memory
         save_json(path,fed_res)
+
+    def eval_data_flow_graph(self):
+        #todo better understand and logg
+        query = h.helicsCreateQuery("broker", "data_flow_graph")
+        graph = h.helicsQueryExecute(query, self.fed)
+        logger.debug(f"Data-flow graph :\n{pp.pformat(graph)}")
+
+        return graph
+    def eval_dependency_graph(self):
+        #todo better understand and logg
+        query = h.helicsCreateQuery("federate", "dependency_graph")
+        graph = h.helicsQueryExecute(query, self.fed)
+        logger.debug(f"Dependency graph :\n{pp.pformat(graph)}")
+
+        return graph
     def destroy_federate(self):
         """
 
@@ -339,12 +402,15 @@ class Federate:
         logger.info("\tFederate finalized")
 
 
+
+
 if __name__ == "__main__":
     #args order 0: fed_conf path , 1: init_conf
     #argv = ['federations/example_federation/BatteryConfig.json',
     #       'federations/example_federation/BatteryConfig_init.yaml']
     #fed = ValueFederate(argv)  # only for testing when launching this autonomously
-    fed = Federate(sys.argv) #giusto da usare quando si runna da helics passando gli argv
 
+    fed = Federate(sys.argv) #giusto da usare quando si runna da helics passando gli argv
+    fed.execution()
     #fed = ValueFederate([0,'BatteryConfig_init.yaml', 'example_federation'])
 

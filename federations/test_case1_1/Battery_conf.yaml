@@ -2,10 +2,10 @@ fed_name: Battery
 fed_conf:
   model_script : test_case1_1/Battery_messages.py
   class_name: Battery
-  n_instances: 1
-  stateful: true
+  n_instances: 2
   RL_training: true
-  mem_attrs : [params.SOC, messages_out.energy_out]
+  mem_attrs : [params.SOC, outputs.energy_out] # possibilities None no memory, [empty list] memorize all
+  real_period: 3600
 fed_info:
   broker: null
   broker_init: null
@@ -41,7 +41,6 @@ fed_flags:
   EVENT_TRIGGERED: False
   CALLBACK_FEDERATE : False
   AUTOMATED_TIME_REQUEST: False
-
 fed_properties:
   TIME_DELTA: 1e-09
   TIME_PERIOD: 3600
@@ -62,36 +61,59 @@ fed_properties:
   INT_INDEX_GROUP: -972
 fed_connections:
   sub: {}
-  pub: {}
-  end:
+  pub:
+    0: [{
+      "key": "energy_out",
+      "type": "double",
+      "units": "Wh",
+    }]
+    1: [{
+      "key": "energy_out",
+      "type": "double",
+      "units": "Wh",
+    }]
+  end: {}
+#    0:
+#      "destinations": [ "Receiver/0"]
+#      "sources": [ ] #this works if i want to subscribe to a value (e.g. pubblication) is useful to read data from sims that do not have endpoints and do not receive messages
+#      "var_in": [test_message]
+#      "var_out": [[test_message]]
+#    1:
+#      "destinations": [ "Receiver/1"]
+#      "sources": [ ] #this works if i want to subscribe to a value (e.g. pubblication) is useful to read data from sims that do not have endpoints and do not receive messages
+#      "var_in": [ test_message ]
+#      "var_out": [ [ test_message ]]
+
+  inp:
     0: [ {
-    "key": "Battery/0/power", #must be the same of mod receiver fed_name/mod_num/var_name
-    "destinations": [],
-    "sources": [], #this works if i want to subscribe to a value (e.g. pubblication) is useful to read data from sims that do not have endpoints and do not receive messages
-    "global": true
-    },
-      {
-      "key": "Battery/0/energy_out", #must be the same of mod receiver fed_name/mod_num/var_name
-      "destinations": [ "Building/0/plug", "PV/0/pv" ],
-      "sources": [ ], #this works if i want to subscribe to a value (e.g. pubblication) is useful to read data from sims that do not have endpoints and do not receive messages
-      "global": true
-      }
-    ]
-  inp: {}
+      "key": "power",
+      "type": "double",
+      "units": "W",
+      "multi_input_handling_method": "sum",
+      "targets": [
+        "PV/0/pv",
+        "Building/0/plug",
+      ]
+    }]
+    1: [ {
+      "key": "power",
+      "type": "double",
+      "units": "W",
+      "multi_input_handling_method": "sum",
+      "targets": [
+        "PV/1/pv",
+        "Building/1/plug"
+      ]
+    }]
 model_conf:
   params:
-    rated_capacity: [40000]
-    maximum_charge_power: [8000]
-    maximum_discharge_power: [8000]
-    SOC_upper_limit: [0.95]
-    SOC_lower_limit: [0.25]
-    charge_efficiency: [1]
-    discharge_efficiency: [1]
-    self_discharge_rate: [0]
-    SOC: [0.9]
-  inputs: {}
-  outputs:
-    energy_out: [0.0]
-  messages_in:
-    power: [0.0]
-  messages_out: {}
+    rated_capacity: [40000,50000]
+    maximum_charge_power: [8000, 6000]
+    maximum_discharge_power: [8000, 6000]
+    SOC_upper_limit: [0.95, 0.95]
+    SOC_lower_limit: [0.25, 0.25]
+    charge_efficiency: [1, 1]
+    discharge_efficiency: [1, 1]
+    self_discharge_rate: [0, 0]
+    SOC: [0.9, 0.30]
+  init_state: {}

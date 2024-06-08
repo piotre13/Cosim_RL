@@ -15,7 +15,7 @@ class CSV (Model):
     def initialization(self):
         #convert to lower case all column names
         self.data.columns = map(str.lower, self.data.columns)
-    def step(self, ts):
+    def step(self, ts, **kwargs):
         for var in self.messages_out:
             if self.params['multiplier'] and var in self.params['multiplier'].keys():
                 self.messages_out[var] = self.data.loc[ts,var] * self.params['multiplier'][var]

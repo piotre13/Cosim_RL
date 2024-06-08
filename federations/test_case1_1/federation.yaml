@@ -1,0 +1,33 @@
+federation_name: test_case1_1
+federates:
+  Battery:
+    n_instances: 2
+    connections:
+      inputs: [power]
+      outputs: [energy_out]
+      msg_out: [test_message]
+      msg_in: []
+  Building:
+    n_instances: 2
+    connections:
+      inputs: [None]
+      outputs: [plug]
+      msg_out: []
+      msg_in: []
+  PV:
+    n_instances: 2
+    connections:
+      inputs: [ None ]
+      outputs: [ pv ]
+      msg_out: []
+      msg_in: []
+  Receiver:
+    n_instances: 2
+    connections:
+      inputs: []
+      outputs: []
+      msg_out: []
+      msg_in: [test_message]
+
+
+workflow: [([PV.pv,Building.plug],Battery.power),(Battery.test_message,Receiver.test_message)]

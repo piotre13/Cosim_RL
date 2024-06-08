@@ -8,48 +8,55 @@ logger.setLevel(logging.DEBUG)
 
 
 class Model(ABC):
-#    def __init__(self, name, inputs_dict, outputs_dict, mess_dict, sim_params, params, **kwargs):
+
     def __init__(self, **kwargs):
-        self.__dict__.update(kwargs)
-        self.ts = 0
+
+        for key, value in kwargs.items():
+            setattr(self,key,value)
         #todo perform a chekc on strictly required arguments
         #possible call of initialization() #todo think about it
+        self._msg_out = {"var_name":None,
+                         "value":None,
+                         "destination":None}
         logger.info(f"\t\tModel {self.model_name} instantiated with the following kwargs: {kwargs}!")
 
-        self._set_additionals()
 
+    def __setattr__(self, name, value):
+        if name == 'mem_attrs' and value :
+            self._init_memory(value)
+        if name == 'init_state':
+            self._init_state(value)
+        super().__setattr__(name, value)
 
-    def _set_additionals(self):
-        if getattr(self, 'stateful', None):
-            self._init_memory()
-            logger.info(f"\t\tMemory instantiated for Model {self.model_name}!") #todo better logging
-        if getattr(self, 'RL_training', None):
-            self._init_state()
-            logger.info(f"\t\tInitial state for Model {self.model_name} set as follow: {self.initial_state}")  # todo better logging
-
-    def _init_memory(self):
+    def _init_memory(self, value): # todo does not memorize messages
         self.memory = {'inputs': {},
                        'outputs': {},
-                       'messages_in': {},
-                       'messages_out':{},
                        'params': {}}
-        if getattr(self, 'mem_attrs', None):
-            for attr in getattr(self, 'mem_attrs'):
-                self.memory[attr.split('.')[0]][attr.split('.')[1]] = []
+        if isinstance(value, list):
+            if len(value)>0:
+                for attr in value:
+                    self.memory[attr.split('.')[0]][attr.split('.')[1]] = []
+            elif len(value)==0:
+                self.memory['inputs'] = {k: [] for k in self.inputs.keys()}
+                self.memory['outputs'] = {k: [] for k in self.outputs.keys()}
+                self.memory['params'] = {k: [] for k in self.params.keys()}
+                logger.warning('\t\tMemory attrs are not specified in the init_config. everything will be memorized.')
+            logger.info(f"\t\tMemory instantiated for Model {self.model_name}!")
         else:
-            self.memory['inputs'] = {k:[] for k in self.inputs.keys()}
-            self.memory['outputs'] = {k:[] for k in self.outputs.keys()}
-            self.memory['messages_in'] = {k:[] for k in self.messages_in.keys()}
-            self.memory['messages_out'] = {k:[] for k in self.messages_out.keys()}
-            self.memory['params'] = {k:[] for k in self.params.keys()}
-            logger.warning('\t\tMemory attrs are not specified in the init_config. everything will be memorized.')
 
-    def _init_state(self):
-        self.initial_state = {'inputs': deepcopy(self.inputs),
-           'outputs': deepcopy(self.outputs),
-           'messages_in': deepcopy(self.messages_in),
-           'messages_out': deepcopy(self.messages_out),
-           'params': deepcopy(self.params)}
+            logger.info(f"\t\tNO Memory instantiated for Model {self.model_name}!") #todo better logging
+
+
+    def _init_state(self, value):
+        self.initial_state = {'inputs': {},'outputs': {}, 'messages_in': {},
+           'messages_out': {},
+           'params': {}}
+        for k, val in value.items():
+            kind = k.split('.')[0]
+            var = k.split('.')[-1]
+            self.initial_state[kind][var] = val
+        self.initial_state['params'] = deepcopy(self.params)
+        logger.info(f"\t\tInitial state for Model {self.model_name} set as follow: {self.initial_state}")  # todo better logging
 
     def _fill_memory(self):
         if not self.memory:
@@ -66,14 +73,15 @@ class Model(ABC):
         for var in self.memory:
             self.memory[var] = []
     @abstractmethod
-    def step(self, ts):
+    def step(self, ts, *args, **kwargs):
         '''overwrite this method with the actual model calculations:
         rememeber the needed inputs and outputs are in self.inputs[chosen_name] and self.outputs[chosen_name], these are variables that comes from outside the model and need tpo leave the model
         any paarameter for the physical model can be found in self.params[chosen_name],
         any parameter relative to the simulation can be found in self.sim_params[standard_name]'''
 
         self._fill_memory()
-        logger.debug(f"\t\t Model {self.model_name} step completed.")
+        logger.debug(
+            "\t\t Model {self.model_name} step completed.")
         return
     @abstractmethod
     def finalize(self):

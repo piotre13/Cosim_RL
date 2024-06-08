@@ -1,0 +1,129 @@
+fed_name: Battery
+fed_conf:
+  model_script : FMU_standard.py
+  class_name: FMU
+  n_instances: 1
+  RL_training: true
+  mem_attrs : [outputs.SOC, inputs.LoadINW, outputs.V, outputs.I, outputs.PnetBatt, inputs.GenINW] # possibilities None no memory, [empty list] memorize all
+  fmu: batteryDaniele
+  real_period: 3600
+fed_info:
+  broker: null
+  broker_init: null
+  broker_key: null
+  broker_port: null
+  core_init: null #for debugging only
+  core_name: battery_core
+  core_type: zmq
+  local_port: null
+  separator: null
+fed_flags:
+  SLOW_RESPONDING: False
+  DEBUGGING: False
+  TERMINATE_ON_ERROR: true
+  FORCE_LOGGING_FLUSH: False
+  DUMPLOG: False
+  OBSERVER: False
+  UNINTERRUPTIBLE: False
+  INTERRUPTIBLE: True
+  SOURCE_ONLY: False
+  ONLY_TRANSMIT_ON_CHANGE: False
+  ONLY_UPDATE_ON_CHANGE: False
+  WAIT_FOR_CURRENT_TIME_UPDATE: True
+  RESTRICTIVE_TIME_POLICY: False
+  ROLLBACK: False
+  FORWARD_COMPUTE: False
+  REALTIME: False
+  SINGLE_THREAD_FEDERATE: False
+  SINGLE_THREAD_CORE: False
+  REENTRANT: False
+  IGNORE_TIME_MISMATCH_WARNINGS: False
+  USE_JSON_SERIALIZATION: False
+  EVENT_TRIGGERED: False
+  CALLBACK_FEDERATE : False
+  AUTOMATED_TIME_REQUEST: False
+fed_properties:
+  TIME_DELTA: 1e-09
+  TIME_PERIOD: 3600
+  TIME_OFFSET: 0.0
+  TIME_RT_LAG: 0.0
+  TIME_RT_LEAD: 0.0
+  TIME_RT_TOLERANCE: 0.0
+  TIME_INPUT_DELAY: 0.0
+  TIME_OUTPUT_DELAY: 0.0
+  TIME_STOPTIME: 172800
+  TIME_GRANT_TIMEOUT: 0.0
+  INT_CURRENT_ITERATION: 0
+  INT_MAX_ITERATIONS: 50
+  INT_LOG_LEVEL: 3
+  INT_FILE_LOG_LEVEL: 3
+  INT_CONSOLE_LOG_LEVEL: 3
+  INT_LOG_BUFFER: 0
+  INT_INDEX_GROUP: -972
+fed_connections:
+  sub: {}
+  pub:
+    0: [{
+      "key": "V",
+      "type": "double",
+      "units": "V"
+    },
+      {
+        "key": "I",
+        "type": "double",
+        "units": "A"
+      },
+      {
+        "key": "PnetBatt",
+        "type": "double",
+        "units": "V"
+      },
+      {
+        "key": "SOC",
+        "type": "double",
+        "units": ""
+      } ]
+  end: {}
+  inp:
+    0: [ {
+      "key": "LoadINW",
+      "type": "double",
+      "units": "W",
+      "targets": [
+        "Building/0/plug",
+      ]
+    },
+      {
+        "key": "GenINW",
+        "type": "double",
+        "units": "W",
+        "targets": [
+          "PV/0/pv",
+        ]
+      }]
+
+model_conf:
+  params: {}
+#    Rated_capacity: [40000.0]
+#    CH_max_P: [8000.0]
+#    DI_max_P: [8000.0]
+#    SOC_upper: [0.95]
+#    SOC_lower: [0.25]
+#    CH_eff: [1.0]
+#    DI_eff: [1.0]
+#    Discharge_rate: [0.0]
+#    dt: [3600.0]
+    #SOC: [0.9]
+#params from BuildinfSysPro fmu
+#    C0: 25.0
+#    Pdecharge: 0.0
+#    R_c: 0.0
+#    R_charge: 0.8
+#    R_decharge: 0.0
+#    technoBattOnd.Cmax: 30.0
+#    technoBattOnd.P_onduleur: 0.0
+#    technoBattOnd.Pmaxc: 0.0
+#    technoBattOnd.Pmaxd: 0.0
+  init_state:   # these does not have effects on fmu that waits for input from federations
+    inputs.LoadINW: [0.0]
+    outputs.SOC: [0.90]

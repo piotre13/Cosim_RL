@@ -1,0 +1,59 @@
+fed_name: Weather
+fed_conf:
+  model_script : Csv_out.py
+  class_name: CSV
+  n_instances: 1
+  stateful: true
+  RL_training: true
+  mem_attrs : [outputs.drybulb, outputs.glohorzrad, outputs.difhorzrad]
+  real_period: 3600
+fed_info:
+  broker: null
+  broker_init: null
+  broker_key: null
+  broker_port: null
+  core_init: null #for debugging only
+  core_name: weather_core
+  core_type: zmq
+  local_port: null
+  separator: null
+fed_flags:
+  UNINTERRUPTIBLE: True
+  SOURCE_ONLY: True
+  TERMINATE_ON_ERROR: True
+
+
+fed_properties:
+  TIME_DELTA: 1e-09
+  TIME_PERIOD: 3600
+  TIME_OFFSET: 0.3
+  TIME_STOPTIME: 172800
+
+fed_connections:
+  sub: {}
+  pub:
+    0: [ {
+      "key": "drybulb",
+      "type": "double",
+      "units": "C",
+    },
+      {
+        "key": "glohorzrad",
+        "type": "double",
+        "units": "W/m2",
+      },
+      {
+        "key": "difhorzrad",
+        "type": "double",
+        "units": "W/m2",
+      }   ]
+  end:
+    0:
+      controllable_var: [ ]
+  inp: {}
+model_conf:
+  params:
+    csv_file: ['data/weather_data_bj.csv']
+    multiplier: [{drybulb: 1.0, windspd: 1.0, glohorzrad: 1.0, difhorzrad: 1.0 }]
+    additioner: [{drybulb: 0.0}]
+  init_state: {}

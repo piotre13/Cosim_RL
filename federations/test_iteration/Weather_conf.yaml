@@ -1,0 +1,55 @@
+fed_name: Weather
+fed_conf:
+  model_script : Csv_out.py
+  class_name: CSV
+  n_instances: 1
+  stateful: true
+  RL_training: true
+  mem_attrs : [outputs.t_ext]
+  real_period: 3600
+fed_info:
+  broker: null
+  broker_init: null
+  broker_key: null
+  broker_port: null
+  core_init: null #for debugging only
+  core_name: weather_core
+  core_type: zmq
+  local_port: null
+  separator: null
+fed_flags:
+  UNINTERRUPTIBLE: True
+  SOURCE_ONLY: True
+
+fed_properties:
+  TIME_DELTA: 1e-09
+  TIME_PERIOD: 3600
+  TIME_OFFSET: 0.0
+  TIME_RT_LAG: 0.0
+  TIME_RT_LEAD: 0.0
+  TIME_RT_TOLERANCE: 0.0
+  TIME_INPUT_DELAY: 0.0
+  TIME_OUTPUT_DELAY: 0.0
+  TIME_STOPTIME: 36000
+  TIME_GRANT_TIMEOUT: 0.0
+  INT_CURRENT_ITERATION: 0
+  INT_MAX_ITERATIONS: 50
+  INT_LOG_LEVEL: 3
+  INT_FILE_LOG_LEVEL: 3
+  INT_CONSOLE_LOG_LEVEL: 3
+  INT_LOG_BUFFER: 0
+  INT_INDEX_GROUP: -972
+fed_connections:
+  sub: {}
+  pub:
+    0: [ {
+      "key": "t_ext",
+      "type": "double",
+      "units": "C",
+    } ]
+  end: {}
+  inp: {}
+model_conf:
+  params:
+    csv_file: ['data/weather_TO.csv']
+    multiplier: [{t_ext: 1}]

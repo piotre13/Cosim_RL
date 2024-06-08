@@ -131,10 +131,10 @@ def selection_db(db):
                     ret2[fed_name+'.'+k][var] = data[k]['inputs'][var]
                 for var in data[k]['outputs'].keys():
                     ret2[fed_name + '.' + k][var] = data[k]['outputs'][var]
-                for var in data[k]['messages_out'].keys():
-                    ret2[fed_name + '.' + k][var] = data[k]['messages_out'][var]
-                for var in data[k]['messages_in'].keys():
-                    ret2[fed_name + '.' + k][var] = data[k]['messages_in'][var]
+                # for var in data[k]['messages_out'].keys():
+                #     ret2[fed_name + '.' + k][var] = data[k]['messages_out'][var]
+                # for var in data[k]['messages_in'].keys():
+                #     ret2[fed_name + '.' + k][var] = data[k]['messages_in'][var]
                 for var in data[k]['params'].keys():
                     ret2[fed_name + '.' + k][var] = data[k]['params'][var]
         return [ret1, json.dumps(ret2)]

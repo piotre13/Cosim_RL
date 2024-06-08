@@ -1,0 +1,46 @@
+fed_name: Controller
+fed_conf:
+  model_script : Controller.py
+  class_name: Controller
+  n_instances: 1
+  RL_training: true
+  mem_attrs : [] # possibilities None no memory, [empty list] memorize all
+  real_period: 3600
+fed_info:
+  broker: null
+  broker_init: null
+  broker_key: null
+  broker_port: null
+  core_init: null #for debugging only
+  core_name: controller_core
+  core_type: zmq
+  local_port: null
+  separator: null
+fed_flags:
+  UNINTERRUPTIBLE: False
+  WAIT_FOR_CURRENT_TIME_UPDATE: True
+  TERMINATE_ON_ERROR: True
+
+
+fed_properties:
+  TIME_DELTA: 1e-09
+  TIME_STOPTIME: 172800
+
+
+fed_connections:
+  sub: {}
+  pub: {}
+  end:
+    0:
+      controllable_var: [Battery/0/energy_out]
+      observations: [Building/0/plug, PV/0/Power_PV, Weather/0/drybulb]
+#    1:
+#      "destinations": [ "Receiver/1"]
+#      "sources": [ ] #this works if i want to subscribe to a value (e.g. pubblication) is useful to read data from sims that do not have endpoints and do not receive messages
+#      "var_in": [ test_message ]
+#      "var_out": [ [ test_message ]]
+
+  inp: {}
+model_conf:
+  params: {}
+  init_state: {}

@@ -1,153 +1,201 @@
-	Registered endpoint: Building/0/plug with destinations ['Battery/0/power'] and sources []
-		Model CSV.0 instantiated with the following kwargs: {'model_name': 'CSV.0', 'RL_training': True, 'stateful': True, 'mem_attrs': ['messages_out.plug'], 'inputs': {}, 'outputs': {}, 'messages_in': {}, 'messages_out': {'plug': []}, 'params': {'csv_file': 'data/BUILD&PV.csv', 'multiplier': {'plug': -1}}}!
+	Registered publication: <helics.HelicsPublication(name = "Building/0/plug", type = "double", units = "W", info = "") at 0x2c01e126190> for Building/0/plug
+	Registered publication: <helics.HelicsPublication(name = "Building/1/plug", type = "double", units = "W", info = "") at 0x2c01e126730> for Building/1/plug
+testetstetste {}
+ {0: {'plug': <helics.HelicsPublication(name = "Building/0/plug", type = "double", units = "W", info = "") at 0x2c01e126190>}, 1: {'plug': <helics.HelicsPublication(name = "Building/1/plug", type = "double", units = "W", info = "") at 0x2c01e126730>}}
+{}
+	Registering connections ended for fed Building list of output vars ['plug'], list for in_vars[]
+Data-flow graph :
+{   'attributes': {   'id': 1,
+                      'name': '20996-HPvZ9-Hm1Ar-Pbv2B-Ew1z1',
+                      'parent': 0},
+    'brokers': [],
+    'cores': [   {   'attributes': {   'id': 1879048192,
+                                       'name': 'pv_core',
+                                       'parent': 1},
+                     'federates': [   {   'attributes': {   'id': 131072,
+                                                            'name': 'PV',
+                                                            'parent': 1879048192},
+                                          'publications': [   {   'federate': 131072,
+                                                                  'handle': 0,
+                                                                  'key': 'PV/0/pv'},
+                                                              {   'federate': 131072,
+                                                                  'handle': 1,
+                                                                  'key': 'PV/1/pv'}]}]},
+                 {   'attributes': {   'id': 1879048194,
+                                       'name': 'receiver_core',
+                                       'parent': 1}},
+                 {   'attributes': {   'id': 1879048195,
+                                       'name': 'battery_core',
+                                       'parent': 1}},
+                 {   'attributes': {   'id': 1879048193,
+                                       'name': 'building_core',
+                                       'parent': 1},
+                     'federates': [   {   'attributes': {   'id': 131073,
+                                                            'name': 'Building',
+                                                            'parent': 1879048193},
+                                          'publications': [   {   'federate': 131073,
+                                                                  'handle': 0,
+                                                                  'key': 'Building/0/plug'},
+                                                              {   'federate': 131073,
+                                                                  'handle': 1,
+                                                                  'key': 'Building/1/plug'}]}]}]}
+Dependency graph :
+{   'attributes': {'id': 131073, 'name': 'Building', 'parent': 1879048193},
+    'dependencies': [],
+    'dependents': []}
 		Memory instantiated for Model CSV.0!
-		Initial state for Model CSV.0 set as follow: {'inputs': {}, 'outputs': {}, 'messages_in': {}, 'messages_out': {'plug': []}, 'params': {'csv_file': 'data/BUILD&PV.csv', 'multiplier': {'plug': -1}}}
+		Initial state for Model CSV.0 set as follow: {'inputs': {}, 'outputs': {}, 'messages_in': {}, 'messages_out': {}, 'params': {'csv_file': 'data/BUILD&PV.csv', 'multiplier': {'plug': -1}}}
+		Model CSV.0 instantiated with the following kwargs: {'model_name': 'CSV.0', 'inputs': {}, 'outputs': {'plug': 0.0}, 'messages_in': [], 'messages_out': [], 'params': {'csv_file': 'data/BUILD&PV.csv', 'multiplier': {'plug': -1}}, 'msg_var_dest': {}, 'RL_training': True, 'mem_attrs': ['outputs.plug'], 'init_state': {}, 'real_period': 3600, 'end_time': 86400.0}!
+		Memory instantiated for Model CSV.1!
+		Initial state for Model CSV.1 set as follow: {'inputs': {}, 'outputs': {}, 'messages_in': {}, 'messages_out': {}, 'params': {'csv_file': 'data/BUILD&PV.csv', 'multiplier': {'plug': -1}}}
+		Model CSV.1 instantiated with the following kwargs: {'model_name': 'CSV.1', 'inputs': {}, 'outputs': {'plug': 0.0}, 'messages_in': [], 'messages_out': [], 'params': {'csv_file': 'data/BUILD&PV.csv', 'multiplier': {'plug': -1}}, 'msg_var_dest': {}, 'RL_training': True, 'mem_attrs': ['outputs.plug'], 'init_state': {}, 'real_period': 3600, 'end_time': 86400.0}!
 	Models instantiation from fed: Building succesfull!
-	Model instances names: ['CSV.0']
+	Model instances names: ['CSV.0', 'CSV.1']
 	Entered HELICS execution mode
 ************* Requesting time 3600.0 -- Granted time 3600.0 **************
 	current timestep: 3600.0
-	Received data as inputs or subscription {}  and as messages {'Building/0/plug': []}
-		 Model CSV.0 step completed.
-testtest {'outputs': {}, 'messages_out': {'Building/0/plug': -199.7027752}}
-	 Sent data as publications {} and as messages {'Building/0/plug': -199.7027752}
+		 Model {self.model_name} step completed.
+		 Model {self.model_name} step completed.
+	Model_0 published output plug=-199.7027752
+	Model_1 published output plug=-199.7027752
 ************* Requesting time 7200.0 -- Granted time 7200.0 **************
 	current timestep: 7200.0
-	Received data as inputs or subscription {}  and as messages {'Building/0/plug': ['-199.70277519999945']}
-		 Model CSV.0 step completed.
-testtest {'outputs': {}, 'messages_out': {'Building/0/plug': -199.7027752}}
-	 Sent data as publications {} and as messages {'Building/0/plug': -199.7027752}
+		 Model {self.model_name} step completed.
+		 Model {self.model_name} step completed.
+	Model_0 published output plug=-199.7027752
+	Model_1 published output plug=-199.7027752
 ************* Requesting time 10800.0 -- Granted time 10800.0 **************
 	current timestep: 10800.0
-	Received data as inputs or subscription {}  and as messages {'Building/0/plug': ['-199.70277519999945']}
-		 Model CSV.0 step completed.
-testtest {'outputs': {}, 'messages_out': {'Building/0/plug': -199.7027752}}
-	 Sent data as publications {} and as messages {'Building/0/plug': -199.7027752}
+		 Model {self.model_name} step completed.
+		 Model {self.model_name} step completed.
+	Model_0 published output plug=-199.7027752
+	Model_1 published output plug=-199.7027752
 ************* Requesting time 14400.0 -- Granted time 14400.0 **************
 	current timestep: 14400.0
-	Received data as inputs or subscription {}  and as messages {'Building/0/plug': ['-199.70277519999945']}
-		 Model CSV.0 step completed.
-testtest {'outputs': {}, 'messages_out': {'Building/0/plug': -199.7027752}}
-	 Sent data as publications {} and as messages {'Building/0/plug': -199.7027752}
+		 Model {self.model_name} step completed.
+		 Model {self.model_name} step completed.
+	Model_0 published output plug=-199.7027752
+	Model_1 published output plug=-199.7027752
 ************* Requesting time 18000.0 -- Granted time 18000.0 **************
 	current timestep: 18000.0
-	Received data as inputs or subscription {}  and as messages {'Building/0/plug': ['-199.70277519999945']}
-		 Model CSV.0 step completed.
-testtest {'outputs': {}, 'messages_out': {'Building/0/plug': -199.7027752}}
-	 Sent data as publications {} and as messages {'Building/0/plug': -199.7027752}
+		 Model {self.model_name} step completed.
+		 Model {self.model_name} step completed.
+	Model_0 published output plug=-199.7027752
+	Model_1 published output plug=-199.7027752
 ************* Requesting time 21600.0 -- Granted time 21600.0 **************
 	current timestep: 21600.0
-	Received data as inputs or subscription {}  and as messages {'Building/0/plug': ['-199.70277519999945']}
-		 Model CSV.0 step completed.
-testtest {'outputs': {}, 'messages_out': {'Building/0/plug': -816.582057}}
-	 Sent data as publications {} and as messages {'Building/0/plug': -816.582057}
+		 Model {self.model_name} step completed.
+		 Model {self.model_name} step completed.
+	Model_0 published output plug=-199.7027752
+	Model_1 published output plug=-199.7027752
 ************* Requesting time 25200.0 -- Granted time 25200.0 **************
 	current timestep: 25200.0
-	Received data as inputs or subscription {}  and as messages {'Building/0/plug': ['-816.5820569999996']}
-		 Model CSV.0 step completed.
-testtest {'outputs': {}, 'messages_out': {'Building/0/plug': -532.2761893}}
-	 Sent data as publications {} and as messages {'Building/0/plug': -532.2761893}
+		 Model {self.model_name} step completed.
+		 Model {self.model_name} step completed.
+	Model_0 published output plug=-816.582057
+	Model_1 published output plug=-816.582057
 ************* Requesting time 28800.0 -- Granted time 28800.0 **************
 	current timestep: 28800.0
-	Received data as inputs or subscription {}  and as messages {'Building/0/plug': ['-532.2761892999988']}
-		 Model CSV.0 step completed.
-testtest {'outputs': {}, 'messages_out': {'Building/0/plug': -6197.654283}}
-	 Sent data as publications {} and as messages {'Building/0/plug': -6197.654283}
+		 Model {self.model_name} step completed.
+		 Model {self.model_name} step completed.
+	Model_0 published output plug=-532.2761893
+	Model_1 published output plug=-532.2761893
 ************* Requesting time 32400.0 -- Granted time 32400.0 **************
 	current timestep: 32400.0
-	Received data as inputs or subscription {}  and as messages {'Building/0/plug': ['-5944.9421095']}
-		 Model CSV.0 step completed.
-testtest {'outputs': {}, 'messages_out': {'Building/0/plug': -6380.450445}}
-	 Sent data as publications {} and as messages {'Building/0/plug': -6380.450445}
+		 Model {self.model_name} step completed.
+		 Model {self.model_name} step completed.
+	Model_0 published output plug=-6197.654283
+	Model_1 published output plug=-6197.654283
 ************* Requesting time 36000.0 -- Granted time 36000.0 **************
 	current timestep: 36000.0
-	Received data as inputs or subscription {}  and as messages {'Building/0/plug': ['-5268.917647999995']}
-		 Model CSV.0 step completed.
-testtest {'outputs': {}, 'messages_out': {'Building/0/plug': -6710.982959}}
-	 Sent data as publications {} and as messages {'Building/0/plug': -6710.982959}
+		 Model {self.model_name} step completed.
+		 Model {self.model_name} step completed.
+	Model_0 published output plug=-6380.450445
+	Model_1 published output plug=-6380.450445
 ************* Requesting time 39600.0 -- Granted time 39600.0 **************
 	current timestep: 39600.0
-	Received data as inputs or subscription {}  and as messages {'Building/0/plug': ['-4862.511911000001']}
-		 Model CSV.0 step completed.
-testtest {'outputs': {}, 'messages_out': {'Building/0/plug': -6694.771598}}
-	 Sent data as publications {} and as messages {'Building/0/plug': -6694.771598}
+		 Model {self.model_name} step completed.
+		 Model {self.model_name} step completed.
+	Model_0 published output plug=-6710.982959
+	Model_1 published output plug=-6710.982959
 ************* Requesting time 43200.0 -- Granted time 43200.0 **************
 	current timestep: 43200.0
-	Received data as inputs or subscription {}  and as messages {'Building/0/plug': ['-4150.448858']}
-		 Model CSV.0 step completed.
-testtest {'outputs': {}, 'messages_out': {'Building/0/plug': -5134.42246}}
-	 Sent data as publications {} and as messages {'Building/0/plug': -5134.42246}
+		 Model {self.model_name} step completed.
+		 Model {self.model_name} step completed.
+	Model_0 published output plug=-6694.771598
+	Model_1 published output plug=-6694.771598
 ************* Requesting time 46800.0 -- Granted time 46800.0 **************
 	current timestep: 46800.0
-	Received data as inputs or subscription {}  and as messages {'Building/0/plug': ['-2077.979713999999']}
-		 Model CSV.0 step completed.
-testtest {'outputs': {}, 'messages_out': {'Building/0/plug': -6685.636175}}
-	 Sent data as publications {} and as messages {'Building/0/plug': -6685.636175}
+		 Model {self.model_name} step completed.
+		 Model {self.model_name} step completed.
+	Model_0 published output plug=-5134.42246
+	Model_1 published output plug=-5134.42246
 ************* Requesting time 50400.0 -- Granted time 50400.0 **************
 	current timestep: 50400.0
-	Received data as inputs or subscription {}  and as messages {'Building/0/plug': ['-1347.8276372000091']}
-		 Model CSV.0 step completed.
-testtest {'outputs': {}, 'messages_out': {'Building/0/plug': -6639.776894}}
-	 Sent data as publications {} and as messages {'Building/0/plug': -6639.776894}
+		 Model {self.model_name} step completed.
+		 Model {self.model_name} step completed.
+	Model_0 published output plug=-6685.636175
+	Model_1 published output plug=-6685.636175
 ************* Requesting time 54000.0 -- Granted time 54000.0 **************
 	current timestep: 54000.0
-	Received data as inputs or subscription {}  and as messages {'Building/0/plug': ['0.0']}
-		 Model CSV.0 step completed.
-testtest {'outputs': {}, 'messages_out': {'Building/0/plug': -6674.245276}}
-	 Sent data as publications {} and as messages {'Building/0/plug': -6674.245276}
+		 Model {self.model_name} step completed.
+		 Model {self.model_name} step completed.
+	Model_0 published output plug=-6639.776894
+	Model_1 published output plug=-6639.776894
 ************* Requesting time 57600.0 -- Granted time 57600.0 **************
 	current timestep: 57600.0
-	Received data as inputs or subscription {}  and as messages {'Building/0/plug': ['0.0']}
-		 Model CSV.0 step completed.
-testtest {'outputs': {}, 'messages_out': {'Building/0/plug': -6697.648432}}
-	 Sent data as publications {} and as messages {'Building/0/plug': -6697.648432}
+		 Model {self.model_name} step completed.
+		 Model {self.model_name} step completed.
+	Model_0 published output plug=-6674.245276
+	Model_1 published output plug=-6674.245276
 ************* Requesting time 61200.0 -- Granted time 61200.0 **************
 	current timestep: 61200.0
-	Received data as inputs or subscription {}  and as messages {'Building/0/plug': ['0.0']}
-		 Model CSV.0 step completed.
-testtest {'outputs': {}, 'messages_out': {'Building/0/plug': -5735.773153}}
-	 Sent data as publications {} and as messages {'Building/0/plug': -5735.773153}
+		 Model {self.model_name} step completed.
+		 Model {self.model_name} step completed.
+	Model_0 published output plug=-6697.648432
+	Model_1 published output plug=-6697.648432
 ************* Requesting time 64800.0 -- Granted time 64800.0 **************
 	current timestep: 64800.0
-	Received data as inputs or subscription {}  and as messages {'Building/0/plug': ['0.0']}
-		 Model CSV.0 step completed.
-testtest {'outputs': {}, 'messages_out': {'Building/0/plug': -5029.045706}}
-	 Sent data as publications {} and as messages {'Building/0/plug': -5029.045706}
+		 Model {self.model_name} step completed.
+		 Model {self.model_name} step completed.
+	Model_0 published output plug=-5735.773153
+	Model_1 published output plug=-5735.773153
 ************* Requesting time 68400.0 -- Granted time 68400.0 **************
 	current timestep: 68400.0
-	Received data as inputs or subscription {}  and as messages {'Building/0/plug': ['0.0']}
-		 Model CSV.0 step completed.
-testtest {'outputs': {}, 'messages_out': {'Building/0/plug': -5061.809277}}
-	 Sent data as publications {} and as messages {'Building/0/plug': -5061.809277}
+		 Model {self.model_name} step completed.
+		 Model {self.model_name} step completed.
+	Model_0 published output plug=-5029.045706
+	Model_1 published output plug=-5029.045706
 ************* Requesting time 72000.0 -- Granted time 72000.0 **************
 	current timestep: 72000.0
-	Received data as inputs or subscription {}  and as messages {'Building/0/plug': ['0.0']}
-		 Model CSV.0 step completed.
-testtest {'outputs': {}, 'messages_out': {'Building/0/plug': -4819.162584}}
-	 Sent data as publications {} and as messages {'Building/0/plug': -4819.162584}
+		 Model {self.model_name} step completed.
+		 Model {self.model_name} step completed.
+	Model_0 published output plug=-5061.809277
+	Model_1 published output plug=-5061.809277
 ************* Requesting time 75600.0 -- Granted time 75600.0 **************
 	current timestep: 75600.0
-	Received data as inputs or subscription {}  and as messages {'Building/0/plug': ['0.0']}
-		 Model CSV.0 step completed.
-testtest {'outputs': {}, 'messages_out': {'Building/0/plug': -1055.528528}}
-	 Sent data as publications {} and as messages {'Building/0/plug': -1055.528528}
+		 Model {self.model_name} step completed.
+		 Model {self.model_name} step completed.
+	Model_0 published output plug=-4819.162584
+	Model_1 published output plug=-4819.162584
 ************* Requesting time 79200.0 -- Granted time 79200.0 **************
 	current timestep: 79200.0
-	Received data as inputs or subscription {}  and as messages {'Building/0/plug': ['0.0']}
-		 Model CSV.0 step completed.
-testtest {'outputs': {}, 'messages_out': {'Building/0/plug': -637.1074647}}
-	 Sent data as publications {} and as messages {'Building/0/plug': -637.1074647}
+		 Model {self.model_name} step completed.
+		 Model {self.model_name} step completed.
+	Model_0 published output plug=-1055.528528
+	Model_1 published output plug=-1055.528528
 ************* Requesting time 82800.0 -- Granted time 82800.0 **************
 	current timestep: 82800.0
-	Received data as inputs or subscription {}  and as messages {'Building/0/plug': ['0.0']}
-		 Model CSV.0 step completed.
-testtest {'outputs': {}, 'messages_out': {'Building/0/plug': -242.3773895}}
-	 Sent data as publications {} and as messages {'Building/0/plug': -242.3773895}
+		 Model {self.model_name} step completed.
+		 Model {self.model_name} step completed.
+	Model_0 published output plug=-637.1074647
+	Model_1 published output plug=-637.1074647
 ************* Requesting time 86400.0 -- Granted time 86400.0 **************
 	current timestep: 86400.0
-	Received data as inputs or subscription {}  and as messages {'Building/0/plug': ['0.0']}
-		 Model CSV.0 step completed.
-testtest {'outputs': {}, 'messages_out': {'Building/0/plug': -199.7027752}}
-	 Sent data as publications {} and as messages {'Building/0/plug': -199.7027752}
-		 Model CSV.0 finalized with Memory : {'inputs': {}, 'outputs': {}, 'messages_in': {}, 'messages_out': {'plug': [-199.7027752, -199.7027752, -199.7027752, -199.7027752, -199.7027752, -816.582057, -532.2761893, -6197.654283, -6380.450445, -6710.982959, -6694.771598, -5134.42246, -6685.636175, -6639.776894, -6674.245276, -6697.648432, -5735.773153, -5029.045706, -5061.809277, -4819.162584, -1055.528528, -637.1074647, -242.3773895, -199.7027752]}, 'params': {}}
+		 Model {self.model_name} step completed.
+		 Model {self.model_name} step completed.
+	Model_0 published output plug=-242.3773895
+	Model_1 published output plug=-242.3773895
+		 Model CSV.0 finalized with Memory : {'inputs': {}, 'outputs': {'plug': [-199.7027752, -199.7027752, -199.7027752, -199.7027752, -199.7027752, -199.7027752, -816.582057, -532.2761893, -6197.654283, -6380.450445, -6710.982959, -6694.771598, -5134.42246, -6685.636175, -6639.776894, -6674.245276, -6697.648432, -5735.773153, -5029.045706, -5061.809277, -4819.162584, -1055.528528, -637.1074647, -242.3773895]}, 'params': {}}
+		 Model CSV.1 finalized with Memory : {'inputs': {}, 'outputs': {'plug': [-199.7027752, -199.7027752, -199.7027752, -199.7027752, -199.7027752, -199.7027752, -816.582057, -532.2761893, -6197.654283, -6380.450445, -6710.982959, -6694.771598, -5134.42246, -6685.636175, -6639.776894, -6674.245276, -6697.648432, -5735.773153, -5029.045706, -5061.809277, -4819.162584, -1055.528528, -637.1074647, -242.3773895]}, 'params': {}}
 	Federate finalized

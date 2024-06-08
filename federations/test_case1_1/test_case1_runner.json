@@ -19,6 +19,12 @@
       "exec": "python -u Federate.py Battery_conf.yaml test_case1_1",
       "host": "localhost",
       "name": "Battery"
+    },
+    {
+      "directory": "../..",
+      "exec": "python -u Federate.py Receiver_conf.yaml test_case1_1",
+      "host": "localhost",
+      "name": "Receiver"
     }
   ]
 }
