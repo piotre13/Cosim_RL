@@ -1,0 +1,109 @@
+fed_name: Heatpump
+fed_conf:
+  model_script : FMU_standard.py
+  class_name: FMU
+  n_instances: 1
+  RL_training: true
+  mem_attrs : [inputs.Tset, inputs.Tamb, inputs.TroomSens, outputs.COP,outputs.MV, outputs.Power, outputs.Qsensible, outputs.Tm] # possibilities None no memory, [empty list] memorize all
+  fmu: HeatPumpDaniele
+  real_period: 60
+  inputs_order: [['Tset'],['Tamb','TroomSens']]
+  outputs_order: [[],['COP','MV','Power','Qsensible', 'Tm']]
+fed_info:
+  broker: null
+  broker_init: null
+  broker_key: null
+  broker_port: null
+  core_init: null #for debugging only
+  core_name: heatpump_core
+  core_type: zmq
+  local_port: null
+  separator: null
+fed_flags:
+  TERMINATE_ON_ERROR: true
+  UNINTERRUPTIBLE: False
+  ONLY_UPDATE_ON_CHANGE: True
+  WAIT_FOR_CURRENT_TIME_UPDATE: False
+  ROLLBACK: True
+  FORWARD_COMPUTE: False
+fed_properties:
+  TIME_DELTA: 1e-09
+  TIME_PERIOD: 60
+  TIME_OFFSET: 0.0
+  TIME_RT_LAG: 0.0
+  TIME_RT_LEAD: 0.0
+  TIME_RT_TOLERANCE: 0.0
+  TIME_INPUT_DELAY: 0.0
+  TIME_OUTPUT_DELAY: 0.0
+  TIME_STOPTIME: 172800
+  TIME_GRANT_TIMEOUT: 0.0
+  INT_CURRENT_ITERATION: 0
+  INT_MAX_ITERATIONS: 50
+  INT_LOG_LEVEL: 3
+  INT_FILE_LOG_LEVEL: 3
+  INT_CONSOLE_LOG_LEVEL: 3
+  INT_LOG_BUFFER: 0
+  INT_INDEX_GROUP: -972
+fed_connections:
+  sub: {}
+  pub:
+    0: [{
+      "key": "COP",
+      "type": "double",
+      "units": ""
+    },
+      {
+        "key": "Tm",
+        "type": "double",
+        "units": "C"
+      },
+      {
+        "key": "Power",
+        "type": "double",
+        "units": "W"
+      },
+      {
+        "key": "MV",
+        "type": "double",
+        "units": ""
+      },
+      {
+        "key": "Qsensible",
+        "type": "double",
+        "units": "W"
+      }]
+  end: {}
+  inp:
+    0: [ {
+      "key": "Tset",
+      "type": "double",
+      "units": "C",
+      "targets": [
+        "Schedule/0/tset",
+      ]
+    },
+      {
+        "key": "Tamb",
+        "type": "double",
+        "units": "C",
+        "targets": [
+          "Building/0/Tamb",
+        ]
+      },
+      {
+        "key": "TroomSens",
+        "type": "double",
+        "units": "C",
+        "targets": [
+          "Building/0/TRooMea",
+        ]
+      }
+      ]
+
+model_conf:
+  params: {}
+  init_state:
+    inputs.Tset: [[0.0]]
+    inputs.Tamb: [[0.0]]
+    inputs.TroomSens: [[0.0]]
+    outputs.Qsensible: [[0.0]]

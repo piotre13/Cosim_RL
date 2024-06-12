@@ -1,6 +1,6 @@
 fed_name: Battery
 fed_conf:
-  model_script : test_case1_1/Battery_messages.py
+  model_script : test_case1/Battery.py
   class_name: Battery
   n_instances: 2
   RL_training: true

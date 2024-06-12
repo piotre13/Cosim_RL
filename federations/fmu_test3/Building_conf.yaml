@@ -1,0 +1,114 @@
+fed_name: Building
+fed_conf:
+  model_script : FMU_standard.py
+  class_name: FMU
+  n_instances: 1
+  RL_training: true
+  mem_attrs : [inputs.Tbulb, inputs.Tdew, inputs.RH, inputs.Peo, inputs.Q, outputs.Tamb, outputs.TRoomMea] # possibilities None no memory, [empty list] memorize all
+  fmu: building_tia
+  real_period: 60
+  inputs_order: [['Tbulb','Tdew','RH','Peo'],[],['Q']]
+  outputs_order: [['Tamb'],[],['TRoomMea']]
+fed_info:
+  broker: null
+  broker_init: null
+  broker_key: null
+  broker_port: null
+  core_init: null #for debugging only
+  core_name: building_core
+  core_type: zmq
+  local_port: null
+  separator: null
+fed_flags:
+  TERMINATE_ON_ERROR: true
+  UNINTERRUPTIBLE: False
+  ONLY_UPDATE_ON_CHANGE: True
+  WAIT_FOR_CURRENT_TIME_UPDATE: False
+  ROLLBACK: True
+  FORWARD_COMPUTE: False
+fed_properties:
+  TIME_DELTA: 1e-09
+  TIME_PERIOD: 60
+  TIME_OFFSET: 0.0
+  TIME_RT_LAG: 0.0
+  TIME_RT_LEAD: 0.0
+  TIME_RT_TOLERANCE: 0.0
+  TIME_INPUT_DELAY: 0.0
+  TIME_OUTPUT_DELAY: 0.0
+  TIME_STOPTIME: 172800
+  TIME_GRANT_TIMEOUT: 0.0
+  INT_CURRENT_ITERATION: 0
+  INT_MAX_ITERATIONS: 50
+  INT_LOG_LEVEL: 3
+  INT_FILE_LOG_LEVEL: 3
+  INT_CONSOLE_LOG_LEVEL: 3
+  INT_LOG_BUFFER: 0
+  INT_INDEX_GROUP: -972
+fed_connections:
+  sub: {}
+  pub:
+    0: [{
+      "key": "Tamb",
+      "type": "double",
+      "units": "C"
+    },
+      {
+        "key": "TRooMea",
+        "type": "double",
+        "units": "C"
+      }]
+  end: {}
+  inp:
+    0: [ {
+      "key": "Tbulb",
+      "type": "double",
+      "units": "C",
+      "targets": [
+        "Weather/0/drybulb",
+      ]
+    },
+      {
+        "key": "Tdew",
+        "type": "double",
+        "units": "C",
+        "targets": [
+          "Weather/0/dewpoint",
+        ]
+      },
+      {
+        "key": "RH",
+        "type": "double",
+        "units": "",
+        "targets": [
+          "Weather/0/relhum",
+        ]
+      },
+      {
+        "key": "Peo",
+        "type": "double",
+        "units": "",
+        "targets": [
+          "People/0/pres",
+        ]
+      },
+      {
+        "key": "Q",
+        "type": "double",
+        "units": "",
+        "targets": [
+          "Heatpump/0/Qsensible",
+        ]
+      }
+      ]
+
+model_conf:
+  params: {}
+  init_state:
+    inputs.Q: [0.0]
+    inputs.Peo: [0.0]
+    inputs.RH: [50.0]
+    inputs.Tdew: [293.0]
+    inputs.Tbulb: [293.0]
+    outputs.Tamb: [293.0]
+    outputs.TRooMea: [293.0]
+

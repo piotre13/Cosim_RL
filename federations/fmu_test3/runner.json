@@ -1,0 +1,36 @@
+{
+  "name": "fmu_test3",
+  "broker": true,
+  "federates": [
+    {
+      "directory": "../..",
+      "exec": "python -u Federate.py Weather_conf.yaml fmu_test3",
+      "host": "localhost",
+      "name": "Weather"
+    },
+    {
+      "directory": "../..",
+      "exec": "python -u Federate.py People_conf.yaml fmu_test3",
+      "host": "localhost",
+      "name": "People"
+    },
+    {
+      "directory": "../..",
+      "exec": "python -u Federate.py Schedule_conf.yaml fmu_test3",
+      "host": "localhost",
+      "name": "Schedule"
+    },
+    {
+      "directory": "../..",
+      "exec": "python -u Federate_iter.py Building_conf.yaml fmu_test3",
+      "host": "localhost",
+      "name": "Building"
+    },
+    {
+      "directory": "../..",
+      "exec": "python -u Federate_iter.py Heatpump_conf.yaml fmu_test3",
+      "host": "localhost",
+      "name": "Heatpump"
+    }
+  ]
+}

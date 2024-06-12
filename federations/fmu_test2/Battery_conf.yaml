@@ -1,10 +1,11 @@
-fed_name: PV
+fed_name: Battery
 fed_conf:
-  model_script : model_Dest/PV.py
-  class_name: PV
+  model_script : FMU_standard.py
+  class_name: FMU
   n_instances: 1
   RL_training: true
-  mem_attrs : [outputs.Power_PV, inputs.G_H_R] # possibilities None no memory, [empty list] memorize all
+  mem_attrs : [outputs.SOC, inputs.LoadINW, outputs.V, outputs.I, outputs.PnetBatt, inputs.GenINW] # possibilities None no memory, [empty list] memorize all
+  fmu: batteryDaniele
   real_period: 3600
 fed_info:
   broker: null
@@ -12,7 +13,7 @@ fed_info:
   broker_key: null
   broker_port: null
   core_init: null #for debugging only
-  core_name: pv_core
+  core_name: battery_core
   core_type: zmq
   local_port: null
   separator: null
@@ -63,53 +64,66 @@ fed_connections:
   sub: {}
   pub:
     0: [{
-      "key": "Power_PV",
+      "key": "V",
       "type": "double",
-      "units": "W",
-    }]
-
+      "units": "V"
+    },
+      {
+        "key": "I",
+        "type": "double",
+        "units": "A"
+      },
+      {
+        "key": "PnetBatt",
+        "type": "double",
+        "units": "V"
+      },
+      {
+        "key": "SOC",
+        "type": "double",
+        "units": ""
+      } ]
   end: {}
   inp:
     0: [ {
-      "key": "G_H_R",
+      "key": "LoadINW",
       "type": "double",
-      "units": "W/m2",
+      "units": "W",
       "targets": [
-        "Weather/0/glohorzrad",
-       ]
+        "Building/0/plug",
+      ]
     },
       {
-        "key": "D_H_R",
+        "key": "GenINW",
         "type": "double",
-        "units": "W/m2",
+        "units": "W",
         "targets": [
-          "Weather/0/difhorzrad",
-        ]
-      },
-      {
-        "key": "Ambient_temperature",
-        "type": "double",
-        "units": "C",
-        "targets": [
-          "Weather/0/drybulb",
+          "PV/0/pv",
         ]
       }]
+
 model_conf:
-  params:
-    lat: [39.8]
-    long: [116.467]
-    calc_area: [200]
-    #Tilt_angle: 2.05*1.02*27.25/180*math.pi ,
-    #Azimuth_angle: 44.24/180*math.pi ,
-    Tilt_angle: [0.6981317010]
-    Azimuth_angle: [0.9]
-    area_ratio: [1]
-    SVF_hori: [1]
-    Reflectance: [0.2]
-    eta_pv_stc: [0.21] # no longer used todo cancel
-    NOCT: [45]
-    Power_rated_pv: [410]
-    length: [2.05]
-    width: [1.02]
-    solar_constant: [1353]
-    std_long: [120]
+  params: {}
+#    Rated_capacity: [40000.0]
+#    CH_max_P: [8000.0]
+#    DI_max_P: [8000.0]
+#    SOC_upper: [0.95]
+#    SOC_lower: [0.25]
+#    CH_eff: [1.0]
+#    DI_eff: [1.0]
+#    Discharge_rate: [0.0]
+#    dt: [3600.0]
+    #SOC: [0.9]
+#params from BuildinfSysPro fmu
+#    C0: 25.0
+#    Pdecharge: 0.0
+#    R_c: 0.0
+#    R_charge: 0.8
+#    R_decharge: 0.0
+#    technoBattOnd.Cmax: 30.0
+#    technoBattOnd.P_onduleur: 0.0
+#    technoBattOnd.Pmaxc: 0.0
+#    technoBattOnd.Pmaxd: 0.0
+  init_state:   # these does not have effects on fmu that waits for input from federations
+    inputs.LoadINW: [0.0]
+    outputs.SOC: [0.90]

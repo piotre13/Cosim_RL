@@ -56,6 +56,7 @@ class Model(ABC):
             var = k.split('.')[-1]
             self.initial_state[kind][var] = val
         self.initial_state['params'] = deepcopy(self.params)
+
         logger.info(f"\t\tInitial state for Model {self.model_name} set as follow: {self.initial_state}")  # todo better logging
 
     def _fill_memory(self):
@@ -65,6 +66,7 @@ class Model(ABC):
             for typ in self.memory:
                 for  var in self.memory[typ]:
                     self.memory[typ][var].append(deepcopy(getattr(self, typ)[var]))
+
 
     def _reset(self):
         self.inputs = self.initial_state['inputs']

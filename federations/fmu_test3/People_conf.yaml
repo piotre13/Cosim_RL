@@ -6,7 +6,7 @@ fed_conf:
   stateful: true
   RL_training: true
   mem_attrs : [outputs.p, outputs.pres]
-  real_period: 3600
+  real_period: 60
 fed_info:
   broker: null
   broker_init: null
@@ -18,33 +18,12 @@ fed_info:
   local_port: null
   separator: null
 fed_flags:
-  SLOW_RESPONDING: False
-  DEBUGGING: False
-  TERMINATE_ON_ERROR: true
-  FORCE_LOGGING_FLUSH: False
-  DUMPLOG: False
-  OBSERVER: False
-  INTERRUPTIBLE: False
   SOURCE_ONLY: True
-  ONLY_TRANSMIT_ON_CHANGE: False
-  ONLY_UPDATE_ON_CHANGE: False
-  WAIT_FOR_CURRENT_TIME_UPDATE: False
-  RESTRICTIVE_TIME_POLICY: False
-  ROLLBACK: False
-  FORWARD_COMPUTE: False
-  REALTIME: False
-  SINGLE_THREAD_FEDERATE: False
-  SINGLE_THREAD_CORE: False
-  REENTRANT: False
-  IGNORE_TIME_MISMATCH_WARNINGS: False
-  USE_JSON_SERIALIZATION: False
-  EVENT_TRIGGERED: False
-  CALLBACK_FEDERATE : False
-  AUTOMATED_TIME_REQUEST: False
+
 fed_properties:
   TIME_DELTA: 1e-09
-  TIME_PERIOD: 3600
-  TIME_OFFSET: 0.0
+  TIME_PERIOD: 60
+  TIME_OFFSET: 0.2
   TIME_RT_LAG: 0.0
   TIME_RT_LEAD: 0.0
   TIME_RT_TOLERANCE: 0.0

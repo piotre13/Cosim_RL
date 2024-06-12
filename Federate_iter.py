@@ -87,7 +87,7 @@ class Federate_iter(Federate):
                 #    self.receive_inputs(var)
 
                 for var in self.in_vars:
-                    self.receive_inputs(var)
+                    self.receive_inputs(var, itr)
                 #********* stopping condition for fixed itarations or max iteration
                 # if  itr_convergence:
                 #     #todo define a logic for sgenarilzed convergency stopping conditions ( will need to specify in conf the target variable to be converging and the error tolerance
@@ -123,6 +123,21 @@ class Federate_iter(Federate):
             mod.finalize()
         self.save_results()
         self.destroy_federate() # todo this must be embedde in a proper stopping logic right now it destroy the federate at the end of the simulation period in case of RL must be used a flag
+
+    def receive_inputs(self, var_name, itr):
+        if self.inps:
+            for mod_num in range(len(self.mod_insts)):
+                inpid = self.inps[mod_num][var_name]
+                if inpid.is_updated(): # todo check understand properly what this means
+                    value = h.helicsInputGetDouble(inpid)
+                    if var_name in self.inputs_order[itr]:
+                        getattr(self.mod_insts[mod_num], 'inputs')[var_name]= value
+                        logger.debug(f"\tModel_{mod_num} received input {var_name}={value} at itr{itr}")
+                    else:
+                        logger.debug(f"\tModel_{mod_num} received temporary input for iter")
+
+
+
 
 if __name__ == '__main__':
     fed = Federate_iter(sys.argv)  # giusto da usare quando si runna da helics passando gli argv
