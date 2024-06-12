@@ -1,68 +1,17 @@
-	Registered publication: <helics.HelicsPublication(name = "Battery/0/energy_out", type = "double", units = "Wh", info = "") at 0x22f0a6da4f0> for Battery/0/energy_out
-	Registered publication: <helics.HelicsPublication(name = "Battery/1/energy_out", type = "double", units = "Wh", info = "") at 0x22f0a6ca8b0> for Battery/1/energy_out
+	Registered publication: <helics.HelicsPublication(name = "Battery/0/energy_out", type = "double", units = "Wh", info = "") at 0x1ed5ab50ee0> for Battery/0/energy_out
+	Registered publication: <helics.HelicsPublication(name = "Battery/1/energy_out", type = "double", units = "Wh", info = "") at 0x1ed5abb0820> for Battery/1/energy_out
 	Registered input: Battery/0/power for 0 from ['PV/0/pv', 'Building/0/plug']
 	Registered input: Battery/1/power for 1 from ['PV/1/pv', 'Building/1/plug']
 testetstetste {}
- {0: {'energy_out': <helics.HelicsPublication(name = "Battery/0/energy_out", type = "double", units = "Wh", info = "") at 0x22f0a6da4f0>}, 1: {'energy_out': <helics.HelicsPublication(name = "Battery/1/energy_out", type = "double", units = "Wh", info = "") at 0x22f0a6ca8b0>}}
-{0: {'power': <helics.HelicsInput(name = "Battery/0/power", units = "W", injection_units = "", publication_type = "", type = "double", target = "PV/0/pv", info = "") at 0x22f0a6caa90>}, 1: {'power': <helics.HelicsInput(name = "Battery/1/power", units = "W", injection_units = "", publication_type = "", type = "double", target = "PV/1/pv", info = "") at 0x22f0a6ca8e0>}}
+ {0: {'energy_out': <helics.HelicsPublication(name = "Battery/0/energy_out", type = "double", units = "Wh", info = "") at 0x1ed5ab50ee0>}, 1: {'energy_out': <helics.HelicsPublication(name = "Battery/1/energy_out", type = "double", units = "Wh", info = "") at 0x1ed5abb0820>}}
+{0: {'power': <helics.HelicsInput(name = "Battery/0/power", units = "W", injection_units = "", publication_type = "", type = "double", target = "PV/0/pv", info = "") at 0x1ed5abb0a00>}, 1: {'power': <helics.HelicsInput(name = "Battery/1/power", units = "W", injection_units = "", publication_type = "", type = "double", target = "PV/1/pv", info = "") at 0x1ed5abb0850>}}
 	Registering connections ended for fed Battery list of output vars ['energy_out'], list for in_vars['power']
-Data-flow graph :
-{   'attributes': {   'id': 1,
-                      'name': '9612-6oUrP-GRKWe-isVAV-bjcgH',
-                      'parent': 0},
-    'brokers': [],
-    'cores': [   {   'attributes': {   'id': 1879048192,
-                                       'name': 'pv_core',
-                                       'parent': 1},
-                     'federates': [   {   'attributes': {   'id': 131073,
-                                                            'name': 'PV',
-                                                            'parent': 1879048192},
-                                          'publications': [   {   'federate': 131073,
-                                                                  'handle': 0,
-                                                                  'key': 'PV/0/pv'},
-                                                              {   'federate': 131073,
-                                                                  'handle': 1,
-                                                                  'key': 'PV/1/pv'}]}]},
-                 {   'attributes': {   'id': 1879048193,
-                                       'name': 'building_core',
-                                       'parent': 1},
-                     'federates': [   {   'attributes': {   'id': 131072,
-                                                            'name': 'Building',
-                                                            'parent': 1879048193},
-                                          'publications': [   {   'federate': 131072,
-                                                                  'handle': 0,
-                                                                  'key': 'Building/0/plug'},
-                                                              {   'federate': 131072,
-                                                                  'handle': 1,
-                                                                  'key': 'Building/1/plug'}]}]},
-                 {   'attributes': {   'id': 1879048194,
-                                       'name': 'battery_core',
-                                       'parent': 1},
-                     'federates': [   {   'attributes': {   'id': 131074,
-                                                            'name': 'Battery',
-                                                            'parent': 1879048194},
-                                          'inputs': [   {   'federate': 131074,
-                                                            'handle': 2,
-                                                            'key': 'Battery/0/power'},
-                                                        {   'federate': 131074,
-                                                            'handle': 3,
-                                                            'key': 'Battery/1/power'}],
-                                          'publications': [   {   'federate': 131074,
-                                                                  'handle': 0,
-                                                                  'key': 'Battery/0/energy_out'},
-                                                              {   'federate': 131074,
-                                                                  'handle': 1,
-                                                                  'key': 'Battery/1/energy_out'}]}]}]}
-Dependency graph :
-{   'attributes': {'id': 131074, 'name': 'Battery', 'parent': 1879048194},
-    'dependencies': [],
-    'dependents': []}
-		Memory instantiated for Model Battery.0!
 		Initial state for Model Battery.0 set as follow: {'inputs': {}, 'outputs': {}, 'messages_in': {}, 'messages_out': {}, 'params': {'rated_capacity': 40000, 'maximum_charge_power': 8000, 'maximum_discharge_power': 8000, 'SOC_upper_limit': 0.95, 'SOC_lower_limit': 0.25, 'charge_efficiency': 1, 'discharge_efficiency': 1, 'self_discharge_rate': 0, 'SOC': 0.25}}
-		Model Battery.0 instantiated with the following kwargs: {'model_name': 'Battery.0', 'inputs': {'power': 0.0}, 'outputs': {'energy_out': 0.0}, 'messages_in': [], 'messages_out': [], 'params': {'rated_capacity': 40000, 'maximum_charge_power': 8000, 'maximum_discharge_power': 8000, 'SOC_upper_limit': 0.95, 'SOC_lower_limit': 0.25, 'charge_efficiency': 1, 'discharge_efficiency': 1, 'self_discharge_rate': 0, 'SOC': 0.25}, 'msg_var_dest': {}, 'RL_training': True, 'mem_attrs': ['params.SOC', 'outputs.energy_out', 'inputs.power'], 'init_state': {}, 'real_period': 3600, 'end_time': 172800.0}!
-		Memory instantiated for Model Battery.1!
+		Memory instantiated for Model Battery.0!
+		Model Battery.0 instantiated with the following kwargs: {'model_name': 'Battery.0', 'inputs': {'power': 0.0}, 'outputs': {'energy_out': 0.0}, 'params': {'rated_capacity': 40000, 'maximum_charge_power': 8000, 'maximum_discharge_power': 8000, 'SOC_upper_limit': 0.95, 'SOC_lower_limit': 0.25, 'charge_efficiency': 1, 'discharge_efficiency': 1, 'self_discharge_rate': 0, 'SOC': 0.25}, 'init_state': {}, 'model_script': 'test_case1/Battery.py', 'class_name': 'Battery', 'n_instances': 2, 'RL_training': True, 'mem_attrs': ['params.SOC', 'outputs.energy_out', 'inputs.power'], 'real_period': 3600, 'end_time': 172800.0}!
 		Initial state for Model Battery.1 set as follow: {'inputs': {}, 'outputs': {}, 'messages_in': {}, 'messages_out': {}, 'params': {'rated_capacity': 50000, 'maximum_charge_power': 6000, 'maximum_discharge_power': 6000, 'SOC_upper_limit': 0.95, 'SOC_lower_limit': 0.25, 'charge_efficiency': 1, 'discharge_efficiency': 1, 'self_discharge_rate': 0, 'SOC': 0.3}}
-		Model Battery.1 instantiated with the following kwargs: {'model_name': 'Battery.1', 'inputs': {'power': 0.0}, 'outputs': {'energy_out': 0.0}, 'messages_in': [], 'messages_out': [], 'params': {'rated_capacity': 50000, 'maximum_charge_power': 6000, 'maximum_discharge_power': 6000, 'SOC_upper_limit': 0.95, 'SOC_lower_limit': 0.25, 'charge_efficiency': 1, 'discharge_efficiency': 1, 'self_discharge_rate': 0, 'SOC': 0.3}, 'msg_var_dest': {}, 'RL_training': True, 'mem_attrs': ['params.SOC', 'outputs.energy_out', 'inputs.power'], 'init_state': {}, 'real_period': 3600, 'end_time': 172800.0}!
+		Memory instantiated for Model Battery.1!
+		Model Battery.1 instantiated with the following kwargs: {'model_name': 'Battery.1', 'inputs': {'power': 0.0}, 'outputs': {'energy_out': 0.0}, 'params': {'rated_capacity': 50000, 'maximum_charge_power': 6000, 'maximum_discharge_power': 6000, 'SOC_upper_limit': 0.95, 'SOC_lower_limit': 0.25, 'charge_efficiency': 1, 'discharge_efficiency': 1, 'self_discharge_rate': 0, 'SOC': 0.3}, 'init_state': {}, 'model_script': 'test_case1/Battery.py', 'class_name': 'Battery', 'n_instances': 2, 'RL_training': True, 'mem_attrs': ['params.SOC', 'outputs.energy_out', 'inputs.power'], 'real_period': 3600, 'end_time': 172800.0}!
 	Models instantiation from fed: Battery succesfull!
 	Model instances names: ['Battery.0', 'Battery.1']
 	Entered HELICS execution mode

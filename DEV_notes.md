@@ -1,13 +1,8 @@
 # TODO
-- definire varie tipologie di simulator workflow (proposta:
-  - **simple** : inputs one round of step and output
-  - **iterative**: inputs step outputs repeated until convergence
-  - **iterative dynamic inp/out**: inputs step outputs --> different inputs step diff outputs until end (must have a wokflow order) )       
-- fare test esempio di iterative dynamic base con reverse I/O (esempio enevelope xuyuan vedi quaderno) per esempio qui foprse conviene unpack communication_management
-- should rething the structure of same mod_inst multiple inp/sub/pub avoinding the key and using the the key value as key.
-- inserire gestione reset nel Federate simple
+- iteration federate how to save properly inputs outputs and params (for inps and outs is ok but how to deal with the params (no order for them maybe only at the end))
 - helics connector permettono di creare tramite semplice config le varie connessioni
-
+- create a scheduler!! 
+- add resample in the init of csv reader for authomatic step changing
 
 
 

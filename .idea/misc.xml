@@ -4,4 +4,7 @@
     <option name="sdkName" value="base_py38" />
   </component>
   <component name="ProjectRootManager" version="2" project-jdk-name="base_py38" project-jdk-type="Python SDK" />
+  <component name="PyPackaging">
+    <option name="earlyReleasesAsUpgrades" value="true" />
+  </component>
 </project>

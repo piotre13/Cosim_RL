@@ -71,7 +71,7 @@ class FMU (Model):
         
         if self.fmiVersion == '2.0':
             # Setup experiment: set the independent variable time
-            self.fmu.setupExperiment(startTime=0, stopTime=self.end_time+self.real_period)
+            self.fmu.setupExperiment(startTime=0, stopTime=self.end_time)
 
             # Initialization. Set the INPUT values at time = startTime and also variables with initial = exact
             self.fmu.enterInitializationMode()
@@ -80,7 +80,12 @@ class FMU (Model):
             assert status == 0
         else:
             logger.debug(f'Initialization for FMI 1.0 version not Coded!')
-            raise Exception('fmi 1.0 NOT SUPPORTED')
+            # if start_in_vrs:
+            #     self.entities[eid].setReal([self.entity_vrs[eid][x] for x in start_in_vrs.keys()],
+            #                                list(start_in_vrs.values()))
+            status = self.fmu.initialize(tStart=0, stopTime=self.end_time)
+            assert status == 0
+            #raise Exception('fmi 1.0 NOT SUPPORTED')
 
         print('yo')
     def step(self, ts, **kwargs):
@@ -111,6 +116,7 @@ class FMU (Model):
                 self.set_var(self.params_vars[var][0], value)
     def set_inputs(self):
         if self.inputs:
+            logger.debug(f"$$$$$setting the following inputs{self.inputs}!!!")
             for var, value in self.inputs.items():
                 self.set_var(self.in_vars[var][0], value)
     def get_outputs(self):

@@ -1,54 +1,15 @@
-	Registered publication: <helics.HelicsPublication(name = "Building/0/plug", type = "double", units = "W", info = "") at 0x2c01e126190> for Building/0/plug
-	Registered publication: <helics.HelicsPublication(name = "Building/1/plug", type = "double", units = "W", info = "") at 0x2c01e126730> for Building/1/plug
+	Registered publication: <helics.HelicsPublication(name = "Building/0/plug", type = "double", units = "W", info = "") at 0x277c9e31e80> for Building/0/plug
+	Registered publication: <helics.HelicsPublication(name = "Building/1/plug", type = "double", units = "W", info = "") at 0x277c9ed46a0> for Building/1/plug
 testetstetste {}
- {0: {'plug': <helics.HelicsPublication(name = "Building/0/plug", type = "double", units = "W", info = "") at 0x2c01e126190>}, 1: {'plug': <helics.HelicsPublication(name = "Building/1/plug", type = "double", units = "W", info = "") at 0x2c01e126730>}}
+ {0: {'plug': <helics.HelicsPublication(name = "Building/0/plug", type = "double", units = "W", info = "") at 0x277c9e31e80>}, 1: {'plug': <helics.HelicsPublication(name = "Building/1/plug", type = "double", units = "W", info = "") at 0x277c9ed46a0>}}
 {}
 	Registering connections ended for fed Building list of output vars ['plug'], list for in_vars[]
-Data-flow graph :
-{   'attributes': {   'id': 1,
-                      'name': '20996-HPvZ9-Hm1Ar-Pbv2B-Ew1z1',
-                      'parent': 0},
-    'brokers': [],
-    'cores': [   {   'attributes': {   'id': 1879048192,
-                                       'name': 'pv_core',
-                                       'parent': 1},
-                     'federates': [   {   'attributes': {   'id': 131072,
-                                                            'name': 'PV',
-                                                            'parent': 1879048192},
-                                          'publications': [   {   'federate': 131072,
-                                                                  'handle': 0,
-                                                                  'key': 'PV/0/pv'},
-                                                              {   'federate': 131072,
-                                                                  'handle': 1,
-                                                                  'key': 'PV/1/pv'}]}]},
-                 {   'attributes': {   'id': 1879048194,
-                                       'name': 'receiver_core',
-                                       'parent': 1}},
-                 {   'attributes': {   'id': 1879048195,
-                                       'name': 'battery_core',
-                                       'parent': 1}},
-                 {   'attributes': {   'id': 1879048193,
-                                       'name': 'building_core',
-                                       'parent': 1},
-                     'federates': [   {   'attributes': {   'id': 131073,
-                                                            'name': 'Building',
-                                                            'parent': 1879048193},
-                                          'publications': [   {   'federate': 131073,
-                                                                  'handle': 0,
-                                                                  'key': 'Building/0/plug'},
-                                                              {   'federate': 131073,
-                                                                  'handle': 1,
-                                                                  'key': 'Building/1/plug'}]}]}]}
-Dependency graph :
-{   'attributes': {'id': 131073, 'name': 'Building', 'parent': 1879048193},
-    'dependencies': [],
-    'dependents': []}
-		Memory instantiated for Model CSV.0!
 		Initial state for Model CSV.0 set as follow: {'inputs': {}, 'outputs': {}, 'messages_in': {}, 'messages_out': {}, 'params': {'csv_file': 'data/BUILD&PV.csv', 'multiplier': {'plug': -1}}}
-		Model CSV.0 instantiated with the following kwargs: {'model_name': 'CSV.0', 'inputs': {}, 'outputs': {'plug': 0.0}, 'messages_in': [], 'messages_out': [], 'params': {'csv_file': 'data/BUILD&PV.csv', 'multiplier': {'plug': -1}}, 'msg_var_dest': {}, 'RL_training': True, 'mem_attrs': ['outputs.plug'], 'init_state': {}, 'real_period': 3600, 'end_time': 86400.0}!
-		Memory instantiated for Model CSV.1!
+		Memory instantiated for Model CSV.0!
+		Model CSV.0 instantiated with the following kwargs: {'model_name': 'CSV.0', 'inputs': {}, 'outputs': {'plug': 0.0}, 'params': {'csv_file': 'data/BUILD&PV.csv', 'multiplier': {'plug': -1}}, 'init_state': {}, 'model_script': 'Csv_out.py', 'class_name': 'CSV', 'n_instances': 2, 'RL_training': True, 'mem_attrs': ['outputs.plug'], 'real_period': 3600, 'end_time': 86400.0}!
 		Initial state for Model CSV.1 set as follow: {'inputs': {}, 'outputs': {}, 'messages_in': {}, 'messages_out': {}, 'params': {'csv_file': 'data/BUILD&PV.csv', 'multiplier': {'plug': -1}}}
-		Model CSV.1 instantiated with the following kwargs: {'model_name': 'CSV.1', 'inputs': {}, 'outputs': {'plug': 0.0}, 'messages_in': [], 'messages_out': [], 'params': {'csv_file': 'data/BUILD&PV.csv', 'multiplier': {'plug': -1}}, 'msg_var_dest': {}, 'RL_training': True, 'mem_attrs': ['outputs.plug'], 'init_state': {}, 'real_period': 3600, 'end_time': 86400.0}!
+		Memory instantiated for Model CSV.1!
+		Model CSV.1 instantiated with the following kwargs: {'model_name': 'CSV.1', 'inputs': {}, 'outputs': {'plug': 0.0}, 'params': {'csv_file': 'data/BUILD&PV.csv', 'multiplier': {'plug': -1}}, 'init_state': {}, 'model_script': 'Csv_out.py', 'class_name': 'CSV', 'n_instances': 2, 'RL_training': True, 'mem_attrs': ['outputs.plug'], 'real_period': 3600, 'end_time': 86400.0}!
 	Models instantiation from fed: Building succesfull!
 	Model instances names: ['CSV.0', 'CSV.1']
 	Entered HELICS execution mode

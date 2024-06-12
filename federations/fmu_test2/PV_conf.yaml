@@ -1,11 +1,10 @@
 fed_name: PV
 fed_conf:
-  model_script : FMU_standard.py
-  class_name: FMU
+  model_script : model_Dest/PV.py
+  class_name: PV
   n_instances: 1
   RL_training: true
-  mem_attrs : [outputs.DCOutputPower] # possibilities None no memory, [empty list] memorize all
-  fmu: PV_simple_final
+  mem_attrs : [outputs.Power_PV, inputs.G_H_R] # possibilities None no memory, [empty list] memorize all
   real_period: 3600
 fed_info:
   broker: null
@@ -64,49 +63,53 @@ fed_connections:
   sub: {}
   pub:
     0: [{
-      "key": "DCOutputPower",
+      "key": "Power_PV",
       "type": "double",
-      "units": "W"
+      "units": "W",
     }]
+
   end: {}
   inp:
     0: [ {
-      "key": "T_ext",
+      "key": "G_H_R",
       "type": "double",
-      "units": "C",
+      "units": "W/m2",
       "targets": [
-        "Weather/0/drybulb",
-      ]
+        "Weather/0/glohorzrad",
+       ]
     },
       {
-        "key": "wind_speed",
-        "type": "double",
-        "units": "m/s",
-        "targets": [
-          "Weather/0/windspd",
-        ]
-      },
-      {
-        "key": "H_glo_hor",
-        "type": "double",
-        "units": "W/m2",
-        "targets": [
-          "Weather/0/glohorzrad",
-        ]
-      },
-      {
-        "key": "H_diff_hor",
+        "key": "D_H_R",
         "type": "double",
         "units": "W/m2",
         "targets": [
           "Weather/0/difhorzrad",
         ]
+      },
+      {
+        "key": "Ambient_temperature",
+        "type": "double",
+        "units": "C",
+        "targets": [
+          "Weather/0/drybulb",
+        ]
       }]
-
 model_conf:
-  params: {}
-  init_state:
-    inputs.H_diff_hor: [1.0]
-    inputs.T_ext : [293.15]
-    inputs.wind_speed: [1.0]
-    inputs.H_glo_hor: [1.0]
+  params:
+    lat: [39.8]
+    long: [116.467]
+    calc_area: [200]
+    #Tilt_angle: 2.05*1.02*27.25/180*math.pi ,
+    #Azimuth_angle: 44.24/180*math.pi ,
+    Tilt_angle: [0.6981317010]
+    Azimuth_angle: [0.9]
+    area_ratio: [1]
+    SVF_hori: [1]
+    Reflectance: [0.2]
+    eta_pv_stc: [0.21] # no longer used todo cancel
+    NOCT: [45]
+    Power_rated_pv: [410]
+    length: [2.05]
+    width: [1.02]
+    solar_constant: [1353]
+    std_long: [120]

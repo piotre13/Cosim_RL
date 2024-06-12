@@ -71,4 +71,4 @@ fed_connections:
 model_conf:
   params:
     csv_file: ['data/BUILD&PV.csv']
-    multiplier: [{plug: 1}]
+    multiplier: [{plug: -1}]

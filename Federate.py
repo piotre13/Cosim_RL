@@ -185,25 +185,17 @@ class Federate:
         kwargs['model_name'] = class_name + '.' + str(i)
         kwargs['inputs'] = { k: 0.0 for k in self.in_vars}
         kwargs['outputs'] = { k: 0.0 for k in self.out_vars}
-        kwargs['messages_in'] = []
-        kwargs['messages_out'] = []
-        kwargs['params'] = {k: self.init_config['model_conf']['params'][k][i] for k in self.init_config['model_conf']['params']}
 
-        if self.msg_var_dest: kwargs['msg_var_dest'] = self.msg_var_dest[i]
-        else: kwargs['msg_var_dest'] = {}
 
-        #kwargs['msg_in'] =
-        kwargs['RL_training'] = self.init_config['fed_conf']['RL_training']
-        #kwargs['stateful'] = self.init_config['fed_conf']['stateful']
-        kwargs['mem_attrs'] = self.init_config['fed_conf']['mem_attrs']
-        if 'fmu' in self.init_config['fed_conf'].keys():
-            kwargs['fmu'] = self.init_config['fed_conf']['fmu']
-        if 'init_state' in self.init_config['model_conf']:
-            kwargs['init_state'] = {k:val[i] for k, val in self.init_config['model_conf']['init_state'].items()}
-        else:
-            kwargs['init_state'] = {}
+        for key, values in self.init_config['model_conf'].items():
+            if isinstance(values,dict):
+                kwargs[key] = {k: values[k][i] for k in values}
+            if isinstance(values, list):
+                kwargs[key] = values[i]
 
-        kwargs['real_period'] = self.init_config['fed_conf']['real_period']
+        for key, values in self.init_config['fed_conf'].items():
+            kwargs [key] = values
+
         kwargs['end_time'] = h.helicsFederateGetTimeProperty(self.fed,h.HELICS_PROPERTY_TIME_STOPTIME)
         return  kwargs
 
