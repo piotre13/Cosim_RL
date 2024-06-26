@@ -1,0 +1,254 @@
+	Registered publication: <helics.HelicsPublication(name = "Controller/0/tSetMax", type = "double", units = "C", info = "") at 0x24fe63c5e80> for Controller/0/tSetMax
+	Registered publication: <helics.HelicsPublication(name = "Controller/0/tSetMin", type = "double", units = "C", info = "") at 0x24fe64686a0> for Controller/0/tSetMin
+testetstetste {}
+ {0: {'tSetMax': <helics.HelicsPublication(name = "Controller/0/tSetMax", type = "double", units = "C", info = "") at 0x24fe63c5e80>, 'tSetMin': <helics.HelicsPublication(name = "Controller/0/tSetMin", type = "double", units = "C", info = "") at 0x24fe64686a0>}}
+{}
+	Registering connections ended for fed Controller list of output vars ['tSetMax', 'tSetMin'], list for in_vars[]
+		Initial state for Model Controller.0 set as follow: {'inputs': {}, 'outputs': {'tSetMax': 20.0, 'tSetMin': 20.0}, 'params': {}}
+		Memory instantiated for Model Controller.0!
+		Model Controller.0 instantiated with the following kwargs: {'model_name': 'Controller.0', 'inputs': {}, 'outputs': {'tSetMax': 20.0, 'tSetMin': 20.0}, 'params': {}, 'init_state': {'outputs.tSetMax': 20.0, 'outputs.tSetMin': 20.0}, 'model_script': 'dummy_models/Controller_dummy.py', 'class_name': 'Controller', 'n_instances': 1, 'RL_training': True, 'mem_attrs': ['outputs.tSetMax', 'outputs.tSetMin'], 'real_period': 3600, 'iter_type': 'no_iter', 'end_time': 86400.0}!
+	Models instantiation from fed: Controller succesfull!
+	Model instances names: ['Controller.0']
+	Entered HELICS execution mode
+************* Requesting time 1800.0 -- Granted time 1800.0 **************
+	current timestep: 1800.0
+		 Model {self.model_name} step completed.
+	Model_0 published output tSetMax=16
+	Model_0 published output tSetMin=16
+************* Requesting time 3600.0 -- Granted time 3600.0 **************
+	current timestep: 3600.0
+		 Model {self.model_name} step completed.
+	Model_0 published output tSetMax=16
+	Model_0 published output tSetMin=16
+************* Requesting time 5400.0 -- Granted time 5400.0 **************
+	current timestep: 5400.0
+		 Model {self.model_name} step completed.
+	Model_0 published output tSetMax=16
+	Model_0 published output tSetMin=16
+************* Requesting time 7200.0 -- Granted time 7200.0 **************
+	current timestep: 7200.0
+		 Model {self.model_name} step completed.
+	Model_0 published output tSetMax=16
+	Model_0 published output tSetMin=16
+************* Requesting time 9000.0 -- Granted time 9000.0 **************
+	current timestep: 9000.0
+		 Model {self.model_name} step completed.
+	Model_0 published output tSetMax=16
+	Model_0 published output tSetMin=16
+************* Requesting time 10800.0 -- Granted time 10800.0 **************
+	current timestep: 10800.0
+		 Model {self.model_name} step completed.
+	Model_0 published output tSetMax=16
+	Model_0 published output tSetMin=16
+************* Requesting time 12600.0 -- Granted time 12600.0 **************
+	current timestep: 12600.0
+		 Model {self.model_name} step completed.
+	Model_0 published output tSetMax=16
+	Model_0 published output tSetMin=16
+************* Requesting time 14400.0 -- Granted time 14400.0 **************
+	current timestep: 14400.0
+		 Model {self.model_name} step completed.
+	Model_0 published output tSetMax=16
+	Model_0 published output tSetMin=16
+************* Requesting time 16200.0 -- Granted time 16200.0 **************
+	current timestep: 16200.0
+		 Model {self.model_name} step completed.
+	Model_0 published output tSetMax=16
+	Model_0 published output tSetMin=16
+************* Requesting time 18000.0 -- Granted time 18000.0 **************
+	current timestep: 18000.0
+		 Model {self.model_name} step completed.
+	Model_0 published output tSetMax=16
+	Model_0 published output tSetMin=16
+************* Requesting time 19800.0 -- Granted time 19800.0 **************
+	current timestep: 19800.0
+		 Model {self.model_name} step completed.
+	Model_0 published output tSetMax=16
+	Model_0 published output tSetMin=16
+************* Requesting time 21600.0 -- Granted time 21600.0 **************
+	current timestep: 21600.0
+		 Model {self.model_name} step completed.
+	Model_0 published output tSetMax=20
+	Model_0 published output tSetMin=20
+************* Requesting time 23400.0 -- Granted time 23400.0 **************
+	current timestep: 23400.0
+		 Model {self.model_name} step completed.
+	Model_0 published output tSetMax=20
+	Model_0 published output tSetMin=20
+************* Requesting time 25200.0 -- Granted time 25200.0 **************
+	current timestep: 25200.0
+		 Model {self.model_name} step completed.
+	Model_0 published output tSetMax=20
+	Model_0 published output tSetMin=20
+************* Requesting time 27000.0 -- Granted time 27000.0 **************
+	current timestep: 27000.0
+		 Model {self.model_name} step completed.
+	Model_0 published output tSetMax=20
+	Model_0 published output tSetMin=20
+************* Requesting time 28800.0 -- Granted time 28800.0 **************
+	current timestep: 28800.0
+		 Model {self.model_name} step completed.
+	Model_0 published output tSetMax=20
+	Model_0 published output tSetMin=20
+************* Requesting time 30600.0 -- Granted time 30600.0 **************
+	current timestep: 30600.0
+		 Model {self.model_name} step completed.
+	Model_0 published output tSetMax=20
+	Model_0 published output tSetMin=20
+************* Requesting time 32400.0 -- Granted time 32400.0 **************
+	current timestep: 32400.0
+		 Model {self.model_name} step completed.
+	Model_0 published output tSetMax=20
+	Model_0 published output tSetMin=20
+************* Requesting time 34200.0 -- Granted time 34200.0 **************
+	current timestep: 34200.0
+		 Model {self.model_name} step completed.
+	Model_0 published output tSetMax=20
+	Model_0 published output tSetMin=20
+************* Requesting time 36000.0 -- Granted time 36000.0 **************
+	current timestep: 36000.0
+		 Model {self.model_name} step completed.
+	Model_0 published output tSetMax=20
+	Model_0 published output tSetMin=20
+************* Requesting time 37800.0 -- Granted time 37800.0 **************
+	current timestep: 37800.0
+		 Model {self.model_name} step completed.
+	Model_0 published output tSetMax=20
+	Model_0 published output tSetMin=20
+************* Requesting time 39600.0 -- Granted time 39600.0 **************
+	current timestep: 39600.0
+		 Model {self.model_name} step completed.
+	Model_0 published output tSetMax=16
+	Model_0 published output tSetMin=16
+************* Requesting time 41400.0 -- Granted time 41400.0 **************
+	current timestep: 41400.0
+		 Model {self.model_name} step completed.
+	Model_0 published output tSetMax=16
+	Model_0 published output tSetMin=16
+************* Requesting time 43200.0 -- Granted time 43200.0 **************
+	current timestep: 43200.0
+		 Model {self.model_name} step completed.
+	Model_0 published output tSetMax=16
+	Model_0 published output tSetMin=16
+************* Requesting time 45000.0 -- Granted time 45000.0 **************
+	current timestep: 45000.0
+		 Model {self.model_name} step completed.
+	Model_0 published output tSetMax=16
+	Model_0 published output tSetMin=16
+************* Requesting time 46800.0 -- Granted time 46800.0 **************
+	current timestep: 46800.0
+		 Model {self.model_name} step completed.
+	Model_0 published output tSetMax=16
+	Model_0 published output tSetMin=16
+************* Requesting time 48600.0 -- Granted time 48600.0 **************
+	current timestep: 48600.0
+		 Model {self.model_name} step completed.
+	Model_0 published output tSetMax=16
+	Model_0 published output tSetMin=16
+************* Requesting time 50400.0 -- Granted time 50400.0 **************
+	current timestep: 50400.0
+		 Model {self.model_name} step completed.
+	Model_0 published output tSetMax=16
+	Model_0 published output tSetMin=16
+************* Requesting time 52200.0 -- Granted time 52200.0 **************
+	current timestep: 52200.0
+		 Model {self.model_name} step completed.
+	Model_0 published output tSetMax=16
+	Model_0 published output tSetMin=16
+************* Requesting time 54000.0 -- Granted time 54000.0 **************
+	current timestep: 54000.0
+		 Model {self.model_name} step completed.
+	Model_0 published output tSetMax=20
+	Model_0 published output tSetMin=20
+************* Requesting time 55800.0 -- Granted time 55800.0 **************
+	current timestep: 55800.0
+		 Model {self.model_name} step completed.
+	Model_0 published output tSetMax=20
+	Model_0 published output tSetMin=20
+************* Requesting time 57600.0 -- Granted time 57600.0 **************
+	current timestep: 57600.0
+		 Model {self.model_name} step completed.
+	Model_0 published output tSetMax=20
+	Model_0 published output tSetMin=20
+************* Requesting time 59400.0 -- Granted time 59400.0 **************
+	current timestep: 59400.0
+		 Model {self.model_name} step completed.
+	Model_0 published output tSetMax=20
+	Model_0 published output tSetMin=20
+************* Requesting time 61200.0 -- Granted time 61200.0 **************
+	current timestep: 61200.0
+		 Model {self.model_name} step completed.
+	Model_0 published output tSetMax=20
+	Model_0 published output tSetMin=20
+************* Requesting time 63000.0 -- Granted time 63000.0 **************
+	current timestep: 63000.0
+		 Model {self.model_name} step completed.
+	Model_0 published output tSetMax=20
+	Model_0 published output tSetMin=20
+************* Requesting time 64800.0 -- Granted time 64800.0 **************
+	current timestep: 64800.0
+		 Model {self.model_name} step completed.
+	Model_0 published output tSetMax=20
+	Model_0 published output tSetMin=20
+************* Requesting time 66600.0 -- Granted time 66600.0 **************
+	current timestep: 66600.0
+		 Model {self.model_name} step completed.
+	Model_0 published output tSetMax=20
+	Model_0 published output tSetMin=20
+************* Requesting time 68400.0 -- Granted time 68400.0 **************
+	current timestep: 68400.0
+		 Model {self.model_name} step completed.
+	Model_0 published output tSetMax=20
+	Model_0 published output tSetMin=20
+************* Requesting time 70200.0 -- Granted time 70200.0 **************
+	current timestep: 70200.0
+		 Model {self.model_name} step completed.
+	Model_0 published output tSetMax=20
+	Model_0 published output tSetMin=20
+************* Requesting time 72000.0 -- Granted time 72000.0 **************
+	current timestep: 72000.0
+		 Model {self.model_name} step completed.
+	Model_0 published output tSetMax=20
+	Model_0 published output tSetMin=20
+************* Requesting time 73800.0 -- Granted time 73800.0 **************
+	current timestep: 73800.0
+		 Model {self.model_name} step completed.
+	Model_0 published output tSetMax=20
+	Model_0 published output tSetMin=20
+************* Requesting time 75600.0 -- Granted time 75600.0 **************
+	current timestep: 75600.0
+		 Model {self.model_name} step completed.
+	Model_0 published output tSetMax=20
+	Model_0 published output tSetMin=20
+************* Requesting time 77400.0 -- Granted time 77400.0 **************
+	current timestep: 77400.0
+		 Model {self.model_name} step completed.
+	Model_0 published output tSetMax=20
+	Model_0 published output tSetMin=20
+************* Requesting time 79200.0 -- Granted time 79200.0 **************
+	current timestep: 79200.0
+		 Model {self.model_name} step completed.
+	Model_0 published output tSetMax=20
+	Model_0 published output tSetMin=20
+************* Requesting time 81000.0 -- Granted time 81000.0 **************
+	current timestep: 81000.0
+		 Model {self.model_name} step completed.
+	Model_0 published output tSetMax=20
+	Model_0 published output tSetMin=20
+************* Requesting time 82800.0 -- Granted time 82800.0 **************
+	current timestep: 82800.0
+		 Model {self.model_name} step completed.
+	Model_0 published output tSetMax=16
+	Model_0 published output tSetMin=16
+************* Requesting time 84600.0 -- Granted time 84600.0 **************
+	current timestep: 84600.0
+		 Model {self.model_name} step completed.
+	Model_0 published output tSetMax=16
+	Model_0 published output tSetMin=16
+************* Requesting time 86400.0 -- Granted time 86400.0 **************
+	current timestep: 86400.0
+		 Model {self.model_name} step completed.
+	Model_0 published output tSetMax=16
+	Model_0 published output tSetMin=16
+		 Model Controller.0 finalized with Memory : {'inputs': {}, 'outputs': {'tSetMax': [16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 16, 16, 16, 16, 16, 16, 16, 16, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 16, 16, 16], 'tSetMin': [16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 16, 16, 16, 16, 16, 16, 16, 16, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 16, 16, 16]}, 'params': {}}
+	Federate finalized

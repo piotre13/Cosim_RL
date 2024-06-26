@@ -1,0 +1,1991 @@
+	Registered publication: <helics.HelicsPublication(name = "Envelope/0/zone.load_s 8674", type = "double", units = "W", info = "") at 0x18df0c65e80> for Envelope/0/zone.load_s 8674
+	Registered publication: <helics.HelicsPublication(name = "Envelope/0/zone.load_s 8677", type = "double", units = "W", info = "") at 0x18df0ccc6d0> for Envelope/0/zone.load_s 8677
+	Registered publication: <helics.HelicsPublication(name = "Envelope/0/zone.load_s 8680", type = "double", units = "W", info = "") at 0x18df0ccc4c0> for Envelope/0/zone.load_s 8680
+	Registered publication: <helics.HelicsPublication(name = "Envelope/0/zone.load_s 8692", type = "double", units = "W", info = "") at 0x18df0ccc8b0> for Envelope/0/zone.load_s 8692
+	Registered publication: <helics.HelicsPublication(name = "Envelope/0/zone.load_s 73086", type = "double", units = "W", info = "") at 0x18df0cccb80> for Envelope/0/zone.load_s 73086
+	Registered publication: <helics.HelicsPublication(name = "Envelope/0/zone.fresh_vent_load_s 8674", type = "double", units = "W", info = "") at 0x18df0ccc9a0> for Envelope/0/zone.fresh_vent_load_s 8674
+	Registered publication: <helics.HelicsPublication(name = "Envelope/0/zone.fresh_vent_load_s 8677", type = "double", units = "W", info = "") at 0x18df0cccb20> for Envelope/0/zone.fresh_vent_load_s 8677
+	Registered publication: <helics.HelicsPublication(name = "Envelope/0/zone.fresh_vent_load_s 8680", type = "double", units = "W", info = "") at 0x18df0ccce50> for Envelope/0/zone.fresh_vent_load_s 8680
+	Registered publication: <helics.HelicsPublication(name = "Envelope/0/zone.fresh_vent_load_s 8692", type = "double", units = "W", info = "") at 0x18df0ccc4f0> for Envelope/0/zone.fresh_vent_load_s 8692
+	Registered publication: <helics.HelicsPublication(name = "Envelope/0/zone.fresh_vent_load_s 73086", type = "double", units = "W", info = "") at 0x18df0cccf40> for Envelope/0/zone.fresh_vent_load_s 73086
+	Registered publication: <helics.HelicsPublication(name = "Envelope/0/zone.ac_t 8674", type = "double", units = "C", info = "") at 0x18df0ccf070> for Envelope/0/zone.ac_t 8674
+	Registered publication: <helics.HelicsPublication(name = "Envelope/0/zone.ac_t 8677", type = "double", units = "C", info = "") at 0x18df0ccf0d0> for Envelope/0/zone.ac_t 8677
+	Registered publication: <helics.HelicsPublication(name = "Envelope/0/zone.ac_t 8680", type = "double", units = "C", info = "") at 0x18df0ccf2e0> for Envelope/0/zone.ac_t 8680
+	Registered publication: <helics.HelicsPublication(name = "Envelope/0/zone.ac_t 8692", type = "double", units = "C", info = "") at 0x18df0ccf3a0> for Envelope/0/zone.ac_t 8692
+	Registered publication: <helics.HelicsPublication(name = "Envelope/0/zone.ac_t 73086", type = "double", units = "C", info = "") at 0x18df0ccf7f0> for Envelope/0/zone.ac_t 73086
+	Registered input: Envelope/0/schedule.ac_t_max 8674 for 0 from ['Controller/0/tSetMax']
+	Registered input: Envelope/0/schedule.ac_t_min 8674 for 0 from ['Controller/0/tSetMin']
+	Registered input: Envelope/0/schedule.ac_t_max 8677 for 0 from ['Controller/0/tSetMax']
+	Registered input: Envelope/0/schedule.ac_t_min 8677 for 0 from ['Controller/0/tSetMin']
+	Registered input: Envelope/0/schedule.ac_t_max 8680 for 0 from ['Controller/0/tSetMax']
+	Registered input: Envelope/0/schedule.ac_t_min 8680 for 0 from ['Controller/0/tSetMin']
+	Registered input: Envelope/0/schedule.ac_t_max 8692 for 0 from ['Controller/0/tSetMax']
+	Registered input: Envelope/0/schedule.ac_t_min 8692 for 0 from ['Controller/0/tSetMin']
+	Registered input: Envelope/0/schedule.ac_t_max 73086 for 0 from ['Controller/0/tSetMax']
+	Registered input: Envelope/0/schedule.ac_t_min 73086 for 0 from ['Controller/0/tSetMin']
+	Registered input: Envelope/0/zone.vent_q 8674 for 0 from ['Hvac/0/actual_power 8674']
+	Registered input: Envelope/0/zone.vent_q 8677 for 0 from ['Hvac/0/actual_power 8677']
+	Registered input: Envelope/0/zone.vent_q 8680 for 0 from ['Hvac/0/actual_power 8680']
+	Registered input: Envelope/0/zone.vent_q 8692 for 0 from ['Hvac/0/actual_power 8692']
+	Registered input: Envelope/0/zone.vent_q 73086 for 0 from ['Hvac/0/actual_power 73086']
+testetstetste {}
+ {0: {'zone.load_s 8674': <helics.HelicsPublication(name = "Envelope/0/zone.load_s 8674", type = "double", units = "W", info = "") at 0x18df0c65e80>, 'zone.load_s 8677': <helics.HelicsPublication(name = "Envelope/0/zone.load_s 8677", type = "double", units = "W", info = "") at 0x18df0ccc6d0>, 'zone.load_s 8680': <helics.HelicsPublication(name = "Envelope/0/zone.load_s 8680", type = "double", units = "W", info = "") at 0x18df0ccc4c0>, 'zone.load_s 8692': <helics.HelicsPublication(name = "Envelope/0/zone.load_s 8692", type = "double", units = "W", info = "") at 0x18df0ccc8b0>, 'zone.load_s 73086': <helics.HelicsPublication(name = "Envelope/0/zone.load_s 73086", type = "double", units = "W", info = "") at 0x18df0cccb80>, 'zone.fresh_vent_load_s 8674': <helics.HelicsPublication(name = "Envelope/0/zone.fresh_vent_load_s 8674", type = "double", units = "W", info = "") at 0x18df0ccc9a0>, 'zone.fresh_vent_load_s 8677': <helics.HelicsPublication(name = "Envelope/0/zone.fresh_vent_load_s 8677", type = "double", units = "W", info = "") at 0x18df0cccb20>, 'zone.fresh_vent_load_s 8680': <helics.HelicsPublication(name = "Envelope/0/zone.fresh_vent_load_s 8680", type = "double", units = "W", info = "") at 0x18df0ccce50>, 'zone.fresh_vent_load_s 8692': <helics.HelicsPublication(name = "Envelope/0/zone.fresh_vent_load_s 8692", type = "double", units = "W", info = "") at 0x18df0ccc4f0>, 'zone.fresh_vent_load_s 73086': <helics.HelicsPublication(name = "Envelope/0/zone.fresh_vent_load_s 73086", type = "double", units = "W", info = "") at 0x18df0cccf40>, 'zone.ac_t 8674': <helics.HelicsPublication(name = "Envelope/0/zone.ac_t 8674", type = "double", units = "C", info = "") at 0x18df0ccf070>, 'zone.ac_t 8677': <helics.HelicsPublication(name = "Envelope/0/zone.ac_t 8677", type = "double", units = "C", info = "") at 0x18df0ccf0d0>, 'zone.ac_t 8680': <helics.HelicsPublication(name = "Envelope/0/zone.ac_t 8680", type = "double", units = "C", info = "") at 0x18df0ccf2e0>, 'zone.ac_t 8692': <helics.HelicsPublication(name = "Envelope/0/zone.ac_t 8692", type = "double", units = "C", info = "") at 0x18df0ccf3a0>, 'zone.ac_t 73086': <helics.HelicsPublication(name = "Envelope/0/zone.ac_t 73086", type = "double", units = "C", info = "") at 0x18df0ccf7f0>}}
+{0: {'schedule.ac_t_max 8674': <helics.HelicsInput(name = "Envelope/0/schedule.ac_t_max 8674", units = "C", injection_units = "", publication_type = "", type = "double", target = "Controller/0/tSetMax", info = "") at 0x18df0ccf640>, 'schedule.ac_t_min 8674': <helics.HelicsInput(name = "Envelope/0/schedule.ac_t_min 8674", units = "C", injection_units = "", publication_type = "", type = "double", target = "Controller/0/tSetMin", info = "") at 0x18df0ccf700>, 'schedule.ac_t_max 8677': <helics.HelicsInput(name = "Envelope/0/schedule.ac_t_max 8677", units = "C", injection_units = "", publication_type = "", type = "double", target = "Controller/0/tSetMax", info = "") at 0x18df0ccf7c0>, 'schedule.ac_t_min 8677': <helics.HelicsInput(name = "Envelope/0/schedule.ac_t_min 8677", units = "C", injection_units = "", publication_type = "", type = "double", target = "Controller/0/tSetMin", info = "") at 0x18df0ccfac0>, 'schedule.ac_t_max 8680': <helics.HelicsInput(name = "Envelope/0/schedule.ac_t_max 8680", units = "C", injection_units = "", publication_type = "", type = "double", target = "Controller/0/tSetMax", info = "") at 0x18df0ccfaf0>, 'schedule.ac_t_min 8680': <helics.HelicsInput(name = "Envelope/0/schedule.ac_t_min 8680", units = "C", injection_units = "", publication_type = "", type = "double", target = "Controller/0/tSetMin", info = "") at 0x18df0ccf940>, 'schedule.ac_t_max 8692': <helics.HelicsInput(name = "Envelope/0/schedule.ac_t_max 8692", units = "C", injection_units = "", publication_type = "", type = "double", target = "Controller/0/tSetMax", info = "") at 0x18df0ccfc10>, 'schedule.ac_t_min 8692': <helics.HelicsInput(name = "Envelope/0/schedule.ac_t_min 8692", units = "C", injection_units = "", publication_type = "", type = "double", target = "Controller/0/tSetMin", info = "") at 0x18df0ccfd90>, 'schedule.ac_t_max 73086': <helics.HelicsInput(name = "Envelope/0/schedule.ac_t_max 73086", units = "C", injection_units = "", publication_type = "", type = "double", target = "Controller/0/tSetMax", info = "") at 0x18df0ccfe50>, 'schedule.ac_t_min 73086': <helics.HelicsInput(name = "Envelope/0/schedule.ac_t_min 73086", units = "C", injection_units = "", publication_type = "", type = "double", target = "Controller/0/tSetMin", info = "") at 0x18df0ccff10>, 'zone.vent_q 8674': <helics.HelicsInput(name = "Envelope/0/zone.vent_q 8674", units = "W", injection_units = "", publication_type = "", type = "double", target = "Hvac/0/actual_power 8674", info = "") at 0x18df0ccfee0>, 'zone.vent_q 8677': <helics.HelicsInput(name = "Envelope/0/zone.vent_q 8677", units = "W", injection_units = "", publication_type = "", type = "double", target = "Hvac/0/actual_power 8677", info = "") at 0x18df0cd7160>, 'zone.vent_q 8680': <helics.HelicsInput(name = "Envelope/0/zone.vent_q 8680", units = "W", injection_units = "", publication_type = "", type = "double", target = "Hvac/0/actual_power 8680", info = "") at 0x18df0cd70d0>, 'zone.vent_q 8692': <helics.HelicsInput(name = "Envelope/0/zone.vent_q 8692", units = "W", injection_units = "", publication_type = "", type = "double", target = "Hvac/0/actual_power 8692", info = "") at 0x18df0cd7310>, 'zone.vent_q 73086': <helics.HelicsInput(name = "Envelope/0/zone.vent_q 73086", units = "W", injection_units = "", publication_type = "", type = "double", target = "Hvac/0/actual_power 73086", info = "") at 0x18df0cd7280>}}
+	Registering connections ended for fed Envelope list of output vars ['zone.load_s 8674', 'zone.load_s 8677', 'zone.load_s 8680', 'zone.load_s 8692', 'zone.load_s 73086', 'zone.fresh_vent_load_s 8674', 'zone.fresh_vent_load_s 8677', 'zone.fresh_vent_load_s 8680', 'zone.fresh_vent_load_s 8692', 'zone.fresh_vent_load_s 73086', 'zone.ac_t 8674', 'zone.ac_t 8677', 'zone.ac_t 8680', 'zone.ac_t 8692', 'zone.ac_t 73086'], list for in_vars['schedule.ac_t_max 8674', 'schedule.ac_t_min 8674', 'schedule.ac_t_max 8677', 'schedule.ac_t_min 8677', 'schedule.ac_t_max 8680', 'schedule.ac_t_min 8680', 'schedule.ac_t_max 8692', 'schedule.ac_t_min 8692', 'schedule.ac_t_max 73086', 'schedule.ac_t_min 73086', 'zone.vent_q 8674', 'zone.vent_q 8677', 'zone.vent_q 8680', 'zone.vent_q 8692', 'zone.vent_q 73086']
+		Initial state for Model Envelope.0 set as follow: {'inputs': {}, 'outputs': {}, 'params': {}}
+		Memory attrs are not specified in the init_config. everything will be memorized.
+		Memory instantiated for Model Envelope.0!
+		Model Envelope.0 instantiated with the following kwargs: {'model_name': 'Envelope.0', 'inputs': {'schedule.ac_t_max 8674': 0.0, 'schedule.ac_t_min 8674': 0.0, 'schedule.ac_t_max 8677': 0.0, 'schedule.ac_t_min 8677': 0.0, 'schedule.ac_t_max 8680': 0.0, 'schedule.ac_t_min 8680': 0.0, 'schedule.ac_t_max 8692': 0.0, 'schedule.ac_t_min 8692': 0.0, 'schedule.ac_t_max 73086': 0.0, 'schedule.ac_t_min 73086': 0.0, 'zone.vent_q 8674': 0.0, 'zone.vent_q 8677': 0.0, 'zone.vent_q 8680': 0.0, 'zone.vent_q 8692': 0.0, 'zone.vent_q 73086': 0.0}, 'outputs': {'zone.load_s 8674': 0.0, 'zone.load_s 8677': 0.0, 'zone.load_s 8680': 0.0, 'zone.load_s 8692': 0.0, 'zone.load_s 73086': 0.0, 'zone.fresh_vent_load_s 8674': 0.0, 'zone.fresh_vent_load_s 8677': 0.0, 'zone.fresh_vent_load_s 8680': 0.0, 'zone.fresh_vent_load_s 8692': 0.0, 'zone.fresh_vent_load_s 73086': 0.0, 'zone.ac_t 8674': 0.0, 'zone.ac_t 8677': 0.0, 'zone.ac_t 8680': 0.0, 'zone.ac_t 8692': 0.0, 'zone.ac_t 73086': 0.0}, 'params': {}, 'required': ['zone.load_s', 'zone.fresh_vent_load_s', 'zone.ac_t'], 'zone_ids': [8674, 8677, 8680, 8692, 73086], 'init_state': {}, 'casefile': 'C:\\Users\\Pietro\\Code\\Cosim_RL\\models\\model_Dest\\DestKernel\\5rooms.db', 'executable': 'C:\\Users\\Pietro\\Code\\Cosim_RL\\models\\model_Dest\\DestKernel\\bterminal.exe', 'silent': True, 'model_script': 'model_Dest/Envelope_noiter.py', 'class_name': 'Envelope', 'n_instances': 1, 'RL_training': True, 'mem_attrs': [], 'real_period': 3600, 'iter_type': 'no_iter', 'end_time': 86400.0}!
+## args for run ['C:\\Users\\Pietro\\Code\\Cosim_RL\\models\\model_Dest\\DestKernel\\bterminal.exe', '-q', 'C:\\Users\\Pietro\\Code\\Cosim_RL\\models\\model_Dest\\DestKernel\\5rooms.db'] ##
+!!command: ['require zone.ac_t zone.load_s zone.fresh_vent_load_s', 'prepare']
+!!command: ['out zone.ac_t [8674, 8677, 8680, 8692, 73086]', 'out zone.load_s [8674, 8677, 8680, 8692, 73086]', 'out zone.fresh_vent_load_s [8674, 8677, 8680, 8692, 73086]']
+	Models instantiation from fed: Envelope succesfull!
+	Model instances names: ['Envelope.0']
+	Entered HELICS execution mode
+************* Requesting time 1800.0 -- Granted time 1800.0 **************
+	current timestep: 1800.0
+	Model_0 received input schedule.ac_t_max 8674=16.0
+	Model_0 received input schedule.ac_t_min 8674=16.0
+	Model_0 received input schedule.ac_t_max 8677=16.0
+	Model_0 received input schedule.ac_t_min 8677=16.0
+	Model_0 received input schedule.ac_t_max 8680=16.0
+	Model_0 received input schedule.ac_t_min 8680=16.0
+	Model_0 received input schedule.ac_t_max 8692=16.0
+	Model_0 received input schedule.ac_t_min 8692=16.0
+	Model_0 received input schedule.ac_t_max 73086=16.0
+	Model_0 received input schedule.ac_t_min 73086=16.0
+ts: 1800 outputs of module 1800, real_period = 3600
+!!command: ['in schedule.ac_t_max [8674, 8677, 8680, 8692, 73086] = [16.0, 16.0, 16.0, 16.0, 16.0]', 'in schedule.ac_t_min [8674, 8677, 8680, 8692, 73086] = [16.0, 16.0, 16.0, 16.0, 16.0]', 'run 0']
+!!!!read line 0
+ results of step : 5rooms> 5rooms> 5rooms> 5rooms> 5rooms> 5rooms> 5rooms> 5rooms> zone.ac_t [8674,8677,8680,8692,73086]=[16,16,16,16,16]
+
+!!!!read line 1
+ results of step : zone.fresh_vent_load_s [8674,8677,8680,8692,73086]=[1.0516512,0.32864869,0.24274392,0.46622262,0.19458819]
+
+!!!!read line 2
+ results of step : zone.load_s [8674,8677,8680,8692,73086]=[-4.2373425,-2.0248195,-1.6187543,-3.0099038,-1.4497795]
+
+	Model_0 published output zone.load_s 8674=-15254.432999999999
+	Model_0 published output zone.load_s 8677=-7289.3502
+	Model_0 published output zone.load_s 8680=-5827.51548
+	Model_0 published output zone.load_s 8692=-10835.65368
+	Model_0 published output zone.load_s 73086=-5219.2062
+	Model_0 published output zone.fresh_vent_load_s 8674=3785.94432
+	Model_0 published output zone.fresh_vent_load_s 8677=1183.1352840000002
+	Model_0 published output zone.fresh_vent_load_s 8680=873.878112
+	Model_0 published output zone.fresh_vent_load_s 8692=1678.4014319999999
+	Model_0 published output zone.fresh_vent_load_s 73086=700.517484
+	Model_0 published output zone.ac_t 8674=16.0
+	Model_0 published output zone.ac_t 8677=16.0
+	Model_0 published output zone.ac_t 8680=16.0
+	Model_0 published output zone.ac_t 8692=16.0
+	Model_0 published output zone.ac_t 73086=16.0
+************* Requesting time 3600.0 -- Granted time 3600.0 **************
+	current timestep: 3600.0
+	Model_0 received input schedule.ac_t_max 8674=16.0
+	Model_0 received input schedule.ac_t_min 8674=16.0
+	Model_0 received input schedule.ac_t_max 8677=16.0
+	Model_0 received input schedule.ac_t_min 8677=16.0
+	Model_0 received input schedule.ac_t_max 8680=16.0
+	Model_0 received input schedule.ac_t_min 8680=16.0
+	Model_0 received input schedule.ac_t_max 8692=16.0
+	Model_0 received input schedule.ac_t_min 8692=16.0
+	Model_0 received input schedule.ac_t_max 73086=16.0
+	Model_0 received input schedule.ac_t_min 73086=16.0
+	Model_0 received input zone.vent_q 8674=0.0
+	Model_0 received input zone.vent_q 8677=0.0
+	Model_0 received input zone.vent_q 8680=0.0
+	Model_0 received input zone.vent_q 8692=0.0
+	Model_0 received input zone.vent_q 73086=0.0
+ts: 3600 outputs of module 0, real_period = 3600
+!!command: ['in zone.vent_q [8674, 8677, 8680, 8692, 73086] = [0.0, 0.0, 0.0, 0.0, 0.0]', 'in zone.ac_on_off [8674, 8677, 8680, 8692, 73086] = [0, 0, 0, 0, 0]', 'run 1']
+!!!!read line 0
+ results of step : 5rooms> 5rooms> 5rooms> zone.ac_t [8674,8677,8680,8692,73086]=[17.676554,18.177919,18.312105,18.398993,18.493097]
+
+!!!!read line 1
+ results of step : zone.fresh_vent_load_s [8674,8677,8680,8692,73086]=[0,0,0,0,0]
+
+!!!!read line 2
+ results of step : zone.load_s [8674,8677,8680,8692,73086]=[0,0,0,0,0]
+
+	Model_0 published output zone.load_s 8674=0.0
+	Model_0 published output zone.load_s 8677=0.0
+	Model_0 published output zone.load_s 8680=0.0
+	Model_0 published output zone.load_s 8692=0.0
+	Model_0 published output zone.load_s 73086=0.0
+	Model_0 published output zone.fresh_vent_load_s 8674=0.0
+	Model_0 published output zone.fresh_vent_load_s 8677=0.0
+	Model_0 published output zone.fresh_vent_load_s 8680=0.0
+	Model_0 published output zone.fresh_vent_load_s 8692=0.0
+	Model_0 published output zone.fresh_vent_load_s 73086=0.0
+	Model_0 published output zone.ac_t 8674=17.676554
+	Model_0 published output zone.ac_t 8677=18.177919
+	Model_0 published output zone.ac_t 8680=18.312105
+	Model_0 published output zone.ac_t 8692=18.398993
+	Model_0 published output zone.ac_t 73086=18.493097
+************* Requesting time 5400.0 -- Granted time 5400.0 **************
+	current timestep: 5400.0
+	Model_0 received input schedule.ac_t_max 8674=16.0
+	Model_0 received input schedule.ac_t_min 8674=16.0
+	Model_0 received input schedule.ac_t_max 8677=16.0
+	Model_0 received input schedule.ac_t_min 8677=16.0
+	Model_0 received input schedule.ac_t_max 8680=16.0
+	Model_0 received input schedule.ac_t_min 8680=16.0
+	Model_0 received input schedule.ac_t_max 8692=16.0
+	Model_0 received input schedule.ac_t_min 8692=16.0
+	Model_0 received input schedule.ac_t_max 73086=16.0
+	Model_0 received input schedule.ac_t_min 73086=16.0
+ts: 5400 outputs of module 1800, real_period = 3600
+!!command: ['in schedule.ac_t_max [8674, 8677, 8680, 8692, 73086] = [16.0, 16.0, 16.0, 16.0, 16.0]', 'in schedule.ac_t_min [8674, 8677, 8680, 8692, 73086] = [16.0, 16.0, 16.0, 16.0, 16.0]', 'run 0']
+!!!!read line 0
+ results of step : 5rooms> 5rooms> 5rooms> zone.ac_t [8674,8677,8680,8692,73086]=[16,16,16,16,16]
+
+!!!!read line 1
+ results of step : zone.fresh_vent_load_s [8674,8677,8680,8692,73086]=[1.0571389,0.33036365,0.24401061,0.46865547,0.1956036]
+
+!!!!read line 2
+ results of step : zone.load_s [8674,8677,8680,8692,73086]=[-2.8732143,-1.5568697,-1.2991823,-2.5036046,-1.2204537]
+
+	Model_0 published output zone.load_s 8674=-10343.571479999999
+	Model_0 published output zone.load_s 8677=-5604.73092
+	Model_0 published output zone.load_s 8680=-4677.05628
+	Model_0 published output zone.load_s 8692=-9012.976560000001
+	Model_0 published output zone.load_s 73086=-4393.63332
+	Model_0 published output zone.fresh_vent_load_s 8674=3805.70004
+	Model_0 published output zone.fresh_vent_load_s 8677=1189.30914
+	Model_0 published output zone.fresh_vent_load_s 8680=878.438196
+	Model_0 published output zone.fresh_vent_load_s 8692=1687.1596920000002
+	Model_0 published output zone.fresh_vent_load_s 73086=704.17296
+	Model_0 published output zone.ac_t 8674=16.0
+	Model_0 published output zone.ac_t 8677=16.0
+	Model_0 published output zone.ac_t 8680=16.0
+	Model_0 published output zone.ac_t 8692=16.0
+	Model_0 published output zone.ac_t 73086=16.0
+************* Requesting time 7200.0 -- Granted time 7200.0 **************
+	current timestep: 7200.0
+	Model_0 received input schedule.ac_t_max 8674=16.0
+	Model_0 received input schedule.ac_t_min 8674=16.0
+	Model_0 received input schedule.ac_t_max 8677=16.0
+	Model_0 received input schedule.ac_t_min 8677=16.0
+	Model_0 received input schedule.ac_t_max 8680=16.0
+	Model_0 received input schedule.ac_t_min 8680=16.0
+	Model_0 received input schedule.ac_t_max 8692=16.0
+	Model_0 received input schedule.ac_t_min 8692=16.0
+	Model_0 received input schedule.ac_t_max 73086=16.0
+	Model_0 received input schedule.ac_t_min 73086=16.0
+	Model_0 received input zone.vent_q 8674=0.0
+	Model_0 received input zone.vent_q 8677=0.0
+	Model_0 received input zone.vent_q 8680=0.0
+	Model_0 received input zone.vent_q 8692=0.0
+	Model_0 received input zone.vent_q 73086=0.0
+ts: 7200 outputs of module 0, real_period = 3600
+!!command: ['in zone.vent_q [8674, 8677, 8680, 8692, 73086] = [0.0, 0.0, 0.0, 0.0, 0.0]', 'in zone.ac_on_off [8674, 8677, 8680, 8692, 73086] = [0, 0, 0, 0, 0]', 'run 1']
+!!!!read line 0
+ results of step : 5rooms> 5rooms> 5rooms> zone.ac_t [8674,8677,8680,8692,73086]=[16.955759,17.574859,17.773001,17.919198,18.035586]
+
+!!!!read line 1
+ results of step : zone.fresh_vent_load_s [8674,8677,8680,8692,73086]=[0,0,0,0,0]
+
+!!!!read line 2
+ results of step : zone.load_s [8674,8677,8680,8692,73086]=[0,0,0,0,0]
+
+	Model_0 published output zone.load_s 8674=0.0
+	Model_0 published output zone.load_s 8677=0.0
+	Model_0 published output zone.load_s 8680=0.0
+	Model_0 published output zone.load_s 8692=0.0
+	Model_0 published output zone.load_s 73086=0.0
+	Model_0 published output zone.fresh_vent_load_s 8674=0.0
+	Model_0 published output zone.fresh_vent_load_s 8677=0.0
+	Model_0 published output zone.fresh_vent_load_s 8680=0.0
+	Model_0 published output zone.fresh_vent_load_s 8692=0.0
+	Model_0 published output zone.fresh_vent_load_s 73086=0.0
+	Model_0 published output zone.ac_t 8674=16.955759
+	Model_0 published output zone.ac_t 8677=17.574859
+	Model_0 published output zone.ac_t 8680=17.773001
+	Model_0 published output zone.ac_t 8692=17.919198
+	Model_0 published output zone.ac_t 73086=18.035586
+************* Requesting time 9000.0 -- Granted time 9000.0 **************
+	current timestep: 9000.0
+	Model_0 received input schedule.ac_t_max 8674=16.0
+	Model_0 received input schedule.ac_t_min 8674=16.0
+	Model_0 received input schedule.ac_t_max 8677=16.0
+	Model_0 received input schedule.ac_t_min 8677=16.0
+	Model_0 received input schedule.ac_t_max 8680=16.0
+	Model_0 received input schedule.ac_t_min 8680=16.0
+	Model_0 received input schedule.ac_t_max 8692=16.0
+	Model_0 received input schedule.ac_t_min 8692=16.0
+	Model_0 received input schedule.ac_t_max 73086=16.0
+	Model_0 received input schedule.ac_t_min 73086=16.0
+ts: 9000 outputs of module 1800, real_period = 3600
+!!command: ['in schedule.ac_t_max [8674, 8677, 8680, 8692, 73086] = [16.0, 16.0, 16.0, 16.0, 16.0]', 'in schedule.ac_t_min [8674, 8677, 8680, 8692, 73086] = [16.0, 16.0, 16.0, 16.0, 16.0]', 'run 0']
+!!!!read line 0
+ results of step : 5rooms> 5rooms> 5rooms> zone.ac_t [8674,8677,8680,8692,73086]=[16,16,16,16,16]
+
+!!!!read line 1
+ results of step : zone.fresh_vent_load_s [8674,8677,8680,8692,73086]=[1.0676155,0.33363766,0.24642884,0.4733,0.19754209]
+
+!!!!read line 2
+ results of step : zone.load_s [8674,8677,8680,8692,73086]=[-1.7405604,-1.1536761,-1.0261745,-2.0674011,-1.0287221]
+
+	Model_0 published output zone.load_s 8674=-6266.01744
+	Model_0 published output zone.load_s 8677=-4153.23396
+	Model_0 published output zone.load_s 8680=-3694.2282
+	Model_0 published output zone.load_s 8692=-7442.64396
+	Model_0 published output zone.load_s 73086=-3703.39956
+	Model_0 published output zone.fresh_vent_load_s 8674=3843.4158
+	Model_0 published output zone.fresh_vent_load_s 8677=1201.095576
+	Model_0 published output zone.fresh_vent_load_s 8680=887.143824
+	Model_0 published output zone.fresh_vent_load_s 8692=1703.8799999999999
+	Model_0 published output zone.fresh_vent_load_s 73086=711.151524
+	Model_0 published output zone.ac_t 8674=16.0
+	Model_0 published output zone.ac_t 8677=16.0
+	Model_0 published output zone.ac_t 8680=16.0
+	Model_0 published output zone.ac_t 8692=16.0
+	Model_0 published output zone.ac_t 73086=16.0
+************* Requesting time 10800.0 -- Granted time 10800.0 **************
+	current timestep: 10800.0
+	Model_0 received input schedule.ac_t_max 8674=16.0
+	Model_0 received input schedule.ac_t_min 8674=16.0
+	Model_0 received input schedule.ac_t_max 8677=16.0
+	Model_0 received input schedule.ac_t_min 8677=16.0
+	Model_0 received input schedule.ac_t_max 8680=16.0
+	Model_0 received input schedule.ac_t_min 8680=16.0
+	Model_0 received input schedule.ac_t_max 8692=16.0
+	Model_0 received input schedule.ac_t_min 8692=16.0
+	Model_0 received input schedule.ac_t_max 73086=16.0
+	Model_0 received input schedule.ac_t_min 73086=16.0
+	Model_0 received input zone.vent_q 8674=0.0
+	Model_0 received input zone.vent_q 8677=0.0
+	Model_0 received input zone.vent_q 8680=0.0
+	Model_0 received input zone.vent_q 8692=0.0
+	Model_0 received input zone.vent_q 73086=0.0
+ts: 10800 outputs of module 0, real_period = 3600
+!!command: ['in zone.vent_q [8674, 8677, 8680, 8692, 73086] = [0.0, 0.0, 0.0, 0.0, 0.0]', 'in zone.ac_on_off [8674, 8677, 8680, 8692, 73086] = [0, 0, 0, 0, 0]', 'run 1']
+!!!!read line 0
+ results of step : 5rooms> 5rooms> 5rooms> zone.ac_t [8674,8677,8680,8692,73086]=[16.354157,17.052946,17.310204,17.503426,17.650911]
+
+!!!!read line 1
+ results of step : zone.fresh_vent_load_s [8674,8677,8680,8692,73086]=[0,0,0,0,0]
+
+!!!!read line 2
+ results of step : zone.load_s [8674,8677,8680,8692,73086]=[0,0,0,0,0]
+
+	Model_0 published output zone.load_s 8674=0.0
+	Model_0 published output zone.load_s 8677=0.0
+	Model_0 published output zone.load_s 8680=0.0
+	Model_0 published output zone.load_s 8692=0.0
+	Model_0 published output zone.load_s 73086=0.0
+	Model_0 published output zone.fresh_vent_load_s 8674=0.0
+	Model_0 published output zone.fresh_vent_load_s 8677=0.0
+	Model_0 published output zone.fresh_vent_load_s 8680=0.0
+	Model_0 published output zone.fresh_vent_load_s 8692=0.0
+	Model_0 published output zone.fresh_vent_load_s 73086=0.0
+	Model_0 published output zone.ac_t 8674=16.354157
+	Model_0 published output zone.ac_t 8677=17.052946
+	Model_0 published output zone.ac_t 8680=17.310204
+	Model_0 published output zone.ac_t 8692=17.503426
+	Model_0 published output zone.ac_t 73086=17.650911
+************* Requesting time 12600.0 -- Granted time 12600.0 **************
+	current timestep: 12600.0
+	Model_0 received input schedule.ac_t_max 8674=16.0
+	Model_0 received input schedule.ac_t_min 8674=16.0
+	Model_0 received input schedule.ac_t_max 8677=16.0
+	Model_0 received input schedule.ac_t_min 8677=16.0
+	Model_0 received input schedule.ac_t_max 8680=16.0
+	Model_0 received input schedule.ac_t_min 8680=16.0
+	Model_0 received input schedule.ac_t_max 8692=16.0
+	Model_0 received input schedule.ac_t_min 8692=16.0
+	Model_0 received input schedule.ac_t_max 73086=16.0
+	Model_0 received input schedule.ac_t_min 73086=16.0
+ts: 12600 outputs of module 1800, real_period = 3600
+!!command: ['in schedule.ac_t_max [8674, 8677, 8680, 8692, 73086] = [16.0, 16.0, 16.0, 16.0, 16.0]', 'in schedule.ac_t_min [8674, 8677, 8680, 8692, 73086] = [16.0, 16.0, 16.0, 16.0, 16.0]', 'run 0']
+!!!!read line 0
+ results of step : 5rooms> 5rooms> 5rooms> zone.ac_t [8674,8677,8680,8692,73086]=[16,16,16,16,16]
+
+!!!!read line 1
+ results of step : zone.fresh_vent_load_s [8674,8677,8680,8692,73086]=[1.0870721,0.33971797,0.25091983,0.48192556,0.20114216]
+
+!!!!read line 2
+ results of step : zone.load_s [8674,8677,8680,8692,73086]=[-0.77474449,-0.79813825,-0.78792151,-1.6862681,-0.86289642]
+
+	Model_0 published output zone.load_s 8674=-2789.080164
+	Model_0 published output zone.load_s 8677=-2873.2977
+	Model_0 published output zone.load_s 8680=-2836.517436
+	Model_0 published output zone.load_s 8692=-6070.56516
+	Model_0 published output zone.load_s 73086=-3106.427112
+	Model_0 published output zone.fresh_vent_load_s 8674=3913.4595600000002
+	Model_0 published output zone.fresh_vent_load_s 8677=1222.984692
+	Model_0 published output zone.fresh_vent_load_s 8680=903.3113880000001
+	Model_0 published output zone.fresh_vent_load_s 8692=1734.932016
+	Model_0 published output zone.fresh_vent_load_s 73086=724.111776
+	Model_0 published output zone.ac_t 8674=16.0
+	Model_0 published output zone.ac_t 8677=16.0
+	Model_0 published output zone.ac_t 8680=16.0
+	Model_0 published output zone.ac_t 8692=16.0
+	Model_0 published output zone.ac_t 73086=16.0
+************* Requesting time 14400.0 -- Granted time 14400.0 **************
+	current timestep: 14400.0
+	Model_0 received input schedule.ac_t_max 8674=16.0
+	Model_0 received input schedule.ac_t_min 8674=16.0
+	Model_0 received input schedule.ac_t_max 8677=16.0
+	Model_0 received input schedule.ac_t_min 8677=16.0
+	Model_0 received input schedule.ac_t_max 8680=16.0
+	Model_0 received input schedule.ac_t_min 8680=16.0
+	Model_0 received input schedule.ac_t_max 8692=16.0
+	Model_0 received input schedule.ac_t_min 8692=16.0
+	Model_0 received input schedule.ac_t_max 73086=16.0
+	Model_0 received input schedule.ac_t_min 73086=16.0
+	Model_0 received input zone.vent_q 8674=1124.3793960000003
+	Model_0 received input zone.vent_q 8677=0.0
+	Model_0 received input zone.vent_q 8680=0.0
+	Model_0 received input zone.vent_q 8692=0.0
+	Model_0 received input zone.vent_q 73086=0.0
+ts: 14400 outputs of module 0, real_period = 3600
+!!command: ['in zone.vent_q [8674, 8677, 8680, 8692, 73086] = [1124.3793960000003, 0.0, 0.0, 0.0, 0.0]', 'in zone.ac_on_off [8674, 8677, 8680, 8692, 73086] = [0, 0, 0, 0, 0]', 'run 1']
+!!!!read line 0
+ results of step : 5rooms> 5rooms> 5rooms> zone.ac_t [8674,8677,8680,8692,73086]=[16.000002,16.588621,16.902322,17.135837,17.314393]
+
+!!!!read line 1
+ results of step : zone.fresh_vent_load_s [8674,8677,8680,8692,73086]=[0,0,0,0,0]
+
+!!!!read line 2
+ results of step : zone.load_s [8674,8677,8680,8692,73086]=[0,0,0,0,0]
+
+	Model_0 published output zone.load_s 8674=0.0
+	Model_0 published output zone.load_s 8677=0.0
+	Model_0 published output zone.load_s 8680=0.0
+	Model_0 published output zone.load_s 8692=0.0
+	Model_0 published output zone.load_s 73086=0.0
+	Model_0 published output zone.fresh_vent_load_s 8674=0.0
+	Model_0 published output zone.fresh_vent_load_s 8677=0.0
+	Model_0 published output zone.fresh_vent_load_s 8680=0.0
+	Model_0 published output zone.fresh_vent_load_s 8692=0.0
+	Model_0 published output zone.fresh_vent_load_s 73086=0.0
+	Model_0 published output zone.ac_t 8674=16.000002
+	Model_0 published output zone.ac_t 8677=16.588621
+	Model_0 published output zone.ac_t 8680=16.902322
+	Model_0 published output zone.ac_t 8692=17.135837
+	Model_0 published output zone.ac_t 73086=17.314393
+************* Requesting time 16200.0 -- Granted time 16200.0 **************
+	current timestep: 16200.0
+	Model_0 received input schedule.ac_t_max 8674=16.0
+	Model_0 received input schedule.ac_t_min 8674=16.0
+	Model_0 received input schedule.ac_t_max 8677=16.0
+	Model_0 received input schedule.ac_t_min 8677=16.0
+	Model_0 received input schedule.ac_t_max 8680=16.0
+	Model_0 received input schedule.ac_t_min 8680=16.0
+	Model_0 received input schedule.ac_t_max 8692=16.0
+	Model_0 received input schedule.ac_t_min 8692=16.0
+	Model_0 received input schedule.ac_t_max 73086=16.0
+	Model_0 received input schedule.ac_t_min 73086=16.0
+ts: 16200 outputs of module 1800, real_period = 3600
+!!command: ['in schedule.ac_t_max [8674, 8677, 8680, 8692, 73086] = [16.0, 16.0, 16.0, 16.0, 16.0]', 'in schedule.ac_t_min [8674, 8677, 8680, 8692, 73086] = [16.0, 16.0, 16.0, 16.0, 16.0]', 'run 0']
+!!!!read line 0
+ results of step : 5rooms> 5rooms> 5rooms> zone.ac_t [8674,8677,8680,8692,73086]=[16,16,16,16,16]
+
+!!!!read line 1
+ results of step : zone.fresh_vent_load_s [8674,8677,8680,8692,73086]=[1.1120164,0.34751325,0.25667752,0.49298397,0.20575763]
+
+!!!!read line 2
+ results of step : zone.load_s [8674,8677,8680,8692,73086]=[-0.036165398,-0.47801952,-0.57499721,-1.3468227,-0.71477741]
+
+	Model_0 published output zone.load_s 8674=-130.1954328
+	Model_0 published output zone.load_s 8677=-1720.8702719999999
+	Model_0 published output zone.load_s 8680=-2069.9899560000003
+	Model_0 published output zone.load_s 8692=-4848.56172
+	Model_0 published output zone.load_s 73086=-2573.198676
+	Model_0 published output zone.fresh_vent_load_s 8674=4003.2590399999995
+	Model_0 published output zone.fresh_vent_load_s 8677=1251.0477
+	Model_0 published output zone.fresh_vent_load_s 8680=924.0390719999999
+	Model_0 published output zone.fresh_vent_load_s 8692=1774.742292
+	Model_0 published output zone.fresh_vent_load_s 73086=740.727468
+	Model_0 published output zone.ac_t 8674=16.0
+	Model_0 published output zone.ac_t 8677=16.0
+	Model_0 published output zone.ac_t 8680=16.0
+	Model_0 published output zone.ac_t 8692=16.0
+	Model_0 published output zone.ac_t 73086=16.0
+************* Requesting time 18000.0 -- Granted time 18000.0 **************
+	current timestep: 18000.0
+	Model_0 received input schedule.ac_t_max 8674=16.0
+	Model_0 received input schedule.ac_t_min 8674=16.0
+	Model_0 received input schedule.ac_t_max 8677=16.0
+	Model_0 received input schedule.ac_t_min 8677=16.0
+	Model_0 received input schedule.ac_t_max 8680=16.0
+	Model_0 received input schedule.ac_t_min 8680=16.0
+	Model_0 received input schedule.ac_t_max 8692=16.0
+	Model_0 received input schedule.ac_t_min 8692=16.0
+	Model_0 received input schedule.ac_t_max 73086=16.0
+	Model_0 received input schedule.ac_t_min 73086=16.0
+	Model_0 received input zone.vent_q 8674=3873.0636071999993
+	Model_0 received input zone.vent_q 8677=0.0
+	Model_0 received input zone.vent_q 8680=0.0
+	Model_0 received input zone.vent_q 8692=0.0
+	Model_0 received input zone.vent_q 73086=0.0
+ts: 18000 outputs of module 0, real_period = 3600
+!!command: ['in zone.vent_q [8674, 8677, 8680, 8692, 73086] = [3873.0636071999993, 0.0, 0.0, 0.0, 0.0]', 'in zone.ac_on_off [8674, 8677, 8680, 8692, 73086] = [0, 0, 0, 0, 0]', 'run 1']
+!!!!read line 0
+ results of step : 5rooms> 5rooms> 5rooms> zone.ac_t [8674,8677,8680,8692,73086]=[16.000001,16.167573,16.534871,16.80527,17.011027]
+
+!!!!read line 1
+ results of step : zone.fresh_vent_load_s [8674,8677,8680,8692,73086]=[0,0,0,0,0]
+
+!!!!read line 2
+ results of step : zone.load_s [8674,8677,8680,8692,73086]=[0,0,0,0,0]
+
+	Model_0 published output zone.load_s 8674=0.0
+	Model_0 published output zone.load_s 8677=0.0
+	Model_0 published output zone.load_s 8680=0.0
+	Model_0 published output zone.load_s 8692=0.0
+	Model_0 published output zone.load_s 73086=0.0
+	Model_0 published output zone.fresh_vent_load_s 8674=0.0
+	Model_0 published output zone.fresh_vent_load_s 8677=0.0
+	Model_0 published output zone.fresh_vent_load_s 8680=0.0
+	Model_0 published output zone.fresh_vent_load_s 8692=0.0
+	Model_0 published output zone.fresh_vent_load_s 73086=0.0
+	Model_0 published output zone.ac_t 8674=16.000001
+	Model_0 published output zone.ac_t 8677=16.167573
+	Model_0 published output zone.ac_t 8680=16.534871
+	Model_0 published output zone.ac_t 8692=16.80527
+	Model_0 published output zone.ac_t 73086=17.011027
+************* Requesting time 19800.0 -- Granted time 19800.0 **************
+	current timestep: 19800.0
+	Model_0 received input schedule.ac_t_max 8674=16.0
+	Model_0 received input schedule.ac_t_min 8674=16.0
+	Model_0 received input schedule.ac_t_max 8677=16.0
+	Model_0 received input schedule.ac_t_min 8677=16.0
+	Model_0 received input schedule.ac_t_max 8680=16.0
+	Model_0 received input schedule.ac_t_min 8680=16.0
+	Model_0 received input schedule.ac_t_max 8692=16.0
+	Model_0 received input schedule.ac_t_min 8692=16.0
+	Model_0 received input schedule.ac_t_max 73086=16.0
+	Model_0 received input schedule.ac_t_min 73086=16.0
+ts: 19800 outputs of module 1800, real_period = 3600
+!!command: ['in schedule.ac_t_max [8674, 8677, 8680, 8692, 73086] = [16.0, 16.0, 16.0, 16.0, 16.0]', 'in schedule.ac_t_min [8674, 8677, 8680, 8692, 73086] = [16.0, 16.0, 16.0, 16.0, 16.0]', 'run 0']
+!!!!read line 0
+ results of step : 5rooms> 5rooms> 5rooms> zone.ac_t [8674,8677,8680,8692,73086]=[16,16,16,16,16]
+
+!!!!read line 1
+ results of step : zone.fresh_vent_load_s [8674,8677,8680,8692,73086]=[1.1364618,0.35515261,0.26232005,0.50382122,0.21028079]
+
+!!!!read line 2
+ results of step : zone.load_s [8674,8677,8680,8692,73086]=[0.37110919,-0.18533977,-0.38128098,-1.0393493,-0.57923954]
+
+	Model_0 published output zone.load_s 8674=1335.993084
+	Model_0 published output zone.load_s 8677=-667.223172
+	Model_0 published output zone.load_s 8680=-1372.611528
+	Model_0 published output zone.load_s 8692=-3741.6574800000003
+	Model_0 published output zone.load_s 73086=-2085.262344
+	Model_0 published output zone.fresh_vent_load_s 8674=4091.26248
+	Model_0 published output zone.fresh_vent_load_s 8677=1278.549396
+	Model_0 published output zone.fresh_vent_load_s 8680=944.3521800000001
+	Model_0 published output zone.fresh_vent_load_s 8692=1813.7563919999998
+	Model_0 published output zone.fresh_vent_load_s 73086=757.010844
+	Model_0 published output zone.ac_t 8674=16.0
+	Model_0 published output zone.ac_t 8677=16.0
+	Model_0 published output zone.ac_t 8680=16.0
+	Model_0 published output zone.ac_t 8692=16.0
+	Model_0 published output zone.ac_t 73086=16.0
+************* Requesting time 21600.0 -- Granted time 21600.0 **************
+	current timestep: 21600.0
+	Model_0 received input schedule.ac_t_max 8674=20.0
+	Model_0 received input schedule.ac_t_min 8674=20.0
+	Model_0 received input schedule.ac_t_max 8677=20.0
+	Model_0 received input schedule.ac_t_min 8677=20.0
+	Model_0 received input schedule.ac_t_max 8680=20.0
+	Model_0 received input schedule.ac_t_min 8680=20.0
+	Model_0 received input schedule.ac_t_max 8692=20.0
+	Model_0 received input schedule.ac_t_min 8692=20.0
+	Model_0 received input schedule.ac_t_max 73086=20.0
+	Model_0 received input schedule.ac_t_min 73086=20.0
+	Model_0 received input zone.vent_q 8674=5427.255564
+	Model_0 received input zone.vent_q 8677=611.3262239999999
+	Model_0 received input zone.vent_q 8680=0.0
+	Model_0 received input zone.vent_q 8692=0.0
+	Model_0 received input zone.vent_q 73086=0.0
+ts: 21600 outputs of module 0, real_period = 3600
+!!command: ['in zone.vent_q [8674, 8677, 8680, 8692, 73086] = [5427.255564, 611.3262239999999, 0.0, 0.0, 0.0]', 'in zone.ac_on_off [8674, 8677, 8680, 8692, 73086] = [0, 0, 0, 0, 0]', 'run 1']
+!!!!read line 0
+ results of step : 5rooms> 5rooms> 5rooms> zone.ac_t [8674,8677,8680,8692,73086]=[16.000001,16,16.19989,16.505066,16.732835]
+
+!!!!read line 1
+ results of step : zone.fresh_vent_load_s [8674,8677,8680,8692,73086]=[0,0,0,0,0]
+
+!!!!read line 2
+ results of step : zone.load_s [8674,8677,8680,8692,73086]=[0,0,0,0,0]
+
+	Model_0 published output zone.load_s 8674=0.0
+	Model_0 published output zone.load_s 8677=0.0
+	Model_0 published output zone.load_s 8680=0.0
+	Model_0 published output zone.load_s 8692=0.0
+	Model_0 published output zone.load_s 73086=0.0
+	Model_0 published output zone.fresh_vent_load_s 8674=0.0
+	Model_0 published output zone.fresh_vent_load_s 8677=0.0
+	Model_0 published output zone.fresh_vent_load_s 8680=0.0
+	Model_0 published output zone.fresh_vent_load_s 8692=0.0
+	Model_0 published output zone.fresh_vent_load_s 73086=0.0
+	Model_0 published output zone.ac_t 8674=16.000001
+	Model_0 published output zone.ac_t 8677=16.0
+	Model_0 published output zone.ac_t 8680=16.19989
+	Model_0 published output zone.ac_t 8692=16.505066
+	Model_0 published output zone.ac_t 73086=16.732835
+************* Requesting time 23400.0 -- Granted time 23400.0 **************
+	current timestep: 23400.0
+	Model_0 received input schedule.ac_t_max 8674=20.0
+	Model_0 received input schedule.ac_t_min 8674=20.0
+	Model_0 received input schedule.ac_t_max 8677=20.0
+	Model_0 received input schedule.ac_t_min 8677=20.0
+	Model_0 received input schedule.ac_t_max 8680=20.0
+	Model_0 received input schedule.ac_t_min 8680=20.0
+	Model_0 received input schedule.ac_t_max 8692=20.0
+	Model_0 received input schedule.ac_t_min 8692=20.0
+	Model_0 received input schedule.ac_t_max 73086=20.0
+	Model_0 received input schedule.ac_t_min 73086=20.0
+ts: 23400 outputs of module 1800, real_period = 3600
+!!command: ['in schedule.ac_t_max [8674, 8677, 8680, 8692, 73086] = [20.0, 20.0, 20.0, 20.0, 20.0]', 'in schedule.ac_t_min [8674, 8677, 8680, 8692, 73086] = [20.0, 20.0, 20.0, 20.0, 20.0]', 'run 0']
+!!!!read line 0
+ results of step : 5rooms> 5rooms> 5rooms> zone.ac_t [8674,8677,8680,8692,73086]=[20,20,20,20,20]
+
+!!!!read line 1
+ results of step : zone.fresh_vent_load_s [8674,8677,8680,8692,73086]=[1.3544748,0.42328329,0.3126422,0.60047173,0.25061999]
+
+!!!!read line 2
+ results of step : zone.load_s [8674,8677,8680,8692,73086]=[8.020813,3.0754251,2.1312079,3.3953872,1.5233927]
+
+	Model_0 published output zone.load_s 8674=28874.9268
+	Model_0 published output zone.load_s 8677=11071.530359999999
+	Model_0 published output zone.load_s 8680=7672.348440000001
+	Model_0 published output zone.load_s 8692=12223.39392
+	Model_0 published output zone.load_s 73086=5484.21372
+	Model_0 published output zone.fresh_vent_load_s 8674=4876.10928
+	Model_0 published output zone.fresh_vent_load_s 8677=1523.8198439999999
+	Model_0 published output zone.fresh_vent_load_s 8680=1125.51192
+	Model_0 published output zone.fresh_vent_load_s 8692=2161.6982279999997
+	Model_0 published output zone.fresh_vent_load_s 73086=902.2319640000001
+	Model_0 published output zone.ac_t 8674=20.0
+	Model_0 published output zone.ac_t 8677=20.0
+	Model_0 published output zone.ac_t 8680=20.0
+	Model_0 published output zone.ac_t 8692=20.0
+	Model_0 published output zone.ac_t 73086=20.0
+************* Requesting time 25200.0 -- Granted time 25200.0 **************
+	current timestep: 25200.0
+	Model_0 received input schedule.ac_t_max 8674=20.0
+	Model_0 received input schedule.ac_t_min 8674=20.0
+	Model_0 received input schedule.ac_t_max 8677=20.0
+	Model_0 received input schedule.ac_t_min 8677=20.0
+	Model_0 received input schedule.ac_t_max 8680=20.0
+	Model_0 received input schedule.ac_t_min 8680=20.0
+	Model_0 received input schedule.ac_t_max 8692=20.0
+	Model_0 received input schedule.ac_t_min 8692=20.0
+	Model_0 received input schedule.ac_t_max 73086=20.0
+	Model_0 received input schedule.ac_t_min 73086=20.0
+	Model_0 received input zone.vent_q 8674=33751.03608
+	Model_0 received input zone.vent_q 8677=12595.350203999998
+	Model_0 received input zone.vent_q 8680=8797.86036
+	Model_0 received input zone.vent_q 8692=14385.092148
+	Model_0 received input zone.vent_q 73086=6386.445684
+ts: 25200 outputs of module 0, real_period = 3600
+!!command: ['in zone.vent_q [8674, 8677, 8680, 8692, 73086] = [33751.03608, 12595.350203999998, 8797.86036, 14385.092148, 6386.445684]', 'in zone.ac_on_off [8674, 8677, 8680, 8692, 73086] = [0, 0, 0, 0, 0]', 'run 1']
+!!!!read line 0
+ results of step : 5rooms> 5rooms> 5rooms> zone.ac_t [8674,8677,8680,8692,73086]=[20,20,20,20,20]
+
+!!!!read line 1
+ results of step : zone.fresh_vent_load_s [8674,8677,8680,8692,73086]=[0,0,0,0,0]
+
+!!!!read line 2
+ results of step : zone.load_s [8674,8677,8680,8692,73086]=[0,0,0,0,0]
+
+	Model_0 published output zone.load_s 8674=0.0
+	Model_0 published output zone.load_s 8677=0.0
+	Model_0 published output zone.load_s 8680=0.0
+	Model_0 published output zone.load_s 8692=0.0
+	Model_0 published output zone.load_s 73086=0.0
+	Model_0 published output zone.fresh_vent_load_s 8674=0.0
+	Model_0 published output zone.fresh_vent_load_s 8677=0.0
+	Model_0 published output zone.fresh_vent_load_s 8680=0.0
+	Model_0 published output zone.fresh_vent_load_s 8692=0.0
+	Model_0 published output zone.fresh_vent_load_s 73086=0.0
+	Model_0 published output zone.ac_t 8674=20.0
+	Model_0 published output zone.ac_t 8677=20.0
+	Model_0 published output zone.ac_t 8680=20.0
+	Model_0 published output zone.ac_t 8692=20.0
+	Model_0 published output zone.ac_t 73086=20.0
+************* Requesting time 27000.0 -- Granted time 27000.0 **************
+	current timestep: 27000.0
+	Model_0 received input schedule.ac_t_max 8674=20.0
+	Model_0 received input schedule.ac_t_min 8674=20.0
+	Model_0 received input schedule.ac_t_max 8677=20.0
+	Model_0 received input schedule.ac_t_min 8677=20.0
+	Model_0 received input schedule.ac_t_max 8680=20.0
+	Model_0 received input schedule.ac_t_min 8680=20.0
+	Model_0 received input schedule.ac_t_max 8692=20.0
+	Model_0 received input schedule.ac_t_min 8692=20.0
+	Model_0 received input schedule.ac_t_max 73086=20.0
+	Model_0 received input schedule.ac_t_min 73086=20.0
+ts: 27000 outputs of module 1800, real_period = 3600
+!!command: ['in schedule.ac_t_max [8674, 8677, 8680, 8692, 73086] = [20.0, 20.0, 20.0, 20.0, 20.0]', 'in schedule.ac_t_min [8674, 8677, 8680, 8692, 73086] = [20.0, 20.0, 20.0, 20.0, 20.0]', 'run 0']
+!!!!read line 0
+ results of step : 5rooms> 5rooms> 5rooms> zone.ac_t [8674,8677,8680,8692,73086]=[20,20,20,20,20]
+
+!!!!read line 1
+ results of step : zone.fresh_vent_load_s [8674,8677,8680,8692,73086]=[1.3619581,0.42562188,0.3143695,0.60378925,0.25200464]
+
+!!!!read line 2
+ results of step : zone.load_s [8674,8677,8680,8692,73086]=[5.5555534,2.0014278,1.4950349,2.2823147,1.0470504]
+
+	Model_0 published output zone.load_s 8674=19999.99224
+	Model_0 published output zone.load_s 8677=7205.14008
+	Model_0 published output zone.load_s 8680=5382.12564
+	Model_0 published output zone.load_s 8692=8216.33292
+	Model_0 published output zone.load_s 73086=3769.38144
+	Model_0 published output zone.fresh_vent_load_s 8674=4903.0491600000005
+	Model_0 published output zone.fresh_vent_load_s 8677=1532.238768
+	Model_0 published output zone.fresh_vent_load_s 8680=1131.7302000000002
+	Model_0 published output zone.fresh_vent_load_s 8692=2173.6413000000002
+	Model_0 published output zone.fresh_vent_load_s 73086=907.216704
+	Model_0 published output zone.ac_t 8674=20.0
+	Model_0 published output zone.ac_t 8677=20.0
+	Model_0 published output zone.ac_t 8680=20.0
+	Model_0 published output zone.ac_t 8692=20.0
+	Model_0 published output zone.ac_t 73086=20.0
+************* Requesting time 28800.0 -- Granted time 28800.0 **************
+	current timestep: 28800.0
+	Model_0 received input schedule.ac_t_max 8674=20.0
+	Model_0 received input schedule.ac_t_min 8674=20.0
+	Model_0 received input schedule.ac_t_max 8677=20.0
+	Model_0 received input schedule.ac_t_min 8677=20.0
+	Model_0 received input schedule.ac_t_max 8680=20.0
+	Model_0 received input schedule.ac_t_min 8680=20.0
+	Model_0 received input schedule.ac_t_max 8692=20.0
+	Model_0 received input schedule.ac_t_min 8692=20.0
+	Model_0 received input schedule.ac_t_max 73086=20.0
+	Model_0 received input schedule.ac_t_min 73086=20.0
+	Model_0 received input zone.vent_q 8674=24903.041400000002
+	Model_0 received input zone.vent_q 8677=8737.378848
+	Model_0 received input zone.vent_q 8680=6513.85584
+	Model_0 received input zone.vent_q 8692=10389.97422
+	Model_0 received input zone.vent_q 73086=4676.5981440000005
+ts: 28800 outputs of module 0, real_period = 3600
+!!command: ['in zone.vent_q [8674, 8677, 8680, 8692, 73086] = [24903.041400000002, 8737.378848, 6513.85584, 10389.97422, 4676.5981440000005]', 'in zone.ac_on_off [8674, 8677, 8680, 8692, 73086] = [0, 0, 0, 0, 0]', 'run 1']
+!!!!read line 0
+ results of step : 5rooms> 5rooms> 5rooms> zone.ac_t [8674,8677,8680,8692,73086]=[20,20,20,20,20]
+
+!!!!read line 1
+ results of step : zone.fresh_vent_load_s [8674,8677,8680,8692,73086]=[0,0,0,0,0]
+
+!!!!read line 2
+ results of step : zone.load_s [8674,8677,8680,8692,73086]=[0,0,0,0,0]
+
+	Model_0 published output zone.load_s 8674=0.0
+	Model_0 published output zone.load_s 8677=0.0
+	Model_0 published output zone.load_s 8680=0.0
+	Model_0 published output zone.load_s 8692=0.0
+	Model_0 published output zone.load_s 73086=0.0
+	Model_0 published output zone.fresh_vent_load_s 8674=0.0
+	Model_0 published output zone.fresh_vent_load_s 8677=0.0
+	Model_0 published output zone.fresh_vent_load_s 8680=0.0
+	Model_0 published output zone.fresh_vent_load_s 8692=0.0
+	Model_0 published output zone.fresh_vent_load_s 73086=0.0
+	Model_0 published output zone.ac_t 8674=20.0
+	Model_0 published output zone.ac_t 8677=20.0
+	Model_0 published output zone.ac_t 8680=20.0
+	Model_0 published output zone.ac_t 8692=20.0
+	Model_0 published output zone.ac_t 73086=20.0
+************* Requesting time 30600.0 -- Granted time 30600.0 **************
+	current timestep: 30600.0
+	Model_0 received input schedule.ac_t_max 8674=20.0
+	Model_0 received input schedule.ac_t_min 8674=20.0
+	Model_0 received input schedule.ac_t_max 8677=20.0
+	Model_0 received input schedule.ac_t_min 8677=20.0
+	Model_0 received input schedule.ac_t_max 8680=20.0
+	Model_0 received input schedule.ac_t_min 8680=20.0
+	Model_0 received input schedule.ac_t_max 8692=20.0
+	Model_0 received input schedule.ac_t_min 8692=20.0
+	Model_0 received input schedule.ac_t_max 73086=20.0
+	Model_0 received input schedule.ac_t_min 73086=20.0
+ts: 30600 outputs of module 1800, real_period = 3600
+!!command: ['in schedule.ac_t_max [8674, 8677, 8680, 8692, 73086] = [20.0, 20.0, 20.0, 20.0, 20.0]', 'in schedule.ac_t_min [8674, 8677, 8680, 8692, 73086] = [20.0, 20.0, 20.0, 20.0, 20.0]', 'run 0']
+!!!!read line 0
+ results of step : 5rooms> 5rooms> 5rooms> zone.ac_t [8674,8677,8680,8692,73086]=[20,20,20,20,20]
+
+!!!!read line 1
+ results of step : zone.fresh_vent_load_s [8674,8677,8680,8692,73086]=[1.3220473,0.41314944,0.30515721,0.5860958,0.24461988]
+
+!!!!read line 2
+ results of step : zone.load_s [8674,8677,8680,8692,73086]=[4.2722951,1.4493083,1.0835705,1.7210008,0.74392072]
+
+	Model_0 published output zone.load_s 8674=15380.26236
+	Model_0 published output zone.load_s 8677=5217.50988
+	Model_0 published output zone.load_s 8680=3900.8538
+	Model_0 published output zone.load_s 8692=6195.60288
+	Model_0 published output zone.load_s 73086=2678.114592
+	Model_0 published output zone.fresh_vent_load_s 8674=4759.37028
+	Model_0 published output zone.fresh_vent_load_s 8677=1487.337984
+	Model_0 published output zone.fresh_vent_load_s 8680=1098.5659560000001
+	Model_0 published output zone.fresh_vent_load_s 8692=2109.94488
+	Model_0 published output zone.fresh_vent_load_s 73086=880.631568
+	Model_0 published output zone.ac_t 8674=20.0
+	Model_0 published output zone.ac_t 8677=20.0
+	Model_0 published output zone.ac_t 8680=20.0
+	Model_0 published output zone.ac_t 8692=20.0
+	Model_0 published output zone.ac_t 73086=20.0
+************* Requesting time 32400.0 -- Granted time 32400.0 **************
+	current timestep: 32400.0
+	Model_0 received input schedule.ac_t_max 8674=20.0
+	Model_0 received input schedule.ac_t_min 8674=20.0
+	Model_0 received input schedule.ac_t_max 8677=20.0
+	Model_0 received input schedule.ac_t_min 8677=20.0
+	Model_0 received input schedule.ac_t_max 8680=20.0
+	Model_0 received input schedule.ac_t_min 8680=20.0
+	Model_0 received input schedule.ac_t_max 8692=20.0
+	Model_0 received input schedule.ac_t_min 8692=20.0
+	Model_0 received input schedule.ac_t_max 73086=20.0
+	Model_0 received input schedule.ac_t_min 73086=20.0
+	Model_0 received input zone.vent_q 8674=20139.63264
+	Model_0 received input zone.vent_q 8677=6704.847863999999
+	Model_0 received input zone.vent_q 8680=4999.419756
+	Model_0 received input zone.vent_q 8692=8305.547760000001
+	Model_0 received input zone.vent_q 73086=3558.7461599999997
+ts: 32400 outputs of module 0, real_period = 3600
+!!command: ['in zone.vent_q [8674, 8677, 8680, 8692, 73086] = [20139.63264, 6704.847863999999, 4999.419756, 8305.547760000001, 3558.7461599999997]', 'in zone.ac_on_off [8674, 8677, 8680, 8692, 73086] = [0, 0, 0, 0, 0]', 'run 1']
+!!!!read line 0
+ results of step : 5rooms> 5rooms> 5rooms> zone.ac_t [8674,8677,8680,8692,73086]=[20,20,20,20,20]
+
+!!!!read line 1
+ results of step : zone.fresh_vent_load_s [8674,8677,8680,8692,73086]=[0,0,0,0,0]
+
+!!!!read line 2
+ results of step : zone.load_s [8674,8677,8680,8692,73086]=[0,0,0,0,0]
+
+	Model_0 published output zone.load_s 8674=0.0
+	Model_0 published output zone.load_s 8677=0.0
+	Model_0 published output zone.load_s 8680=0.0
+	Model_0 published output zone.load_s 8692=0.0
+	Model_0 published output zone.load_s 73086=0.0
+	Model_0 published output zone.fresh_vent_load_s 8674=0.0
+	Model_0 published output zone.fresh_vent_load_s 8677=0.0
+	Model_0 published output zone.fresh_vent_load_s 8680=0.0
+	Model_0 published output zone.fresh_vent_load_s 8692=0.0
+	Model_0 published output zone.fresh_vent_load_s 73086=0.0
+	Model_0 published output zone.ac_t 8674=20.0
+	Model_0 published output zone.ac_t 8677=20.0
+	Model_0 published output zone.ac_t 8680=20.0
+	Model_0 published output zone.ac_t 8692=20.0
+	Model_0 published output zone.ac_t 73086=20.0
+************* Requesting time 34200.0 -- Granted time 34200.0 **************
+	current timestep: 34200.0
+	Model_0 received input schedule.ac_t_max 8674=20.0
+	Model_0 received input schedule.ac_t_min 8674=20.0
+	Model_0 received input schedule.ac_t_max 8677=20.0
+	Model_0 received input schedule.ac_t_min 8677=20.0
+	Model_0 received input schedule.ac_t_max 8680=20.0
+	Model_0 received input schedule.ac_t_min 8680=20.0
+	Model_0 received input schedule.ac_t_max 8692=20.0
+	Model_0 received input schedule.ac_t_min 8692=20.0
+	Model_0 received input schedule.ac_t_max 73086=20.0
+	Model_0 received input schedule.ac_t_min 73086=20.0
+ts: 34200 outputs of module 1800, real_period = 3600
+!!command: ['in schedule.ac_t_max [8674, 8677, 8680, 8692, 73086] = [20.0, 20.0, 20.0, 20.0, 20.0]', 'in schedule.ac_t_min [8674, 8677, 8680, 8692, 73086] = [20.0, 20.0, 20.0, 20.0, 20.0]', 'run 0']
+!!!!read line 0
+ results of step : 5rooms> 5rooms> 5rooms> zone.ac_t [8674,8677,8680,8692,73086]=[20,20,20,20,20]
+
+!!!!read line 1
+ results of step : zone.fresh_vent_load_s [8674,8677,8680,8692,73086]=[1.2217712,0.38181244,0.28201132,0.54164098,0.2260657]
+
+!!!!read line 2
+ results of step : zone.load_s [8674,8677,8680,8692,73086]=[3.5212816,0.98856257,0.78520726,1.4579581,0.55977267]
+
+	Model_0 published output zone.load_s 8674=12676.61376
+	Model_0 published output zone.load_s 8677=3558.825252
+	Model_0 published output zone.load_s 8680=2826.7461359999998
+	Model_0 published output zone.load_s 8692=5248.64916
+	Model_0 published output zone.load_s 73086=2015.1816119999999
+	Model_0 published output zone.fresh_vent_load_s 8674=4398.37632
+	Model_0 published output zone.fresh_vent_load_s 8677=1374.524784
+	Model_0 published output zone.fresh_vent_load_s 8680=1015.240752
+	Model_0 published output zone.fresh_vent_load_s 8692=1949.9075280000002
+	Model_0 published output zone.fresh_vent_load_s 73086=813.8365200000001
+	Model_0 published output zone.ac_t 8674=20.0
+	Model_0 published output zone.ac_t 8677=20.0
+	Model_0 published output zone.ac_t 8680=20.0
+	Model_0 published output zone.ac_t 8692=20.0
+	Model_0 published output zone.ac_t 73086=20.0
+************* Requesting time 36000.0 -- Granted time 36000.0 **************
+	current timestep: 36000.0
+	Model_0 received input schedule.ac_t_max 8674=20.0
+	Model_0 received input schedule.ac_t_min 8674=20.0
+	Model_0 received input schedule.ac_t_max 8677=20.0
+	Model_0 received input schedule.ac_t_min 8677=20.0
+	Model_0 received input schedule.ac_t_max 8680=20.0
+	Model_0 received input schedule.ac_t_min 8680=20.0
+	Model_0 received input schedule.ac_t_max 8692=20.0
+	Model_0 received input schedule.ac_t_min 8692=20.0
+	Model_0 received input schedule.ac_t_max 73086=20.0
+	Model_0 received input schedule.ac_t_min 73086=20.0
+	Model_0 received input zone.vent_q 8674=17074.99008
+	Model_0 received input zone.vent_q 8677=4933.350036
+	Model_0 received input zone.vent_q 8680=3841.986888
+	Model_0 received input zone.vent_q 8692=7198.556688000001
+	Model_0 received input zone.vent_q 73086=2829.018132
+ts: 36000 outputs of module 0, real_period = 3600
+!!command: ['in zone.vent_q [8674, 8677, 8680, 8692, 73086] = [17074.99008, 4933.350036, 3841.986888, 7198.556688000001, 2829.018132]', 'in zone.ac_on_off [8674, 8677, 8680, 8692, 73086] = [0, 0, 0, 0, 0]', 'run 1']
+!!!!read line 0
+ results of step : 5rooms> 5rooms> 5rooms> zone.ac_t [8674,8677,8680,8692,73086]=[20,20,20,20,20]
+
+!!!!read line 1
+ results of step : zone.fresh_vent_load_s [8674,8677,8680,8692,73086]=[0,0,0,0,0]
+
+!!!!read line 2
+ results of step : zone.load_s [8674,8677,8680,8692,73086]=[0,0,0,0,0]
+
+	Model_0 published output zone.load_s 8674=0.0
+	Model_0 published output zone.load_s 8677=0.0
+	Model_0 published output zone.load_s 8680=0.0
+	Model_0 published output zone.load_s 8692=0.0
+	Model_0 published output zone.load_s 73086=0.0
+	Model_0 published output zone.fresh_vent_load_s 8674=0.0
+	Model_0 published output zone.fresh_vent_load_s 8677=0.0
+	Model_0 published output zone.fresh_vent_load_s 8680=0.0
+	Model_0 published output zone.fresh_vent_load_s 8692=0.0
+	Model_0 published output zone.fresh_vent_load_s 73086=0.0
+	Model_0 published output zone.ac_t 8674=20.0
+	Model_0 published output zone.ac_t 8677=20.0
+	Model_0 published output zone.ac_t 8680=20.0
+	Model_0 published output zone.ac_t 8692=20.0
+	Model_0 published output zone.ac_t 73086=20.0
+************* Requesting time 37800.0 -- Granted time 37800.0 **************
+	current timestep: 37800.0
+	Model_0 received input schedule.ac_t_max 8674=20.0
+	Model_0 received input schedule.ac_t_min 8674=20.0
+	Model_0 received input schedule.ac_t_max 8677=20.0
+	Model_0 received input schedule.ac_t_min 8677=20.0
+	Model_0 received input schedule.ac_t_max 8680=20.0
+	Model_0 received input schedule.ac_t_min 8680=20.0
+	Model_0 received input schedule.ac_t_max 8692=20.0
+	Model_0 received input schedule.ac_t_min 8692=20.0
+	Model_0 received input schedule.ac_t_max 73086=20.0
+	Model_0 received input schedule.ac_t_min 73086=20.0
+ts: 37800 outputs of module 1800, real_period = 3600
+!!command: ['in schedule.ac_t_max [8674, 8677, 8680, 8692, 73086] = [20.0, 20.0, 20.0, 20.0, 20.0]', 'in schedule.ac_t_min [8674, 8677, 8680, 8692, 73086] = [20.0, 20.0, 20.0, 20.0, 20.0]', 'run 0']
+!!!!read line 0
+ results of step : 5rooms> 5rooms> 5rooms> zone.ac_t [8674,8677,8680,8692,73086]=[20,20,20,20,20]
+
+!!!!read line 1
+ results of step : zone.fresh_vent_load_s [8674,8677,8680,8692,73086]=[1.0860743,0.33940616,0.25068953,0.48148323,0.20095754]
+
+!!!!read line 2
+ results of step : zone.load_s [8674,8677,8680,8692,73086]=[3.0165562,-0.34371781,0.55928574,1.3301388,0.47925372]
+
+	Model_0 published output zone.load_s 8674=10859.60232
+	Model_0 published output zone.load_s 8677=-1237.384116
+	Model_0 published output zone.load_s 8680=2013.428664
+	Model_0 published output zone.load_s 8692=4788.49968
+	Model_0 published output zone.load_s 73086=1725.313392
+	Model_0 published output zone.fresh_vent_load_s 8674=3909.86748
+	Model_0 published output zone.fresh_vent_load_s 8677=1221.862176
+	Model_0 published output zone.fresh_vent_load_s 8680=902.482308
+	Model_0 published output zone.fresh_vent_load_s 8692=1733.339628
+	Model_0 published output zone.fresh_vent_load_s 73086=723.447144
+	Model_0 published output zone.ac_t 8674=20.0
+	Model_0 published output zone.ac_t 8677=20.0
+	Model_0 published output zone.ac_t 8680=20.0
+	Model_0 published output zone.ac_t 8692=20.0
+	Model_0 published output zone.ac_t 73086=20.0
+************* Requesting time 39600.0 -- Granted time 39600.0 **************
+	current timestep: 39600.0
+	Model_0 received input schedule.ac_t_max 8674=16.0
+	Model_0 received input schedule.ac_t_min 8674=16.0
+	Model_0 received input schedule.ac_t_max 8677=16.0
+	Model_0 received input schedule.ac_t_min 8677=16.0
+	Model_0 received input schedule.ac_t_max 8680=16.0
+	Model_0 received input schedule.ac_t_min 8680=16.0
+	Model_0 received input schedule.ac_t_max 8692=16.0
+	Model_0 received input schedule.ac_t_min 8692=16.0
+	Model_0 received input schedule.ac_t_max 73086=16.0
+	Model_0 received input schedule.ac_t_min 73086=16.0
+	Model_0 received input zone.vent_q 8674=14769.469799999999
+	Model_0 received input zone.vent_q 8677=0.0
+	Model_0 received input zone.vent_q 8680=2915.910972
+	Model_0 received input zone.vent_q 8692=6521.839308
+	Model_0 received input zone.vent_q 73086=2448.760536
+ts: 39600 outputs of module 0, real_period = 3600
+!!command: ['in zone.vent_q [8674, 8677, 8680, 8692, 73086] = [14769.469799999999, 0.0, 2915.910972, 6521.839308, 2448.760536]', 'in zone.ac_on_off [8674, 8677, 8680, 8692, 73086] = [0, 0, 0, 0, 0]', 'run 1']
+!!!!read line 0
+ results of step : 5rooms> 5rooms> 5rooms> zone.ac_t [8674,8677,8680,8692,73086]=[20,20.005536,20,20,20]
+
+!!!!read line 1
+ results of step : zone.fresh_vent_load_s [8674,8677,8680,8692,73086]=[0,0,0,0,0]
+
+!!!!read line 2
+ results of step : zone.load_s [8674,8677,8680,8692,73086]=[0,0,0,0,0]
+
+	Model_0 published output zone.load_s 8674=0.0
+	Model_0 published output zone.load_s 8677=0.0
+	Model_0 published output zone.load_s 8680=0.0
+	Model_0 published output zone.load_s 8692=0.0
+	Model_0 published output zone.load_s 73086=0.0
+	Model_0 published output zone.fresh_vent_load_s 8674=0.0
+	Model_0 published output zone.fresh_vent_load_s 8677=0.0
+	Model_0 published output zone.fresh_vent_load_s 8680=0.0
+	Model_0 published output zone.fresh_vent_load_s 8692=0.0
+	Model_0 published output zone.fresh_vent_load_s 73086=0.0
+	Model_0 published output zone.ac_t 8674=20.0
+	Model_0 published output zone.ac_t 8677=20.005536
+	Model_0 published output zone.ac_t 8680=20.0
+	Model_0 published output zone.ac_t 8692=20.0
+	Model_0 published output zone.ac_t 73086=20.0
+************* Requesting time 41400.0 -- Granted time 41400.0 **************
+	current timestep: 41400.0
+	Model_0 received input schedule.ac_t_max 8674=16.0
+	Model_0 received input schedule.ac_t_min 8674=16.0
+	Model_0 received input schedule.ac_t_max 8677=16.0
+	Model_0 received input schedule.ac_t_min 8677=16.0
+	Model_0 received input schedule.ac_t_max 8680=16.0
+	Model_0 received input schedule.ac_t_min 8680=16.0
+	Model_0 received input schedule.ac_t_max 8692=16.0
+	Model_0 received input schedule.ac_t_min 8692=16.0
+	Model_0 received input schedule.ac_t_max 73086=16.0
+	Model_0 received input schedule.ac_t_min 73086=16.0
+ts: 41400 outputs of module 1800, real_period = 3600
+!!command: ['in schedule.ac_t_max [8674, 8677, 8680, 8692, 73086] = [16.0, 16.0, 16.0, 16.0, 16.0]', 'in schedule.ac_t_min [8674, 8677, 8680, 8692, 73086] = [16.0, 16.0, 16.0, 16.0, 16.0]', 'run 0']
+!!!!read line 0
+ results of step : 5rooms> 5rooms> 5rooms> zone.ac_t [8674,8677,8680,8692,73086]=[16,16,16,16,16]
+
+!!!!read line 1
+ results of step : zone.fresh_vent_load_s [8674,8677,8680,8692,73086]=[0.73984758,0.23120778,0.17077288,0.32799248,0.13689483]
+
+!!!!read line 2
+ results of step : zone.load_s [8674,8677,8680,8692,73086]=[-4.7110682,-3.6952166,-1.9560002,-2.8903985,-1.5111126]
+
+	Model_0 published output zone.load_s 8674=-16959.84552
+	Model_0 published output zone.load_s 8677=-13302.779760000001
+	Model_0 published output zone.load_s 8680=-7041.60072
+	Model_0 published output zone.load_s 8692=-10405.434599999999
+	Model_0 published output zone.load_s 73086=-5440.00536
+	Model_0 published output zone.fresh_vent_load_s 8674=2663.4512879999997
+	Model_0 published output zone.fresh_vent_load_s 8677=832.348008
+	Model_0 published output zone.fresh_vent_load_s 8680=614.7823679999999
+	Model_0 published output zone.fresh_vent_load_s 8692=1180.7729279999999
+	Model_0 published output zone.fresh_vent_load_s 73086=492.82138799999996
+	Model_0 published output zone.ac_t 8674=16.0
+	Model_0 published output zone.ac_t 8677=16.0
+	Model_0 published output zone.ac_t 8680=16.0
+	Model_0 published output zone.ac_t 8692=16.0
+	Model_0 published output zone.ac_t 73086=16.0
+************* Requesting time 43200.0 -- Granted time 43200.0 **************
+	current timestep: 43200.0
+	Model_0 received input schedule.ac_t_max 8674=16.0
+	Model_0 received input schedule.ac_t_min 8674=16.0
+	Model_0 received input schedule.ac_t_max 8677=16.0
+	Model_0 received input schedule.ac_t_min 8677=16.0
+	Model_0 received input schedule.ac_t_max 8680=16.0
+	Model_0 received input schedule.ac_t_min 8680=16.0
+	Model_0 received input schedule.ac_t_max 8692=16.0
+	Model_0 received input schedule.ac_t_min 8692=16.0
+	Model_0 received input schedule.ac_t_max 73086=16.0
+	Model_0 received input schedule.ac_t_min 73086=16.0
+	Model_0 received input zone.vent_q 8674=0.0
+	Model_0 received input zone.vent_q 8677=0.0
+	Model_0 received input zone.vent_q 8680=0.0
+	Model_0 received input zone.vent_q 8692=0.0
+	Model_0 received input zone.vent_q 73086=0.0
+ts: 43200 outputs of module 0, real_period = 3600
+!!command: ['in zone.vent_q [8674, 8677, 8680, 8692, 73086] = [0.0, 0.0, 0.0, 0.0, 0.0]', 'in zone.ac_on_off [8674, 8677, 8680, 8692, 73086] = [0, 0, 0, 0, 0]', 'run 1']
+!!!!read line 0
+ results of step : 5rooms> 5rooms> 5rooms> zone.ac_t [8674,8677,8680,8692,73086]=[18.08996,20.447857,18.999712,18.416654,18.729512]
+
+!!!!read line 1
+ results of step : zone.fresh_vent_load_s [8674,8677,8680,8692,73086]=[0,0,0,0,0]
+
+!!!!read line 2
+ results of step : zone.load_s [8674,8677,8680,8692,73086]=[0,0,0,0,0]
+
+	Model_0 published output zone.load_s 8674=0.0
+	Model_0 published output zone.load_s 8677=0.0
+	Model_0 published output zone.load_s 8680=0.0
+	Model_0 published output zone.load_s 8692=0.0
+	Model_0 published output zone.load_s 73086=0.0
+	Model_0 published output zone.fresh_vent_load_s 8674=0.0
+	Model_0 published output zone.fresh_vent_load_s 8677=0.0
+	Model_0 published output zone.fresh_vent_load_s 8680=0.0
+	Model_0 published output zone.fresh_vent_load_s 8692=0.0
+	Model_0 published output zone.fresh_vent_load_s 73086=0.0
+	Model_0 published output zone.ac_t 8674=18.08996
+	Model_0 published output zone.ac_t 8677=20.447857
+	Model_0 published output zone.ac_t 8680=18.999712
+	Model_0 published output zone.ac_t 8692=18.416654
+	Model_0 published output zone.ac_t 73086=18.729512
+************* Requesting time 45000.0 -- Granted time 45000.0 **************
+	current timestep: 45000.0
+	Model_0 received input schedule.ac_t_max 8674=16.0
+	Model_0 received input schedule.ac_t_min 8674=16.0
+	Model_0 received input schedule.ac_t_max 8677=16.0
+	Model_0 received input schedule.ac_t_min 8677=16.0
+	Model_0 received input schedule.ac_t_max 8680=16.0
+	Model_0 received input schedule.ac_t_min 8680=16.0
+	Model_0 received input schedule.ac_t_max 8692=16.0
+	Model_0 received input schedule.ac_t_min 8692=16.0
+	Model_0 received input schedule.ac_t_max 73086=16.0
+	Model_0 received input schedule.ac_t_min 73086=16.0
+ts: 45000 outputs of module 1800, real_period = 3600
+!!command: ['in schedule.ac_t_max [8674, 8677, 8680, 8692, 73086] = [16.0, 16.0, 16.0, 16.0, 16.0]', 'in schedule.ac_t_min [8674, 8677, 8680, 8692, 73086] = [16.0, 16.0, 16.0, 16.0, 16.0]', 'run 0']
+!!!!read line 0
+ results of step : 5rooms> 5rooms> 5rooms> zone.ac_t [8674,8677,8680,8692,73086]=[16,16,16,16,16]
+
+!!!!read line 1
+ results of step : zone.fresh_vent_load_s [8674,8677,8680,8692,73086]=[0.60514843,0.18911331,0.13968139,0.26827706,0.11197129]
+
+!!!!read line 2
+ results of step : zone.load_s [8674,8677,8680,8692,73086]=[-4.0430974,-2.5325484,-1.5670848,-2.2988279,-1.3107495]
+
+	Model_0 published output zone.load_s 8674=-14555.15064
+	Model_0 published output zone.load_s 8677=-9117.17424
+	Model_0 published output zone.load_s 8680=-5641.505279999999
+	Model_0 published output zone.load_s 8692=-8275.78044
+	Model_0 published output zone.load_s 73086=-4718.6982
+	Model_0 published output zone.fresh_vent_load_s 8674=2178.5343479999997
+	Model_0 published output zone.fresh_vent_load_s 8677=680.807916
+	Model_0 published output zone.fresh_vent_load_s 8680=502.85300399999994
+	Model_0 published output zone.fresh_vent_load_s 8692=965.797416
+	Model_0 published output zone.fresh_vent_load_s 73086=403.096644
+	Model_0 published output zone.ac_t 8674=16.0
+	Model_0 published output zone.ac_t 8677=16.0
+	Model_0 published output zone.ac_t 8680=16.0
+	Model_0 published output zone.ac_t 8692=16.0
+	Model_0 published output zone.ac_t 73086=16.0
+************* Requesting time 46800.0 -- Granted time 46800.0 **************
+	current timestep: 46800.0
+	Model_0 received input schedule.ac_t_max 8674=16.0
+	Model_0 received input schedule.ac_t_min 8674=16.0
+	Model_0 received input schedule.ac_t_max 8677=16.0
+	Model_0 received input schedule.ac_t_min 8677=16.0
+	Model_0 received input schedule.ac_t_max 8680=16.0
+	Model_0 received input schedule.ac_t_min 8680=16.0
+	Model_0 received input schedule.ac_t_max 8692=16.0
+	Model_0 received input schedule.ac_t_min 8692=16.0
+	Model_0 received input schedule.ac_t_max 73086=16.0
+	Model_0 received input schedule.ac_t_min 73086=16.0
+	Model_0 received input zone.vent_q 8674=0.0
+	Model_0 received input zone.vent_q 8677=0.0
+	Model_0 received input zone.vent_q 8680=0.0
+	Model_0 received input zone.vent_q 8692=0.0
+	Model_0 received input zone.vent_q 73086=0.0
+ts: 46800 outputs of module 0, real_period = 3600
+!!command: ['in zone.vent_q [8674, 8677, 8680, 8692, 73086] = [0.0, 0.0, 0.0, 0.0, 0.0]', 'in zone.ac_on_off [8674, 8677, 8680, 8692, 73086] = [0, 0, 0, 0, 0]', 'run 1']
+!!!!read line 0
+ results of step : 5rooms> 5rooms> 5rooms> zone.ac_t [8674,8677,8680,8692,73086]=[17.809311,19.009019,18.398461,17.915051,18.381049]
+
+!!!!read line 1
+ results of step : zone.fresh_vent_load_s [8674,8677,8680,8692,73086]=[0,0,0,0,0]
+
+!!!!read line 2
+ results of step : zone.load_s [8674,8677,8680,8692,73086]=[0,0,0,0,0]
+
+	Model_0 published output zone.load_s 8674=0.0
+	Model_0 published output zone.load_s 8677=0.0
+	Model_0 published output zone.load_s 8680=0.0
+	Model_0 published output zone.load_s 8692=0.0
+	Model_0 published output zone.load_s 73086=0.0
+	Model_0 published output zone.fresh_vent_load_s 8674=0.0
+	Model_0 published output zone.fresh_vent_load_s 8677=0.0
+	Model_0 published output zone.fresh_vent_load_s 8680=0.0
+	Model_0 published output zone.fresh_vent_load_s 8692=0.0
+	Model_0 published output zone.fresh_vent_load_s 73086=0.0
+	Model_0 published output zone.ac_t 8674=17.809311
+	Model_0 published output zone.ac_t 8677=19.009019
+	Model_0 published output zone.ac_t 8680=18.398461
+	Model_0 published output zone.ac_t 8692=17.915051
+	Model_0 published output zone.ac_t 73086=18.381049
+************* Requesting time 48600.0 -- Granted time 48600.0 **************
+	current timestep: 48600.0
+	Model_0 received input schedule.ac_t_max 8674=16.0
+	Model_0 received input schedule.ac_t_min 8674=16.0
+	Model_0 received input schedule.ac_t_max 8677=16.0
+	Model_0 received input schedule.ac_t_min 8677=16.0
+	Model_0 received input schedule.ac_t_max 8680=16.0
+	Model_0 received input schedule.ac_t_min 8680=16.0
+	Model_0 received input schedule.ac_t_max 8692=16.0
+	Model_0 received input schedule.ac_t_min 8692=16.0
+	Model_0 received input schedule.ac_t_max 73086=16.0
+	Model_0 received input schedule.ac_t_min 73086=16.0
+ts: 48600 outputs of module 1800, real_period = 3600
+!!command: ['in schedule.ac_t_max [8674, 8677, 8680, 8692, 73086] = [16.0, 16.0, 16.0, 16.0, 16.0]', 'in schedule.ac_t_min [8674, 8677, 8680, 8692, 73086] = [16.0, 16.0, 16.0, 16.0, 16.0]', 'run 0']
+!!!!read line 0
+ results of step : 5rooms> 5rooms> 5rooms> zone.ac_t [8674,8677,8680,8692,73086]=[16,16,16,16,16]
+
+!!!!read line 1
+ results of step : zone.fresh_vent_load_s [8674,8677,8680,8692,73086]=[0.50686793,0.15839994,0.11699612,0.22470692,0.09378634]
+
+!!!!read line 2
+ results of step : zone.load_s [8674,8677,8680,8692,73086]=[-3.8619699,-2.692101,-1.6642615,-1.8299248,-1.1716393]
+
+	Model_0 published output zone.load_s 8674=-13903.09164
+	Model_0 published output zone.load_s 8677=-9691.5636
+	Model_0 published output zone.load_s 8680=-5991.3414
+	Model_0 published output zone.load_s 8692=-6587.72928
+	Model_0 published output zone.load_s 73086=-4217.90148
+	Model_0 published output zone.fresh_vent_load_s 8674=1824.724548
+	Model_0 published output zone.fresh_vent_load_s 8677=570.239784
+	Model_0 published output zone.fresh_vent_load_s 8680=421.18603199999995
+	Model_0 published output zone.fresh_vent_load_s 8692=808.944912
+	Model_0 published output zone.fresh_vent_load_s 73086=337.63082399999996
+	Model_0 published output zone.ac_t 8674=16.0
+	Model_0 published output zone.ac_t 8677=16.0
+	Model_0 published output zone.ac_t 8680=16.0
+	Model_0 published output zone.ac_t 8692=16.0
+	Model_0 published output zone.ac_t 73086=16.0
+************* Requesting time 50400.0 -- Granted time 50400.0 **************
+	current timestep: 50400.0
+	Model_0 received input schedule.ac_t_max 8674=16.0
+	Model_0 received input schedule.ac_t_min 8674=16.0
+	Model_0 received input schedule.ac_t_max 8677=16.0
+	Model_0 received input schedule.ac_t_min 8677=16.0
+	Model_0 received input schedule.ac_t_max 8680=16.0
+	Model_0 received input schedule.ac_t_min 8680=16.0
+	Model_0 received input schedule.ac_t_max 8692=16.0
+	Model_0 received input schedule.ac_t_min 8692=16.0
+	Model_0 received input schedule.ac_t_max 73086=16.0
+	Model_0 received input schedule.ac_t_min 73086=16.0
+	Model_0 received input zone.vent_q 8674=0.0
+	Model_0 received input zone.vent_q 8677=0.0
+	Model_0 received input zone.vent_q 8680=0.0
+	Model_0 received input zone.vent_q 8692=0.0
+	Model_0 received input zone.vent_q 73086=0.0
+ts: 50400 outputs of module 0, real_period = 3600
+!!command: ['in zone.vent_q [8674, 8677, 8680, 8692, 73086] = [0.0, 0.0, 0.0, 0.0, 0.0]', 'in zone.ac_on_off [8674, 8677, 8680, 8692, 73086] = [0, 0, 0, 0, 0]', 'run 1']
+!!!!read line 0
+ results of step : 5rooms> 5rooms> 5rooms> zone.ac_t [8674,8677,8680,8692,73086]=[17.76571,19.253324,18.599864,17.513912,18.140864]
+
+!!!!read line 1
+ results of step : zone.fresh_vent_load_s [8674,8677,8680,8692,73086]=[0,0,0,0,0]
+
+!!!!read line 2
+ results of step : zone.load_s [8674,8677,8680,8692,73086]=[0,0,0,0,0]
+
+	Model_0 published output zone.load_s 8674=0.0
+	Model_0 published output zone.load_s 8677=0.0
+	Model_0 published output zone.load_s 8680=0.0
+	Model_0 published output zone.load_s 8692=0.0
+	Model_0 published output zone.load_s 73086=0.0
+	Model_0 published output zone.fresh_vent_load_s 8674=0.0
+	Model_0 published output zone.fresh_vent_load_s 8677=0.0
+	Model_0 published output zone.fresh_vent_load_s 8680=0.0
+	Model_0 published output zone.fresh_vent_load_s 8692=0.0
+	Model_0 published output zone.fresh_vent_load_s 73086=0.0
+	Model_0 published output zone.ac_t 8674=17.76571
+	Model_0 published output zone.ac_t 8677=19.253324
+	Model_0 published output zone.ac_t 8680=18.599864
+	Model_0 published output zone.ac_t 8692=17.513912
+	Model_0 published output zone.ac_t 73086=18.140864
+************* Requesting time 52200.0 -- Granted time 52200.0 **************
+	current timestep: 52200.0
+	Model_0 received input schedule.ac_t_max 8674=16.0
+	Model_0 received input schedule.ac_t_min 8674=16.0
+	Model_0 received input schedule.ac_t_max 8677=16.0
+	Model_0 received input schedule.ac_t_min 8677=16.0
+	Model_0 received input schedule.ac_t_max 8680=16.0
+	Model_0 received input schedule.ac_t_min 8680=16.0
+	Model_0 received input schedule.ac_t_max 8692=16.0
+	Model_0 received input schedule.ac_t_min 8692=16.0
+	Model_0 received input schedule.ac_t_max 73086=16.0
+	Model_0 received input schedule.ac_t_min 73086=16.0
+ts: 52200 outputs of module 1800, real_period = 3600
+!!command: ['in schedule.ac_t_max [8674, 8677, 8680, 8692, 73086] = [16.0, 16.0, 16.0, 16.0, 16.0]', 'in schedule.ac_t_min [8674, 8677, 8680, 8692, 73086] = [16.0, 16.0, 16.0, 16.0, 16.0]', 'run 0']
+!!!!read line 0
+ results of step : 5rooms> 5rooms> 5rooms> zone.ac_t [8674,8677,8680,8692,73086]=[16,16,16,16,16]
+
+!!!!read line 1
+ results of step : zone.fresh_vent_load_s [8674,8677,8680,8692,73086]=[0.46895261,0.14655112,0.10824444,0.20789813,0.086770827]
+
+!!!!read line 2
+ results of step : zone.load_s [8674,8677,8680,8692,73086]=[-4.1535638,-2.855432,-1.7594896,-1.4533059,-1.0662972]
+
+	Model_0 published output zone.load_s 8674=-14952.829679999999
+	Model_0 published output zone.load_s 8677=-10279.5552
+	Model_0 published output zone.load_s 8680=-6334.16256
+	Model_0 published output zone.load_s 8692=-5231.90124
+	Model_0 published output zone.load_s 73086=-3838.66992
+	Model_0 published output zone.fresh_vent_load_s 8674=1688.229396
+	Model_0 published output zone.fresh_vent_load_s 8677=527.584032
+	Model_0 published output zone.fresh_vent_load_s 8680=389.679984
+	Model_0 published output zone.fresh_vent_load_s 8692=748.433268
+	Model_0 published output zone.fresh_vent_load_s 73086=312.3749772
+	Model_0 published output zone.ac_t 8674=16.0
+	Model_0 published output zone.ac_t 8677=16.0
+	Model_0 published output zone.ac_t 8680=16.0
+	Model_0 published output zone.ac_t 8692=16.0
+	Model_0 published output zone.ac_t 73086=16.0
+************* Requesting time 54000.0 -- Granted time 54000.0 **************
+	current timestep: 54000.0
+	Model_0 received input schedule.ac_t_max 8674=20.0
+	Model_0 received input schedule.ac_t_min 8674=20.0
+	Model_0 received input schedule.ac_t_max 8677=20.0
+	Model_0 received input schedule.ac_t_min 8677=20.0
+	Model_0 received input schedule.ac_t_max 8680=20.0
+	Model_0 received input schedule.ac_t_min 8680=20.0
+	Model_0 received input schedule.ac_t_max 8692=20.0
+	Model_0 received input schedule.ac_t_min 8692=20.0
+	Model_0 received input schedule.ac_t_max 73086=20.0
+	Model_0 received input schedule.ac_t_min 73086=20.0
+	Model_0 received input zone.vent_q 8674=0.0
+	Model_0 received input zone.vent_q 8677=0.0
+	Model_0 received input zone.vent_q 8680=0.0
+	Model_0 received input zone.vent_q 8692=0.0
+	Model_0 received input zone.vent_q 73086=0.0
+ts: 54000 outputs of module 0, real_period = 3600
+!!command: ['in zone.vent_q [8674, 8677, 8680, 8692, 73086] = [0.0, 0.0, 0.0, 0.0, 0.0]', 'in zone.ac_on_off [8674, 8677, 8680, 8692, 73086] = [0, 0, 0, 0, 0]', 'run 1']
+!!!!read line 0
+ results of step : 5rooms> 5rooms> 5rooms> zone.ac_t [8674,8677,8680,8692,73086]=[17.939123,19.478258,18.774581,17.174569,17.945567]
+
+!!!!read line 1
+ results of step : zone.fresh_vent_load_s [8674,8677,8680,8692,73086]=[0,0,0,0,0]
+
+!!!!read line 2
+ results of step : zone.load_s [8674,8677,8680,8692,73086]=[0,0,0,0,0]
+
+	Model_0 published output zone.load_s 8674=0.0
+	Model_0 published output zone.load_s 8677=0.0
+	Model_0 published output zone.load_s 8680=0.0
+	Model_0 published output zone.load_s 8692=0.0
+	Model_0 published output zone.load_s 73086=0.0
+	Model_0 published output zone.fresh_vent_load_s 8674=0.0
+	Model_0 published output zone.fresh_vent_load_s 8677=0.0
+	Model_0 published output zone.fresh_vent_load_s 8680=0.0
+	Model_0 published output zone.fresh_vent_load_s 8692=0.0
+	Model_0 published output zone.fresh_vent_load_s 73086=0.0
+	Model_0 published output zone.ac_t 8674=17.939123
+	Model_0 published output zone.ac_t 8677=19.478258
+	Model_0 published output zone.ac_t 8680=18.774581
+	Model_0 published output zone.ac_t 8692=17.174569
+	Model_0 published output zone.ac_t 73086=17.945567
+************* Requesting time 55800.0 -- Granted time 55800.0 **************
+	current timestep: 55800.0
+	Model_0 received input schedule.ac_t_max 8674=20.0
+	Model_0 received input schedule.ac_t_min 8674=20.0
+	Model_0 received input schedule.ac_t_max 8677=20.0
+	Model_0 received input schedule.ac_t_min 8677=20.0
+	Model_0 received input schedule.ac_t_max 8680=20.0
+	Model_0 received input schedule.ac_t_min 8680=20.0
+	Model_0 received input schedule.ac_t_max 8692=20.0
+	Model_0 received input schedule.ac_t_min 8692=20.0
+	Model_0 received input schedule.ac_t_max 73086=20.0
+	Model_0 received input schedule.ac_t_min 73086=20.0
+ts: 55800 outputs of module 1800, real_period = 3600
+!!command: ['in schedule.ac_t_max [8674, 8677, 8680, 8692, 73086] = [20.0, 20.0, 20.0, 20.0, 20.0]', 'in schedule.ac_t_min [8674, 8677, 8680, 8692, 73086] = [20.0, 20.0, 20.0, 20.0, 20.0]', 'run 0']
+!!!!read line 0
+ results of step : 5rooms> 5rooms> 5rooms> zone.ac_t [8674,8677,8680,8692,73086]=[20,20,20,20,20]
+
+!!!!read line 1
+ results of step : zone.fresh_vent_load_s [8674,8677,8680,8692,73086]=[0.6864668,0.2145259,0.15845144,0.30432748,0.12701772]
+
+!!!!read line 2
+ results of step : zone.load_s [8674,8677,8680,8692,73086]=[3.2302218,0.40470868,0.69565672,3.0094875,1.0099897]
+
+	Model_0 published output zone.load_s 8674=11628.79848
+	Model_0 published output zone.load_s 8677=1456.9512479999999
+	Model_0 published output zone.load_s 8680=2504.364192
+	Model_0 published output zone.load_s 8692=10834.155
+	Model_0 published output zone.load_s 73086=3635.96292
+	Model_0 published output zone.fresh_vent_load_s 8674=2471.2804800000004
+	Model_0 published output zone.fresh_vent_load_s 8677=772.29324
+	Model_0 published output zone.fresh_vent_load_s 8680=570.425184
+	Model_0 published output zone.fresh_vent_load_s 8692=1095.578928
+	Model_0 published output zone.fresh_vent_load_s 73086=457.263792
+	Model_0 published output zone.ac_t 8674=20.0
+	Model_0 published output zone.ac_t 8677=20.0
+	Model_0 published output zone.ac_t 8680=20.0
+	Model_0 published output zone.ac_t 8692=20.0
+	Model_0 published output zone.ac_t 73086=20.0
+************* Requesting time 57600.0 -- Granted time 57600.0 **************
+	current timestep: 57600.0
+	Model_0 received input schedule.ac_t_max 8674=20.0
+	Model_0 received input schedule.ac_t_min 8674=20.0
+	Model_0 received input schedule.ac_t_max 8677=20.0
+	Model_0 received input schedule.ac_t_min 8677=20.0
+	Model_0 received input schedule.ac_t_max 8680=20.0
+	Model_0 received input schedule.ac_t_min 8680=20.0
+	Model_0 received input schedule.ac_t_max 8692=20.0
+	Model_0 received input schedule.ac_t_min 8692=20.0
+	Model_0 received input schedule.ac_t_max 73086=20.0
+	Model_0 received input schedule.ac_t_min 73086=20.0
+	Model_0 received input zone.vent_q 8674=14100.078959999999
+	Model_0 received input zone.vent_q 8677=2229.244488
+	Model_0 received input zone.vent_q 8680=3074.7893759999997
+	Model_0 received input zone.vent_q 8692=11929.733928000001
+	Model_0 received input zone.vent_q 73086=4093.226712
+ts: 57600 outputs of module 0, real_period = 3600
+!!command: ['in zone.vent_q [8674, 8677, 8680, 8692, 73086] = [14100.078959999999, 2229.244488, 3074.7893759999997, 11929.733928000001, 4093.226712]', 'in zone.ac_on_off [8674, 8677, 8680, 8692, 73086] = [0, 0, 0, 0, 0]', 'run 1']
+!!!!read line 0
+ results of step : 5rooms> 5rooms> 5rooms> zone.ac_t [8674,8677,8680,8692,73086]=[20,20,20,20,20]
+
+!!!!read line 1
+ results of step : zone.fresh_vent_load_s [8674,8677,8680,8692,73086]=[0,0,0,0,0]
+
+!!!!read line 2
+ results of step : zone.load_s [8674,8677,8680,8692,73086]=[0,0,0,0,0]
+
+	Model_0 published output zone.load_s 8674=0.0
+	Model_0 published output zone.load_s 8677=0.0
+	Model_0 published output zone.load_s 8680=0.0
+	Model_0 published output zone.load_s 8692=0.0
+	Model_0 published output zone.load_s 73086=0.0
+	Model_0 published output zone.fresh_vent_load_s 8674=0.0
+	Model_0 published output zone.fresh_vent_load_s 8677=0.0
+	Model_0 published output zone.fresh_vent_load_s 8680=0.0
+	Model_0 published output zone.fresh_vent_load_s 8692=0.0
+	Model_0 published output zone.fresh_vent_load_s 73086=0.0
+	Model_0 published output zone.ac_t 8674=20.0
+	Model_0 published output zone.ac_t 8677=20.0
+	Model_0 published output zone.ac_t 8680=20.0
+	Model_0 published output zone.ac_t 8692=20.0
+	Model_0 published output zone.ac_t 73086=20.0
+************* Requesting time 59400.0 -- Granted time 59400.0 **************
+	current timestep: 59400.0
+	Model_0 received input schedule.ac_t_max 8674=20.0
+	Model_0 received input schedule.ac_t_min 8674=20.0
+	Model_0 received input schedule.ac_t_max 8677=20.0
+	Model_0 received input schedule.ac_t_min 8677=20.0
+	Model_0 received input schedule.ac_t_max 8680=20.0
+	Model_0 received input schedule.ac_t_min 8680=20.0
+	Model_0 received input schedule.ac_t_max 8692=20.0
+	Model_0 received input schedule.ac_t_min 8692=20.0
+	Model_0 received input schedule.ac_t_max 73086=20.0
+	Model_0 received input schedule.ac_t_min 73086=20.0
+ts: 59400 outputs of module 1800, real_period = 3600
+!!command: ['in schedule.ac_t_max [8674, 8677, 8680, 8692, 73086] = [20.0, 20.0, 20.0, 20.0, 20.0]', 'in schedule.ac_t_min [8674, 8677, 8680, 8692, 73086] = [20.0, 20.0, 20.0, 20.0, 20.0]', 'run 0']
+!!!!read line 0
+ results of step : 5rooms> 5rooms> 5rooms> zone.ac_t [8674,8677,8680,8692,73086]=[20,20,20,20,20]
+
+!!!!read line 1
+ results of step : zone.fresh_vent_load_s [8674,8677,8680,8692,73086]=[0.73336207,0.22918101,0.16927589,0.32511729,0.1356948]
+
+!!!!read line 2
+ results of step : zone.load_s [8674,8677,8680,8692,73086]=[1.5603153,0.3221689,0.45717694,2.0231157,0.72808348]
+
+	Model_0 published output zone.load_s 8674=5617.13508
+	Model_0 published output zone.load_s 8677=1159.80804
+	Model_0 published output zone.load_s 8680=1645.8369839999998
+	Model_0 published output zone.load_s 8692=7283.21652
+	Model_0 published output zone.load_s 73086=2621.100528
+	Model_0 published output zone.fresh_vent_load_s 8674=2640.103452
+	Model_0 published output zone.fresh_vent_load_s 8677=825.0516359999999
+	Model_0 published output zone.fresh_vent_load_s 8680=609.3932040000001
+	Model_0 published output zone.fresh_vent_load_s 8692=1170.422244
+	Model_0 published output zone.fresh_vent_load_s 73086=488.50128
+	Model_0 published output zone.ac_t 8674=20.0
+	Model_0 published output zone.ac_t 8677=20.0
+	Model_0 published output zone.ac_t 8680=20.0
+	Model_0 published output zone.ac_t 8692=20.0
+	Model_0 published output zone.ac_t 73086=20.0
+************* Requesting time 61200.0 -- Granted time 61200.0 **************
+	current timestep: 61200.0
+	Model_0 received input schedule.ac_t_max 8674=20.0
+	Model_0 received input schedule.ac_t_min 8674=20.0
+	Model_0 received input schedule.ac_t_max 8677=20.0
+	Model_0 received input schedule.ac_t_min 8677=20.0
+	Model_0 received input schedule.ac_t_max 8680=20.0
+	Model_0 received input schedule.ac_t_min 8680=20.0
+	Model_0 received input schedule.ac_t_max 8692=20.0
+	Model_0 received input schedule.ac_t_min 8692=20.0
+	Model_0 received input schedule.ac_t_max 73086=20.0
+	Model_0 received input schedule.ac_t_min 73086=20.0
+	Model_0 received input zone.vent_q 8674=8257.238532
+	Model_0 received input zone.vent_q 8677=1984.8596759999998
+	Model_0 received input zone.vent_q 8680=2255.230188
+	Model_0 received input zone.vent_q 8692=8453.638764
+	Model_0 received input zone.vent_q 73086=3109.601808
+ts: 61200 outputs of module 0, real_period = 3600
+!!command: ['in zone.vent_q [8674, 8677, 8680, 8692, 73086] = [8257.238532, 1984.8596759999998, 2255.230188, 8453.638764, 3109.601808]', 'in zone.ac_on_off [8674, 8677, 8680, 8692, 73086] = [0, 0, 0, 0, 0]', 'run 1']
+!!!!read line 0
+ results of step : 5rooms> 5rooms> 5rooms> zone.ac_t [8674,8677,8680,8692,73086]=[20,20,20,20,20]
+
+!!!!read line 1
+ results of step : zone.fresh_vent_load_s [8674,8677,8680,8692,73086]=[0,0,0,0,0]
+
+!!!!read line 2
+ results of step : zone.load_s [8674,8677,8680,8692,73086]=[0,0,0,0,0]
+
+	Model_0 published output zone.load_s 8674=0.0
+	Model_0 published output zone.load_s 8677=0.0
+	Model_0 published output zone.load_s 8680=0.0
+	Model_0 published output zone.load_s 8692=0.0
+	Model_0 published output zone.load_s 73086=0.0
+	Model_0 published output zone.fresh_vent_load_s 8674=0.0
+	Model_0 published output zone.fresh_vent_load_s 8677=0.0
+	Model_0 published output zone.fresh_vent_load_s 8680=0.0
+	Model_0 published output zone.fresh_vent_load_s 8692=0.0
+	Model_0 published output zone.fresh_vent_load_s 73086=0.0
+	Model_0 published output zone.ac_t 8674=20.0
+	Model_0 published output zone.ac_t 8677=20.0
+	Model_0 published output zone.ac_t 8680=20.0
+	Model_0 published output zone.ac_t 8692=20.0
+	Model_0 published output zone.ac_t 73086=20.0
+************* Requesting time 63000.0 -- Granted time 63000.0 **************
+	current timestep: 63000.0
+	Model_0 received input schedule.ac_t_max 8674=20.0
+	Model_0 received input schedule.ac_t_min 8674=20.0
+	Model_0 received input schedule.ac_t_max 8677=20.0
+	Model_0 received input schedule.ac_t_min 8677=20.0
+	Model_0 received input schedule.ac_t_max 8680=20.0
+	Model_0 received input schedule.ac_t_min 8680=20.0
+	Model_0 received input schedule.ac_t_max 8692=20.0
+	Model_0 received input schedule.ac_t_min 8692=20.0
+	Model_0 received input schedule.ac_t_max 73086=20.0
+	Model_0 received input schedule.ac_t_min 73086=20.0
+ts: 63000 outputs of module 1800, real_period = 3600
+!!command: ['in schedule.ac_t_max [8674, 8677, 8680, 8692, 73086] = [20.0, 20.0, 20.0, 20.0, 20.0]', 'in schedule.ac_t_min [8674, 8677, 8680, 8692, 73086] = [20.0, 20.0, 20.0, 20.0, 20.0]', 'run 0']
+!!!!read line 0
+ results of step : 5rooms> 5rooms> 5rooms> zone.ac_t [8674,8677,8680,8692,73086]=[20,20,20,20,20]
+
+!!!!read line 1
+ results of step : zone.fresh_vent_load_s [8674,8677,8680,8692,73086]=[0.80021276,0.25007234,0.18470648,0.35475383,0.14806426]
+
+!!!!read line 2
+ results of step : zone.load_s [8674,8677,8680,8692,73086]=[2.579482,-0.30471106,0.62962387,1.557158,0.60870898]
+
+	Model_0 published output zone.load_s 8674=9286.1352
+	Model_0 published output zone.load_s 8677=-1096.9598159999998
+	Model_0 published output zone.load_s 8680=2266.645932
+	Model_0 published output zone.load_s 8692=5605.7688
+	Model_0 published output zone.load_s 73086=2191.352328
+	Model_0 published output zone.fresh_vent_load_s 8674=2880.765936
+	Model_0 published output zone.fresh_vent_load_s 8677=900.2604240000001
+	Model_0 published output zone.fresh_vent_load_s 8680=664.9433280000001
+	Model_0 published output zone.fresh_vent_load_s 8692=1277.1137879999999
+	Model_0 published output zone.fresh_vent_load_s 73086=533.031336
+	Model_0 published output zone.ac_t 8674=20.0
+	Model_0 published output zone.ac_t 8677=20.0
+	Model_0 published output zone.ac_t 8680=20.0
+	Model_0 published output zone.ac_t 8692=20.0
+	Model_0 published output zone.ac_t 73086=20.0
+************* Requesting time 64800.0 -- Granted time 64800.0 **************
+	current timestep: 64800.0
+	Model_0 received input schedule.ac_t_max 8674=20.0
+	Model_0 received input schedule.ac_t_min 8674=20.0
+	Model_0 received input schedule.ac_t_max 8677=20.0
+	Model_0 received input schedule.ac_t_min 8677=20.0
+	Model_0 received input schedule.ac_t_max 8680=20.0
+	Model_0 received input schedule.ac_t_min 8680=20.0
+	Model_0 received input schedule.ac_t_max 8692=20.0
+	Model_0 received input schedule.ac_t_min 8692=20.0
+	Model_0 received input schedule.ac_t_max 73086=20.0
+	Model_0 received input schedule.ac_t_min 73086=20.0
+	Model_0 received input zone.vent_q 8674=12166.901136
+	Model_0 received input zone.vent_q 8677=0.0
+	Model_0 received input zone.vent_q 8680=2931.5892599999997
+	Model_0 received input zone.vent_q 8692=6882.8825879999995
+	Model_0 received input zone.vent_q 73086=2724.383664
+ts: 64800 outputs of module 0, real_period = 3600
+!!command: ['in zone.vent_q [8674, 8677, 8680, 8692, 73086] = [12166.901136, 0.0, 2931.5892599999997, 6882.8825879999995, 2724.383664]', 'in zone.ac_on_off [8674, 8677, 8680, 8692, 73086] = [0, 0, 0, 0, 0]', 'run 1']
+!!!!read line 0
+ results of step : 5rooms> 5rooms> 5rooms> zone.ac_t [8674,8677,8680,8692,73086]=[20,20.070157,20,20,20]
+
+!!!!read line 1
+ results of step : zone.fresh_vent_load_s [8674,8677,8680,8692,73086]=[0,0,0,0,0]
+
+!!!!read line 2
+ results of step : zone.load_s [8674,8677,8680,8692,73086]=[0,0,0,0,0]
+
+	Model_0 published output zone.load_s 8674=0.0
+	Model_0 published output zone.load_s 8677=0.0
+	Model_0 published output zone.load_s 8680=0.0
+	Model_0 published output zone.load_s 8692=0.0
+	Model_0 published output zone.load_s 73086=0.0
+	Model_0 published output zone.fresh_vent_load_s 8674=0.0
+	Model_0 published output zone.fresh_vent_load_s 8677=0.0
+	Model_0 published output zone.fresh_vent_load_s 8680=0.0
+	Model_0 published output zone.fresh_vent_load_s 8692=0.0
+	Model_0 published output zone.fresh_vent_load_s 73086=0.0
+	Model_0 published output zone.ac_t 8674=20.0
+	Model_0 published output zone.ac_t 8677=20.070157
+	Model_0 published output zone.ac_t 8680=20.0
+	Model_0 published output zone.ac_t 8692=20.0
+	Model_0 published output zone.ac_t 73086=20.0
+************* Requesting time 66600.0 -- Granted time 66600.0 **************
+	current timestep: 66600.0
+	Model_0 received input schedule.ac_t_max 8674=20.0
+	Model_0 received input schedule.ac_t_min 8674=20.0
+	Model_0 received input schedule.ac_t_max 8677=20.0
+	Model_0 received input schedule.ac_t_min 8677=20.0
+	Model_0 received input schedule.ac_t_max 8680=20.0
+	Model_0 received input schedule.ac_t_min 8680=20.0
+	Model_0 received input schedule.ac_t_max 8692=20.0
+	Model_0 received input schedule.ac_t_min 8692=20.0
+	Model_0 received input schedule.ac_t_max 73086=20.0
+	Model_0 received input schedule.ac_t_min 73086=20.0
+ts: 66600 outputs of module 1800, real_period = 3600
+!!command: ['in schedule.ac_t_max [8674, 8677, 8680, 8692, 73086] = [20.0, 20.0, 20.0, 20.0, 20.0]', 'in schedule.ac_t_min [8674, 8677, 8680, 8692, 73086] = [20.0, 20.0, 20.0, 20.0, 20.0]', 'run 0']
+!!!!read line 0
+ results of step : 5rooms> 5rooms> 5rooms> zone.ac_t [8674,8677,8680,8692,73086]=[20,20,20,20,20]
+
+!!!!read line 1
+ results of step : zone.fresh_vent_load_s [8674,8677,8680,8692,73086]=[0.87604339,0.27376997,0.20220983,0.3883714,0.16209529]
+
+!!!!read line 2
+ results of step : zone.load_s [8674,8677,8680,8692,73086]=[2.5247007,-0.3694989,0.62389444,1.3269476,0.54826229]
+
+	Model_0 published output zone.load_s 8674=9088.92252
+	Model_0 published output zone.load_s 8677=-1330.19604
+	Model_0 published output zone.load_s 8680=2246.019984
+	Model_0 published output zone.load_s 8692=4777.01136
+	Model_0 published output zone.load_s 73086=1973.7442440000002
+	Model_0 published output zone.fresh_vent_load_s 8674=3153.756204
+	Model_0 published output zone.fresh_vent_load_s 8677=985.5718919999999
+	Model_0 published output zone.fresh_vent_load_s 8680=727.955388
+	Model_0 published output zone.fresh_vent_load_s 8692=1398.1370399999998
+	Model_0 published output zone.fresh_vent_load_s 73086=583.543044
+	Model_0 published output zone.ac_t 8674=20.0
+	Model_0 published output zone.ac_t 8677=20.0
+	Model_0 published output zone.ac_t 8680=20.0
+	Model_0 published output zone.ac_t 8692=20.0
+	Model_0 published output zone.ac_t 73086=20.0
+************* Requesting time 68400.0 -- Granted time 68400.0 **************
+	current timestep: 68400.0
+	Model_0 received input schedule.ac_t_max 8674=20.0
+	Model_0 received input schedule.ac_t_min 8674=20.0
+	Model_0 received input schedule.ac_t_max 8677=20.0
+	Model_0 received input schedule.ac_t_min 8677=20.0
+	Model_0 received input schedule.ac_t_max 8680=20.0
+	Model_0 received input schedule.ac_t_min 8680=20.0
+	Model_0 received input schedule.ac_t_max 8692=20.0
+	Model_0 received input schedule.ac_t_min 8692=20.0
+	Model_0 received input schedule.ac_t_max 73086=20.0
+	Model_0 received input schedule.ac_t_min 73086=20.0
+	Model_0 received input zone.vent_q 8674=12242.678724
+	Model_0 received input zone.vent_q 8677=0.0
+	Model_0 received input zone.vent_q 8680=2973.975372
+	Model_0 received input zone.vent_q 8692=6175.1484
+	Model_0 received input zone.vent_q 73086=2557.2872880000004
+ts: 68400 outputs of module 0, real_period = 3600
+!!command: ['in zone.vent_q [8674, 8677, 8680, 8692, 73086] = [12242.678724, 0.0, 2973.975372, 6175.1484, 2557.2872880000004]', 'in zone.ac_on_off [8674, 8677, 8680, 8692, 73086] = [0, 0, 0, 0, 0]', 'run 1']
+!!!!read line 0
+ results of step : 5rooms> 5rooms> 5rooms> zone.ac_t [8674,8677,8680,8692,73086]=[20,20.122918,20,20,20]
+
+!!!!read line 1
+ results of step : zone.fresh_vent_load_s [8674,8677,8680,8692,73086]=[0,0,0,0,0]
+
+!!!!read line 2
+ results of step : zone.load_s [8674,8677,8680,8692,73086]=[0,0,0,0,0]
+
+	Model_0 published output zone.load_s 8674=0.0
+	Model_0 published output zone.load_s 8677=0.0
+	Model_0 published output zone.load_s 8680=0.0
+	Model_0 published output zone.load_s 8692=0.0
+	Model_0 published output zone.load_s 73086=0.0
+	Model_0 published output zone.fresh_vent_load_s 8674=0.0
+	Model_0 published output zone.fresh_vent_load_s 8677=0.0
+	Model_0 published output zone.fresh_vent_load_s 8680=0.0
+	Model_0 published output zone.fresh_vent_load_s 8692=0.0
+	Model_0 published output zone.fresh_vent_load_s 73086=0.0
+	Model_0 published output zone.ac_t 8674=20.0
+	Model_0 published output zone.ac_t 8677=20.122918
+	Model_0 published output zone.ac_t 8680=20.0
+	Model_0 published output zone.ac_t 8692=20.0
+	Model_0 published output zone.ac_t 73086=20.0
+************* Requesting time 70200.0 -- Granted time 70200.0 **************
+	current timestep: 70200.0
+	Model_0 received input schedule.ac_t_max 8674=20.0
+	Model_0 received input schedule.ac_t_min 8674=20.0
+	Model_0 received input schedule.ac_t_max 8677=20.0
+	Model_0 received input schedule.ac_t_min 8677=20.0
+	Model_0 received input schedule.ac_t_max 8680=20.0
+	Model_0 received input schedule.ac_t_min 8680=20.0
+	Model_0 received input schedule.ac_t_max 8692=20.0
+	Model_0 received input schedule.ac_t_min 8692=20.0
+	Model_0 received input schedule.ac_t_max 73086=20.0
+	Model_0 received input schedule.ac_t_min 73086=20.0
+ts: 70200 outputs of module 1800, real_period = 3600
+!!command: ['in schedule.ac_t_max [8674, 8677, 8680, 8692, 73086] = [20.0, 20.0, 20.0, 20.0, 20.0]', 'in schedule.ac_t_min [8674, 8677, 8680, 8692, 73086] = [20.0, 20.0, 20.0, 20.0, 20.0]', 'run 0']
+!!!!read line 0
+ results of step : 5rooms> 5rooms> 5rooms> zone.ac_t [8674,8677,8680,8692,73086]=[20,20,20,20,20]
+
+!!!!read line 1
+ results of step : zone.fresh_vent_load_s [8674,8677,8680,8692,73086]=[0.95187403,0.2974676,0.21971319,0.42198897,0.17612632]
+
+!!!!read line 2
+ results of step : zone.load_s [8674,8677,8680,8692,73086]=[1.9780964,0.66393757,0.49538566,0.95057558,0.52145946]
+
+	Model_0 published output zone.load_s 8674=7121.147040000001
+	Model_0 published output zone.load_s 8677=2390.175252
+	Model_0 published output zone.load_s 8680=1783.388376
+	Model_0 published output zone.load_s 8692=3422.072088
+	Model_0 published output zone.load_s 73086=1877.254056
+	Model_0 published output zone.fresh_vent_load_s 8674=3426.746508
+	Model_0 published output zone.fresh_vent_load_s 8677=1070.88336
+	Model_0 published output zone.fresh_vent_load_s 8680=790.967484
+	Model_0 published output zone.fresh_vent_load_s 8692=1519.160292
+	Model_0 published output zone.fresh_vent_load_s 73086=634.054752
+	Model_0 published output zone.ac_t 8674=20.0
+	Model_0 published output zone.ac_t 8677=20.0
+	Model_0 published output zone.ac_t 8680=20.0
+	Model_0 published output zone.ac_t 8692=20.0
+	Model_0 published output zone.ac_t 73086=20.0
+************* Requesting time 72000.0 -- Granted time 72000.0 **************
+	current timestep: 72000.0
+	Model_0 received input schedule.ac_t_max 8674=20.0
+	Model_0 received input schedule.ac_t_min 8674=20.0
+	Model_0 received input schedule.ac_t_max 8677=20.0
+	Model_0 received input schedule.ac_t_min 8677=20.0
+	Model_0 received input schedule.ac_t_max 8680=20.0
+	Model_0 received input schedule.ac_t_min 8680=20.0
+	Model_0 received input schedule.ac_t_max 8692=20.0
+	Model_0 received input schedule.ac_t_min 8692=20.0
+	Model_0 received input schedule.ac_t_max 73086=20.0
+	Model_0 received input schedule.ac_t_min 73086=20.0
+	Model_0 received input zone.vent_q 8674=10547.893548
+	Model_0 received input zone.vent_q 8677=3461.058612
+	Model_0 received input zone.vent_q 8680=2574.35586
+	Model_0 received input zone.vent_q 8692=4941.2323799999995
+	Model_0 received input zone.vent_q 73086=2511.3088079999998
+ts: 72000 outputs of module 0, real_period = 3600
+!!command: ['in zone.vent_q [8674, 8677, 8680, 8692, 73086] = [10547.893548, 3461.058612, 2574.35586, 4941.2323799999995, 2511.3088079999998]', 'in zone.ac_on_off [8674, 8677, 8680, 8692, 73086] = [0, 0, 0, 0, 0]', 'run 1']
+!!!!read line 0
+ results of step : 5rooms> 5rooms> 5rooms> zone.ac_t [8674,8677,8680,8692,73086]=[20,20,20,20,20]
+
+!!!!read line 1
+ results of step : zone.fresh_vent_load_s [8674,8677,8680,8692,73086]=[0,0,0,0,0]
+
+!!!!read line 2
+ results of step : zone.load_s [8674,8677,8680,8692,73086]=[0,0,0,0,0]
+
+	Model_0 published output zone.load_s 8674=0.0
+	Model_0 published output zone.load_s 8677=0.0
+	Model_0 published output zone.load_s 8680=0.0
+	Model_0 published output zone.load_s 8692=0.0
+	Model_0 published output zone.load_s 73086=0.0
+	Model_0 published output zone.fresh_vent_load_s 8674=0.0
+	Model_0 published output zone.fresh_vent_load_s 8677=0.0
+	Model_0 published output zone.fresh_vent_load_s 8680=0.0
+	Model_0 published output zone.fresh_vent_load_s 8692=0.0
+	Model_0 published output zone.fresh_vent_load_s 73086=0.0
+	Model_0 published output zone.ac_t 8674=20.0
+	Model_0 published output zone.ac_t 8677=20.0
+	Model_0 published output zone.ac_t 8680=20.0
+	Model_0 published output zone.ac_t 8692=20.0
+	Model_0 published output zone.ac_t 73086=20.0
+************* Requesting time 73800.0 -- Granted time 73800.0 **************
+	current timestep: 73800.0
+	Model_0 received input schedule.ac_t_max 8674=20.0
+	Model_0 received input schedule.ac_t_min 8674=20.0
+	Model_0 received input schedule.ac_t_max 8677=20.0
+	Model_0 received input schedule.ac_t_min 8677=20.0
+	Model_0 received input schedule.ac_t_max 8680=20.0
+	Model_0 received input schedule.ac_t_min 8680=20.0
+	Model_0 received input schedule.ac_t_max 8692=20.0
+	Model_0 received input schedule.ac_t_min 8692=20.0
+	Model_0 received input schedule.ac_t_max 73086=20.0
+	Model_0 received input schedule.ac_t_min 73086=20.0
+ts: 73800 outputs of module 1800, real_period = 3600
+!!command: ['in schedule.ac_t_max [8674, 8677, 8680, 8692, 73086] = [20.0, 20.0, 20.0, 20.0, 20.0]', 'in schedule.ac_t_min [8674, 8677, 8680, 8692, 73086] = [20.0, 20.0, 20.0, 20.0, 20.0]', 'run 0']
+!!!!read line 0
+ results of step : 5rooms> 5rooms> 5rooms> zone.ac_t [8674,8677,8680,8692,73086]=[20,20,20,20,20]
+
+!!!!read line 1
+ results of step : zone.fresh_vent_load_s [8674,8677,8680,8692,73086]=[1.0177269,0.31804712,0.23491348,0.45118318,0.18831116]
+
+!!!!read line 2
+ results of step : zone.load_s [8674,8677,8680,8692,73086]=[2.0185408,0.7356809,0.44688417,0.77034468,0.51077342]
+
+	Model_0 published output zone.load_s 8674=7266.74688
+	Model_0 published output zone.load_s 8677=2648.45124
+	Model_0 published output zone.load_s 8680=1608.783012
+	Model_0 published output zone.load_s 8692=2773.240848
+	Model_0 published output zone.load_s 73086=1838.7843120000002
+	Model_0 published output zone.fresh_vent_load_s 8674=3663.81684
+	Model_0 published output zone.fresh_vent_load_s 8677=1144.969632
+	Model_0 published output zone.fresh_vent_load_s 8680=845.688528
+	Model_0 published output zone.fresh_vent_load_s 8692=1624.259448
+	Model_0 published output zone.fresh_vent_load_s 73086=677.920176
+	Model_0 published output zone.ac_t 8674=20.0
+	Model_0 published output zone.ac_t 8677=20.0
+	Model_0 published output zone.ac_t 8680=20.0
+	Model_0 published output zone.ac_t 8692=20.0
+	Model_0 published output zone.ac_t 73086=20.0
+************* Requesting time 75600.0 -- Granted time 75600.0 **************
+	current timestep: 75600.0
+	Model_0 received input schedule.ac_t_max 8674=20.0
+	Model_0 received input schedule.ac_t_min 8674=20.0
+	Model_0 received input schedule.ac_t_max 8677=20.0
+	Model_0 received input schedule.ac_t_min 8677=20.0
+	Model_0 received input schedule.ac_t_max 8680=20.0
+	Model_0 received input schedule.ac_t_min 8680=20.0
+	Model_0 received input schedule.ac_t_max 8692=20.0
+	Model_0 received input schedule.ac_t_min 8692=20.0
+	Model_0 received input schedule.ac_t_max 73086=20.0
+	Model_0 received input schedule.ac_t_min 73086=20.0
+	Model_0 received input zone.vent_q 8674=10930.56372
+	Model_0 received input zone.vent_q 8677=3793.4208719999997
+	Model_0 received input zone.vent_q 8680=2454.47154
+	Model_0 received input zone.vent_q 8692=4397.500296
+	Model_0 received input zone.vent_q 73086=2516.7044880000003
+ts: 75600 outputs of module 0, real_period = 3600
+!!command: ['in zone.vent_q [8674, 8677, 8680, 8692, 73086] = [10930.56372, 3793.4208719999997, 2454.47154, 4397.500296, 2516.7044880000003]', 'in zone.ac_on_off [8674, 8677, 8680, 8692, 73086] = [0, 0, 0, 0, 0]', 'run 1']
+!!!!read line 0
+ results of step : 5rooms> 5rooms> 5rooms> zone.ac_t [8674,8677,8680,8692,73086]=[20,20,20,20,20]
+
+!!!!read line 1
+ results of step : zone.fresh_vent_load_s [8674,8677,8680,8692,73086]=[0,0,0,0,0]
+
+!!!!read line 2
+ results of step : zone.load_s [8674,8677,8680,8692,73086]=[0,0,0,0,0]
+
+	Model_0 published output zone.load_s 8674=0.0
+	Model_0 published output zone.load_s 8677=0.0
+	Model_0 published output zone.load_s 8680=0.0
+	Model_0 published output zone.load_s 8692=0.0
+	Model_0 published output zone.load_s 73086=0.0
+	Model_0 published output zone.fresh_vent_load_s 8674=0.0
+	Model_0 published output zone.fresh_vent_load_s 8677=0.0
+	Model_0 published output zone.fresh_vent_load_s 8680=0.0
+	Model_0 published output zone.fresh_vent_load_s 8692=0.0
+	Model_0 published output zone.fresh_vent_load_s 73086=0.0
+	Model_0 published output zone.ac_t 8674=20.0
+	Model_0 published output zone.ac_t 8677=20.0
+	Model_0 published output zone.ac_t 8680=20.0
+	Model_0 published output zone.ac_t 8692=20.0
+	Model_0 published output zone.ac_t 73086=20.0
+************* Requesting time 77400.0 -- Granted time 77400.0 **************
+	current timestep: 77400.0
+	Model_0 received input schedule.ac_t_max 8674=20.0
+	Model_0 received input schedule.ac_t_min 8674=20.0
+	Model_0 received input schedule.ac_t_max 8677=20.0
+	Model_0 received input schedule.ac_t_min 8677=20.0
+	Model_0 received input schedule.ac_t_max 8680=20.0
+	Model_0 received input schedule.ac_t_min 8680=20.0
+	Model_0 received input schedule.ac_t_max 8692=20.0
+	Model_0 received input schedule.ac_t_min 8692=20.0
+	Model_0 received input schedule.ac_t_max 73086=20.0
+	Model_0 received input schedule.ac_t_min 73086=20.0
+ts: 77400 outputs of module 1800, real_period = 3600
+!!command: ['in schedule.ac_t_max [8674, 8677, 8680, 8692, 73086] = [20.0, 20.0, 20.0, 20.0, 20.0]', 'in schedule.ac_t_min [8674, 8677, 8680, 8692, 73086] = [20.0, 20.0, 20.0, 20.0, 20.0]', 'run 0']
+!!!!read line 0
+ results of step : 5rooms> 5rooms> 5rooms> zone.ac_t [8674,8677,8680,8692,73086]=[20,20,20,20,20]
+
+!!!!read line 1
+ results of step : zone.fresh_vent_load_s [8674,8677,8680,8692,73086]=[1.0661189,0.33316994,0.24608338,0.4726365,0.19726517]
+
+!!!!read line 2
+ results of step : zone.load_s [8674,8677,8680,8692,73086]=[2.0688376,0.78250859,0.45708319,0.72855503,0.50703377]
+
+	Model_0 published output zone.load_s 8674=7447.8153600000005
+	Model_0 published output zone.load_s 8677=2817.0309239999997
+	Model_0 published output zone.load_s 8680=1645.499484
+	Model_0 published output zone.load_s 8692=2622.798108
+	Model_0 published output zone.load_s 73086=1825.3215720000003
+	Model_0 published output zone.fresh_vent_load_s 8674=3838.02804
+	Model_0 published output zone.fresh_vent_load_s 8677=1199.411784
+	Model_0 published output zone.fresh_vent_load_s 8680=885.900168
+	Model_0 published output zone.fresh_vent_load_s 8692=1701.4914
+	Model_0 published output zone.fresh_vent_load_s 73086=710.1546119999999
+	Model_0 published output zone.ac_t 8674=20.0
+	Model_0 published output zone.ac_t 8677=20.0
+	Model_0 published output zone.ac_t 8680=20.0
+	Model_0 published output zone.ac_t 8692=20.0
+	Model_0 published output zone.ac_t 73086=20.0
+************* Requesting time 79200.0 -- Granted time 79200.0 **************
+	current timestep: 79200.0
+	Model_0 received input schedule.ac_t_max 8674=20.0
+	Model_0 received input schedule.ac_t_min 8674=20.0
+	Model_0 received input schedule.ac_t_max 8677=20.0
+	Model_0 received input schedule.ac_t_min 8677=20.0
+	Model_0 received input schedule.ac_t_max 8680=20.0
+	Model_0 received input schedule.ac_t_min 8680=20.0
+	Model_0 received input schedule.ac_t_max 8692=20.0
+	Model_0 received input schedule.ac_t_min 8692=20.0
+	Model_0 received input schedule.ac_t_max 73086=20.0
+	Model_0 received input schedule.ac_t_min 73086=20.0
+	Model_0 received input zone.vent_q 8674=11285.843400000002
+	Model_0 received input zone.vent_q 8677=4016.4427079999996
+	Model_0 received input zone.vent_q 8680=2531.399652
+	Model_0 received input zone.vent_q 8692=4324.289508
+	Model_0 received input zone.vent_q 73086=2535.476184
+ts: 79200 outputs of module 0, real_period = 3600
+!!command: ['in zone.vent_q [8674, 8677, 8680, 8692, 73086] = [11285.843400000002, 4016.4427079999996, 2531.399652, 4324.289508, 2535.476184]', 'in zone.ac_on_off [8674, 8677, 8680, 8692, 73086] = [0, 0, 0, 0, 0]', 'run 1']
+!!!!read line 0
+ results of step : 5rooms> 5rooms> 5rooms> zone.ac_t [8674,8677,8680,8692,73086]=[20,20,20,20,20]
+
+!!!!read line 1
+ results of step : zone.fresh_vent_load_s [8674,8677,8680,8692,73086]=[0,0,0,0,0]
+
+!!!!read line 2
+ results of step : zone.load_s [8674,8677,8680,8692,73086]=[0,0,0,0,0]
+
+	Model_0 published output zone.load_s 8674=0.0
+	Model_0 published output zone.load_s 8677=0.0
+	Model_0 published output zone.load_s 8680=0.0
+	Model_0 published output zone.load_s 8692=0.0
+	Model_0 published output zone.load_s 73086=0.0
+	Model_0 published output zone.fresh_vent_load_s 8674=0.0
+	Model_0 published output zone.fresh_vent_load_s 8677=0.0
+	Model_0 published output zone.fresh_vent_load_s 8680=0.0
+	Model_0 published output zone.fresh_vent_load_s 8692=0.0
+	Model_0 published output zone.fresh_vent_load_s 73086=0.0
+	Model_0 published output zone.ac_t 8674=20.0
+	Model_0 published output zone.ac_t 8677=20.0
+	Model_0 published output zone.ac_t 8680=20.0
+	Model_0 published output zone.ac_t 8692=20.0
+	Model_0 published output zone.ac_t 73086=20.0
+************* Requesting time 81000.0 -- Granted time 81000.0 **************
+	current timestep: 81000.0
+	Model_0 received input schedule.ac_t_max 8674=20.0
+	Model_0 received input schedule.ac_t_min 8674=20.0
+	Model_0 received input schedule.ac_t_max 8677=20.0
+	Model_0 received input schedule.ac_t_min 8677=20.0
+	Model_0 received input schedule.ac_t_max 8680=20.0
+	Model_0 received input schedule.ac_t_min 8680=20.0
+	Model_0 received input schedule.ac_t_max 8692=20.0
+	Model_0 received input schedule.ac_t_min 8692=20.0
+	Model_0 received input schedule.ac_t_max 73086=20.0
+	Model_0 received input schedule.ac_t_min 73086=20.0
+ts: 81000 outputs of module 1800, real_period = 3600
+!!command: ['in schedule.ac_t_max [8674, 8677, 8680, 8692, 73086] = [20.0, 20.0, 20.0, 20.0, 20.0]', 'in schedule.ac_t_min [8674, 8677, 8680, 8692, 73086] = [20.0, 20.0, 20.0, 20.0, 20.0]', 'run 0']
+!!!!read line 0
+ results of step : 5rooms> 5rooms> 5rooms> zone.ac_t [8674,8677,8680,8692,73086]=[20,20,20,20,20]
+
+!!!!read line 1
+ results of step : zone.fresh_vent_load_s [8674,8677,8680,8692,73086]=[1.0995442,0.34361561,0.25379868,0.48745477,0.2034499]
+
+!!!!read line 2
+ results of step : zone.load_s [8674,8677,8680,8692,73086]=[2.2168352,0.816738,0.41394578,0.65011636,0.50596305]
+
+	Model_0 published output zone.load_s 8674=7980.606719999999
+	Model_0 published output zone.load_s 8677=2940.2567999999997
+	Model_0 published output zone.load_s 8680=1490.204808
+	Model_0 published output zone.load_s 8692=2340.4188959999997
+	Model_0 published output zone.load_s 73086=1821.46698
+	Model_0 published output zone.fresh_vent_load_s 8674=3958.35912
+	Model_0 published output zone.fresh_vent_load_s 8677=1237.016196
+	Model_0 published output zone.fresh_vent_load_s 8680=913.675248
+	Model_0 published output zone.fresh_vent_load_s 8692=1754.837172
+	Model_0 published output zone.fresh_vent_load_s 73086=732.41964
+	Model_0 published output zone.ac_t 8674=20.0
+	Model_0 published output zone.ac_t 8677=20.0
+	Model_0 published output zone.ac_t 8680=20.0
+	Model_0 published output zone.ac_t 8692=20.0
+	Model_0 published output zone.ac_t 73086=20.0
+************* Requesting time 82800.0 -- Granted time 82800.0 **************
+	current timestep: 82800.0
+	Model_0 received input schedule.ac_t_max 8674=16.0
+	Model_0 received input schedule.ac_t_min 8674=16.0
+	Model_0 received input schedule.ac_t_max 8677=16.0
+	Model_0 received input schedule.ac_t_min 8677=16.0
+	Model_0 received input schedule.ac_t_max 8680=16.0
+	Model_0 received input schedule.ac_t_min 8680=16.0
+	Model_0 received input schedule.ac_t_max 8692=16.0
+	Model_0 received input schedule.ac_t_min 8692=16.0
+	Model_0 received input schedule.ac_t_max 73086=16.0
+	Model_0 received input schedule.ac_t_min 73086=16.0
+	Model_0 received input zone.vent_q 8674=11938.965839999999
+	Model_0 received input zone.vent_q 8677=4177.272996
+	Model_0 received input zone.vent_q 8680=2403.880056
+	Model_0 received input zone.vent_q 8692=4095.2560679999997
+	Model_0 received input zone.vent_q 73086=2553.8866199999998
+ts: 82800 outputs of module 0, real_period = 3600
+!!command: ['in zone.vent_q [8674, 8677, 8680, 8692, 73086] = [11938.965839999999, 4177.272996, 2403.880056, 4095.2560679999997, 2553.8866199999998]', 'in zone.ac_on_off [8674, 8677, 8680, 8692, 73086] = [0, 0, 0, 0, 0]', 'run 1']
+!!!!read line 0
+ results of step : 5rooms> 5rooms> 5rooms> zone.ac_t [8674,8677,8680,8692,73086]=[20,20,20,20,20]
+
+!!!!read line 1
+ results of step : zone.fresh_vent_load_s [8674,8677,8680,8692,73086]=[0,0,0,0,0]
+
+!!!!read line 2
+ results of step : zone.load_s [8674,8677,8680,8692,73086]=[0,0,0,0,0]
+
+	Model_0 published output zone.load_s 8674=0.0
+	Model_0 published output zone.load_s 8677=0.0
+	Model_0 published output zone.load_s 8680=0.0
+	Model_0 published output zone.load_s 8692=0.0
+	Model_0 published output zone.load_s 73086=0.0
+	Model_0 published output zone.fresh_vent_load_s 8674=0.0
+	Model_0 published output zone.fresh_vent_load_s 8677=0.0
+	Model_0 published output zone.fresh_vent_load_s 8680=0.0
+	Model_0 published output zone.fresh_vent_load_s 8692=0.0
+	Model_0 published output zone.fresh_vent_load_s 73086=0.0
+	Model_0 published output zone.ac_t 8674=20.0
+	Model_0 published output zone.ac_t 8677=20.0
+	Model_0 published output zone.ac_t 8680=20.0
+	Model_0 published output zone.ac_t 8692=20.0
+	Model_0 published output zone.ac_t 73086=20.0
+************* Requesting time 84600.0 -- Granted time 84600.0 **************
+	current timestep: 84600.0
+	Model_0 received input schedule.ac_t_max 8674=16.0
+	Model_0 received input schedule.ac_t_min 8674=16.0
+	Model_0 received input schedule.ac_t_max 8677=16.0
+	Model_0 received input schedule.ac_t_min 8677=16.0
+	Model_0 received input schedule.ac_t_max 8680=16.0
+	Model_0 received input schedule.ac_t_min 8680=16.0
+	Model_0 received input schedule.ac_t_max 8692=16.0
+	Model_0 received input schedule.ac_t_min 8692=16.0
+	Model_0 received input schedule.ac_t_max 73086=16.0
+	Model_0 received input schedule.ac_t_min 73086=16.0
+ts: 84600 outputs of module 1800, real_period = 3600
+!!command: ['in schedule.ac_t_max [8674, 8677, 8680, 8692, 73086] = [16.0, 16.0, 16.0, 16.0, 16.0]', 'in schedule.ac_t_min [8674, 8677, 8680, 8692, 73086] = [16.0, 16.0, 16.0, 16.0, 16.0]', 'run 0']
+!!!!read line 0
+ results of step : 5rooms> 5rooms> 5rooms> zone.ac_t [8674,8677,8680,8692,73086]=[16,16,16,16,16]
+
+!!!!read line 1
+ results of step : zone.fresh_vent_load_s [8674,8677,8680,8692,73086]=[0.92343754,0.28858099,0.21314943,0.40938238,0.17086468]
+
+!!!!read line 2
+ results of step : zone.load_s [8674,8677,8680,8692,73086]=[-4.6278767,-2.2095312,-1.9140495,-3.5748758,-1.471085]
+
+	Model_0 published output zone.load_s 8674=-16660.35612
+	Model_0 published output zone.load_s 8677=-7954.312319999999
+	Model_0 published output zone.load_s 8680=-6890.5782
+	Model_0 published output zone.load_s 8692=-12869.55288
+	Model_0 published output zone.load_s 73086=-5295.906
+	Model_0 published output zone.fresh_vent_load_s 8674=3324.375144
+	Model_0 published output zone.fresh_vent_load_s 8677=1038.891564
+	Model_0 published output zone.fresh_vent_load_s 8680=767.337948
+	Model_0 published output zone.fresh_vent_load_s 8692=1473.776568
+	Model_0 published output zone.fresh_vent_load_s 73086=615.112848
+	Model_0 published output zone.ac_t 8674=16.0
+	Model_0 published output zone.ac_t 8677=16.0
+	Model_0 published output zone.ac_t 8680=16.0
+	Model_0 published output zone.ac_t 8692=16.0
+	Model_0 published output zone.ac_t 73086=16.0
+************* Requesting time 86400.0 -- Granted time 86400.0 **************
+	current timestep: 86400.0
+	Model_0 received input schedule.ac_t_max 8674=16.0
+	Model_0 received input schedule.ac_t_min 8674=16.0
+	Model_0 received input schedule.ac_t_max 8677=16.0
+	Model_0 received input schedule.ac_t_min 8677=16.0
+	Model_0 received input schedule.ac_t_max 8680=16.0
+	Model_0 received input schedule.ac_t_min 8680=16.0
+	Model_0 received input schedule.ac_t_max 8692=16.0
+	Model_0 received input schedule.ac_t_min 8692=16.0
+	Model_0 received input schedule.ac_t_max 73086=16.0
+	Model_0 received input schedule.ac_t_min 73086=16.0
+	Model_0 received input zone.vent_q 8674=0.0
+	Model_0 received input zone.vent_q 8677=0.0
+	Model_0 received input zone.vent_q 8680=0.0
+	Model_0 received input zone.vent_q 8692=0.0
+	Model_0 received input zone.vent_q 73086=0.0
+ts: 86400 outputs of module 0, real_period = 3600
+!!command: ['in zone.vent_q [8674, 8677, 8680, 8692, 73086] = [0.0, 0.0, 0.0, 0.0, 0.0]', 'in zone.ac_on_off [8674, 8677, 8680, 8692, 73086] = [0, 0, 0, 0, 0]', 'run 1']
+!!!!read line 0
+ results of step : 5rooms> 5rooms> 5rooms> zone.ac_t [8674,8677,8680,8692,73086]=[17.949559,18.466541,18.858015,18.985436,18.582536]
+
+!!!!read line 1
+ results of step : zone.fresh_vent_load_s [8674,8677,8680,8692,73086]=[0,0,0,0,0]
+
+!!!!read line 2
+ results of step : zone.load_s [8674,8677,8680,8692,73086]=[0,0,0,0,0]
+
+	Model_0 published output zone.load_s 8674=0.0
+	Model_0 published output zone.load_s 8677=0.0
+	Model_0 published output zone.load_s 8680=0.0
+	Model_0 published output zone.load_s 8692=0.0
+	Model_0 published output zone.load_s 73086=0.0
+	Model_0 published output zone.fresh_vent_load_s 8674=0.0
+	Model_0 published output zone.fresh_vent_load_s 8677=0.0
+	Model_0 published output zone.fresh_vent_load_s 8680=0.0
+	Model_0 published output zone.fresh_vent_load_s 8692=0.0
+	Model_0 published output zone.fresh_vent_load_s 73086=0.0
+	Model_0 published output zone.ac_t 8674=17.949559
+	Model_0 published output zone.ac_t 8677=18.466541
+	Model_0 published output zone.ac_t 8680=18.858015
+	Model_0 published output zone.ac_t 8692=18.985436
+	Model_0 published output zone.ac_t 73086=18.582536
+		 Model Envelope.0 finalized with Memory : {'inputs': {'schedule.ac_t_max 8674': [], 'schedule.ac_t_min 8674': [], 'schedule.ac_t_max 8677': [], 'schedule.ac_t_min 8677': [], 'schedule.ac_t_max 8680': [], 'schedule.ac_t_min 8680': [], 'schedule.ac_t_max 8692': [], 'schedule.ac_t_min 8692': [], 'schedule.ac_t_max 73086': [], 'schedule.ac_t_min 73086': [], 'zone.vent_q 8674': [], 'zone.vent_q 8677': [], 'zone.vent_q 8680': [], 'zone.vent_q 8692': [], 'zone.vent_q 73086': []}, 'outputs': {'zone.load_s 8674': [-15254.432999999999, -10343.571479999999, -6266.01744, -2789.080164, -130.1954328, 1335.993084, 28874.9268, 19999.99224, 15380.26236, 12676.61376, 10859.60232, -16959.84552, -14555.15064, -13903.09164, -14952.829679999999, 11628.79848, 5617.13508, 9286.1352, 9088.92252, 7121.147040000001, 7266.74688, 7447.8153600000005, 7980.606719999999, -16660.35612], 'zone.load_s 8677': [-7289.3502, -5604.73092, -4153.23396, -2873.2977, -1720.8702719999999, -667.223172, 11071.530359999999, 7205.14008, 5217.50988, 3558.825252, -1237.384116, -13302.779760000001, -9117.17424, -9691.5636, -10279.5552, 1456.9512479999999, 1159.80804, -1096.9598159999998, -1330.19604, 2390.175252, 2648.45124, 2817.0309239999997, 2940.2567999999997, -7954.312319999999], 'zone.load_s 8680': [-5827.51548, -4677.05628, -3694.2282, -2836.517436, -2069.9899560000003, -1372.611528, 7672.348440000001, 5382.12564, 3900.8538, 2826.7461359999998, 2013.428664, -7041.60072, -5641.505279999999, -5991.3414, -6334.16256, 2504.364192, 1645.8369839999998, 2266.645932, 2246.019984, 1783.388376, 1608.783012, 1645.499484, 1490.204808, -6890.5782], 'zone.load_s 8692': [-10835.65368, -9012.976560000001, -7442.64396, -6070.56516, -4848.56172, -3741.6574800000003, 12223.39392, 8216.33292, 6195.60288, 5248.64916, 4788.49968, -10405.434599999999, -8275.78044, -6587.72928, -5231.90124, 10834.155, 7283.21652, 5605.7688, 4777.01136, 3422.072088, 2773.240848, 2622.798108, 2340.4188959999997, -12869.55288], 'zone.load_s 73086': [-5219.2062, -4393.63332, -3703.39956, -3106.427112, -2573.198676, -2085.262344, 5484.21372, 3769.38144, 2678.114592, 2015.1816119999999, 1725.313392, -5440.00536, -4718.6982, -4217.90148, -3838.66992, 3635.96292, 2621.100528, 2191.352328, 1973.7442440000002, 1877.254056, 1838.7843120000002, 1825.3215720000003, 1821.46698, -5295.906], 'zone.fresh_vent_load_s 8674': [3785.94432, 3805.70004, 3843.4158, 3913.4595600000002, 4003.2590399999995, 4091.26248, 4876.10928, 4903.0491600000005, 4759.37028, 4398.37632, 3909.86748, 2663.4512879999997, 2178.5343479999997, 1824.724548, 1688.229396, 2471.2804800000004, 2640.103452, 2880.765936, 3153.756204, 3426.746508, 3663.81684, 3838.02804, 3958.35912, 3324.375144], 'zone.fresh_vent_load_s 8677': [1183.1352840000002, 1189.30914, 1201.095576, 1222.984692, 1251.0477, 1278.549396, 1523.8198439999999, 1532.238768, 1487.337984, 1374.524784, 1221.862176, 832.348008, 680.807916, 570.239784, 527.584032, 772.29324, 825.0516359999999, 900.2604240000001, 985.5718919999999, 1070.88336, 1144.969632, 1199.411784, 1237.016196, 1038.891564], 'zone.fresh_vent_load_s 8680': [873.878112, 878.438196, 887.143824, 903.3113880000001, 924.0390719999999, 944.3521800000001, 1125.51192, 1131.7302000000002, 1098.5659560000001, 1015.240752, 902.482308, 614.7823679999999, 502.85300399999994, 421.18603199999995, 389.679984, 570.425184, 609.3932040000001, 664.9433280000001, 727.955388, 790.967484, 845.688528, 885.900168, 913.675248, 767.337948], 'zone.fresh_vent_load_s 8692': [1678.4014319999999, 1687.1596920000002, 1703.8799999999999, 1734.932016, 1774.742292, 1813.7563919999998, 2161.6982279999997, 2173.6413000000002, 2109.94488, 1949.9075280000002, 1733.339628, 1180.7729279999999, 965.797416, 808.944912, 748.433268, 1095.578928, 1170.422244, 1277.1137879999999, 1398.1370399999998, 1519.160292, 1624.259448, 1701.4914, 1754.837172, 1473.776568], 'zone.fresh_vent_load_s 73086': [700.517484, 704.17296, 711.151524, 724.111776, 740.727468, 757.010844, 902.2319640000001, 907.216704, 880.631568, 813.8365200000001, 723.447144, 492.82138799999996, 403.096644, 337.63082399999996, 312.3749772, 457.263792, 488.50128, 533.031336, 583.543044, 634.054752, 677.920176, 710.1546119999999, 732.41964, 615.112848], 'zone.ac_t 8674': [17.676554, 16.955759, 16.354157, 16.000002, 16.000001, 16.000001, 20.0, 20.0, 20.0, 20.0, 20.0, 18.08996, 17.809311, 17.76571, 17.939123, 20.0, 20.0, 20.0, 20.0, 20.0, 20.0, 20.0, 20.0, 17.949559], 'zone.ac_t 8677': [18.177919, 17.574859, 17.052946, 16.588621, 16.167573, 16.0, 20.0, 20.0, 20.0, 20.0, 20.005536, 20.447857, 19.009019, 19.253324, 19.478258, 20.0, 20.0, 20.070157, 20.122918, 20.0, 20.0, 20.0, 20.0, 18.466541], 'zone.ac_t 8680': [18.312105, 17.773001, 17.310204, 16.902322, 16.534871, 16.19989, 20.0, 20.0, 20.0, 20.0, 20.0, 18.999712, 18.398461, 18.599864, 18.774581, 20.0, 20.0, 20.0, 20.0, 20.0, 20.0, 20.0, 20.0, 18.858015], 'zone.ac_t 8692': [18.398993, 17.919198, 17.503426, 17.135837, 16.80527, 16.505066, 20.0, 20.0, 20.0, 20.0, 20.0, 18.416654, 17.915051, 17.513912, 17.174569, 20.0, 20.0, 20.0, 20.0, 20.0, 20.0, 20.0, 20.0, 18.985436], 'zone.ac_t 73086': [18.493097, 18.035586, 17.650911, 17.314393, 17.011027, 16.732835, 20.0, 20.0, 20.0, 20.0, 20.0, 18.729512, 18.381049, 18.140864, 17.945567, 20.0, 20.0, 20.0, 20.0, 20.0, 20.0, 20.0, 20.0, 18.582536]}, 'params': {}}
+	Federate finalized
+process terminated

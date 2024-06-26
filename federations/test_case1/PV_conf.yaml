@@ -6,6 +6,7 @@ fed_conf:
   RL_training: true
   mem_attrs : [outputs.pv]
   real_period: 3600
+  sim_start: '2015-01-01 00:00:00'
 
 fed_info:
   broker: null

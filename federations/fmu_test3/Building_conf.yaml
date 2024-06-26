@@ -4,11 +4,11 @@ fed_conf:
   class_name: FMU
   n_instances: 1
   RL_training: true
-  mem_attrs : [inputs.Tbulb, inputs.Tdew, inputs.RH, inputs.Peo, inputs.Q, outputs.Tamb, outputs.TRoomMea] # possibilities None no memory, [empty list] memorize all
+  mem_attrs : [inputs.Tbulb, inputs.Tdew, inputs.RH, inputs.Peo, inputs.Q, outputs.Tamb, outputs.TRooMea] # possibilities None no memory, [empty list] memorize all
   fmu: building_tia
-  real_period: 60
+  real_period: 600
   inputs_order: [['Tbulb','Tdew','RH','Peo'],[],['Q']]
-  outputs_order: [['Tamb'],[],['TRoomMea']]
+  outputs_order: [['Tamb'],[],['TRooMea']]
 fed_info:
   broker: null
   broker_init: null
@@ -28,7 +28,7 @@ fed_flags:
   FORWARD_COMPUTE: False
 fed_properties:
   TIME_DELTA: 1e-09
-  TIME_PERIOD: 60
+  TIME_PERIOD: 600
   TIME_OFFSET: 0.0
   TIME_RT_LAG: 0.0
   TIME_RT_LEAD: 0.0

@@ -1,14 +1,11 @@
 import logging
-from Model import Model
-import collections
-import os, sys
+from models._baseModels.Model import Model
+import os
 import random
-import json
-import numpy as np
-from fmpy.util import plot_result
 from fmpy import read_model_description, extract, dump
 from fmpy.fmi1 import FMU1Slave
 from fmpy.fmi2 import FMU2Slave
+import time
 
 logger = logging.getLogger(__name__)
 logger.addHandler(logging.StreamHandler())
@@ -86,13 +83,14 @@ class FMU (Model):
             status = self.fmu.initialize(tStart=0, stopTime=self.end_time)
             assert status == 0
             #raise Exception('fmi 1.0 NOT SUPPORTED')
-
+        time.sleep(10)
         print('yo')
     def step(self, ts, **kwargs):
         self.rows = []
         fmu_time = ts * self.real_period
         # Set inputs
-        self.set_inputs()
+        if ts!=0:
+            self.set_inputs()
         logger.debug(f"###fmu_time = {fmu_time}, self.real period+ {self.real_period}")
         self.fmu.doStep(currentCommunicationPoint=fmu_time, communicationStepSize=self.real_period)
         self.get_outputs()

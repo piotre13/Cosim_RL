@@ -1,5 +1,5 @@
 import logging
-from Model import Model
+from models._baseModels.Model import Model
 logger = logging.getLogger(__name__)
 logger.addHandler(logging.StreamHandler())
 logger.setLevel(logging.DEBUG)

@@ -1,0 +1,42 @@
+{
+  "name": "test_case_dest1_noiter",
+  "broker": true,
+  "federates": [
+    {
+      "directory": "../..",
+      "exec": "python -u Federate.py Envelope_conf.yaml test_case_dest1_noiter",
+      "host": "localhost",
+      "name": "Envelope"
+    },
+    {
+      "directory": "../..",
+      "exec": "python -u Federate.py Controller_conf.yaml test_case_dest1_noiter",
+      "host": "localhost",
+      "name": "Controller"
+    },
+    {
+      "directory": "../..",
+      "exec": "python -u Federate.py Hvac_conf.yaml test_case_dest1_noiter",
+      "host": "localhost",
+      "name": "Hvac"
+    },
+    {
+      "directory": "../..",
+      "exec": "python -u Federate.py Weather_conf.yaml test_case_dest1_noiter",
+      "host": "localhost",
+      "name": "Weather"
+    },
+    {
+      "directory": "../..",
+      "exec": "python -u Federate.py PV_conf.yaml test_case_dest1_noiter",
+      "host": "localhost",
+      "name": "PV"
+    },
+    {
+      "directory": "../..",
+      "exec": "python -u Federate.py Battery_conf.yaml test_case_dest1_noiter",
+      "host": "localhost",
+      "name": "Battery"
+    }
+  ]
+}

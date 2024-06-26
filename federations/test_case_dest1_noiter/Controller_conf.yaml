@@ -1,0 +1,48 @@
+fed_name: Controller
+fed_conf:
+  model_script : dummy_models/Controller_dummy.py
+  class_name: Controller
+  n_instances: 1
+  RL_training: true
+  mem_attrs : [outputs.tSetMax, outputs.tSetMin] # possibilities None no memory, [empty list] memorize all
+  real_period: 3600
+fed_info:
+  broker: null
+  broker_init: null
+  broker_key: null
+  broker_port: null
+  core_init: null #for debugging only
+  core_name: controller_core
+  core_type: zmq
+  local_port: null
+  separator: null
+fed_flags:
+  SOURCE_ONLY: True
+  TERMINATE_ON_ERROR: true
+
+
+fed_properties:
+  TIME_PERIOD: 1800
+  TIME_OFFSET: 0.0
+  TIME_STOPTIME: 86400
+
+fed_connections:
+  sub: {}
+  pub:
+    0: [{
+      "key": "tSetMax",
+      "type": "double",
+      "units": "C",
+    },
+      {
+        "key": "tSetMin",
+        "type": "double",
+        "units": "C",
+      }]
+  end: {}
+  inp: {}
+model_conf:
+  params: {}
+  init_state:
+    outputs.tSetMax: [20.0]
+    outputs.tSetMin: [20.0]

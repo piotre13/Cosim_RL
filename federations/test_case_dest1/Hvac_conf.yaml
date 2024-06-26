@@ -1,0 +1,184 @@
+fed_name: Hvac
+fed_conf:
+  model_script : dummy_models/Hvac_dummy.py
+  class_name: Hvac
+  n_instances: 1
+  RL_training: true
+  mem_attrs : [] # possibilities None no memory, [empty list] memorize all
+  real_period: 3600
+  inputs_order: [[],[ "power_load_s 8674","power_fresh_vent_load_s 8674","power_load_s 8677","power_fresh_vent_load_s 8677","power_load_s 8680","power_fresh_vent_load_s 8680","power_load_s 8692","power_fresh_vent_load_s 8692","power_load_s 73086","power_fresh_vent_load_s 73086" ],[]]
+  outputs_order: [[],[ "actual_power 8674","actual_power 8677","actual_power 8680","actual_power 8692","actual_power 73086" ],['electrical_power']]
+fed_info:
+  broker: null
+  broker_init: null
+  broker_key: null
+  broker_port: null
+  core_init: null #for debugging only
+  core_name: hvac_core
+  core_type: zmq
+  local_port: null
+  separator: null
+fed_flags:
+  UNINTERRUPTIBLE: False
+  WAIT_FOR_CURRENT_TIME_UPDATE: true
+  TERMINATE_ON_ERROR: true
+#  ONLY_UPDATE_ON_CHANGE: True
+#  ROLLBACK: True
+
+
+fed_properties:
+  TIME_PERIOD: 3600
+  TIME_OFFSET: 0.0
+  TIME_STOPTIME: 86400
+
+fed_connections:
+  sub: {}
+  pub:
+    0: [
+      {
+        "key": "electrical_power",
+        "type": "double",
+        "units": "W",
+      },
+      {
+      "key": "actual_power",
+      "type": "double",
+      "units": "kW",
+    },
+      {
+        "key": "actual_power 8674",
+        "type": "double",
+        "units": "kW",
+      },
+      {
+        "key": "actual_power 8677",
+        "type": "double",
+        "units": "kW",
+      },
+      {
+        "key": "actual_power 8680",
+        "type": "double",
+        "units": "kW",
+      },
+      {
+        "key": "actual_power 8692",
+        "type": "double",
+        "units": "kW",
+      },
+      {
+        "key": "actual_power 73086",
+        "type": "double",
+        "units": "kW",
+      }]
+  end: {}
+  inp:
+    0: [
+      {
+      "key": "power",
+      "type": "double",
+      "units": "W",
+      "multi_input_handling_method": "vectorize",
+      "targets": [
+        "Envelope/0/zone.load_s 8674",
+        "Envelope/0/zone.load_s 8677",
+        "Envelope/0/zone.load_s 8680",
+        "Envelope/0/zone.load_s 8692",
+        "Envelope/0/zone.load_s 73086",
+        "Envelope/0/zone.fresh_vent_load_s 8674",
+        "Envelope/0/zone.fresh_vent_load_s 8677",
+        "Envelope/0/zone.fresh_vent_load_s 8680",
+        "Envelope/0/zone.fresh_vent_load_s 8692",
+        "Envelope/0/zone.fresh_vent_load_s 73086",
+
+      ]
+    },
+      {
+        "key": "power_load_s 8674",
+        "type": "double",
+        "units": "W",
+        "targets": [
+          "Envelope/0/zone.load_s 8674",
+        ]
+      },
+
+      {
+        "key": "power_load_s 8677",
+        "type": "double",
+        "units": "W",
+        "targets": [
+          "Envelope/0/zone.load_s 8677",
+        ]
+      },
+
+      {
+        "key": "power_load_s 8680",
+        "type": "double",
+        "units": "W",
+        "targets": [
+          "Envelope/0/zone.load_s 8680",
+        ]
+      },
+
+      {
+        "key": "power_load_s 8692",
+        "type": "double",
+        "units": "W",
+        "targets": [
+          "Envelope/0/zone.load_s 8692",
+        ]
+      },
+      {
+        "key": "power_load_s 73086",
+        "type": "double",
+        "units": "W",
+        "targets": [
+          "Envelope/0/zone.load_s 73086",
+        ]
+      },
+
+      {
+        "key": "power_fresh_vent_load_s 8674",
+        "type": "double",
+        "units": "W",
+        "targets": [
+          "Envelope/0/zone.fresh_vent_load_s 8674",
+        ]
+      },
+
+      {
+        "key": "power_fresh_vent_load_s 8677",
+        "type": "double",
+        "units": "W",
+        "targets": [
+          "Envelope/0/zone.fresh_vent_load_s 8677",
+        ]
+      },
+
+      {
+        "key": "power_fresh_vent_load_s 8680",
+        "type": "double",
+        "units": "W",
+        "targets": [
+          "Envelope/0/zone.fresh_vent_load_s 8680",
+        ]
+      },
+
+      {
+        "key": "power_fresh_vent_load_s 8692",
+        "type": "double",
+        "units": "W",
+        "targets": [
+          "Envelope/0/zone.fresh_vent_load_s 8692",
+        ]
+      },
+      {
+        "key": "power_fresh_vent_load_s 73086",
+        "type": "double",
+        "units": "W",
+        "targets": [
+          "Envelope/0/zone.fresh_vent_load_s 73086",
+        ]
+      }]
+model_conf:
+  params: {}
+  init_state: {}

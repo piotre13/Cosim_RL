@@ -1,0 +1,249 @@
+fed_name: Envelope
+fed_conf:
+  model_script : model_Dest/Envelope_noiter.py
+  class_name: Envelope
+  n_instances: 1
+  RL_training: true
+  mem_attrs : [] # possibilities None no memory, [empty list] memorize all
+  real_period: 3600
+fed_info:
+  broker: null
+  broker_init: null
+  broker_key: null
+  broker_port: null
+  core_init: null #for debugging only
+  core_name: envelope_core
+  core_type: zmq
+  local_port: null
+  separator: null
+fed_flags:
+  TERMINATE_ON_ERROR: true
+  UNINTERRUPTIBLE: False
+  WAIT_FOR_CURRENT_TIME_UPDATE: True
+
+
+fed_properties:
+  TIME_PERIOD: 1800
+  TIME_OFFSET: 0.0
+  TIME_STOPTIME: 86400
+
+fed_connections:
+  sub: {}
+  pub:
+    0: [{
+      "key": "zone.load_s 8674",
+      "type": "double",
+      "units": "W",
+    },
+      {
+        "key": "zone.load_s 8677",
+        "type": "double",
+        "units": "W",
+      },
+      {
+        "key": "zone.load_s 8680",
+        "type": "double",
+        "units": "W",
+      },
+      {
+        "key": "zone.load_s 8692",
+        "type": "double",
+        "units": "W",
+      },
+      {
+        "key": "zone.load_s 73086",
+        "type": "double",
+        "units": "W",
+      },
+      {
+        "key": "zone.fresh_vent_load_s 8674",
+        "type": "double",
+        "units": "W",
+      },
+      {
+        "key": "zone.fresh_vent_load_s 8677",
+        "type": "double",
+        "units": "W",
+      },
+      {
+        "key": "zone.fresh_vent_load_s 8680",
+        "type": "double",
+        "units": "W",
+      },
+      {
+        "key": "zone.fresh_vent_load_s 8692",
+        "type": "double",
+        "units": "W",
+      },
+      {
+        "key": "zone.fresh_vent_load_s 73086",
+        "type": "double",
+        "units": "W",
+      },
+      {
+        "key": "zone.ac_t 8674",
+        "type": "double",
+        "units": "C",
+      },
+      {
+        "key": "zone.ac_t 8677",
+        "type": "double",
+        "units": "C",
+      },
+      {
+        "key": "zone.ac_t 8680",
+        "type": "double",
+        "units": "C",
+      },
+      {
+        "key": "zone.ac_t 8692",
+        "type": "double",
+        "units": "C",
+      },
+      {
+        "key": "zone.ac_t 73086",
+        "type": "double",
+        "units": "C",
+      }]
+  end: {}
+  inp:
+    0: [ {
+      "key": "schedule.ac_t_max 8674",
+      "type": "double",
+      "units": "C",
+      "targets": ["Controller/0/tSetMax"]
+    },
+      {
+        "key": "schedule.ac_t_min 8674",
+        "type": "double",
+        "units": "C",
+        "targets": [ "Controller/0/tSetMin" ]
+      },
+      {
+      "key": "schedule.ac_t_max 8677",
+      "type": "double",
+      "units": "C",
+      "targets": ["Controller/0/tSetMax"]
+    },
+      {
+        "key": "schedule.ac_t_min 8677",
+        "type": "double",
+        "units": "C",
+        "targets": [ "Controller/0/tSetMin" ]
+      },
+      {
+      "key": "schedule.ac_t_max 8680",
+      "type": "double",
+      "units": "C",
+      "targets": ["Controller/0/tSetMax"]
+    },
+      {
+        "key": "schedule.ac_t_min 8680",
+        "type": "double",
+        "units": "C",
+        "targets": [ "Controller/0/tSetMin" ]
+      },
+      {
+      "key": "schedule.ac_t_max 8692",
+      "type": "double",
+      "units": "C",
+      "targets": ["Controller/0/tSetMax"]
+    },
+      {
+        "key": "schedule.ac_t_min 8692",
+        "type": "double",
+        "units": "C",
+        "targets": [ "Controller/0/tSetMin" ]
+      },
+      {
+      "key": "schedule.ac_t_max 73086",
+      "type": "double",
+      "units": "C",
+      "targets": ["Controller/0/tSetMax"]
+    },
+      {
+        "key": "schedule.ac_t_min 73086",
+        "type": "double",
+        "units": "C",
+        "targets": [ "Controller/0/tSetMin" ]
+      },
+      {
+        "key": "zone.vent_q 8674",
+        "type": "double",
+        "units": "W",
+        "targets": [ "Hvac/0/actual_power 8674" ]
+      },
+      {
+        "key": "zone.vent_q 8677",
+        "type": "double",
+        "units": "W",
+        "targets": [ "Hvac/0/actual_power 8677" ]
+      },
+      {
+        "key": "zone.vent_q 8680",
+        "type": "double",
+        "units": "W",
+        "targets": [ "Hvac/0/actual_power 8680" ]
+      },
+      {
+        "key": "zone.vent_q 8692",
+        "type": "double",
+        "units": "W",
+        "targets": [ "Hvac/0/actual_power 8692" ]
+      },
+      {
+        "key": "zone.vent_q 73086",
+        "type": "double",
+        "units": "W",
+        "targets": [ "Hvac/0/actual_power 73086" ]
+      }
+#      {
+#        "key": "zone.vent_q 8677",
+#        "type": "double",
+#        "units": "kW",
+#        "targets": [ "Hvac/1/Q" ]
+#      },
+#      {
+#        "key": "zone.vent_q 8680",
+#        "type": "double",
+#        "units": "kW",
+#        "targets": [ "Hvac/2/Q" ]
+#      },
+#      {
+#        "key": "zone.vent_q 8692",
+#        "type": "double",
+#        "units": "W",
+#        "targets": [ "Hvac/3/Q" ]
+#      },
+#      {
+#        "key": "zone.vent_q 73086",
+#        "type": "double",
+#        "units": "W",
+#        "targets": [ "Hvac/4/Q" ]
+#      }
+    ]
+model_conf:
+  params: {}
+#    run.timestep: [3600]
+#    run.time_begin: [0]
+#    run.time_end: [86400]
+#    run.warming_days: [31]
+#    run.housing: [true]
+#    run.as_nature_state: ["true"]
+#    run.no_long_wave_radiation: [true]
+#    run.no_sky_radiation: [true]
+#    run.const_occupant: [true]
+#    run.various_fresh_air: [true]
+#    run.as_control_state: [true]
+#    run.enable_ac_start_t: [true]
+#    run.radiator: [true]
+#    run.param_a: [1e100]
+#    run.param_b: [1e100]
+  required: [[zone.load_s, zone.fresh_vent_load_s, zone.ac_t ]]
+  zone_ids : [[8674, 8677, 8680, 8692, 73086]]
+  init_state: {}
+  casefile: ["C:\\Users\\Pietro\\Code\\Cosim_RL\\models\\model_Dest\\DestKernel\\5rooms.db"]
+#  casefile: ["DestKernel\\5rooms.db"]
+  executable: ["C:\\Users\\Pietro\\Code\\Cosim_RL\\models\\model_Dest\\DestKernel\\bterminal.exe"]
+#  executable: ["DestKernel\\bterminal.exe"]
+  silent: [true]

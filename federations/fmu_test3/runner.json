@@ -22,13 +22,13 @@
     },
     {
       "directory": "../..",
-      "exec": "python -u Federate_iter.py Building_conf.yaml fmu_test3",
+      "exec": "python -u Federate.py Building_conf.yaml fmu_test3",
       "host": "localhost",
       "name": "Building"
     },
     {
       "directory": "../..",
-      "exec": "python -u Federate_iter.py Heatpump_conf.yaml fmu_test3",
+      "exec": "python -u Federate.py Heatpump_conf.yaml fmu_test3",
       "host": "localhost",
       "name": "Heatpump"
     }

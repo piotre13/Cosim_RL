@@ -21,6 +21,8 @@ class Federate:
         #self.fed_config, self.init_config = self.init_config(args)
         self.federation_name = None
         self.init_config = self.set_conf(args)
+        for name, value in self.init_config['fed_conf'].items():
+            setattr(self,name, value)
         self.fed = None
 
         #connections
@@ -44,6 +46,7 @@ class Federate:
         self.offset = None #will be set when the federate is created
         self.granted_time = None #will be set when the federate is created
         self.tot_time = None #will be set when the federate is created
+
 
 
         #performing tasks
@@ -130,6 +133,7 @@ class Federate:
 
                     if "multi_input_handling_method" in inp_info.keys():
                         inpid.option['MULTI_INPUT_HANDLING_METHOD'] = h.helicsGetOptionValue(inp_info['multi_input_handling_method'])
+
                     else:
                         if len(inp_info['targets']) > 1:
                             logger.error(f'\tInput {inp_name} has more than 1 target and no multi inputs handling method!')
@@ -186,20 +190,42 @@ class Federate:
         kwargs['inputs'] = { k: 0.0 for k in self.in_vars}
         kwargs['outputs'] = { k: 0.0 for k in self.out_vars}
 
+        try:
+            for key, values in self.init_config['model_conf'].items():
+                if isinstance(values,dict):
+                    kwargs[key] = {k: values[k][i] for k in values}
+                if isinstance(values, list):
+                    kwargs[key] = values[i]
 
-        for key, values in self.init_config['model_conf'].items():
-            if isinstance(values,dict):
-                kwargs[key] = {k: values[k][i] for k in values}
-            if isinstance(values, list):
-                kwargs[key] = values[i]
-
-        for key, values in self.init_config['fed_conf'].items():
-            kwargs [key] = values
-
+            for key, values in self.init_config['fed_conf'].items():
+                kwargs [key] = values
+        except Exception as e:
+            print(e)
+            logger.error(f"@@@@@  problem with key {key}")
+        kwargs['iter_type'] = self.check_iter_type()
         kwargs['end_time'] = h.helicsFederateGetTimeProperty(self.fed,h.HELICS_PROPERTY_TIME_STOPTIME)
         return  kwargs
 
+    def check_iter_type (self):
+        if 'iteration' in self.__dict__.keys():
+            if self.init_config['fed_conf']['iteration']:
+                if 'inputs_order' in self.init_config['fed_conf'].keys() and 'outputs_order' in self.init_config['fed_conf'].keys():
+                    iter_type = 'fix_iter'
+                elif 'inputs_order' in self.init_config['fed_conf'].keys() and 'outputs_order' not in self.init_config['fed_conf'].keys():
+                    logger.debug(f"NO outputs order specified")
+                    raise AssertionError ('No outputs order has been specified for Federate and model with iter_type = fix_iter')
+                elif 'inputs_order' not in self.init_config['fed_conf'].keys() and 'outputs_order' in self.init_config['fed_conf'].keys():
+                    logger.debug(f"NO inputs order specified")
+                    raise AssertionError(
+                        'No inputs order has been specified for Federate and model with iter_type = fix_iter')
+                else:
+                    iter_type = 'conv_iter'
+            else:
+                iter_type = 'no_iter'
+        else:
+            iter_type = 'no_iter'
 
+        return iter_type
     def execution(self): # execution base for inp out exchange and message receiver
         # +++++++++++++++++++ enetering execution mode++++++++++++++++++
         h.helicsFederateEnterExecutingMode(self.fed)
@@ -224,12 +250,15 @@ class Federate:
                 self.receive_inputs(var)
 
             #++++++++++++++++++ models execution
-            ts_idx = (int(current_ts-self.offset) / self.period) - 1
-            #ts_idx = (current_ts / self.real_period) - 1
-
-            for mod in self.mod_insts:
-                mod.step(ts_idx, **{}) # passing the index of timestep starting from 0
-            #****************************************************************************************
+            ts_idx_sim = (int(current_ts-self.offset) / self.period) - 1
+            ts_idx_real = (int(current_ts - self.offset) / self.real_period) - 1
+            if ts_idx_sim == ts_idx_real:
+                for mod in self.mod_insts:
+                    mod.step(ts_idx_sim, **{}) # passing the index of timestep starting from 0
+            else:
+                for mod in self.mod_insts:
+                    mod.step(ts_idx_real+1, **{}) # passing the index of timestep starting from 0
+                #****************************************************************************************
 
 
             #++++++++++++++++++ sending ouytputs & messages
@@ -259,6 +288,7 @@ class Federate:
 
 
     def receive_inputs(self, var_name):
+        #todo delaing with different tipe of pubblications (eg. string etc and also multiinputhandling can receive vectors
         if self.inps:
             for mod_num in range(len(self.mod_insts)):
                 inpid = self.inps[mod_num][var_name]

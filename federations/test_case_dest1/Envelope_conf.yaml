@@ -4,10 +4,11 @@ fed_conf:
   class_name: Envelope
   n_instances: 1
   RL_training: true
-  mem_attrs : [params.SOC, outputs.energy_out, inputs.power] # possibilities None no memory, [empty list] memorize all
+  mem_attrs : [] # possibilities None no memory, [empty list] memorize all
   real_period: 3600
-#  inputs_order: [ [ 'ac_t' ],[ ],[ 'p_actual' ] ]
-#  outputs_order: [ [ '' ],[ ],[ 't_in' ] ]
+  iteration: true
+  inputs_order: [['schedule.ac_t_max 8674','schedule.ac_t_min 8674','schedule.ac_t_max 8677','schedule.ac_t_min 8677','schedule.ac_t_max 8680','schedule.ac_t_min 8680','schedule.ac_t_max 8692','schedule.ac_t_min 8692','schedule.ac_t_max 73086','schedule.ac_t_min 73086'],[],['zone.vent_q 8674','zone.vent_q 8677','zone.vent_q 8680','zone.vent_q 8692','zone.vent_q 73086']]
+  outputs_order: [['zone.load_s 8674', 'zone.fresh_vent_load_s 8674','zone.load_s 8677', 'zone.fresh_vent_load_s 8677','zone.load_s 8680', 'zone.fresh_vent_load_s 8680','zone.load_s 8692', 'zone.fresh_vent_load_s 8692','zone.load_s 73086', 'zone.fresh_vent_load_s 73086'],[],['zone.ac_t 8674','zone.ac_t 8677','zone.ac_t 8680','zone.ac_t 8692','zone.ac_t 73086']]
 fed_info:
   broker: null
   broker_init: null
@@ -21,80 +22,151 @@ fed_info:
 fed_flags:
   TERMINATE_ON_ERROR: true
   UNINTERRUPTIBLE: False
-  ONLY_TRANSMIT_ON_CHANGE: False
-  ONLY_UPDATE_ON_CHANGE: False
-  WAIT_FOR_CURRENT_TIME_UPDATE: True
+  WAIT_FOR_CURRENT_TIME_UPDATE: False
+  ONLY_UPDATE_ON_CHANGE: True
+  ROLLBACK: True
 
 fed_properties:
-  TIME_DELTA: 1e-09
   TIME_PERIOD: 3600
   TIME_OFFSET: 0.0
-  TIME_STOPTIME: 172800
-  INT_MAX_ITERATIONS: 50
+  TIME_STOPTIME: 86400
 
 fed_connections:
   sub: {}
   pub:
     0: [{
-      "key": "p_demand 8674",
+      "key": "zone.load_s 8674",
       "type": "double",
       "units": "kW",
     },
       {
-        "key": "p_demand 8677",
+        "key": "zone.load_s 8677",
         "type": "double",
         "units": "kW",
       },
       {
-        "key": "p_demand 8680",
+        "key": "zone.load_s 8680",
         "type": "double",
         "units": "kW",
       },
       {
-        "key": "p_demand 8692",
+        "key": "zone.load_s 8692",
         "type": "double",
         "units": "kW",
       },
       {
-        "key": "p_demand 73086",
+        "key": "zone.load_s 73086",
         "type": "double",
         "units": "kW",
       },
       {
-        "key": "zone.act_t 8674",
+        "key": "zone.fresh_vent_load_s 8674",
+        "type": "double",
+        "units": "kW",
+      },
+      {
+        "key": "zone.fresh_vent_load_s 8677",
+        "type": "double",
+        "units": "kW",
+      },
+      {
+        "key": "zone.fresh_vent_load_s 8680",
+        "type": "double",
+        "units": "kW",
+      },
+      {
+        "key": "zone.fresh_vent_load_s 8692",
+        "type": "double",
+        "units": "kW",
+      },
+      {
+        "key": "zone.fresh_vent_load_s 73086",
+        "type": "double",
+        "units": "kW",
+      },
+      {
+        "key": "zone.ac_t 8674",
         "type": "double",
         "units": "C",
       },
       {
-        "key": "zone.act_t 8677",
+        "key": "zone.ac_t 8677",
         "type": "double",
         "units": "C",
       },
       {
-        "key": "zone.act_t 8680",
+        "key": "zone.ac_t 8680",
         "type": "double",
         "units": "C",
       },
       {
-        "key": "zone.act_t 8692",
+        "key": "zone.ac_t 8692",
         "type": "double",
         "units": "C",
       },
       {
-        "key": "zone.act_t 73086",
+        "key": "zone.ac_t 73086",
         "type": "double",
         "units": "C",
       }]
   end: {}
   inp:
     0: [ {
-      "key": "schedule.ac_t_max",
+      "key": "schedule.ac_t_max 8674",
       "type": "double",
       "units": "C",
       "targets": ["Controller/0/tSetMax"]
     },
       {
-        "key": "schedule.ac_t_min",
+        "key": "schedule.ac_t_min 8674",
+        "type": "double",
+        "units": "C",
+        "targets": [ "Controller/0/tSetMin" ]
+      },
+      {
+      "key": "schedule.ac_t_max 8677",
+      "type": "double",
+      "units": "C",
+      "targets": ["Controller/0/tSetMax"]
+    },
+      {
+        "key": "schedule.ac_t_min 8677",
+        "type": "double",
+        "units": "C",
+        "targets": [ "Controller/0/tSetMin" ]
+      },
+      {
+      "key": "schedule.ac_t_max 8680",
+      "type": "double",
+      "units": "C",
+      "targets": ["Controller/0/tSetMax"]
+    },
+      {
+        "key": "schedule.ac_t_min 8680",
+        "type": "double",
+        "units": "C",
+        "targets": [ "Controller/0/tSetMin" ]
+      },
+      {
+      "key": "schedule.ac_t_max 8692",
+      "type": "double",
+      "units": "C",
+      "targets": ["Controller/0/tSetMax"]
+    },
+      {
+        "key": "schedule.ac_t_min 8692",
+        "type": "double",
+        "units": "C",
+        "targets": [ "Controller/0/tSetMin" ]
+      },
+      {
+      "key": "schedule.ac_t_max 73086",
+      "type": "double",
+      "units": "C",
+      "targets": ["Controller/0/tSetMax"]
+    },
+      {
+        "key": "schedule.ac_t_min 73086",
         "type": "double",
         "units": "C",
         "targets": [ "Controller/0/tSetMin" ]
@@ -103,49 +175,79 @@ fed_connections:
         "key": "zone.vent_q 8674",
         "type": "double",
         "units": "kW",
-        "targets": [ "Hvac/0/Q" ]
+        "targets": [ "Hvac/0/actual_power 8674" ]
       },
       {
         "key": "zone.vent_q 8677",
         "type": "double",
         "units": "kW",
-        "targets": [ "Hvac/1/Q" ]
+        "targets": [ "Hvac/0/actual_power 8677" ]
       },
       {
         "key": "zone.vent_q 8680",
         "type": "double",
         "units": "kW",
-        "targets": [ "Hvac/2/Q" ]
+        "targets": [ "Hvac/0/actual_power 8680" ]
       },
       {
         "key": "zone.vent_q 8692",
         "type": "double",
-        "units": "W",
-        "targets": [ "Hvac/3/Q" ]
+        "units": "kW",
+        "targets": [ "Hvac/0/actual_power 8692" ]
       },
       {
         "key": "zone.vent_q 73086",
         "type": "double",
-        "units": "W",
-        "targets": [ "Hvac/4/Q" ]
-      }]
+        "units": "kW",
+        "targets": [ "Hvac/0/actual_power 73086" ]
+      }
+#      {
+#        "key": "zone.vent_q 8677",
+#        "type": "double",
+#        "units": "kW",
+#        "targets": [ "Hvac/1/Q" ]
+#      },
+#      {
+#        "key": "zone.vent_q 8680",
+#        "type": "double",
+#        "units": "kW",
+#        "targets": [ "Hvac/2/Q" ]
+#      },
+#      {
+#        "key": "zone.vent_q 8692",
+#        "type": "double",
+#        "units": "W",
+#        "targets": [ "Hvac/3/Q" ]
+#      },
+#      {
+#        "key": "zone.vent_q 73086",
+#        "type": "double",
+#        "units": "W",
+#        "targets": [ "Hvac/4/Q" ]
+#      }
+    ]
 model_conf:
-  params:
-    run.timestep: [3600]
-    run.time_begin: [0]
-    run.time_end: [86400]
-    run.warming_days: [31]
-    run.housing: [true]
-    run.as_nature_state: [true]
-    run.no_long_wave_radiation: [true]
-    run.no_sky_radiation: [true]
-    run.const_occupant: [true]
-    run.various_fresh_air: [true]
-    run.as_control_state: [true]
-    run.enable_ac_start_t: [true]
-    run.radiator: [true]
-    run.param_a: [1e100]
-    run.param_b: [1e100]
-  require: [[zone.ac_t, zone.load_s, zone.fresh_vent_load_s ]]
+  params: {}
+#    run.timestep: [3600]
+#    run.time_begin: [0]
+#    run.time_end: [86400]
+#    run.warming_days: [31]
+#    run.housing: [true]
+#    run.as_nature_state: ["true"]
+#    run.no_long_wave_radiation: [true]
+#    run.no_sky_radiation: [true]
+#    run.const_occupant: [true]
+#    run.various_fresh_air: [true]
+#    run.as_control_state: [true]
+#    run.enable_ac_start_t: [true]
+#    run.radiator: [true]
+#    run.param_a: [1e100]
+#    run.param_b: [1e100]
+  required: [[zone.load_s, zone.fresh_vent_load_s, zone.ac_t ]]
   zone_ids : [[8674, 8677, 8680, 8692, 73086]]
   init_state: {}
+  casefile: ["C:\\Users\\Pietro\\Code\\Cosim_RL\\models\\model_Dest\\DestKernel\\5rooms.db"]
+#  casefile: ["DestKernel\\5rooms.db"]
+  executable: ["C:\\Users\\Pietro\\Code\\Cosim_RL\\models\\model_Dest\\DestKernel\\bterminal.exe"]
+#  executable: ["DestKernel\\bterminal.exe"]
+  silent: [true]

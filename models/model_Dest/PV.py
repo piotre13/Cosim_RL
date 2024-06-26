@@ -1,6 +1,6 @@
 import numpy as np
 from model_Dest.PV_Dest import PV_model
-from Model import Model #rember the top level running python script is al;ways main
+from _baseModels.Model import Model #rember the top level running python script is al;ways main
 import logging
 logger = logging.getLogger(__name__)
 logger.addHandler(logging.StreamHandler())
