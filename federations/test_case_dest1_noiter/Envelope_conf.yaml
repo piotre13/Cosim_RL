@@ -1,33 +1,29 @@
 fed_name: Envelope
 fed_conf:
-  model_script : model_Dest/Envelope.py
+  model_script : model_Dest/Envelope_noiter.py
   class_name: Envelope
   n_instances: 1
   RL_training: true
   mem_attrs : [] # possibilities None no memory, [empty list] memorize all
   real_period: 3600
-  iteration: true
-  inputs_order: [['schedule.ac_t_max 8674','schedule.ac_t_min 8674','schedule.ac_t_max 8677','schedule.ac_t_min 8677','schedule.ac_t_max 8680','schedule.ac_t_min 8680','schedule.ac_t_max 8692','schedule.ac_t_min 8692','schedule.ac_t_max 73086','schedule.ac_t_min 73086'],[],['zone.vent_q 8674','zone.vent_q 8677','zone.vent_q 8680','zone.vent_q 8692','zone.vent_q 73086']]
-  outputs_order: [['zone.load_s 8674', 'zone.fresh_vent_load_s 8674','zone.load_s 8677', 'zone.fresh_vent_load_s 8677','zone.load_s 8680', 'zone.fresh_vent_load_s 8680','zone.load_s 8692', 'zone.fresh_vent_load_s 8692','zone.load_s 73086', 'zone.fresh_vent_load_s 73086'],[],['zone.ac_t 8674','zone.ac_t 8677','zone.ac_t 8680','zone.ac_t 8692','zone.ac_t 73086']]
 fed_info:
   broker: null
   broker_init: null
   broker_key: null
   broker_port: null
   core_init: null #for debugging only
-  core_name: battery_core
+  core_name: envelope_core
   core_type: zmq
   local_port: null
   separator: null
 fed_flags:
   TERMINATE_ON_ERROR: true
   UNINTERRUPTIBLE: False
-  WAIT_FOR_CURRENT_TIME_UPDATE: False
-  ONLY_UPDATE_ON_CHANGE: True
-  ROLLBACK: True
+  WAIT_FOR_CURRENT_TIME_UPDATE: True
+
 
 fed_properties:
-  TIME_PERIOD: 3600
+  TIME_PERIOD: 1800
   TIME_OFFSET: 0.0
   TIME_STOPTIME: 86400
 
@@ -37,52 +33,52 @@ fed_connections:
     0: [{
       "key": "zone.load_s 8674",
       "type": "double",
-      "units": "kW",
+      "units": "W",
     },
       {
         "key": "zone.load_s 8677",
         "type": "double",
-        "units": "kW",
+        "units": "W",
       },
       {
         "key": "zone.load_s 8680",
         "type": "double",
-        "units": "kW",
+        "units": "W",
       },
       {
         "key": "zone.load_s 8692",
         "type": "double",
-        "units": "kW",
+        "units": "W",
       },
       {
         "key": "zone.load_s 73086",
         "type": "double",
-        "units": "kW",
+        "units": "W",
       },
       {
         "key": "zone.fresh_vent_load_s 8674",
         "type": "double",
-        "units": "kW",
+        "units": "W",
       },
       {
         "key": "zone.fresh_vent_load_s 8677",
         "type": "double",
-        "units": "kW",
+        "units": "W",
       },
       {
         "key": "zone.fresh_vent_load_s 8680",
         "type": "double",
-        "units": "kW",
+        "units": "W",
       },
       {
         "key": "zone.fresh_vent_load_s 8692",
         "type": "double",
-        "units": "kW",
+        "units": "W",
       },
       {
         "key": "zone.fresh_vent_load_s 73086",
         "type": "double",
-        "units": "kW",
+        "units": "W",
       },
       {
         "key": "zone.ac_t 8674",
@@ -174,31 +170,31 @@ fed_connections:
       {
         "key": "zone.vent_q 8674",
         "type": "double",
-        "units": "kW",
+        "units": "W",
         "targets": [ "Hvac/0/actual_power 8674" ]
       },
       {
         "key": "zone.vent_q 8677",
         "type": "double",
-        "units": "kW",
+        "units": "W",
         "targets": [ "Hvac/0/actual_power 8677" ]
       },
       {
         "key": "zone.vent_q 8680",
         "type": "double",
-        "units": "kW",
+        "units": "W",
         "targets": [ "Hvac/0/actual_power 8680" ]
       },
       {
         "key": "zone.vent_q 8692",
         "type": "double",
-        "units": "kW",
+        "units": "W",
         "targets": [ "Hvac/0/actual_power 8692" ]
       },
       {
         "key": "zone.vent_q 73086",
         "type": "double",
-        "units": "kW",
+        "units": "W",
         "targets": [ "Hvac/0/actual_power 73086" ]
       }
 #      {

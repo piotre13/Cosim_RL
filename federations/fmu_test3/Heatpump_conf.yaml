@@ -6,7 +6,7 @@ fed_conf:
   RL_training: true
   mem_attrs : [inputs.Tset, inputs.Tamb, inputs.TroomSens, outputs.COP,outputs.MV, outputs.Power, outputs.Qsensible, outputs.Tm] # possibilities None no memory, [empty list] memorize all
   fmu: HeatPumpDaniele
-  real_period: 60
+  real_period: 600
   inputs_order: [['Tset'],['Tamb','TroomSens']]
   outputs_order: [[],['COP','MV','Power','Qsensible', 'Tm']]
 fed_info:
@@ -28,7 +28,7 @@ fed_flags:
   FORWARD_COMPUTE: False
 fed_properties:
   TIME_DELTA: 1e-09
-  TIME_PERIOD: 60
+  TIME_PERIOD: 600
   TIME_OFFSET: 0.0
   TIME_RT_LAG: 0.0
   TIME_RT_LEAD: 0.0

@@ -20,12 +20,21 @@ output_path = os.getcwd()
 #run_path = output_path +'\\federations\\fmu_test2\\runner.json' # not working beacuse of FMu using matlab
 #run_path = output_path +'\\federations\\fmu_test3\\runner.json'
 #run_path = output_path +'\\federations\\test_reset\\runner.json'
-#run_path = output_path +'\\federations\\test_case_dest1\\runner.json'
+# run_path = output_path +'\\federations\\test_case_dest1\\runner.json'
+run_path = output_path +'\\federations\\test_case_dest1_noiter\\runner.json'
 #run_path = output_path +'\\federations\\test_control\\runner.json'
 
-
-
-try:
-    subprocess.call('helics run --path='+run_path,shell=True)
-except Exception:
-    subprocess.call('helics kill-all-brokers', shell= True)
+from subprocess import Popen, PIPE, run
+exec = 'helics'
+args = ['run', '--path='+run_path]
+command = 'helics -v run --path='+run_path
+#p = Popen([exec,*args], stdin=PIPE, stdout=PIPE, stderr=PIPE)
+result = run(command, stdout=PIPE, stderr=PIPE, text=True)
+print(result.returncode, result.stdout, result.stderr)
+# p.communicate()
+# p.terminate()
+# p.wait()
+# try:
+#     subprocess.call('helics run --path='+run_path)
+# except Exception:
+#     subprocess.call('helics kill-all-brokers')

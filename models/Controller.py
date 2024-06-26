@@ -1,8 +1,5 @@
-import sys
-import numpy as np
 import logging
-from Model import Model
-import pandas as pd
+from models._baseModels.Model import Model
 
 #TODO add conversions and possibility to change names from what is written in the CSV
 logger = logging.getLogger(__name__)

@@ -22,13 +22,13 @@ class Model(ABC):
 
 
     def __setattr__(self, name, value):
-        if name == 'mem_attrs' and value :
+        if name == 'mem_attrs':
             self._init_memory(value)
         if name == 'init_state':
             self._init_state(value)
         super().__setattr__(name, value)
 
-    def _init_memory(self, value): # todo does not memorize messages
+    def _init_memory(self, value):
         self.memory = {'inputs': {},
                        'outputs': {},
                        'params': {}}
@@ -48,25 +48,38 @@ class Model(ABC):
 
 
     def _init_state(self, value):
-        self.initial_state = {'inputs': {},'outputs': {}, 'messages_in': {},
-           'messages_out': {},
-           'params': {}}
+        self.initial_state = {'inputs': {},'outputs': {},'params': {}}
         for k, val in value.items():
             kind = k.split('.')[0]
-            var = k.split('.')[-1]
+            var = k[len(kind)+1:] #taking the rest after typology. (e.g. inpus.T_set, takes everything that after inputs.)
             self.initial_state[kind][var] = val
         self.initial_state['params'] = deepcopy(self.params)
 
+        #creata l'init state per inputs, params and outputs folr thos value that has an initial value set it
+        for out_k, val in self.initial_state['outputs'].items():
+            self.outputs[out_k] = val
+        for inp_k, val in self.initial_state['inputs'].items():
+            self.inputs[inp_k] = val
+
+
         logger.info(f"\t\tInitial state for Model {self.model_name} set as follow: {self.initial_state}")  # todo better logging
 
-    def _fill_memory(self):
+    def _fill_memory(self,itr = None):
         if not self.memory:
             return
         else:
-            for typ in self.memory:
-                for  var in self.memory[typ]:
-                    self.memory[typ][var].append(deepcopy(getattr(self, typ)[var]))
-
+            if itr == None:
+                for typ in self.memory:
+                    for  var in self.memory[typ]:
+                        self.memory[typ][var].append(deepcopy(getattr(self, typ)[var]))
+            elif itr != None and self.iter_type == 'fix_iter':
+                for typ in self.memory:
+                    if typ == 'inputs':
+                        for var in self.inputs_order[itr]:
+                            self.memory[typ][var].append(deepcopy(getattr(self, typ)[var]))
+                    elif typ == 'outputs':
+                        for var in self.outputs_order[itr]:
+                            self.memory[typ][var].append(deepcopy(getattr(self, typ)[var]))
 
     def _reset(self):
         self.inputs = self.initial_state['inputs']

@@ -13,14 +13,14 @@ class Federate_iter(Federate):
     def __init__(self, args):
         super().__init__(args)
         self.feditr = FedItr(logger)
-        if 'inputs_order' in self.init_config['fed_conf'].keys():
-            self.inputs_order = self.init_config['fed_conf']['inputs_order']
-            for mod in self.mod_insts:
-                setattr(mod, 'inputs_order', self.inputs_order)
-        if 'outputs_order' in self.init_config['fed_conf'].keys():
-            self.outputs_order = self.init_config['fed_conf']['outputs_order']
-            for mod in self.mod_insts:
-                setattr(mod, 'outputs_order', self.outputs_order)
+        # if 'inputs_order' in self.init_config['fed_conf'].keys():
+        #     self.inputs_order = self.init_config['fed_conf']['inputs_order']
+        #     # for mod in self.mod_insts:
+        # #         setattr(mod, 'inputs_order', self.inputs_order)
+        # if 'outputs_order' in self.init_config['fed_conf'].keys():
+        #     self.outputs_order = self.init_config['fed_conf']['outputs_order']
+        #     for mod in self.mod_insts:
+        #         setattr(mod, 'outputs_order', self.outputs_order)
         assert len(self.inputs_order) == len(self.outputs_order)
 
 
@@ -67,7 +67,6 @@ class Federate_iter(Federate):
             current_ts = h.helicsFederateGetCurrentTime(self.fed)
 
             for itr in range(100):
-
                 #********* stopping condition for fixed itarations or max iteration
                 # if itr_state == h.helics_iteration_result_next_step:
                 #     logger.debug("\tIteration complete!")
@@ -79,6 +78,7 @@ class Federate_iter(Federate):
                     t,
                     h.helics_iteration_request_force_iteration
                 )
+                logger.debug(f"++++++++ start iteration number: {itr} for timestep: {current_ts} ++++++++++")
 
                 #******************************************************************
 
@@ -104,7 +104,6 @@ class Federate_iter(Federate):
 
                 #logger.debug(f"\tstep iter {itr}:")
                 ts_idx = int(current_ts / self.period) # todo the integer conversion could be a problem when using microstepping
-                logger.debug(f"TS:{ts_idx}")
                 for mod in self.mod_insts:
                     mod.step(ts_idx, **{'iter_n':itr})
 
@@ -114,6 +113,7 @@ class Federate_iter(Federate):
                 if itr == len(self.outputs_order)-1:
                     break
                 itr += 1
+                logger.debug(f"+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
 
               #  self.granted_time, itr_state = self.feditr.request_time(self.fed, requested_time, itr, itr_flag, itr_max=itr_needed)
 
@@ -128,13 +128,13 @@ class Federate_iter(Federate):
         if self.inps:
             for mod_num in range(len(self.mod_insts)):
                 inpid = self.inps[mod_num][var_name]
-                if inpid.is_updated(): # todo check understand properly what this means
-                    value = h.helicsInputGetDouble(inpid)
-                    if var_name in self.inputs_order[itr]:
-                        getattr(self.mod_insts[mod_num], 'inputs')[var_name]= value
-                        logger.debug(f"\tModel_{mod_num} received input {var_name}={value} at itr{itr}")
-                    else:
-                        logger.debug(f"\tModel_{mod_num} received temporary input for iter")
+                # while inpid.is_updated(): # todo check understand properly what this means
+                value = h.helicsInputGetDouble(inpid)
+                if var_name in self.inputs_order[itr]:
+                    getattr(self.mod_insts[mod_num], 'inputs')[var_name]= value
+                    logger.debug(f"\tModel_{mod_num} received input {var_name}={value} at itr{itr}")
+                else:
+                    logger.debug(f"\tModel_{mod_num} received temporary input for iter {var_name}={value}")
 
 
 

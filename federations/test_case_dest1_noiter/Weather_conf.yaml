@@ -1,10 +1,11 @@
-fed_name: PV
+fed_name: Weather
 fed_conf:
   model_script : Csv_out.py
   class_name: CSV
-  n_instances: 2
+  n_instances: 1
+  stateful: true
   RL_training: true
-  mem_attrs : [outputs.pv]
+  mem_attrs : [outputs.drybulb, outputs.glohorzrad, outputs.difhorzrad]
   real_period: 3600
   sim_start: '2015-01-01 00:00:00'
 
@@ -14,7 +15,7 @@ fed_info:
   broker_key: null
   broker_port: null
   core_init: null #for debugging only
-  core_name: pv_core
+  core_name: weather_core
   core_type: zmq
   local_port: null
   separator: null
@@ -51,7 +52,7 @@ fed_properties:
   TIME_RT_TOLERANCE: 0.0
   TIME_INPUT_DELAY: 0.0
   TIME_OUTPUT_DELAY: 0.0
-  TIME_STOPTIME: 172800
+  TIME_STOPTIME: 86400
   TIME_GRANT_TIMEOUT: 0.0
   INT_CURRENT_ITERATION: 0
   INT_MAX_ITERATIONS: 50
@@ -64,21 +65,25 @@ fed_connections:
   sub: {}
   pub:
     0: [ {
-      "key": "pv",
+      "key": "drybulb",
       "type": "double",
-      "units": "W",
-      "global": true
-    } ]
-    1: [ {
-      "key": "pv",
-      "type": "double",
-      "units": "W",
-      "global": true
-    } ]
+      "units": "C",
+    },
+      {
+        "key": "glohorzrad",
+        "type": "double",
+        "units": "W/m2",
+      },
+      {
+        "key": "difhorzrad",
+        "type": "double",
+        "units": "W/m2",
+      }   ]
   end: {}
   inp: {}
 model_conf:
   params:
-    csv_file: ['data/BUILD&PV.csv','data/BUILD&PV.csv']
-    multiplier: [{pv: 11}, {pv: 10000}]
+    csv_file: ['data/weather_data_bj.csv']
+    multiplier: [{drybulb: 1.0, windspd: 1.0, glohorzrad: 1.0, difhorzrad: 1.0 }]
+    additioner: [{drybulb: 0.0}]
   init_state: {}

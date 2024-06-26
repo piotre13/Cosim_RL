@@ -1,6 +1,6 @@
 import numpy as np
 from model_Dest.Battery_Dest import BESS
-from Model import Model #rember the top level running python script is al;ways main
+from _baseModels.Model import Model #rember the top level running python script is al;ways main
 
 class Battery(Model):
     def __init__(self, **kwargs):
