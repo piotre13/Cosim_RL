@@ -3,14 +3,69 @@
 - helics connector permettono di creare tramite semplice config le varie connessioni
 - create a scheduler!! 
 - add resample in the init of csv reader for authomatic step changing
+- DOCUMENTATION: 
+  - Config files
+  - Federate APIs
+  - Model integration
+  - Timings, Data exchange & workflows
 
 
 
+# Federate Apis (Cosim_RL/)
+## Federate.py
+This is the basic federate implementing the initialization tasks, the model instantiation, the connections registering
+This base federate is inherited from all other Federate types for performing automatically the above-mentioned tasks. The other Federate types will overwrite the following methods to modify their behaviour:
+- step
+- publish
+- subscribe
+- message_handling
+
+The base Federate can be used for basic simulators that receive inputs and produce outputs using value-based exchanges, in addition with the proper timing setting and the proper hardcoding in the instantiated models it can be used to mimic fixed iteration loops between Federates (e.g. test_case_dest1_noiter)
+
+## Federate_Iter.py
+Federate used for same time loop iteration federates : for now it must be redesigned and its purpose can be satisfied by using basic Federate with proper micro-stepping and hardocded models
+
+## Federate_RL_Agent.py
 
 
 # FMU integration
 definire il federated o un model?
 non posso fare get se non sugli output prima di entrare in execution mode!!
+
+
+
+
+
+
+# Model APIs and base models (models/)
+
+## Model.py (models/_baseModels)
+
+This is the parent API for each Model to be integrated. It must be inherited by each model beacuse it provides the underlying structure of input, output, message management. It requires some basic methods:
+
+- step() 
+- finalize ()
+
+The proper way of creating the basi scheleton of a new model is the following:
+
+```python
+from models._baseModels.Model import Model
+class CSV (Model):
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+       
+    
+    def step(self, ts, **kwargs):
+        return super().step(ts) # this allows for authomatic memory filling (authomatic run of step method of Parent class)
+
+    def finalize(self):
+        return super().finalize() # this allows for authomatic performing of finalize method from the Parent class
+```
+
+
+## Csv_out.py
+
+## FMU_standard.py
 
 
 
