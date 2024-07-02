@@ -21,8 +21,12 @@ output_path = os.getcwd()
 #run_path = output_path +'\\federations\\fmu_test3\\runner.json'
 #run_path = output_path +'\\federations\\test_reset\\runner.json'
 # run_path = output_path +'\\federations\\test_case_dest1\\runner.json'
-run_path = output_path +'\\federations\\test_case_dest1_noiter\\runner.json'
+# run_path = output_path +'\\federations\\test_case_dest1_noiter\\runner.json'
 #run_path = output_path +'\\federations\\test_control\\runner.json'
+# run_path = output_path +'\\federations\\test_case_dest1_RL_test1\\runner.json'
+#run_path = output_path +'\\federations\\new_test\\runner.json'
+run_path = output_path +'\\federations\\test_case_dest1\\runner.json'
+
 
 from subprocess import Popen, PIPE, run
 exec = 'helics'

@@ -6,7 +6,7 @@ from utils import read_yaml, save_json
 import importlib.util
 import copy
 
-sys.path.append('models/')
+sys.path.append('../models/')
 
 logger = logging.getLogger(__name__)
 logger.addHandler(logging.StreamHandler())
@@ -114,7 +114,7 @@ class Federate:
         """ IT IS CALLED INSIDE __init__()
         this method allows multiple instantiation of models for one federate.
         It saves the models instantiation in self.mod_insts and their names in self.mod_names"""
-        dir_path = 'models'  #TODO avoid hardcodding add in config (MAYBE CREATE A BASIC PATH CONFIG)
+        dir_path = '../models'  #TODO avoid hardcodding add in config (MAYBE CREATE A BASIC PATH CONFIG)
         module_name = dir_path + '.' + self.init_config['fed_conf']['model_script'].split('.')[0]
         if 'class_name' not in self.init_config['fed_conf'].keys():
             class_name = self.init_config['fed_conf']['model_script'].split('.')[0]

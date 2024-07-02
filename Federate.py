@@ -2,10 +2,12 @@ import os
 import sys
 import helics as h
 import logging
+import pandas as pd
 from utils import read_yaml, save_json
 import importlib.util
 import pprint
 import json
+from definitions import *
 import copy
 pp = pprint.PrettyPrinter(indent=4)
 sys.path.append('models/')
@@ -18,410 +20,522 @@ logger.setLevel(logging.DEBUG)
 class Federate:
     def __init__(self, args):
 
-        #self.fed_config, self.init_config = self.init_config(args)
-        self.federation_name = None
-        self.init_config = self.set_conf(args)
-        for name, value in self.init_config['fed_conf'].items():
-            setattr(self,name, value)
-        self.fed = None
+        #configs:
+        self._config = read_yaml(os.path.join(FEDERATIONS_dir, args[-1], args[-2]))
+        self._name = self._config['fed_name']
+        self._connections = self._config['fed_connections']
+        self._fed_conf = self._config['fed_conf']
+        self._model_conf = self._config['model_conf']
 
-        #connections
-        self.connection_ref = self.init_config['fed_connections']
-        self.pubs = {}
-        self.out_vars = []
-        #self.subs = {} will not use this
-        self.ends = {}
-        self.inps = {}
-        self.in_vars = []
-        self.in_vars = []
-        self.msg_var_dest = {}
+        # helics specific information
+        self._fed_info = self._config['fed_info']
+        self._fed_flags = self._config['fed_flags']
+        self.fed_properties = self._fed_conf['sim_params']
+
+        #federate
+        self._fed = self.register_federate()
+        self.federation_name = args[-1]
+
+        #simulation params
+        self.start_time = pd.to_datetime(self._fed_conf['sim_params']['start_time'],format='%Y-%m-%d %H:%M:%S') # datetime
+        self.start_period = 0 # seconds
+        self.ts = 0 #unitless counter for simulation steps
+        self.sim_period = self._fed_conf['sim_params']['sim_period'] #seconds
+        self.real_period = self._fed_conf['sim_params']['real_period'] # seconds
+        self.current_period = self.start_period
+        self.end_period = self._fed_conf['sim_params']['end_period'] # seconds
+        self.end_time = self.start_time + pd.to_timedelta(self.end_period) # datetime
+
+        # connection interfaces
+        self.inp_ids, self.pub_ids, self.end_ids = self.register_connections()
+
+        #buffer for receiving sending
+        self.in_values = {}
+        self.out_values = {}
+        self.in_msgs = {}
+        self.out_msgs = {}
 
         #models
-        self.mod_insts = []
-        self.mod_names = []
-
-        #time synchronization
-        self.period = None #will be set when the federate is created
-        self.real_period = None
-        self.offset = None #will be set when the federate is created
-        self.granted_time = None #will be set when the federate is created
-        self.tot_time = None #will be set when the federate is created
+        self._model_instances, self._model_names = self.instantiate_models()
 
 
+    def register_federate(self):
 
-        #performing tasks
-        self.registering()
-
-        self.register_connections()
-        #self.eval_data_flow_graph()
-        #self.eval_dependency_graph()
-        self.model_instantiation()
-
-
-
-    def set_conf(self, args):
-        self.federation_name = args[-1]
-        init_config = read_yaml(os.path.join(os.getcwd(), 'federations', self.federation_name, args[1]))
-        return init_config
-    def registering(self):
-
+        # create combination federate *****
         fedInfo = h.helicsCreateFederateInfo()
-        for info in self.init_config['fed_info']:
-            if self.init_config['fed_info'][info]:
-                setattr(fedInfo, info, self.init_config['fed_info'][info])
 
-        self.fed = h.helicsCreateCombinationFederate(self.init_config['fed_name'],fedInfo)
+        if self._fed_info:
+            for k, val in self._fed_info.items():
+                setattr(fedInfo, k, val)
+        else:
+            logger.warning(f"Federate info in yaml config file are empty!\n")
 
-        # set properties
-        for prop in self.init_config['fed_properties']:
-            prop_name = 'HELICS_PROPERTY_{}'.format(prop)
-            if self.init_config['fed_properties'][prop]:
+        fed = h.helicsCreateCombinationFederate(self._name, fedInfo)
+
+        # set properties ******
+        if self._fed_properties:
+            for prop in self._fed_properties:
+                prop_name = 'HELICS_PROPERTY_{}'.format(prop)
                 if prop.startswith('INT'):
-                    h.helicsFederateSetIntegerProperty(self.fed,getattr(h,prop_name),int(self.init_config['fed_properties'][prop]))
-                    #self.fed.property[getattr(h,prop_name)] = int(self.init_config['fed_properties'][prop])
+                    h.helicsFederateSetIntegerProperty(fed, getattr(h, prop_name),
+                                                       int(self._fed_properties[prop]))
                 else:
-                    self.fed.property[getattr(h,prop_name)] = float(self.init_config['fed_properties'][prop])
+                    fed.property[getattr(h, prop_name)] = float(self._fed_properties[prop])
+        else:
+            logger.warning(f"Federate properties in yaml config file are empty!\n")
 
-        # set flags
-        for prop in self.init_config['fed_flags']:
-            prop_name = 'HELICS_FLAG_{}'.format(prop)
-            if self.init_config['fed_flags'][prop]:
-                self.fed.flag[getattr(h,prop_name)] = self.init_config['fed_flags'][prop]
+        #set flags *****
+        if self._fed_flags:
+            for flag in self._fed_flags:
+                flag_name = 'HELICS_FLAG_{}'.format(flag)
+                fed.flag[getattr(h,flag_name)] = self._fed_flags[flag]
+        else:
+            logger.warning(f"Federate Flags in yaml config file are empty!\n")
 
+        logger.info(f"Federate : {fed.name} registered!\n")
 
-        self.period = int(h.helicsFederateGetTimeProperty(self.fed, h.HELICS_PROPERTY_TIME_PERIOD))
-        self.offset = int(h.helicsFederateGetTimeProperty(self.fed, h.HELICS_PROPERTY_TIME_OFFSET))
-        self.tot_time = int((h.helicsFederateGetTimeProperty(self.fed, h.HELICS_PROPERTY_TIME_STOPTIME)))
-
-
-        self.real_period = self.init_config['fed_conf']['real_period']
-
-
+        return fed
 
     def register_connections(self):
+        #todo should tranform each single registration type ina method to reuse them in case
+        inp_ids = {}
+        pub_ids = {}
+        end_ids = {}
 
-        for mod_num in self.connection_ref['pub']:
-            self.pubs[mod_num] = {}
-            for pub_info in self.connection_ref['pub'][mod_num]:
+        for mod_num in self._connections['pub']:
+            pub_ids[mod_num] = {}
+            for pub_info in self._connections['pub'][mod_num]:
                 var_name = pub_info['key']
-                if var_name not in self.out_vars: self.out_vars.append(var_name)
-                if var_name not in self.pubs[mod_num].keys():
-                    topic = self.fed.name + '/' + str(mod_num) + '/' + var_name
-                    pubid = self.fed.register_global_publication(topic, kind=pub_info['type'], units=pub_info['units'])
-                    if 'targets' in pub_info:
-                        for t in pub_info['targets']:
-                            pubid.add_target(t)
-                    self.pubs[mod_num][var_name] = pubid
-                    logger.debug(f"\tRegistered publication: {pubid} for {topic}")
+                if var_name not in pub_ids[mod_num].keys():
+                    topic = self._fed.name + '/' + str(mod_num) + '/' + var_name
+                    pubid = self._fed.register_global_publication(topic, kind=pub_info['type'], units=pub_info['units'])
+                    pub_ids[mod_num][var_name] = pubid
+                    logger.debug(f"Registered publication: {pubid} for {topic}\n")
                 else:
-                    logger.error('ERROR Publication for topic {} already registered'.format(topic))
+                    logger.warning(f"Publication for {self._name}/{mod_num}/{var_name} already registered! DUPLICATE in config yaml.\n")
 
-        for mod_num in self.connection_ref['inp']:
-            self.inps[mod_num] = {}
-            for inp_info in self.connection_ref['inp'][mod_num]:
+        for mod_num in self._connections['inp']:
+            inp_ids[mod_num] = {}
+            for inp_info in self._connections['inp'][mod_num]:
                 var_name = inp_info['key']
-                if var_name not in self.in_vars: self.in_vars.append(var_name)
-                if var_name not in self.inps[mod_num].keys():
-                    inp_name = self.fed.name + '/'+ str(mod_num) + '/' + var_name
-                    inpid = self.fed.register_global_input(name=inp_name,kind=inp_info['type'], units=inp_info['units'])
+                if var_name not in inp_ids[mod_num].keys():
+                    inp_name = self._fed.name + '/'+ str(mod_num) + '/' + var_name
+                    inpid = self._fed.register_global_input(name=inp_name,kind=inp_info['type'], units=inp_info['units'])
                     if 'targets' in inp_info:
                         for t in inp_info['targets']:
                             inpid.add_target(t)
                     else:
-                        logger.error(f'\tInput {inp_name} does not have any target!')
-                        raise Exception(f'\tInput {inp_name} does not have any target!')
+                        logger.error(f'Input {inp_name} does not have any target!\n')
+                        raise Exception(f'Input {inp_name} does not have any target!')
 
                     if "multi_input_handling_method" in inp_info.keys():
                         inpid.option['MULTI_INPUT_HANDLING_METHOD'] = h.helicsGetOptionValue(inp_info['multi_input_handling_method'])
 
                     else:
                         if len(inp_info['targets']) > 1:
-                            logger.error(f'\tInput {inp_name} has more than 1 target and no multi inputs handling method!')
-                            raise Exception(f'\tInput {inp_name} no specified MULTI INPUT HANDLING METHOD')
+                            logger.error(f'Input {inp_name} has more than 1 target and no multi inputs handling method!\n')
+                            raise Exception(f'Input {inp_name} no specified MULTI INPUT HANDLING METHOD')
 
-                    self.inps[mod_num][var_name] = inpid
-                    logger.debug(f"\tRegistered input: {inpid.name} for {mod_num} from {inp_info['targets']}")
-
-        for mod_num, ep_info in self.connection_ref['end'].items(): #ep_name and mod_num are the same ONLY one endpoint per model instance
-            ep = self.fed.register_endpoint(str(mod_num))
-            if str(mod_num) not in self.ends.keys(): #end_info key must be the same of mod_receiver
-                self.ends[mod_num] = ep
-                logger.debug(f"\tRegistered endpoint: {ep.name} ")
-
-        logger.debug(f"testetstetste {self.ends}\n {self.pubs}\n{self.inps}")
-
-
-        logger.debug(f"\tRegistering connections ended for fed {self.fed.name} list of output vars {self.out_vars}, list for in_vars{self.in_vars}")
-
-
-
-
-
-    def model_instantiation(self):
-        """ IT IS CALLED INSIDE __init__()
-        this method allows multiple instantiation of models for one federate.
-        It saves the models instantiation in self.mod_insts and their names in self.mod_names"""
-        dir_path = 'models'  #TODO avoid hardcodding add in config (MAYBE CREATE A BASIC PATH CONFIG)
-        module_name = self.init_config['fed_conf']['model_script'].split('.')[0]
-        module_import = module_name.replace('/','.')
-        #module_import = dir_path + '.' + self.init_config['fed_conf']['model_script'].split('.')[0]
-        if 'class_name' not in self.init_config['fed_conf'].keys():
-            class_name = self.init_config['fed_conf']['model_script'].split('.')[0]
-        else:
-            class_name = self.init_config['fed_conf']['class_name']
-
-        module = importlib.import_module(module_import)
-        my_class = getattr(module, class_name)
-
-        for i in range(self.init_config['fed_conf']['n_instances']):
-            kwargs = self.init_kwargs(i, class_name)
-            model_inst = my_class(**kwargs)
-            self.mod_insts.append(model_inst) # appending model instances
-            self.mod_names.append(model_inst.model_name) # appending model instances names
-
-        logger.debug(f"\tModels instantiation from fed: {self.fed.name} succesfull!")
-        logger.debug(f"\tModel instances names: {self.mod_names}")
-
-
-
-    def init_kwargs(self, i, class_name):
-        kwargs = {}
-        kwargs['model_name'] = class_name + '.' + str(i)
-        kwargs['inputs'] = { k: 0.0 for k in self.in_vars}
-        kwargs['outputs'] = { k: 0.0 for k in self.out_vars}
-
-        try:
-            for key, values in self.init_config['model_conf'].items():
-                if isinstance(values,dict):
-                    kwargs[key] = {k: values[k][i] for k in values}
-                if isinstance(values, list):
-                    kwargs[key] = values[i]
-
-            for key, values in self.init_config['fed_conf'].items():
-                kwargs [key] = values
-        except Exception as e:
-            print(e)
-            logger.error(f"@@@@@  problem with key {key}")
-        kwargs['iter_type'] = self.check_iter_type()
-        kwargs['end_time'] = h.helicsFederateGetTimeProperty(self.fed,h.HELICS_PROPERTY_TIME_STOPTIME)
-        return  kwargs
-
-    def check_iter_type (self):
-        if 'iteration' in self.__dict__.keys():
-            if self.init_config['fed_conf']['iteration']:
-                if 'inputs_order' in self.init_config['fed_conf'].keys() and 'outputs_order' in self.init_config['fed_conf'].keys():
-                    iter_type = 'fix_iter'
-                elif 'inputs_order' in self.init_config['fed_conf'].keys() and 'outputs_order' not in self.init_config['fed_conf'].keys():
-                    logger.debug(f"NO outputs order specified")
-                    raise AssertionError ('No outputs order has been specified for Federate and model with iter_type = fix_iter')
-                elif 'inputs_order' not in self.init_config['fed_conf'].keys() and 'outputs_order' in self.init_config['fed_conf'].keys():
-                    logger.debug(f"NO inputs order specified")
-                    raise AssertionError(
-                        'No inputs order has been specified for Federate and model with iter_type = fix_iter')
+                    inp_ids[mod_num][var_name] = inpid
+                    logger.debug(f"Registered input: {inpid.name} for {mod_num} from {inp_info['targets']}\n")
                 else:
-                    iter_type = 'conv_iter'
-            else:
-                iter_type = 'no_iter'
-        else:
-            iter_type = 'no_iter'
+                    logger.warning(f"Input for {self._name}/{mod_num}/{var_name} already registered! DUPLICATE in config yaml.\n")
 
-        return iter_type
+        for mod_num in self._connections['end']:
+            end_ids[mod_num] = {}
+            for end_info in self._connections['end'][mod_num]:
+                if end_info['ep_name'] not in end_ids[mod_num].keys():
+                    ep_name = self._fed.name + '/'+ str(mod_num) + '/' + end_info['ep_name']
+                    ep = self._fed.register_global_endpoint(ep_name)
+                    if "default" in end_info.keys(): # it means that it is used to send message to a specific sim endpoint
+                        h.helicsEndpointSetDefaultDestination(ep,end_info['default'])
+
+                    end_ids[mod_num][end_info['ep_name']]=ep
+                    logger.debug(f"Registered endpoint: {ep.name} for {mod_num}\n")
+
+                else:
+                    logger.warning(f"Endpoint for {self._name} model_inst {mod_num} and name {end_info['ep_name']} already registered! DUPLICATE in config yaml.\n")
+
+        logger.debug(f"\nFederate registered interfaces\n     Endpoint: {pp.pformat(end_ids)}\n     Publications: {pp.pformat(pub_ids)}\n     Inputs: {pp.pformat(inp_ids)}\n")
+
+        return inp_ids, pub_ids, end_ids
+
+    def instantiate_models(self):
+
+        if self._model_conf:
+            model_instances = []
+            model_names = []
+            module_import = self._model_conf['generic']['model_script'].split('.')[0].replace('/', '.')
+
+            if 'class_name' not in self._model_conf['generic'].keys():
+                class_name = module_import.split('.')[-1]
+            else:
+                class_name = self._model_conf['generic']['class_name']
+
+            logger.debug(f"@@@@ module import = {module_import}")
+            module = importlib.import_module(module_import)
+            my_class = getattr(module, class_name)
+
+            for i in range(self._model_conf['generic']['n_instances']):
+                kwargs = self.model_kwargs(i, class_name)
+                model_inst = my_class(**kwargs)
+                model_instances.append(model_inst)  # appending model instances
+                model_names.append(model_inst.model_name)  # appending model instances names
+
+            logger.info(f"Models instantiation succesfull!\n")
+            logger.debug(f"Model instances names:\n {model_names}\n")
+
+
+        else:
+            logger.error(f"No model config in config file! without a model Federate is only an empty box!\n")
+            raise Exception ("No model. see LOG.")
+
+        return model_instances, model_names
+
+    def model_kwargs(self, i, class_name):
+
+        '''this method is important beacuse passes attributes to model instances, if different fgederates deal with different model requirements (e.g. RL agent do not have inputs outputs)
+        this method must be overwritten in the specific Federate class'''
+        kwargs = {}
+
+        #basic attr
+        kwargs['model_name'] = f"%s/%s/%s"%(self._name,i,class_name)
+        kwargs['RL_training'] = self._fed_conf['RL_training']
+
+        #basic knowledge on simulation
+        kwargs['start_time'] = self.start_time #datetime
+        kwargs['start_period'] = self.start_period # seconds
+        kwargs['sim_period'] = self.sim_period #seconds
+        kwargs['real_period'] = self.real_period #seconds
+        kwargs['current_period'] = self.current_period #seconds
+        kwargs['end_period'] = self.end_period #seconds
+        kwargs['end_time'] = self.end_time # datetime
+
+        #required model specific attrs
+        kwargs['inputs_list'] = self._model_conf['model_specific_required']['inputs_k']
+        kwargs['outputs_list'] = self._model_conf['model_specific_required']['outputs_k']
+        # kwargs['params_list'] = self._model_conf['model_specific_required']['params_k']
+        kwargs['params_list'] = list(self._model_conf['model_specific_required']['params'].keys())
+
+        #check initistate only if specified if not log the fact that models have not initial state
+        if self._model_conf['model_specific_required']['init_state']:
+            assert self.check_init_state(kwargs['inputs_list'],kwargs['outputs_list'],kwargs['params_list']) == True # every model must HAVE an init state (this is useful for RL (in future could be less restrictive)
+            kwargs['inputs'] = {k: self._model_conf['model_specific_required']['init_state']['inp.' + k] for k in
+                                kwargs['inputs_list']}
+            kwargs['outputs'] = {k: self._model_conf['model_specific_required']['init_state']['out.' + k] for k in
+                                 kwargs['outputs_list']}
+        else:
+            kwargs['inputs'] = {k: 0.0 for k in
+                                kwargs['inputs_list']}
+            kwargs['outputs'] = {k: 0.0 for k in
+                                 kwargs['outputs_list']}
+            logger.warning(f"The models of this federate do not have Initial state!\n")
+
+
+        kwargs['params'] = {k: self._model_conf['model_specific_required']['params'][k][i] for k in kwargs['params_list']}
+        kwargs['init_state'] = {"inputs" : kwargs['inputs'],"outputs" : kwargs['outputs'],"params" : kwargs['params'] }
+
+        kwargs['memory'] = self._fed_conf['memory']
+        #pass all the model_specific_additional
+        for k, val in self._model_conf['model_specific_additional'].items():
+            kwargs[k] = val[i]
+
+
+        return kwargs
+
+    def check_init_state(self, inp_list, out_list, par_list):
+
+        if not par_list.sort() == list(self._model_conf['model_specific_required']['params'].keys()).sort(): #todo probably never triggered no more params_k needed
+            logger.error(f"Assigned params does not match the params keys in model configuration!\n")
+            return False
+        elif not inp_list.sort() == list([k.split('.')[-1] for k in self._model_conf['model_specific_required']['init_state'] if k.startswith('inp')]).sort():
+            return False
+        elif not out_list.sort() == list(
+                [k.split('.')[-1] for k in self._model_conf['model_specific_required']['init_state'] if
+                 k.startswith('out')]).sort():
+            return False
+        else:
+            return True
+
+    def _receive_messages(self):
+        ''' DO NOT TOUCH this mesthod it recieves whatever message arrives to the endpoint an dtores it in the message buffer self.in_msgs :
+                {mod_num: [ {msg_dict}, {msg_dict}...],
+                 mod_num: ...}
+
+                 correct form msg_dict:
+                 {"source": None,   #must contain the whole var name Federate/modnum/varname
+                             "time": None,
+                             "var_name": None,
+                             "destination": None, #must contain the whole endpoint name to send to
+                             "value": None} '''
+        if self.end_ids:
+            for mod_num, ep_dict in self.end_ids.items():
+                self.in_msgs[mod_num] = []
+                for ep_name, ep in ep_dict.items():
+                    while ep.has_message():
+                        msg = ep.get_message()
+                        msg_data = json.loads(msg.data)
+                        self.in_msgs[mod_num].append(msg_data)
+            logger.debug(f"Received the following messages :\n {pp.pformat(self.in_msgs)}\n")
+        else:
+            logger.debug(f"No endpoints registered for federate\n")
+
+    def _receive_inputs(self):
+        ''' DO NOT TOUCH this method it receives everything and store inside self.in_values in proper form
+        self.out_values  = {mod_num = {var_name:var_vale},...}  '''
+        if self.inp_ids:
+            for mod_num, inp_dict in self.inp_ids.items():
+                self.in_values[mod_num] = {}
+                for var_name, inpid in inp_dict.items():
+                    value = h.helicsInputGetDouble(inpid)
+                    self.in_values[mod_num][var_name] = value
+            logger.debug(f"Received the following Input values :\n {pp.pformat(self.in_values)}\n")
+        else:
+            logger.debug(f"No value based Input interfaces registered for the federate!\n")
+
+    def _publish_outputs(self):
+        ''' DO NOT TOUCH this method it publishes everything is inside self.out_values in proper form
+        self.out_values  = {mod_num = {var_name:var_vale},...}  '''
+        if self.pub_ids:
+            logger.debug(f"Federate will publish following values {pp.pformat(self.out_values)}\n")
+
+            for mod_num, var_dict in self.out_values.items():
+                for var_name, value in var_dict.items():
+                    pubid = self.pub_ids[mod_num][var_name]
+                    h.helicsPublicationPublishDouble(pubid, value)
+                    logger.debug(f"actual publication performed from the federate {mod_num}/{var_name} : {value}\n")
+        else:
+            logger.debug(f"No value based Output interfaces registered for the federate!\n")
+
+    def _send_messages(self):
+        ''' DO NOT TOUCH this mesthod it send whatever is in the correct form inside self.out_msg
+        correct_form msg buffer :
+        {mod_num: [ {msg_dict}, {msg_dict}...],
+         mod_num: ...}
+
+         correct form msg_dict:
+         {"source": None,   #must contain the whole var name Federate/modnum/varname
+                     "time": None,
+                     "var_name": None,
+                     "destination": None, #must contain the whole endpoint name to send to
+                     "value": None} '''
+        if self.end_ids:
+            logger.debug(f"Federate will send the following messages {pp.pformat(self.out_msgs)}\n")
+            for mod_num, message_list in self.out_msgs.items():
+                ep = self.end_ids[mod_num]['base_endpoint']
+                for msg in message_list:
+                    out_msg = ep.create_message()
+                    out_msg.data = json.dumps(msg)
+                    out_msg.destination = msg['destination']
+                    ep.send_data(out_msg)
+        else:
+            logger.debug(f"No endpoints registered for federate\n")
+
+    def _check_reset(self):
+        if not self.in_msgs:
+            return
+        i = 0
+        for model in self._model_instances:
+            if self.in_msgs[i]:
+                if any('reset_now' in key['ep_name'] for key in self.in_msgs[i]):  # todo check loogic
+                    model.reset()  # EACH MODEL MUST HAVE A RESET METHOD
+            i += 1
+
     def execution(self): # execution base for inp out exchange and message receiver
         # +++++++++++++++++++ enetering execution mode++++++++++++++++++
-        h.helicsFederateEnterExecutingMode(self.fed)
-        logger.info("\tEntered HELICS execution mode")
-        self.granted_time = h.helicsFederateGetCurrentTime(self.fed)
+        h.helicsFederateEnterExecutingMode(self._fed)
+        logger.info("@@ Entered HELICS execution mode @@ \n")
+        self.granted_period = h.helicsFederateGetCurrentTime(self._fed)
 
-        while self.granted_time < self.tot_time: #start the wrapping while loop
+        while self.granted_period < self.end_period: #start the wrapping while loop
 
 
 
-            #++++++++++++++++++ setting time synchronization #todo this is the basic default example may require to build a more structured method for time synchornization
-            requested_time = self.granted_time + self.period + self.offset
-            self.granted_time = h.helicsFederateRequestTime(self.fed, requested_time)
-            logger.debug(f"************* Requesting time {requested_time} -- Granted time {self.granted_time} **************")
-            current_ts = h.helicsFederateGetCurrentTime(self.fed)
-            logger.debug(f"\tcurrent timestep: {current_ts}")
+            #++++++++++++++++++ setting time synchronization #no offset
+            requested_period = self.granted_period + self.sim_period
+            self.granted_period = h.helicsFederateRequestTime(self._fed, requested_period)
+            logger.debug(f"************* Requesting time {requested_period} -- Granted time {self.granted_period} **************\n")
+            self.current_period = h.helicsFederateGetCurrentTime(self._fed)
+            logger.debug(f"current time: {self.current_period}\n")
             #*****************************************************************************************
 
-            #++++++++++++++++++ getting inputs & messages
-            #self.receive_messages()
-            for var in self.in_vars:
-                self.receive_inputs(var)
+            #getting inputs & messages
+            self._receive_messages() # update self.in_msgs class variable
+            self._check_reset()
+            self._receive_inputs() # update self.in_values class variable
+            self.inputs_to_model()
+
+
+            #prepare inputs for model
+            self.inputs_to_model()
 
             #++++++++++++++++++ models execution
-            ts_idx_sim = (int(current_ts-self.offset) / self.period) - 1
-            ts_idx_real = (int(current_ts - self.offset) / self.real_period) - 1
-            if ts_idx_sim == ts_idx_real:
-                for mod in self.mod_insts:
-                    mod.step(ts_idx_sim, **{}) # passing the index of timestep starting from 0
-            else:
-                for mod in self.mod_insts:
-                    mod.step(ts_idx_real+1, **{}) # passing the index of timestep starting from 0
+
+            ts = int(self.current_period/self.sim_period)
+            for mod in self._model_instances:
+                mod.step(ts)
+            # ts_idx_sim = (int(current_ts-self.offset) / self.period) - 1
+            # ts_idx_real = (int(current_ts - self.offset) / self.real_period) - 1
+            # if ts_idx_sim == ts_idx_real:
+            #     for mod in self.mod_insts:
+            #         mod.step(ts_idx_sim, **{}) # passing the index of timestep starting from 0
+            # else:
+            #     for mod in self.mod_insts:
+            #         mod.step(ts_idx_real+1, **{}) # passing the index of timestep starting from 0
                 #****************************************************************************************
+
+            #prepare outputs from model
+            self.outputs_from_model()
 
 
             #++++++++++++++++++ sending ouytputs & messages
-            for var in self.out_vars:
-                self.publish(var)
-            #self.send_messages()
-            #self.reset_messages() # remember to always reset the messages
-            #****************************************************************************************
+            self._send_messages()
+            self._publish_outputs()
 
-
-        for mod in self.mod_insts:
+        for mod in self._model_instances:
             mod.finalize()
-        self.save_results()
-        self.destroy_federate() # todo this must be embedde in a proper stopping logic right now it destroy the federate at the end of the simulation period in case of RL must be used a flag
+        # self.save_results() # todo decide how to save results
+        self._destroy_federate() # todo this must be embedde in a proper stopping logic right now it destroy the federate at the end of the simulation period in case of RL must be used a flag
+
+    def inputs_to_model(self):
+        ''' this method is the one to overwrite when dealing with different typologies of federates. In this case it represent a simple federate that is
+        used for basic simulators that can receive both inputs and messages but only send outputs. In this function we read teh in_values and in_msgs buffers
+         and impose in the models the corresponding inputs or params vars. '''
+        #can be taken from both messages and inputs and matched with the corresponding mod.inputs  keys of the model
+        if not self.in_values  and not self.in_msgs:
+            logger.debug(f" The federate has no incoming Inputs or messages for any of its model instances.")
+            return
+
+        i = 0
+        for model in self._model_instances:
+            # check if there are any messages to change the inputs or the params (leaning it open to control params
+            if self.in_msgs:
+                for msg in self.in_msgs[i]:
+                    if msg['var_name'] in model.inputs.keys():
+                        # impose tha value on the model input
+                        getattr(model, 'inputs')[msg['var_name']]= msg['value']
+                    elif msg['var_name'] in model.params.keys():
+                        # impose tha value on the model param (not common only with RT param changing
+                        getattr(model, 'params')[msg['var_name']]= msg['value']
+
+            # Imposing inputs received as classic value based inputs only inputs params must be changed with messages
+            if self.in_values:
+                for var_name, value  in self.in_values[i].items():
+                    if var_name in model.inputs.keys():
+                        getattr(model, 'inputs')[var_name] = value
+
+            i+=1
 
 
+    def outputs_from_model(self):
+        ''' This method reads the model self.outputs and generate the sel.out_values always regenrating it from empty dict'''
 
-    def receive_messages(self):
-        if self.ends:
-            for mod_num in range(len(self.mod_insts)):
-                ep = self.ends[mod_num][0]
-                while ep.has_message():
-                    msg = ep.get_message()
-                    msg_data = json.loads(msg.data)
-                    data = {'var_name':msg_data['var_name'] , 'value':msg_data['value'] ,'source':msg.source}
-                    self.mod_insts[mod_num].messages_in.append(data)
+        i=0
+        self.out_values = {}
+        for model in self._model_instances:
+            self.out_values[i] = {}
+            outputs = getattr(model,'outputs')
+            for k, val in outputs.items():
+                self.out_values[i][k] = val
+            i+=1
+
+    def create_std_message(self):
+        #for now this will only be used in RL federates all the others sends only values based and can receive the reset command
+        std_message = {"source": None,   #must contain the whole var name Federate/modnum/varname
+                     "time": None,
+                     "var_name": None,
+                     "destination": None, #must contain the whole endpoint name to send to
+                     "value": None}
+
+    def _save_results(self):
+
+        path = os.path.join(FEDERATIONS_dir,self.federation_name, 'results')
+        os.makedirs(path, exist_ok=True)
 
 
-    def receive_inputs(self, var_name):
-        #todo delaing with different tipe of pubblications (eg. string etc and also multiinputhandling can receive vectors
-        if self.inps:
-            for mod_num in range(len(self.mod_insts)):
-                inpid = self.inps[mod_num][var_name]
-                if inpid.is_updated(): # todo check understand properly what this means
-                    value = h.helicsInputGetDouble(inpid)
-                    getattr(self.mod_insts[mod_num], 'inputs')[var_name]= value
-                    logger.debug(f"\tModel_{mod_num} received input {var_name}={value}")
+        fed_res = {}
+        for mod in self._model_instances:
+            fed_res[mod.model_name] = mod.memory
+        file_name = self._fed.name +'.json'
+        file_path = os.path.join(path, file_name)
+        save_json(file_path, fed_res)
 
-    def publish(self, var_name):
-        ''' this method when is called on a specific ver_name allows all the model instances to publish their value on their specific topic'''
-        if self.pubs:
-            for mod_num in range(len(self.mod_insts)):
-                pubid = self.pubs[mod_num][var_name]
-                value = getattr(self.mod_insts[mod_num],'outputs')[var_name]
-                h.helicsPublicationPublishDouble(pubid, value)
-                logger.debug(f"\tModel_{mod_num} published output {var_name}={value}")
+    def _destroy_federate(self):
+        """
 
-    def send_messages(self):
-        if self.ends:
-            for mod_num in range(len(self.mod_insts)):
-                ep = self.ends[mod_num][0]
-                for msg in getattr(self.mod_insts[mod_num], 'messages_out'):
-                    out_msg = ep.create_message()
-                    out_msg.data = json.dumps({'value':msg['value'], 'var_name':msg['var_name']})
-                    out_msg.destination = msg['dest']
-                    ep.send_data(out_msg)
-    def check_for_reset(self):
-        if self.ends:
-            for mod_num, ep in self.ends.items():
-                while ep.has_message():
-                    msg = ep.get_message()
-                    msg_data = json.loads(msg.data)
-                    if 'RESET' in msg_data.keys():
-                        if msg_data['RESET']:
-                            #do reset
-                            self.reset()
-                        else:
-                            pass
-                    else:
-                        pass
+        """
+        # Adding extra time request to clear out any pending messages to avoid
+        #   annoying errors in the broker log. Any message are tacitly disregarded.
+        # grantedtime = h.helicsFederateRequestTime(self.fed, h.HELICS_TIME_MAXTIME)
+        self._save_results()
+        status = h.helicsFederateDisconnect(self._fed)
+        h.helicsFederateDestroy(self._fed)
+        logger.info("Federate finalized\n")
+
     def reset(self):
-        logger.debug(f"*************** Federate{self.fed} RESETTING! ***********************")
+        logger.debug(f"*************** Federate{self._fed} RESETTING! ***********************")
         pass
 
+    @property
+    def fed_properties(self):
+        return self._fed_properties
 
-    # def reset_messages(self):
+    @fed_properties.setter
+    def fed_properties(self, value):
+        min_req = ['TIME_PERIOD', 'TIME_STOPTIME']
+        matching_dict = {
+            'time_delta': 'TIME_DELTA',
+            'sim_period': 'TIME_PERIOD',
+            'offset': 'TIME_OFFSET',
+            'rt_lag': 'TIME_RT_LAG',
+            'rt_lead': 'TIME_RT_LEAD',
+            'rt_tolerance': 'TIME_RT_TOLERANCE',
+            'input_delay': 'TIME_INPUT_DELAY',
+            'output_delay': 'TIME_OUTPUT_DELAY',
+            'end_period': 'TIME_STOPTIME',
+            'grant_timeout': 'TIME_GRANT_TIMEOUT',
+            'current_iter': 'INT_CURRENT_ITERATION',
+            'max_iter': 'INT_MAX_ITERATIONS',
+            'int_log_level': 'INT_LOG_LEVEL',
+            'int_file_log_level': 'INT_FILE_LOG_LEVEL',
+            'int_console_log_level': 'INT_CONSOLE_LOG_LEVEL',
+            'int_log_buffer': 'INT_LOG_BUFFER',
+            'int_index_group': 'INT_INDEX_GROUP'
+        }
+        fed_prop = {}
+        for k, val in value.items():
+            if k in matching_dict.keys():
+                fed_prop[matching_dict[k]] = val
+
+        if not all(i in fed_prop.keys() for i in min_req):
+            logger.error(f"Missing params: minimal requirements {min_req} missing in sim_params!\n")
+        else:
+            self._fed_properties = fed_prop
+
+
+    # def save_results(self):
+    #     res_file = self.fed.name+'.json'
+    #     path = os.path.join(os.getcwd(), 'federations', self.federation_name, 'results',res_file)
+    #     fed_res = {}
     #     for mod in self.mod_insts:
-    #         mod.messages_in = []
-    #         mod.messages_out = []
-
-
-    #***************************** new methods Testing block
-    # def set_inputs(self, data):
-    #     try:
-    #         for typology in data: # questo serve per discriminare tra subscritpions e messages, todo implementare parte messages potrebbe essere ridotta senza if
-    #             if typology == 'inputs':
-    #                 for mod_num in data[typology]:
-    #                     #mod_num = int(mod_receiver.split('/')[1])
-    #                     for k, val in data[typology][mod_num]:
-    #                     #var_name = mod_receiver.split('/')[-1]
-    #                     #val = data[typology][mod_receiver]
-    #                         getattr(self.mod_insts[mod_num], typology)[k] = val
-    #             elif typology == 'messages_in':
-    #                 for mod_num in data[typology]:
-    #
-    #                     #mod_num = int(mod_receiver.split('/')[1])
-    #                     #var_name = mod_receiver.split('/')[-1]
-    #                     #val = data[typology][mod_receiver]
-    #                     setattr(self.mod_insts[mod_num], typology, data[typology][mod_num])
-    #     except Exception as e:
-    #         logger.error(f"\t ERROR: {e} ---> {data} at ts: {h.helicsFederateGetCurrentTime(self.fed)}")
-    #         return
-    #
-    # def get_outputs(self):
-    #     data = {'outputs':{},
-    #             'messages_out':{}}
-    #     for typology in data:
-    #         if typology == 'outputs':
-    #             for k, list_of_pubs in self.connection_ref['pub'].items():
-    #                 mod_num = int(k)
-    #                 for pub in list_of_pubs:
-    #                     topic = pub['key']
-    #                     var_name = topic.split('/')[-1]
-    #                     val = getattr(self.mod_insts[mod_num], typology)[var_name]
-    #                     if topic in data[typology].keys(): logger.error(f"\tERROR multiple models instances publish on same topic: {topic}") #todo should assert or raise error
-    #                     data[typology][topic] = val
-    #         elif typology =='messages_out':
-    #             for ep_name, ep in self.ends.items():
-    #                 mod_num = int(ep_name.split('/')[1])
-    #                 var_name = ep_name.split('/')[-1]
-    #                 sending_endpoint =  [i['destinations'] for i in self.connection_ref['end'][mod_num] if i['key']== ep_name and len(i['destinations'])>0]
-    #                 if self.connection_ref['end'][mod_num] and  sending_endpoint:
-    #                     val = getattr(self.mod_insts[mod_num], typology)[var_name] #only one message per endpoint per var per model
-    #                     data['messages_out'][ep_name]={}
-    #                     data['messages_out'][ep_name]= val
-    #
-    #
-    #
-    #     logger.debug(f"testtest {data}")
-    #     return data
-    def save_results(self):
-        res_file = self.fed.name+'.json'
-        path = os.path.join(os.getcwd(), 'federations', self.federation_name, 'results',res_file)
-        fed_res = {}
-        for mod in self.mod_insts:
-            fed_res[mod.model_name]= mod.memory
-        save_json(path,fed_res)
+    #         fed_res[mod.model_name]= mod.memory
+    #     save_json(path,fed_res)
 
     def eval_data_flow_graph(self):
         #todo better understand and logg
         query = h.helicsCreateQuery("broker", "data_flow_graph")
-        graph = h.helicsQueryExecute(query, self.fed)
+        graph = h.helicsQueryExecute(query, self._fed)
         logger.debug(f"Data-flow graph :\n{pp.pformat(graph)}")
 
         return graph
     def eval_dependency_graph(self):
         #todo better understand and logg
         query = h.helicsCreateQuery("federate", "dependency_graph")
-        graph = h.helicsQueryExecute(query, self.fed)
+        graph = h.helicsQueryExecute(query, self._fed)
         logger.debug(f"Dependency graph :\n{pp.pformat(graph)}")
 
         return graph
-    def destroy_federate(self):
-        """
 
-        """
-
-        # Adding extra time request to clear out any pending messages to avoid
-        #   annoying errors in the broker log. Any message are tacitly disregarded.
-        #grantedtime = h.helicsFederateRequestTime(self.fed, h.HELICS_TIME_MAXTIME)
-        status = h.helicsFederateDisconnect(self.fed)
-        h.helicsFederateDestroy(self.fed)
-        logger.info("\tFederate finalized")
 
 
 

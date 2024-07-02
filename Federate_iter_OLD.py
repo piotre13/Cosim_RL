@@ -1,7 +1,6 @@
 import sys
 import logging
 from Federate import Federate
-import helics as h
 from iterutils import *
 import numpy as np
 import time

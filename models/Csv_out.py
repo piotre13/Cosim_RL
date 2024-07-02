@@ -13,9 +13,9 @@ class CSV (Model):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.data = pd.read_csv(self.params['csv_file']) #now we index at 0 becuase we still using possibility of m,ultiple instances TODO this does not make sense with csv readers
-        self.datetime_index = pd.date_range(self.sim_start, periods=self.end_time, freq="%s s"%self.real_period) # for now not used we suppose data are given with correct lenght an
-        self.sim_start_date = pd.to_datetime(self.sim_start, format='%Y-%m-%d %H:%M:%S')
-        self.sim_end_date = self.sim_start_date + pd.to_timedelta("%s s"%self.end_time)
+        self.datetime_index = pd.date_range(self.start_time, end=self.end_time, freq="%s s"%self.real_period) # for now not used we suppose data are given with correct lenght an
+        self.sim_start_date = self.start_time
+        self.sim_end_date = self.sim_start_date + pd.to_timedelta("%s s"%self.end_period)
         self.initialization()
     def initialization(self):
         #convert to lower case all column names
@@ -24,7 +24,7 @@ class CSV (Model):
             self.data = self.data.set_index(self.data['date'])
             self.data = self.data.drop(['date'])
         else: # todo this assign index that might be longer/shorter than the simulation time
-            self.data = self.data.set_index(pd.date_range(self.sim_start, periods=self.data.shape[0], freq="%s s"%self.real_period))
+            self.data = self.data.set_index(pd.date_range(self.start_time, periods=self.data.shape[0], freq="%s s"%self.real_period))
 
         self.resampling()
 

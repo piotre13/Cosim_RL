@@ -1,0 +1,62 @@
+fed_name: RL_agent
+fed_conf:
+  model_script : RL_models/DQN.py
+  class_name: DQN
+  n_instances: 1
+  RL_training: true
+  mem_attrs : [] # possibilities None no memory, [empty list] memorize all
+  real_period: 3600
+fed_info:
+  broker: null
+  broker_init: null
+  broker_key: null
+  broker_port: null
+  core_init: null #for debugging only
+  core_name: controller_core
+  core_type: zmq
+  local_port: null
+  separator: null
+fed_flags:
+  TERMINATE_ON_ERROR: true
+  UNINTERRUPTIBLE: False
+  WAIT_FOR_CURRENT_TIME_UPDATE: False
+
+
+fed_properties:
+  TIME_PERIOD: 3600
+  TIME_OFFSET: 0.0
+  TIME_STOPTIME: 86400
+
+fed_connections:
+  sub: {}
+  pub:
+    0: [{
+      "key": "tSetMax",
+      "type": "double",
+      "units": "C",
+    },
+      {
+        "key": "tSetMin",
+        "type": "double",
+        "units": "C",
+      }]
+  inp: { }
+  end:
+    0: [
+      {
+        "ep_name": "observation",
+        "default": None,
+        "subscription": ["Weather/0/drybulb"]#,'Weather/0/relhum','Weather/0/glohorzrad','Weather/0/difhorzrad','Envelope/0/zone.ac_t 8674','Hvac/0/actual_power 8674', 'Battery/0/energy_out']
+      },
+      {
+        "ep_name": "reward_vars",
+        "default": None,
+        "subscription": [ ]
+      },
+      {
+        "ep_name": "reset_now"
+      }
+    ]
+model_conf:
+  params: {}
+  init_state: {}

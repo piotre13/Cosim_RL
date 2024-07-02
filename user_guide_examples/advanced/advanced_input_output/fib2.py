@@ -37,7 +37,8 @@ if __name__ == "__main__":
     fedinfo = h.helicsCreateFederateInfo()
     fedinfo.core_type = 'zmq'
     fedinfo.core_init = '-f 1'
-    fed = h.helicsCreateMessageFederate('fib2', fedinfo)
+    fed = h.helicsCreateMessageFederate('fib2',
+                                        )
     fed.property[h.HELICS_PROPERTY_TIME_PERIOD] = 1.0
     ep = fed.register_endpoint('ep')
     ep.subscribe('fib1/out1')

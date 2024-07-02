@@ -1,0 +1,77 @@
+fed_name: Test1
+fed_conf:
+  sim_params: # this will also contain the FED_properties inside federate there is a dict key matching
+      start_time: '2015-01-01 00:00:00'
+      sim_period: 3600 # in seconds the period that will be set in fed properties
+      real_period: 3600 # in seconds
+      end_period: 86400 # in seconds or datetime
+      offset: 0.0
+  RL_training: true
+  memory : [] # always required can be empty lost of list of var_names
+fed_info:
+  core_name: test1_core
+  core_type: zmq
+fed_flags:
+  TERMINATE_ON_ERROR: true
+  UNINTERRUPTIBLE: False
+  WAIT_FOR_CURRENT_TIME_UPDATE: False
+model_conf:
+  generic:
+    model_script: dummy_models/Model_test_new.py
+    class_name: Test
+    n_instances: 1
+  model_specific_required:
+    inputs_k: ['input1','input2'] # need to specify exact names of inputs used inside models and for creating connections
+    outputs_k: ['output1', 'output2'] # need to specify exact names of outputs used inside models and for creating connections
+    params_k : ['param1', 'param2'] # need to specify exact names of params used inside models and for creating connections
+    params:
+      param1: [1.0]
+      param2: [3.0]
+    init_state:
+      inp.input1: [0.0]
+      inp.input2: [0.0]
+      out.output1: [0.0]
+      out.output2: [0.0]
+  model_specific_additional:
+    required: [[zone.load_s, zone.fresh_vent_load_s, zone.ac_t ]]
+    zone_ids : [[8674, 8677, 8680, 8692, 73086]]
+    casefile: ["C:\\Users\\Pietro\\Code\\Cosim_RL\\models\\model_Dest\\DestKernel\\5rooms.db"]
+    executable: ["C:\\Users\\Pietro\\Code\\Cosim_RL\\models\\model_Dest\\DestKernel\\bterminal.exe"]
+
+fed_connections:
+  pub:
+    0: [
+      {
+      "key": "output1",
+      "type": "double",
+      "units": "W",
+      },
+      {
+        "key": "output2",
+        "type": "double",
+        "units": "W",
+      }]
+  end:
+    0: [
+      {
+          "ep_name": "reset_now"
+      },
+      {
+        "ep_name": "base_endpoint"
+      }
+    ]
+  inp:
+    0: [
+      {
+      "key": "input1",
+      "type": "double",
+      "units": "W",
+      "targets": ["Test2/0/output1"]
+      },
+      {
+        "key": "input2",
+        "type": "double",
+        "units": "W",
+        "targets": [ "Test2/0/output2" ]
+      }
+    ]
