@@ -1,0 +1,535 @@
+	Registered publication: <helics.HelicsPublication(name = "Hvac/0/electrical_power", type = "double", units = "W", info = "") at 0x1427fea8e80> for Hvac/0/electrical_power
+	Registered publication: <helics.HelicsPublication(name = "Hvac/0/actual_power", type = "double", units = "W", info = "") at 0x1427ff536d0> for Hvac/0/actual_power
+	Registered publication: <helics.HelicsPublication(name = "Hvac/0/actual_power 8674", type = "double", units = "W", info = "") at 0x1427ff534c0> for Hvac/0/actual_power 8674
+	Registered publication: <helics.HelicsPublication(name = "Hvac/0/actual_power 8677", type = "double", units = "W", info = "") at 0x1427ff538b0> for Hvac/0/actual_power 8677
+	Registered publication: <helics.HelicsPublication(name = "Hvac/0/actual_power 8680", type = "double", units = "W", info = "") at 0x1427ff53b80> for Hvac/0/actual_power 8680
+	Registered publication: <helics.HelicsPublication(name = "Hvac/0/actual_power 8692", type = "double", units = "W", info = "") at 0x1427ff539a0> for Hvac/0/actual_power 8692
+	Registered publication: <helics.HelicsPublication(name = "Hvac/0/actual_power 73086", type = "double", units = "W", info = "") at 0x1427ff53b20> for Hvac/0/actual_power 73086
+	Registered input: Hvac/0/power for 0 from ['Envelope/0/zone.load_s 8674', 'Envelope/0/zone.load_s 8677', 'Envelope/0/zone.load_s 8680', 'Envelope/0/zone.load_s 8692', 'Envelope/0/zone.load_s 73086', 'Envelope/0/zone.fresh_vent_load_s 8674', 'Envelope/0/zone.fresh_vent_load_s 8677', 'Envelope/0/zone.fresh_vent_load_s 8680', 'Envelope/0/zone.fresh_vent_load_s 8692', 'Envelope/0/zone.fresh_vent_load_s 73086']
+	Registered input: Hvac/0/power_load_s 8674 for 0 from ['Envelope/0/zone.load_s 8674']
+	Registered input: Hvac/0/power_load_s 8677 for 0 from ['Envelope/0/zone.load_s 8677']
+	Registered input: Hvac/0/power_load_s 8680 for 0 from ['Envelope/0/zone.load_s 8680']
+	Registered input: Hvac/0/power_load_s 8692 for 0 from ['Envelope/0/zone.load_s 8692']
+	Registered input: Hvac/0/power_load_s 73086 for 0 from ['Envelope/0/zone.load_s 73086']
+	Registered input: Hvac/0/power_fresh_vent_load_s 8674 for 0 from ['Envelope/0/zone.fresh_vent_load_s 8674']
+	Registered input: Hvac/0/power_fresh_vent_load_s 8677 for 0 from ['Envelope/0/zone.fresh_vent_load_s 8677']
+	Registered input: Hvac/0/power_fresh_vent_load_s 8680 for 0 from ['Envelope/0/zone.fresh_vent_load_s 8680']
+	Registered input: Hvac/0/power_fresh_vent_load_s 8692 for 0 from ['Envelope/0/zone.fresh_vent_load_s 8692']
+	Registered input: Hvac/0/power_fresh_vent_load_s 73086 for 0 from ['Envelope/0/zone.fresh_vent_load_s 73086']
+
+Federate registered interfaces
+     Endpoint: {}
+     Publications: {   0: {   'actual_power': <helics.HelicsPublication(name = "Hvac/0/actual_power", type = "double", units = "W", info = "") at 0x1427ff536d0>,
+           'actual_power 73086': <helics.HelicsPublication(name = "Hvac/0/actual_power 73086", type = "double", units = "W", info = "") at 0x1427ff53b20>,
+           'actual_power 8674': <helics.HelicsPublication(name = "Hvac/0/actual_power 8674", type = "double", units = "W", info = "") at 0x1427ff534c0>,
+           'actual_power 8677': <helics.HelicsPublication(name = "Hvac/0/actual_power 8677", type = "double", units = "W", info = "") at 0x1427ff538b0>,
+           'actual_power 8680': <helics.HelicsPublication(name = "Hvac/0/actual_power 8680", type = "double", units = "W", info = "") at 0x1427ff53b80>,
+           'actual_power 8692': <helics.HelicsPublication(name = "Hvac/0/actual_power 8692", type = "double", units = "W", info = "") at 0x1427ff539a0>,
+           'electrical_power': <helics.HelicsPublication(name = "Hvac/0/electrical_power", type = "double", units = "W", info = "") at 0x1427fea8e80>}}
+     Inputs: {   0: {   'power': <helics.HelicsInput(name = "Hvac/0/power", units = "W", injection_units = "", publication_type = "", type = "double", target = "Envelope/0/zone.load_s 8674", info = "") at 0x1427ff53e20>,
+           'power_fresh_vent_load_s 73086': <helics.HelicsInput(name = "Hvac/0/power_fresh_vent_load_s 73086", units = "W", injection_units = "", publication_type = "", type = "double", target = "Envelope/0/zone.fresh_vent_load_s 73086", info = "") at 0x1427ff56730>,
+           'power_fresh_vent_load_s 8674': <helics.HelicsInput(name = "Hvac/0/power_fresh_vent_load_s 8674", units = "W", injection_units = "", publication_type = "", type = "double", target = "Envelope/0/zone.fresh_vent_load_s 8674", info = "") at 0x1427ff56430>,
+           'power_fresh_vent_load_s 8677': <helics.HelicsInput(name = "Hvac/0/power_fresh_vent_load_s 8677", units = "W", injection_units = "", publication_type = "", type = "double", target = "Envelope/0/zone.fresh_vent_load_s 8677", info = "") at 0x1427ff564f0>,
+           'power_fresh_vent_load_s 8680': <helics.HelicsInput(name = "Hvac/0/power_fresh_vent_load_s 8680", units = "W", injection_units = "", publication_type = "", type = "double", target = "Envelope/0/zone.fresh_vent_load_s 8680", info = "") at 0x1427ff56520>,
+           'power_fresh_vent_load_s 8692': <helics.HelicsInput(name = "Hvac/0/power_fresh_vent_load_s 8692", units = "W", injection_units = "", publication_type = "", type = "double", target = "Envelope/0/zone.fresh_vent_load_s 8692", info = "") at 0x1427ff56850>,
+           'power_load_s 73086': <helics.HelicsInput(name = "Hvac/0/power_load_s 73086", units = "W", injection_units = "", publication_type = "", type = "double", target = "Envelope/0/zone.load_s 73086", info = "") at 0x1427ff562e0>,
+           'power_load_s 8674': <helics.HelicsInput(name = "Hvac/0/power_load_s 8674", units = "W", injection_units = "", publication_type = "", type = "double", target = "Envelope/0/zone.load_s 8674", info = "") at 0x1427ff53e80>,
+           'power_load_s 8677': <helics.HelicsInput(name = "Hvac/0/power_load_s 8677", units = "W", injection_units = "", publication_type = "", type = "double", target = "Envelope/0/zone.load_s 8677", info = "") at 0x1427ff56130>,
+           'power_load_s 8680': <helics.HelicsInput(name = "Hvac/0/power_load_s 8680", units = "W", injection_units = "", publication_type = "", type = "double", target = "Envelope/0/zone.load_s 8680", info = "") at 0x1427ff56070>,
+           'power_load_s 8692': <helics.HelicsInput(name = "Hvac/0/power_load_s 8692", units = "W", injection_units = "", publication_type = "", type = "double", target = "Envelope/0/zone.load_s 8692", info = "") at 0x1427ff56340>}}
+
+
+Registering connections ended for fed Hvac
+	 list of output vars: ['electrical_power', 'actual_power', 'actual_power 8674', 'actual_power 8677', 'actual_power 8680', 'actual_power 8692', 'actual_power 73086'],
+	 list for in_vars['power', 'power_load_s 8674', 'power_load_s 8677', 'power_load_s 8680', 'power_load_s 8692', 'power_load_s 73086', 'power_fresh_vent_load_s 8674', 'power_fresh_vent_load_s 8677', 'power_fresh_vent_load_s 8680', 'power_fresh_vent_load_s 8692', 'power_fresh_vent_load_s 73086']
+		Initial state for Model Hvac.0 set as follow: {'inputs': {}, 'outputs': {}, 'params': {}}
+		Memory attrs are not specified in the init_config. everything will be memorized.
+		Memory instantiated for Model Hvac.0!
+		Model Hvac.0 instantiated with the following kwargs: {'model_name': 'Hvac.0', 'inputs': {'power': 0.0, 'power_load_s 8674': 0.0, 'power_load_s 8677': 0.0, 'power_load_s 8680': 0.0, 'power_load_s 8692': 0.0, 'power_load_s 73086': 0.0, 'power_fresh_vent_load_s 8674': 0.0, 'power_fresh_vent_load_s 8677': 0.0, 'power_fresh_vent_load_s 8680': 0.0, 'power_fresh_vent_load_s 8692': 0.0, 'power_fresh_vent_load_s 73086': 0.0}, 'outputs': {'electrical_power': 0.0, 'actual_power': 0.0, 'actual_power 8674': 0.0, 'actual_power 8677': 0.0, 'actual_power 8680': 0.0, 'actual_power 8692': 0.0, 'actual_power 73086': 0.0}, 'params': {}, 'init_state': {}, 'model_script': 'dummy_models/Hvac_dummy_noiter.py', 'class_name': 'Hvac', 'n_instances': 1, 'RL_training': True, 'mem_attrs': [], 'real_period': 3600, 'iter_type': 'no_iter', 'end_time': 86400.0}!
+
+Models instantiation from fed: Hvac succesfull!
+
+Model instances names: ['Hvac.0']
+	Entered HELICS execution mode
+************* Requesting time 3600.0 -- Granted time 3600.0 **************
+	current timestep: 3600.0
+	Model_0 received input power=-314864.8868556001
+	Model_0 received input power_load_s 8674=-121829.13
+	Model_0 received input power_load_s 8677=-51250.4028
+	Model_0 received input power_load_s 8680=-39443.8968
+	Model_0 received input power_load_s 8692=-70635.6648
+	Model_0 received input power_load_s 73086=-33687.15552
+	Model_0 received input power_fresh_vent_load_s 8674=912.362292
+	Model_0 received input power_fresh_vent_load_s 8677=285.11988479999997
+	Model_0 received input power_fresh_vent_load_s 8680=210.5930196
+	Model_0 received input power_fresh_vent_load_s 8692=404.472456
+	Model_0 received input power_fresh_vent_load_s 73086=168.81541199999998
+	Model_0 published output electrical_power=-0.0
+	Model_0 published output actual_power=0.0
+	Model_0 published output actual_power 8674=0.0
+	Model_0 published output actual_power 8677=0.0
+	Model_0 published output actual_power 8680=0.0
+	Model_0 published output actual_power 8692=0.0
+	Model_0 published output actual_power 73086=0.0
+************* Requesting time 7200.0 -- Granted time 7200.0 **************
+	current timestep: 7200.0
+	Model_0 received input power=-304427.79405719996
+	Model_0 received input power_load_s 8674=-116918.2692
+	Model_0 received input power_load_s 8677=-49565.7828
+	Model_0 received input power_load_s 8680=-38293.437600000005
+	Model_0 received input power_load_s 8692=-68812.9884
+	Model_0 received input power_load_s 73086=-32861.58264
+	Model_0 received input power_fresh_vent_load_s 8674=932.1181560000001
+	Model_0 received input power_fresh_vent_load_s 8677=291.29374079999997
+	Model_0 received input power_fresh_vent_load_s 8680=215.1531072
+	Model_0 received input power_fresh_vent_load_s 8692=413.23071600000003
+	Model_0 received input power_fresh_vent_load_s 73086=172.47086280000002
+	Model_0 published output electrical_power=-0.0
+	Model_0 published output actual_power=0.0
+	Model_0 published output actual_power 8674=0.0
+	Model_0 published output actual_power 8677=0.0
+	Model_0 published output actual_power 8680=0.0
+	Model_0 published output actual_power 8692=0.0
+	Model_0 published output actual_power 73086=0.0
+************* Requesting time 10800.0 -- Granted time 10800.0 **************
+	current timestep: 10800.0
+	Model_0 received input power=-295573.44116880005
+	Model_0 received input power_load_s 8674=-112840.7148
+	Model_0 received input power_load_s 8677=-48114.288
+	Model_0 received input power_load_s 8680=-37310.6088
+	Model_0 received input power_load_s 8692=-67242.65400000001
+	Model_0 received input power_load_s 73086=-32171.348879999998
+	Model_0 received input power_fresh_vent_load_s 8674=969.8339159999999
+	Model_0 received input power_fresh_vent_load_s 8677=303.0801912
+	Model_0 received input power_fresh_vent_load_s 8680=223.8587244
+	Model_0 received input power_fresh_vent_load_s 8692=429.95102399999996
+	Model_0 received input power_fresh_vent_load_s 73086=179.4494556
+	Model_0 published output electrical_power=-0.0
+	Model_0 published output actual_power=0.0
+	Model_0 published output actual_power 8674=0.0
+	Model_0 published output actual_power 8677=0.0
+	Model_0 published output actual_power 8680=0.0
+	Model_0 published output actual_power 8692=0.0
+	Model_0 published output actual_power 73086=0.0
+************* Requesting time 14400.0 -- Granted time 14400.0 **************
+	current timestep: 14400.0
+	Model_0 received input power=-287837.6921496
+	Model_0 received input power_load_s 8674=-109363.77720000001
+	Model_0 received input power_load_s 8677=-46834.3512
+	Model_0 received input power_load_s 8680=-36452.898
+	Model_0 received input power_load_s 8692=-65870.57519999999
+	Model_0 received input power_load_s 73086=-31574.376360000002
+	Model_0 received input power_fresh_vent_load_s 8674=1039.87746
+	Model_0 received input power_fresh_vent_load_s 8677=324.96931800000004
+	Model_0 received input power_fresh_vent_load_s 8680=240.02629919999998
+	Model_0 received input power_fresh_vent_load_s 8692=461.00303999999994
+	Model_0 received input power_fresh_vent_load_s 73086=192.4096932
+	Model_0 published output electrical_power=-0.0
+	Model_0 published output actual_power=0.0
+	Model_0 published output actual_power 8674=0.0
+	Model_0 published output actual_power 8677=0.0
+	Model_0 published output actual_power 8680=0.0
+	Model_0 published output actual_power 8692=0.0
+	Model_0 published output actual_power 73086=0.0
+************* Requesting time 18000.0 -- Granted time 18000.0 **************
+	current timestep: 18000.0
+	Model_0 received input power=-280928.16706320003
+	Model_0 received input power_load_s 8674=-106323.5736
+	Model_0 received input power_load_s 8677=-45681.894
+	Model_0 received input power_load_s 8680=-35686.36584
+	Model_0 received input power_load_s 8692=-64648.526399999995
+	Model_0 received input power_load_s 73086=-31041.10908
+	Model_0 received input power_fresh_vent_load_s 8674=1129.676904
+	Model_0 received input power_fresh_vent_load_s 8677=353.0322972
+	Model_0 received input power_fresh_vent_load_s 8680=260.753958
+	Model_0 received input power_fresh_vent_load_s 8692=500.81331600000004
+	Model_0 received input power_fresh_vent_load_s 73086=209.0253816
+	Model_0 published output electrical_power=-0.0
+	Model_0 published output actual_power=0.0
+	Model_0 published output actual_power 8674=0.0
+	Model_0 published output actual_power 8677=0.0
+	Model_0 published output actual_power 8680=0.0
+	Model_0 published output actual_power 8692=0.0
+	Model_0 published output actual_power 73086=0.0
+************* Requesting time 21600.0 -- Granted time 21600.0 **************
+	current timestep: 21600.0
+	Model_0 received input power=-274682.48025240004
+	Model_0 received input power_load_s 8674=-103615.8768
+	Model_0 received input power_load_s 8677=-44628.012
+	Model_0 received input power_load_s 8680=-34988.93784
+	Model_0 received input power_load_s 8692=-63541.231199999995
+	Model_0 received input power_load_s 73086=-30552.84
+	Model_0 received input power_fresh_vent_load_s 8674=1217.6803439999999
+	Model_0 received input power_fresh_vent_load_s 8677=380.534004
+	Model_0 received input power_fresh_vent_load_s 8680=281.0670624
+	Model_0 received input power_fresh_vent_load_s 8692=539.827416
+	Model_0 received input power_fresh_vent_load_s 73086=225.3087612
+	Model_0 published output electrical_power=-0.0
+	Model_0 published output actual_power=0.0
+	Model_0 published output actual_power 8674=0.0
+	Model_0 published output actual_power 8677=0.0
+	Model_0 published output actual_power 8680=0.0
+	Model_0 published output actual_power 8692=0.0
+	Model_0 published output actual_power 73086=0.0
+************* Requesting time 25200.0 -- Granted time 25200.0 **************
+	current timestep: 25200.0
+	Model_0 received input power=-269020.98869759997
+	Model_0 received input power_load_s 8674=-101182.122
+	Model_0 received input power_load_s 8677=-43655.975999999995
+	Model_0 received input power_load_s 8680=-34347.861359999995
+	Model_0 received input power_load_s 8692=-62524.6668
+	Model_0 received input power_load_s 73086=-30099.09204
+	Model_0 received input power_fresh_vent_load_s 8674=1284.131952
+	Model_0 received input power_fresh_vent_load_s 8677=401.30064
+	Model_0 received input power_fresh_vent_load_s 8680=296.405532
+	Model_0 received input power_fresh_vent_load_s 8692=569.287008
+	Model_0 received input power_fresh_vent_load_s 73086=237.60437040000002
+	Model_0 published output electrical_power=-0.0
+	Model_0 published output actual_power=0.0
+	Model_0 published output actual_power 8674=0.0
+	Model_0 published output actual_power 8677=0.0
+	Model_0 published output actual_power 8680=0.0
+	Model_0 published output actual_power 8692=0.0
+	Model_0 published output actual_power 73086=0.0
+************* Requesting time 28800.0 -- Granted time 28800.0 **************
+	current timestep: 28800.0
+	Model_0 received input power=-263713.96544400003
+	Model_0 received input power_load_s 8674=-99248.0796
+	Model_0 received input power_load_s 8677=-43025.4504
+	Model_0 received input power_load_s 8680=-33512.94144
+	Model_0 received input power_load_s 8692=-61099.459200000005
+	Model_0 received input power_load_s 73086=-29675.269080000002
+	Model_0 received input power_fresh_vent_load_s 8674=1311.07176
+	Model_0 received input power_fresh_vent_load_s 8677=409.719528
+	Model_0 received input power_fresh_vent_load_s 8680=302.62383
+	Model_0 received input power_fresh_vent_load_s 8692=581.23008
+	Model_0 received input power_fresh_vent_load_s 73086=242.58907799999997
+	Model_0 published output electrical_power=-0.0
+	Model_0 published output actual_power=0.0
+	Model_0 published output actual_power 8674=0.0
+	Model_0 published output actual_power 8677=0.0
+	Model_0 published output actual_power 8680=0.0
+	Model_0 published output actual_power 8692=0.0
+	Model_0 published output actual_power 73086=0.0
+************* Requesting time 32400.0 -- Granted time 32400.0 **************
+	current timestep: 32400.0
+	Model_0 received input power=-260863.5009024001
+	Model_0 received input power_load_s 8674=-98032.8636
+	Model_0 received input power_load_s 8677=-42565.7952
+	Model_0 received input power_load_s 8680=-33208.659
+	Model_0 received input power_load_s 8692=-60006.78
+	Model_0 received input power_load_s 73086=-29584.61172
+	Model_0 received input power_fresh_vent_load_s 8674=1167.392664
+	Model_0 received input power_fresh_vent_load_s 8677=364.81874400000004
+	Model_0 received input power_fresh_vent_load_s 8680=269.4595752
+	Model_0 received input power_fresh_vent_load_s 8692=517.53366
+	Model_0 received input power_fresh_vent_load_s 73086=216.0039744
+	Model_0 published output electrical_power=-0.0
+	Model_0 published output actual_power=0.0
+	Model_0 published output actual_power 8674=0.0
+	Model_0 published output actual_power 8677=0.0
+	Model_0 published output actual_power 8680=0.0
+	Model_0 published output actual_power 8692=0.0
+	Model_0 published output actual_power 73086=0.0
+************* Requesting time 36000.0 -- Granted time 36000.0 **************
+	current timestep: 36000.0
+	Model_0 received input power=-260437.87079640004
+	Model_0 received input power_load_s 8674=-97377.6204
+	Model_0 received input power_load_s 8677=-42877.6236
+	Model_0 received input power_load_s 8680=-33292.897919999996
+	Model_0 received input power_load_s 8692=-59027.9904
+	Model_0 received input power_load_s 73086=-29612.982600000003
+	Model_0 received input power_fresh_vent_load_s 8674=806.398956
+	Model_0 received input power_fresh_vent_load_s 8677=252.0055692
+	Model_0 received input power_fresh_vent_load_s 8680=186.13438200000002
+	Model_0 received input power_fresh_vent_load_s 8692=357.4963188
+	Model_0 received input power_fresh_vent_load_s 73086=149.2088976
+	Model_0 published output electrical_power=-0.0
+	Model_0 published output actual_power=0.0
+	Model_0 published output actual_power 8674=0.0
+	Model_0 published output actual_power 8677=0.0
+	Model_0 published output actual_power 8680=0.0
+	Model_0 published output actual_power 8692=0.0
+	Model_0 published output actual_power 73086=0.0
+************* Requesting time 39600.0 -- Granted time 39600.0 **************
+	current timestep: 39600.0
+	Model_0 received input power=-265150.537632
+	Model_0 received input power_load_s 8674=-97330.4604
+	Model_0 received input power_load_s 8677=-47115.846
+	Model_0 received input power_load_s 8680=-33636.892680000004
+	Model_0 received input power_load_s 8692=-58185.52559999999
+	Model_0 received input power_load_s 73086=-29572.16976
+	Model_0 received input power_fresh_vent_load_s 8674=317.8900044
+	Model_0 received input power_fresh_vent_load_s 8677=99.3429504
+	Model_0 received input power_fresh_vent_load_s 8680=73.3759164
+	Model_0 received input power_fresh_vent_load_s 8692=140.9283936
+	Model_0 received input power_fresh_vent_load_s 73086=58.8195432
+	Model_0 published output electrical_power=-0.0
+	Model_0 published output actual_power=0.0
+	Model_0 published output actual_power 8674=0.0
+	Model_0 published output actual_power 8677=0.0
+	Model_0 published output actual_power 8680=0.0
+	Model_0 published output actual_power 8692=0.0
+	Model_0 published output actual_power 73086=0.0
+************* Requesting time 43200.0 -- Granted time 43200.0 **************
+	current timestep: 43200.0
+	Model_0 received input power=-268534.6157952
+	Model_0 received input power_load_s 8674=-97562.214
+	Model_0 received input power_load_s 8677=-49442.4792
+	Model_0 received input power_load_s 8680=-34166.18232
+	Model_0 received input power_load_s 8692=-57489.21
+	Model_0 received input power_load_s 73086=-29418.19272
+	Model_0 received input power_fresh_vent_load_s 8674=-210.13068239999998
+	Model_0 received input power_fresh_vent_load_s 8677=-65.6673768
+	Model_0 received input power_fresh_vent_load_s 8680=-48.5027244
+	Model_0 received input power_fresh_vent_load_s 8692=-93.15605520000001
+	Model_0 received input power_fresh_vent_load_s 73086=-38.8807164
+	Model_0 published output electrical_power=-0.0
+	Model_0 published output actual_power=0.0
+	Model_0 published output actual_power 8674=0.0
+	Model_0 published output actual_power 8677=0.0
+	Model_0 published output actual_power 8680=0.0
+	Model_0 published output actual_power 8692=0.0
+	Model_0 published output actual_power 73086=0.0
+************* Requesting time 46800.0 -- Granted time 46800.0 **************
+	current timestep: 46800.0
+	Model_0 received input power=-266807.87173439993
+	Model_0 received input power_load_s 8674=-99196.5744
+	Model_0 received input power_load_s 8677=-46231.3044
+	Model_0 received input power_load_s 8680=-33643.53972
+	Model_0 received input power_load_s 8692=-56933.5788
+	Model_0 received input power_load_s 73086=-29293.450200000003
+	Model_0 received input power_fresh_vent_load_s 8674=-695.047644
+	Model_0 received input power_fresh_vent_load_s 8677=-217.2074724
+	Model_0 received input power_fresh_vent_load_s 8680=-160.4320848
+	Model_0 received input power_fresh_vent_load_s 8692=-308.1315708
+	Model_0 received input power_fresh_vent_load_s 73086=-128.6054424
+	Model_0 published output electrical_power=-0.0
+	Model_0 published output actual_power=0.0
+	Model_0 published output actual_power 8674=0.0
+	Model_0 published output actual_power 8677=0.0
+	Model_0 published output actual_power 8680=0.0
+	Model_0 published output actual_power 8692=0.0
+	Model_0 published output actual_power 73086=0.0
+************* Requesting time 50400.0 -- Granted time 50400.0 **************
+	current timestep: 50400.0
+	Model_0 received input power=-271886.5728936
+	Model_0 received input power_load_s 8674=-101636.4564
+	Model_0 received input power_load_s 8677=-47573.0604
+	Model_0 received input power_load_s 8680=-34671.85344
+	Model_0 received input power_load_s 8692=-56498.7996
+	Model_0 received input power_load_s 73086=-29228.61564
+	Model_0 received input power_fresh_vent_load_s 8674=-1048.8574079999999
+	Model_0 received input power_fresh_vent_load_s 8677=-327.7756152
+	Model_0 received input power_fresh_vent_load_s 8680=-242.099064
+	Model_0 received input power_fresh_vent_load_s 8692=-464.98406400000005
+	Model_0 received input power_fresh_vent_load_s 73086=-194.0712624
+	Model_0 published output electrical_power=-0.0
+	Model_0 published output actual_power=0.0
+	Model_0 published output actual_power 8674=0.0
+	Model_0 published output actual_power 8677=0.0
+	Model_0 published output actual_power 8680=0.0
+	Model_0 published output actual_power 8692=0.0
+	Model_0 published output actual_power 73086=0.0
+************* Requesting time 54000.0 -- Granted time 54000.0 **************
+	current timestep: 54000.0
+	Model_0 received input power=-277299.948762
+	Model_0 received input power_load_s 8674=-105082.59599999999
+	Model_0 received input power_load_s 8677=-48770.8488
+	Model_0 received input power_load_s 8680=-35546.51052
+	Model_0 received input power_load_s 8692=-56154.0888
+	Model_0 received input power_load_s 73086=-29171.6928
+	Model_0 received input power_fresh_vent_load_s 8674=-1185.35256
+	Model_0 received input power_fresh_vent_load_s 8677=-370.43136000000004
+	Model_0 received input power_fresh_vent_load_s 8680=-273.6051048
+	Model_0 received input power_fresh_vent_load_s 8692=-525.495708
+	Model_0 received input power_fresh_vent_load_s 73086=-219.3271092
+	Model_0 published output electrical_power=-0.0
+	Model_0 published output actual_power=0.0
+	Model_0 published output actual_power 8674=0.0
+	Model_0 published output actual_power 8677=0.0
+	Model_0 published output actual_power 8680=0.0
+	Model_0 published output actual_power 8692=0.0
+	Model_0 published output actual_power 73086=0.0
+************* Requesting time 57600.0 -- Granted time 57600.0 **************
+	current timestep: 57600.0
+	Model_0 received input power=-278418.1792500001
+	Model_0 received input power_load_s 8674=-107020.3104
+	Model_0 received input power_load_s 8677=-48513.999599999996
+	Model_0 received input power_load_s 8680=-35533.4562
+	Model_0 received input power_load_s 8692=-55861.2252
+	Model_0 received input power_load_s 73086=-29055.3876
+	Model_0 received input power_fresh_vent_load_s 8674=-1120.696956
+	Model_0 received input power_fresh_vent_load_s 8677=-350.226
+	Model_0 received input power_fresh_vent_load_s 8680=-258.6811896
+	Model_0 received input power_fresh_vent_load_s 8692=-496.83229200000005
+	Model_0 received input power_fresh_vent_load_s 73086=-207.3638124
+	Model_0 published output electrical_power=-0.0
+	Model_0 published output actual_power=0.0
+	Model_0 published output actual_power 8674=0.0
+	Model_0 published output actual_power 8677=0.0
+	Model_0 published output actual_power 8680=0.0
+	Model_0 published output actual_power 8692=0.0
+	Model_0 published output actual_power 73086=0.0
+************* Requesting time 61200.0 -- Granted time 61200.0 **************
+	current timestep: 61200.0
+	Model_0 received input power=-280304.0532612
+	Model_0 received input power_load_s 8674=-109731.564
+	Model_0 received input power_load_s 8677=-48395.7684
+	Model_0 received input power_load_s 8680=-35637.435
+	Model_0 received input power_load_s 8692=-55586.7612
+	Model_0 received input power_load_s 73086=-28885.35456
+	Model_0 received input power_fresh_vent_load_s 8674=-951.87402
+	Model_0 received input power_fresh_vent_load_s 8677=-297.46759679999997
+	Model_0 received input power_fresh_vent_load_s 8680=-219.71319119999998
+	Model_0 received input power_fresh_vent_load_s 8692=-421.98897600000004
+	Model_0 received input power_fresh_vent_load_s 73086=-176.1263172
+	Model_0 published output electrical_power=-0.0
+	Model_0 published output actual_power=0.0
+	Model_0 published output actual_power 8674=0.0
+	Model_0 published output actual_power 8677=0.0
+	Model_0 published output actual_power 8680=0.0
+	Model_0 published output actual_power 8692=0.0
+	Model_0 published output actual_power 73086=0.0
+************* Requesting time 64800.0 -- Granted time 64800.0 **************
+	current timestep: 64800.0
+	Model_0 received input power=-275969.9930544001
+	Model_0 received input power_load_s 8674=-105386.8824
+	Model_0 received input power_load_s 8677=-50385.2616
+	Model_0 received input power_load_s 8680=-34673.58936
+	Model_0 received input power_load_s 8692=-55312.1064
+	Model_0 received input power_load_s 73086=-28667.6262
+	Model_0 received input power_fresh_vent_load_s 8674=-711.211536
+	Model_0 received input power_fresh_vent_load_s 8677=-222.2588088
+	Model_0 received input power_fresh_vent_load_s 8680=-164.1630636
+	Model_0 received input power_fresh_vent_load_s 8692=-315.29742120000003
+	Model_0 received input power_fresh_vent_load_s 73086=-131.5962648
+	Model_0 published output electrical_power=-0.0
+	Model_0 published output actual_power=0.0
+	Model_0 published output actual_power 8674=0.0
+	Model_0 published output actual_power 8677=0.0
+	Model_0 published output actual_power 8680=0.0
+	Model_0 published output actual_power 8692=0.0
+	Model_0 published output actual_power 73086=0.0
+************* Requesting time 68400.0 -- Granted time 68400.0 **************
+	current timestep: 68400.0
+	Model_0 received input power=-273334.5690912
+	Model_0 received input power_load_s 8674=-103626.1224
+	Model_0 received input power_load_s 8677=-51127.4664
+	Model_0 received input power_load_s 8680=-34150.17492
+	Model_0 received input power_load_s 8692=-55019.6352
+	Model_0 received input power_load_s 73086=-28459.49184
+	Model_0 received input power_fresh_vent_load_s 8674=-438.221268
+	Model_0 received input power_fresh_vent_load_s 8677=-136.947348
+	Model_0 received input power_fresh_vent_load_s 8680=-101.1509784
+	Model_0 received input power_fresh_vent_load_s 8692=-194.27416920000002
+	Model_0 received input power_fresh_vent_load_s 73086=-81.0845676
+	Model_0 published output electrical_power=-0.0
+	Model_0 published output actual_power=0.0
+	Model_0 published output actual_power 8674=0.0
+	Model_0 published output actual_power 8677=0.0
+	Model_0 published output actual_power 8680=0.0
+	Model_0 published output actual_power 8692=0.0
+	Model_0 published output actual_power 73086=0.0
+************* Requesting time 72000.0 -- Granted time 72000.0 **************
+	current timestep: 72000.0
+	Model_0 received input power=-270143.07576804
+	Model_0 received input power_load_s 8674=-104021.136
+	Model_0 received input power_load_s 8677=-47779.2612
+	Model_0 received input power_load_s 8680=-34125.44904
+	Model_0 received input power_load_s 8692=-55625.778000000006
+	Model_0 received input power_load_s 73086=-28232.622
+	Model_0 received input power_fresh_vent_load_s 8674=-165.230964
+	Model_0 received input power_fresh_vent_load_s 8677=-51.6358836
+	Model_0 received input power_fresh_vent_load_s 8680=-38.1388932
+	Model_0 received input power_fresh_vent_load_s 8692=-73.2509172
+	Model_0 received input power_fresh_vent_load_s 73086=-30.57287004
+	Model_0 published output electrical_power=-0.0
+	Model_0 published output actual_power=0.0
+	Model_0 published output actual_power 8674=0.0
+	Model_0 published output actual_power 8677=0.0
+	Model_0 published output actual_power 8680=0.0
+	Model_0 published output actual_power 8692=0.0
+	Model_0 published output actual_power 73086=0.0
+************* Requesting time 75600.0 -- Granted time 75600.0 **************
+	current timestep: 75600.0
+	Model_0 received input power=-267488.10072288004
+	Model_0 received input power_load_s 8674=-103033.7568
+	Model_0 received input power_load_s 8677=-46570.1292
+	Model_0 received input power_load_s 8680=-34012.49184
+	Model_0 received input power_load_s 8692=-56039.4504
+	Model_0 received input power_load_s 73086=-27988.28532
+	Model_0 received input power_fresh_vent_load_s 8674=71.839548
+	Model_0 received input power_fresh_vent_load_s 8677=22.4503848
+	Model_0 received input power_fresh_vent_load_s 8680=16.582127760000002
+	Model_0 received input power_fresh_vent_load_s 8692=31.8482244
+	Model_0 received input power_fresh_vent_load_s 73086=13.29255216
+	Model_0 published output electrical_power=-0.0
+	Model_0 published output actual_power=0.0
+	Model_0 published output actual_power 8674=0.0
+	Model_0 published output actual_power 8677=0.0
+	Model_0 published output actual_power 8680=0.0
+	Model_0 published output actual_power 8692=0.0
+	Model_0 published output actual_power 73086=0.0
+************* Requesting time 79200.0 -- Granted time 79200.0 **************
+	current timestep: 79200.0
+	Model_0 received input power=-264506.70786840003
+	Model_0 received input power_load_s 8674=-101948.0616
+	Model_0 received input power_load_s 8677=-45475.7904
+	Model_0 received input power_load_s 8680=-33751.76724
+	Model_0 received input power_load_s 8692=-56131.3908
+	Model_0 received input power_load_s 73086=-27734.0418
+	Model_0 received input power_fresh_vent_load_s 8674=246.0504564
+	Model_0 received input power_fresh_vent_load_s 8677=76.8925692
+	Model_0 received input power_fresh_vent_load_s 8680=56.7937872
+	Model_0 received input power_fresh_vent_load_s 8692=109.0801692
+	Model_0 received input power_fresh_vent_load_s 73086=45.5269896
+	Model_0 published output electrical_power=-0.0
+	Model_0 published output actual_power=0.0
+	Model_0 published output actual_power 8674=0.0
+	Model_0 published output actual_power 8677=0.0
+	Model_0 published output actual_power 8680=0.0
+	Model_0 published output actual_power 8692=0.0
+	Model_0 published output actual_power 73086=0.0
+************* Requesting time 82800.0 -- Granted time 82800.0 **************
+	current timestep: 82800.0
+	Model_0 received input power=-261620.68181759998
+	Model_0 received input power_load_s 8674=-100344.564
+	Model_0 received input power_load_s 8677=-44475.93
+	Model_0 received input power_load_s 8680=-33718.51692
+	Model_0 received input power_load_s 8692=-56399.418000000005
+	Model_0 received input power_load_s 73086=-27477.91836
+	Model_0 received input power_fresh_vent_load_s 8674=366.381684
+	Model_0 received input power_fresh_vent_load_s 8677=114.4969632
+	Model_0 received input power_fresh_vent_load_s 8680=84.5688528
+	Model_0 received input power_fresh_vent_load_s 8692=162.4259448
+	Model_0 received input power_fresh_vent_load_s 73086=67.7920176
+	Model_0 published output electrical_power=-0.0
+	Model_0 published output actual_power=0.0
+	Model_0 published output actual_power 8674=0.0
+	Model_0 published output actual_power 8677=0.0
+	Model_0 published output actual_power 8680=0.0
+	Model_0 published output actual_power 8692=0.0
+	Model_0 published output actual_power 73086=0.0
+************* Requesting time 86400.0 -- Granted time 86400.0 **************
+	current timestep: 86400.0
+	Model_0 received input power=-257198.53266360002
+	Model_0 received input power_load_s 8674=-97140.8808
+	Model_0 received input power_load_s 8677=-43560.4356
+	Model_0 received input power_load_s 8680=-33533.950679999994
+	Model_0 received input power_load_s 8692=-56717.4996
+	Model_0 received input power_load_s 73086=-27224.74656
+	Model_0 received input power_fresh_vent_load_s 8674=450.793188
+	Model_0 received input power_fresh_vent_load_s 8677=140.8761648
+	Model_0 received input power_fresh_vent_load_s 8680=104.052852
+	Model_0 received input power_fresh_vent_load_s 8692=199.8476064
+	Model_0 received input power_fresh_vent_load_s 73086=83.4107652
+	Model_0 published output electrical_power=-0.0
+	Model_0 published output actual_power=0.0
+	Model_0 published output actual_power 8674=0.0
+	Model_0 published output actual_power 8677=0.0
+	Model_0 published output actual_power 8680=0.0
+	Model_0 published output actual_power 8692=0.0
+	Model_0 published output actual_power 73086=0.0
+		 Model Hvac.0 finalized with Memory : {'inputs': {'power': [], 'power_load_s 8674': [-121829.13, -116918.2692, -112840.7148, -109363.77720000001, -106323.5736, -103615.8768, -101182.122, -99248.0796, -98032.8636, -97377.6204, -97330.4604, -97562.214, -99196.5744, -101636.4564, -105082.59599999999, -107020.3104, -109731.564, -105386.8824, -103626.1224, -104021.136, -103033.7568, -101948.0616, -100344.564, -97140.8808], 'power_load_s 8677': [-51250.4028, -49565.7828, -48114.288, -46834.3512, -45681.894, -44628.012, -43655.975999999995, -43025.4504, -42565.7952, -42877.6236, -47115.846, -49442.4792, -46231.3044, -47573.0604, -48770.8488, -48513.999599999996, -48395.7684, -50385.2616, -51127.4664, -47779.2612, -46570.1292, -45475.7904, -44475.93, -43560.4356], 'power_load_s 8680': [-39443.8968, -38293.437600000005, -37310.6088, -36452.898, -35686.36584, -34988.93784, -34347.861359999995, -33512.94144, -33208.659, -33292.897919999996, -33636.892680000004, -34166.18232, -33643.53972, -34671.85344, -35546.51052, -35533.4562, -35637.435, -34673.58936, -34150.17492, -34125.44904, -34012.49184, -33751.76724, -33718.51692, -33533.950679999994], 'power_load_s 8692': [-70635.6648, -68812.9884, -67242.65400000001, -65870.57519999999, -64648.526399999995, -63541.231199999995, -62524.6668, -61099.459200000005, -60006.78, -59027.9904, -58185.52559999999, -57489.21, -56933.5788, -56498.7996, -56154.0888, -55861.2252, -55586.7612, -55312.1064, -55019.6352, -55625.778000000006, -56039.4504, -56131.3908, -56399.418000000005, -56717.4996], 'power_load_s 73086': [-33687.15552, -32861.58264, -32171.348879999998, -31574.376360000002, -31041.10908, -30552.84, -30099.09204, -29675.269080000002, -29584.61172, -29612.982600000003, -29572.16976, -29418.19272, -29293.450200000003, -29228.61564, -29171.6928, -29055.3876, -28885.35456, -28667.6262, -28459.49184, -28232.622, -27988.28532, -27734.0418, -27477.91836, -27224.74656], 'power_fresh_vent_load_s 8674': [912.362292, 932.1181560000001, 969.8339159999999, 1039.87746, 1129.676904, 1217.6803439999999, 1284.131952, 1311.07176, 1167.392664, 806.398956, 317.8900044, -210.13068239999998, -695.047644, -1048.8574079999999, -1185.35256, -1120.696956, -951.87402, -711.211536, -438.221268, -165.230964, 71.839548, 246.0504564, 366.381684, 450.793188], 'power_fresh_vent_load_s 8677': [285.11988479999997, 291.29374079999997, 303.0801912, 324.96931800000004, 353.0322972, 380.534004, 401.30064, 409.719528, 364.81874400000004, 252.0055692, 99.3429504, -65.6673768, -217.2074724, -327.7756152, -370.43136000000004, -350.226, -297.46759679999997, -222.2588088, -136.947348, -51.6358836, 22.4503848, 76.8925692, 114.4969632, 140.8761648], 'power_fresh_vent_load_s 8680': [210.5930196, 215.1531072, 223.8587244, 240.02629919999998, 260.753958, 281.0670624, 296.405532, 302.62383, 269.4595752, 186.13438200000002, 73.3759164, -48.5027244, -160.4320848, -242.099064, -273.6051048, -258.6811896, -219.71319119999998, -164.1630636, -101.1509784, -38.1388932, 16.582127760000002, 56.7937872, 84.5688528, 104.052852], 'power_fresh_vent_load_s 8692': [404.472456, 413.23071600000003, 429.95102399999996, 461.00303999999994, 500.81331600000004, 539.827416, 569.287008, 581.23008, 517.53366, 357.4963188, 140.9283936, -93.15605520000001, -308.1315708, -464.98406400000005, -525.495708, -496.83229200000005, -421.98897600000004, -315.29742120000003, -194.27416920000002, -73.2509172, 31.8482244, 109.0801692, 162.4259448, 199.8476064], 'power_fresh_vent_load_s 73086': [168.81541199999998, 172.47086280000002, 179.4494556, 192.4096932, 209.0253816, 225.3087612, 237.60437040000002, 242.58907799999997, 216.0039744, 149.2088976, 58.8195432, -38.8807164, -128.6054424, -194.0712624, -219.3271092, -207.3638124, -176.1263172, -131.5962648, -81.0845676, -30.57287004, 13.29255216, 45.5269896, 67.7920176, 83.4107652]}, 'outputs': {'electrical_power': [-0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0], 'actual_power': [], 'actual_power 8674': [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], 'actual_power 8677': [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], 'actual_power 8680': [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], 'actual_power 8692': [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], 'actual_power 73086': [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]}, 'params': {}}
+	Federate finalized

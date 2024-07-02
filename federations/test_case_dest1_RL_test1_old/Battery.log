@@ -1,0 +1,142 @@
+	Registered publication: <helics.HelicsPublication(name = "Battery/0/energy_out", type = "double", units = "Wh", info = "") at 0x25edc6f7ee0> for Battery/0/energy_out
+	Registered input: Battery/0/power for 0 from ['PV/0/Power_PV', 'Hvac/0/electrical_power']
+
+Federate registered interfaces
+     Endpoint: {}
+     Publications: {   0: {   'energy_out': <helics.HelicsPublication(name = "Battery/0/energy_out", type = "double", units = "Wh", info = "") at 0x25edc6f7ee0>}}
+     Inputs: {   0: {   'power': <helics.HelicsInput(name = "Battery/0/power", units = "W", injection_units = "", publication_type = "", type = "double", target = "PV/0/Power_PV", info = "") at 0x25edc79c820>}}
+
+
+Registering connections ended for fed Battery
+	 list of output vars: ['energy_out'],
+	 list for in_vars['power']
+		Initial state for Model Battery.0 set as follow: {'inputs': {}, 'outputs': {}, 'params': {'rated_capacity': 40000, 'maximum_charge_power': 8000, 'maximum_discharge_power': 8000, 'SOC_upper_limit': 0.95, 'SOC_lower_limit': 0.25, 'charge_efficiency': 1, 'discharge_efficiency': 1, 'self_discharge_rate': 0, 'SOC': 0.75}}
+		Memory instantiated for Model Battery.0!
+		Model Battery.0 instantiated with the following kwargs: {'model_name': 'Battery.0', 'inputs': {'power': 0.0}, 'outputs': {'energy_out': 0.0}, 'params': {'rated_capacity': 40000, 'maximum_charge_power': 8000, 'maximum_discharge_power': 8000, 'SOC_upper_limit': 0.95, 'SOC_lower_limit': 0.25, 'charge_efficiency': 1, 'discharge_efficiency': 1, 'self_discharge_rate': 0, 'SOC': 0.75}, 'init_state': {}, 'model_script': 'model_Dest/Battery.py', 'class_name': 'Battery', 'n_instances': 1, 'RL_training': True, 'mem_attrs': ['params.SOC', 'outputs.energy_out', 'inputs.power'], 'real_period': 3600, 'iter_type': 'no_iter', 'end_time': 86400.0}!
+
+Models instantiation from fed: Battery succesfull!
+
+Model instances names: ['Battery.0']
+	Entered HELICS execution mode
+************* Requesting time 3600.0 -- Granted time 3600.0 **************
+	current timestep: 3600.0
+	Model_0 received input power=0.0
+		 Model {self.model_name} step completed.
+	Model_0 published output energy_out=0.0
+************* Requesting time 7200.0 -- Granted time 7200.0 **************
+	current timestep: 7200.0
+	Model_0 received input power=0.0
+		 Model {self.model_name} step completed.
+	Model_0 published output energy_out=0.0
+************* Requesting time 10800.0 -- Granted time 10800.0 **************
+	current timestep: 10800.0
+	Model_0 received input power=0.0
+		 Model {self.model_name} step completed.
+	Model_0 published output energy_out=0.0
+************* Requesting time 14400.0 -- Granted time 14400.0 **************
+	current timestep: 14400.0
+	Model_0 received input power=0.0
+		 Model {self.model_name} step completed.
+	Model_0 published output energy_out=0.0
+************* Requesting time 18000.0 -- Granted time 18000.0 **************
+	current timestep: 18000.0
+	Model_0 received input power=0.0
+		 Model {self.model_name} step completed.
+	Model_0 published output energy_out=0.0
+************* Requesting time 21600.0 -- Granted time 21600.0 **************
+	current timestep: 21600.0
+	Model_0 received input power=0.0
+		 Model {self.model_name} step completed.
+	Model_0 published output energy_out=0.0
+************* Requesting time 25200.0 -- Granted time 25200.0 **************
+	current timestep: 25200.0
+	Model_0 received input power=0.0
+		 Model {self.model_name} step completed.
+	Model_0 published output energy_out=0.0
+************* Requesting time 28800.0 -- Granted time 28800.0 **************
+	current timestep: 28800.0
+	Model_0 received input power=0.0
+		 Model {self.model_name} step completed.
+	Model_0 published output energy_out=0.0
+************* Requesting time 32400.0 -- Granted time 32400.0 **************
+	current timestep: 32400.0
+	Model_0 received input power=0.0
+		 Model {self.model_name} step completed.
+	Model_0 published output energy_out=0.0
+************* Requesting time 36000.0 -- Granted time 36000.0 **************
+	current timestep: 36000.0
+	Model_0 received input power=60.34469303966855
+		 Model {self.model_name} step completed.
+	Model_0 published output energy_out=60.34469303966762
+************* Requesting time 39600.0 -- Granted time 39600.0 **************
+	current timestep: 39600.0
+	Model_0 received input power=498.0893977590152
+		 Model {self.model_name} step completed.
+	Model_0 published output energy_out=498.0893977590167
+************* Requesting time 43200.0 -- Granted time 43200.0 **************
+	current timestep: 43200.0
+	Model_0 received input power=1337.995260258734
+		 Model {self.model_name} step completed.
+	Model_0 published output energy_out=1337.9952602587327
+************* Requesting time 46800.0 -- Granted time 46800.0 **************
+	current timestep: 46800.0
+	Model_0 received input power=2301.274270774573
+		 Model {self.model_name} step completed.
+	Model_0 published output energy_out=2301.2742707745747
+************* Requesting time 50400.0 -- Granted time 50400.0 **************
+	current timestep: 50400.0
+	Model_0 received input power=2871.458534030897
+		 Model {self.model_name} step completed.
+	Model_0 published output energy_out=2871.4585340308986
+************* Requesting time 54000.0 -- Granted time 54000.0 **************
+	current timestep: 54000.0
+	Model_0 received input power=2876.7894166562864
+		 Model {self.model_name} step completed.
+	Model_0 published output energy_out=930.8378441371096
+************* Requesting time 57600.0 -- Granted time 57600.0 **************
+	current timestep: 57600.0
+	Model_0 received input power=2151.343944159391
+		 Model {self.model_name} step completed.
+	Model_0 published output energy_out=0.0
+************* Requesting time 61200.0 -- Granted time 61200.0 **************
+	current timestep: 61200.0
+	Model_0 received input power=1040.9484443726228
+		 Model {self.model_name} step completed.
+	Model_0 published output energy_out=0.0
+************* Requesting time 64800.0 -- Granted time 64800.0 **************
+	current timestep: 64800.0
+	Model_0 received input power=76.95064350000963
+		 Model {self.model_name} step completed.
+	Model_0 published output energy_out=0.0
+************* Requesting time 68400.0 -- Granted time 68400.0 **************
+	current timestep: 68400.0
+	Model_0 received input power=0.0
+		 Model {self.model_name} step completed.
+	Model_0 published output energy_out=0.0
+************* Requesting time 72000.0 -- Granted time 72000.0 **************
+	current timestep: 72000.0
+	Model_0 received input power=0.0
+		 Model {self.model_name} step completed.
+	Model_0 published output energy_out=0.0
+************* Requesting time 75600.0 -- Granted time 75600.0 **************
+	current timestep: 75600.0
+	Model_0 received input power=0.0
+		 Model {self.model_name} step completed.
+	Model_0 published output energy_out=0.0
+************* Requesting time 79200.0 -- Granted time 79200.0 **************
+	current timestep: 79200.0
+	Model_0 received input power=0.0
+		 Model {self.model_name} step completed.
+	Model_0 published output energy_out=0.0
+************* Requesting time 82800.0 -- Granted time 82800.0 **************
+	current timestep: 82800.0
+	Model_0 received input power=0.0
+		 Model {self.model_name} step completed.
+	Model_0 published output energy_out=0.0
+************* Requesting time 86400.0 -- Granted time 86400.0 **************
+	current timestep: 86400.0
+	Model_0 received input power=0.0
+		 Model {self.model_name} step completed.
+	Model_0 published output energy_out=0.0
+		 Model Battery.0 finalized with Memory : {'inputs': {'power': [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 60.34469303966855, 498.0893977590152, 1337.995260258734, 2301.274270774573, 2871.458534030897, 2876.7894166562864, 2151.343944159391, 1040.9484443726228, 76.95064350000963, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]}, 'outputs': {'energy_out': [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 60.34469303966762, 498.0893977590167, 1337.9952602587327, 2301.2742707745747, 2871.4585340308986, 930.8378441371096, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]}, 'params': {'SOC': [0.75, 0.75, 0.75, 0.75, 0.75, 0.75, 0.75, 0.75, 0.75, 0.7515086173259917, 0.7639608522699671, 0.7974107337764355, 0.8549425905457998, 0.9267290538965722, 0.95, 0.95, 0.95, 0.95, 0.95, 0.95, 0.95, 0.95, 0.95, 0.95]}}
+	Federate finalized

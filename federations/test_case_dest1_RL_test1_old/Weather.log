@@ -1,0 +1,196 @@
+	Registered publication: <helics.HelicsPublication(name = "Weather/0/drybulb", type = "double", units = "C", info = "") at 0x26975367e80> for Weather/0/drybulb
+	Registered publication: <helics.HelicsPublication(name = "Weather/0/glohorzrad", type = "double", units = "W/m2", info = "") at 0x2697540e760> for Weather/0/glohorzrad
+	Registered publication: <helics.HelicsPublication(name = "Weather/0/difhorzrad", type = "double", units = "W/m2", info = "") at 0x2697540e7f0> for Weather/0/difhorzrad
+	Registered publication: <helics.HelicsPublication(name = "Weather/0/relhum", type = "double", units = "W/m2", info = "") at 0x2697540eac0> for Weather/0/relhum
+
+Federate registered interfaces
+     Endpoint: {}
+     Publications: {   0: {   'difhorzrad': <helics.HelicsPublication(name = "Weather/0/difhorzrad", type = "double", units = "W/m2", info = "") at 0x2697540e7f0>,
+           'drybulb': <helics.HelicsPublication(name = "Weather/0/drybulb", type = "double", units = "C", info = "") at 0x26975367e80>,
+           'glohorzrad': <helics.HelicsPublication(name = "Weather/0/glohorzrad", type = "double", units = "W/m2", info = "") at 0x2697540e760>,
+           'relhum': <helics.HelicsPublication(name = "Weather/0/relhum", type = "double", units = "W/m2", info = "") at 0x2697540eac0>}}
+     Inputs: {}
+
+
+Registering connections ended for fed Weather
+	 list of output vars: ['drybulb', 'glohorzrad', 'difhorzrad', 'relhum'],
+	 list for in_vars[]
+		Initial state for Model CSV.0 set as follow: {'inputs': {}, 'outputs': {}, 'params': {'csv_file': 'data/ITA_Torino-CaselleEPW.csv', 'multiplier': {'drybulb': 1.0, 'windspd': 1.0, 'glohorzrad': 1.0, 'difhorzrad': 1.0}, 'additioner': {'drybulb': 0.0}}}
+		Memory instantiated for Model CSV.0!
+		Model CSV.0 instantiated with the following kwargs: {'model_name': 'CSV.0', 'inputs': {}, 'outputs': {'drybulb': 0.0, 'glohorzrad': 0.0, 'difhorzrad': 0.0, 'relhum': 0.0}, 'params': {'csv_file': 'data/ITA_Torino-CaselleEPW.csv', 'multiplier': {'drybulb': 1.0, 'windspd': 1.0, 'glohorzrad': 1.0, 'difhorzrad': 1.0}, 'additioner': {'drybulb': 0.0}}, 'init_state': {}, 'model_script': 'Csv_out.py', 'class_name': 'CSV', 'n_instances': 1, 'stateful': True, 'RL_training': True, 'mem_attrs': ['outputs.drybulb', 'outputs.glohorzrad', 'outputs.difhorzrad'], 'real_period': 3600, 'sim_start': '2015-01-01 00:00:00', 'iter_type': 'no_iter', 'end_time': 86400.0}!
+timesereis_data start = 2015-01-01 00:00:00, end = 2015-12-31 23:00:00, freq = <3600 * Seconds>
+
+Models instantiation from fed: Weather succesfull!
+
+Model instances names: ['CSV.0']
+	Entered HELICS execution mode
+************* Requesting time 3600.0 -- Granted time 3600.0 **************
+	current timestep: 3600.0
+		 Model {self.model_name} step completed.
+	Model_0 published output drybulb=-1.4
+	Model_0 published output glohorzrad=0.0
+	Model_0 published output difhorzrad=0.0
+	Model_0 published output relhum=82
+************* Requesting time 7200.0 -- Granted time 7200.0 **************
+	current timestep: 7200.0
+		 Model {self.model_name} step completed.
+	Model_0 published output drybulb=-1.4
+	Model_0 published output glohorzrad=0.0
+	Model_0 published output difhorzrad=0.0
+	Model_0 published output relhum=82
+************* Requesting time 10800.0 -- Granted time 10800.0 **************
+	current timestep: 10800.0
+		 Model {self.model_name} step completed.
+	Model_0 published output drybulb=-1.8
+	Model_0 published output glohorzrad=0.0
+	Model_0 published output difhorzrad=0.0
+	Model_0 published output relhum=83
+************* Requesting time 14400.0 -- Granted time 14400.0 **************
+	current timestep: 14400.0
+		 Model {self.model_name} step completed.
+	Model_0 published output drybulb=-2.4
+	Model_0 published output glohorzrad=0.0
+	Model_0 published output difhorzrad=0.0
+	Model_0 published output relhum=85
+************* Requesting time 18000.0 -- Granted time 18000.0 **************
+	current timestep: 18000.0
+		 Model {self.model_name} step completed.
+	Model_0 published output drybulb=-3.2
+	Model_0 published output glohorzrad=0.0
+	Model_0 published output difhorzrad=0.0
+	Model_0 published output relhum=87
+************* Requesting time 21600.0 -- Granted time 21600.0 **************
+	current timestep: 21600.0
+		 Model {self.model_name} step completed.
+	Model_0 published output drybulb=-3.5
+	Model_0 published output glohorzrad=0.0
+	Model_0 published output difhorzrad=0.0
+	Model_0 published output relhum=88
+************* Requesting time 25200.0 -- Granted time 25200.0 **************
+	current timestep: 25200.0
+		 Model {self.model_name} step completed.
+	Model_0 published output drybulb=-3.6
+	Model_0 published output glohorzrad=0.0
+	Model_0 published output difhorzrad=0.0
+	Model_0 published output relhum=88
+************* Requesting time 28800.0 -- Granted time 28800.0 **************
+	current timestep: 28800.0
+		 Model {self.model_name} step completed.
+	Model_0 published output drybulb=-3.6
+	Model_0 published output glohorzrad=0.0
+	Model_0 published output difhorzrad=0.0
+	Model_0 published output relhum=88
+************* Requesting time 32400.0 -- Granted time 32400.0 **************
+	current timestep: 32400.0
+		 Model {self.model_name} step completed.
+	Model_0 published output drybulb=-3.0
+	Model_0 published output glohorzrad=0.0
+	Model_0 published output difhorzrad=0.0
+	Model_0 published output relhum=87
+************* Requesting time 36000.0 -- Granted time 36000.0 **************
+	current timestep: 36000.0
+		 Model {self.model_name} step completed.
+	Model_0 published output drybulb=-2.1
+	Model_0 published output glohorzrad=10.0
+	Model_0 published output difhorzrad=7.0
+	Model_0 published output relhum=86
+************* Requesting time 39600.0 -- Granted time 39600.0 **************
+	current timestep: 39600.0
+		 Model {self.model_name} step completed.
+	Model_0 published output drybulb=-0.8
+	Model_0 published output glohorzrad=58.0
+	Model_0 published output difhorzrad=26.0
+	Model_0 published output relhum=85
+************* Requesting time 43200.0 -- Granted time 43200.0 **************
+	current timestep: 43200.0
+		 Model {self.model_name} step completed.
+	Model_0 published output drybulb=1.0
+	Model_0 published output glohorzrad=120.0
+	Model_0 published output difhorzrad=42.0
+	Model_0 published output relhum=79
+************* Requesting time 46800.0 -- Granted time 46800.0 **************
+	current timestep: 46800.0
+		 Model {self.model_name} step completed.
+	Model_0 published output drybulb=3.3
+	Model_0 published output glohorzrad=171.0
+	Model_0 published output difhorzrad=52.0
+	Model_0 published output relhum=71
+************* Requesting time 50400.0 -- Granted time 50400.0 **************
+	current timestep: 50400.0
+		 Model {self.model_name} step completed.
+	Model_0 published output drybulb=6.0
+	Model_0 published output glohorzrad=186.0
+	Model_0 published output difhorzrad=55.0
+	Model_0 published output relhum=60
+************* Requesting time 54000.0 -- Granted time 54000.0 **************
+	current timestep: 54000.0
+		 Model {self.model_name} step completed.
+	Model_0 published output drybulb=6.9
+	Model_0 published output glohorzrad=160.0
+	Model_0 published output difhorzrad=52.0
+	Model_0 published output relhum=57
+************* Requesting time 57600.0 -- Granted time 57600.0 **************
+	current timestep: 57600.0
+		 Model {self.model_name} step completed.
+	Model_0 published output drybulb=7.1
+	Model_0 published output glohorzrad=104.0
+	Model_0 published output difhorzrad=43.0
+	Model_0 published output relhum=56
+************* Requesting time 61200.0 -- Granted time 61200.0 **************
+	current timestep: 61200.0
+		 Model {self.model_name} step completed.
+	Model_0 published output drybulb=6.6
+	Model_0 published output glohorzrad=46.0
+	Model_0 published output difhorzrad=28.0
+	Model_0 published output relhum=58
+************* Requesting time 64800.0 -- Granted time 64800.0 **************
+	current timestep: 64800.0
+		 Model {self.model_name} step completed.
+	Model_0 published output drybulb=5.5
+	Model_0 published output glohorzrad=8.0
+	Model_0 published output difhorzrad=8.0
+	Model_0 published output relhum=63
+************* Requesting time 68400.0 -- Granted time 68400.0 **************
+	current timestep: 68400.0
+		 Model {self.model_name} step completed.
+	Model_0 published output drybulb=3.8
+	Model_0 published output glohorzrad=0.0
+	Model_0 published output difhorzrad=0.0
+	Model_0 published output relhum=72
+************* Requesting time 72000.0 -- Granted time 72000.0 **************
+	current timestep: 72000.0
+		 Model {self.model_name} step completed.
+	Model_0 published output drybulb=1.4
+	Model_0 published output glohorzrad=0.0
+	Model_0 published output difhorzrad=0.0
+	Model_0 published output relhum=83
+************* Requesting time 75600.0 -- Granted time 75600.0 **************
+	current timestep: 75600.0
+		 Model {self.model_name} step completed.
+	Model_0 published output drybulb=0.3
+	Model_0 published output glohorzrad=0.0
+	Model_0 published output difhorzrad=0.0
+	Model_0 published output relhum=88
+************* Requesting time 79200.0 -- Granted time 79200.0 **************
+	current timestep: 79200.0
+		 Model {self.model_name} step completed.
+	Model_0 published output drybulb=-0.5
+	Model_0 published output glohorzrad=0.0
+	Model_0 published output difhorzrad=0.0
+	Model_0 published output relhum=91
+************* Requesting time 82800.0 -- Granted time 82800.0 **************
+	current timestep: 82800.0
+		 Model {self.model_name} step completed.
+	Model_0 published output drybulb=-1.0
+	Model_0 published output glohorzrad=0.0
+	Model_0 published output difhorzrad=0.0
+	Model_0 published output relhum=93
+************* Requesting time 86400.0 -- Granted time 86400.0 **************
+	current timestep: 86400.0
+		 Model {self.model_name} step completed.
+	Model_0 published output drybulb=-1.0
+	Model_0 published output glohorzrad=0.0
+	Model_0 published output difhorzrad=0.0
+	Model_0 published output relhum=93
+		 Model CSV.0 finalized with Memory : {'inputs': {}, 'outputs': {'drybulb': [-1.4, -1.4, -1.8, -2.4, -3.2, -3.5, -3.6, -3.6, -3.0, -2.1, -0.8, 1.0, 3.3, 6.0, 6.9, 7.1, 6.6, 5.5, 3.8, 1.4, 0.3, -0.5, -1.0, -1.0], 'glohorzrad': [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 10.0, 58.0, 120.0, 171.0, 186.0, 160.0, 104.0, 46.0, 8.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], 'difhorzrad': [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 7.0, 26.0, 42.0, 52.0, 55.0, 52.0, 43.0, 28.0, 8.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]}, 'params': {}}
+	Federate finalized

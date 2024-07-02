@@ -9,8 +9,17 @@
   - Model integration
   - Timings, Data exchange & workflows
 
+# RULES
+ - endpoints Maximum 2 endpoint per model instance 1 reset_now and one genric for all the other receivings and sendings.
+    - in this case teh endpoint name that is not for reset must be standard "base_endpoint"
 
+ - EACH MODEL must have a reset model that report everything to base init
+   
+ - COSA SUCCEDE SE NON HO NIENTE DA PUBBLICARE MA I FEDERATE HANNO PUB/SUB RELATIONS:
+   - viene sempre pubblicato qualcosa anche se la publish e' vuota e non viene performata la linea h.helicsPublicationPublishDouble(pubid, value)
 
+ - for now we can only control input variables or param variables (so everything that is needed before the step and influence the step calculations)
+ - every model instance receive the sam elist of vars to memorize or an empty list. every model is inb charge of creating its own memory buffer divided in (inputs, params, outputs)
 # Federate Apis (Cosim_RL/)
 ## Federate.py
 This is the basic federate implementing the initialization tasks, the model instantiation, the connections registering
@@ -25,7 +34,7 @@ The base Federate can be used for basic simulators that receive inputs and produ
 ## Federate_Iter.py
 Federate used for same time loop iteration federates : for now it must be redesigned and its purpose can be satisfied by using basic Federate with proper micro-stepping and hardocded models
 
-## Federate_RL_Agent.py
+## Federate_RL_Agent.py (for no does not consider multiple instances)
 
 
 # FMU integration

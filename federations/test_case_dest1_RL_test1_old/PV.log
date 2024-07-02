@@ -1,0 +1,193 @@
+	Registered publication: <helics.HelicsPublication(name = "PV/0/Power_PV", type = "double", units = "W", info = "") at 0x1faefaa5e80> for PV/0/Power_PV
+	Registered input: PV/0/G_H_R for 0 from ['Weather/0/glohorzrad']
+	Registered input: PV/0/D_H_R for 0 from ['Weather/0/difhorzrad']
+	Registered input: PV/0/Ambient_temperature for 0 from ['Weather/0/drybulb']
+
+Federate registered interfaces
+     Endpoint: {}
+     Publications: {   0: {   'Power_PV': <helics.HelicsPublication(name = "PV/0/Power_PV", type = "double", units = "W", info = "") at 0x1faefaa5e80>}}
+     Inputs: {   0: {   'Ambient_temperature': <helics.HelicsInput(name = "PV/0/Ambient_temperature", units = "C", injection_units = "", publication_type = "", type = "double", target = "Weather/0/drybulb", info = "") at 0x1faefb4a970>,
+           'D_H_R': <helics.HelicsInput(name = "PV/0/D_H_R", units = "W/m2", injection_units = "", publication_type = "", type = "double", target = "Weather/0/difhorzrad", info = "") at 0x1faefb4a8b0>,
+           'G_H_R': <helics.HelicsInput(name = "PV/0/G_H_R", units = "W/m2", injection_units = "", publication_type = "", type = "double", target = "Weather/0/glohorzrad", info = "") at 0x1faefb4a850>}}
+
+
+Registering connections ended for fed PV
+	 list of output vars: ['Power_PV'],
+	 list for in_vars['G_H_R', 'D_H_R', 'Ambient_temperature']
+		Memory instantiated for Model PV.0!
+		Model PV.0 instantiated with the following kwargs: {'model_name': 'PV.0', 'inputs': {'G_H_R': 0.0, 'D_H_R': 0.0, 'Ambient_temperature': 0.0}, 'outputs': {'Power_PV': 0.0}, 'params': {'lat': 39.8, 'long': 116.467, 'calc_area': 50, 'Tilt_angle': 0.698131701, 'Azimuth_angle': 0.9, 'area_ratio': 1, 'SVF_hori': 1, 'Reflectance': 0.2, 'eta_pv_stc': 0.21, 'NOCT': 45, 'Power_rated_pv': 410, 'length': 2.05, 'width': 1.02, 'solar_constant': 1353, 'std_long': 120}, 'model_script': 'model_Dest/PV.py', 'class_name': 'PV', 'n_instances': 1, 'RL_training': True, 'mem_attrs': ['outputs.Power_PV', 'inputs.G_H_R'], 'real_period': 3600, 'iter_type': 'no_iter', 'end_time': 86400.0}!
+
+Models instantiation from fed: PV succesfull!
+
+Model instances names: ['PV.0']
+	Entered HELICS execution mode
+************* Requesting time 3600.0 -- Granted time 3600.0 **************
+	current timestep: 3600.0
+	Model_0 received input G_H_R=0.0
+	Model_0 received input D_H_R=0.0
+	Model_0 received input Ambient_temperature=-1.4
+		 Model {self.model_name} step completed.
+	Model_0 published output Power_PV=0.0
+************* Requesting time 7200.0 -- Granted time 7200.0 **************
+	current timestep: 7200.0
+	Model_0 received input G_H_R=0.0
+	Model_0 received input D_H_R=0.0
+	Model_0 received input Ambient_temperature=-1.4
+		 Model {self.model_name} step completed.
+	Model_0 published output Power_PV=0.0
+************* Requesting time 10800.0 -- Granted time 10800.0 **************
+	current timestep: 10800.0
+	Model_0 received input G_H_R=0.0
+	Model_0 received input D_H_R=0.0
+	Model_0 received input Ambient_temperature=-1.8
+		 Model {self.model_name} step completed.
+	Model_0 published output Power_PV=0.0
+************* Requesting time 14400.0 -- Granted time 14400.0 **************
+	current timestep: 14400.0
+	Model_0 received input G_H_R=0.0
+	Model_0 received input D_H_R=0.0
+	Model_0 received input Ambient_temperature=-2.4
+		 Model {self.model_name} step completed.
+	Model_0 published output Power_PV=0.0
+************* Requesting time 18000.0 -- Granted time 18000.0 **************
+	current timestep: 18000.0
+	Model_0 received input G_H_R=0.0
+	Model_0 received input D_H_R=0.0
+	Model_0 received input Ambient_temperature=-3.2
+		 Model {self.model_name} step completed.
+	Model_0 published output Power_PV=0.0
+************* Requesting time 21600.0 -- Granted time 21600.0 **************
+	current timestep: 21600.0
+	Model_0 received input G_H_R=0.0
+	Model_0 received input D_H_R=0.0
+	Model_0 received input Ambient_temperature=-3.5
+		 Model {self.model_name} step completed.
+	Model_0 published output Power_PV=0.0
+************* Requesting time 25200.0 -- Granted time 25200.0 **************
+	current timestep: 25200.0
+	Model_0 received input G_H_R=0.0
+	Model_0 received input D_H_R=0.0
+	Model_0 received input Ambient_temperature=-3.6
+		 Model {self.model_name} step completed.
+	Model_0 published output Power_PV=0.0
+************* Requesting time 28800.0 -- Granted time 28800.0 **************
+	current timestep: 28800.0
+	Model_0 received input G_H_R=0.0
+	Model_0 received input D_H_R=0.0
+	Model_0 received input Ambient_temperature=-3.6
+		 Model {self.model_name} step completed.
+	Model_0 published output Power_PV=0.0
+************* Requesting time 32400.0 -- Granted time 32400.0 **************
+	current timestep: 32400.0
+	Model_0 received input G_H_R=0.0
+	Model_0 received input D_H_R=0.0
+	Model_0 received input Ambient_temperature=-3.0
+		 Model {self.model_name} step completed.
+	Model_0 published output Power_PV=0.0
+************* Requesting time 36000.0 -- Granted time 36000.0 **************
+	current timestep: 36000.0
+	Model_0 received input G_H_R=10.0
+	Model_0 received input D_H_R=7.0
+	Model_0 received input Ambient_temperature=-2.1
+		 Model {self.model_name} step completed.
+	Model_0 published output Power_PV=60.34469303966855
+************* Requesting time 39600.0 -- Granted time 39600.0 **************
+	current timestep: 39600.0
+	Model_0 received input G_H_R=58.0
+	Model_0 received input D_H_R=26.0
+	Model_0 received input Ambient_temperature=-0.8
+		 Model {self.model_name} step completed.
+	Model_0 published output Power_PV=498.0893977590152
+************* Requesting time 43200.0 -- Granted time 43200.0 **************
+	current timestep: 43200.0
+	Model_0 received input G_H_R=120.0
+	Model_0 received input D_H_R=42.0
+	Model_0 received input Ambient_temperature=1.0
+		 Model {self.model_name} step completed.
+	Model_0 published output Power_PV=1337.995260258734
+************* Requesting time 46800.0 -- Granted time 46800.0 **************
+	current timestep: 46800.0
+	Model_0 received input G_H_R=171.0
+	Model_0 received input D_H_R=52.0
+	Model_0 received input Ambient_temperature=3.3
+		 Model {self.model_name} step completed.
+	Model_0 published output Power_PV=2301.274270774573
+************* Requesting time 50400.0 -- Granted time 50400.0 **************
+	current timestep: 50400.0
+	Model_0 received input G_H_R=186.0
+	Model_0 received input D_H_R=55.0
+	Model_0 received input Ambient_temperature=6.0
+		 Model {self.model_name} step completed.
+	Model_0 published output Power_PV=2871.458534030897
+************* Requesting time 54000.0 -- Granted time 54000.0 **************
+	current timestep: 54000.0
+	Model_0 received input G_H_R=160.0
+	Model_0 received input D_H_R=52.0
+	Model_0 received input Ambient_temperature=6.9
+		 Model {self.model_name} step completed.
+	Model_0 published output Power_PV=2876.7894166562864
+************* Requesting time 57600.0 -- Granted time 57600.0 **************
+	current timestep: 57600.0
+	Model_0 received input G_H_R=104.0
+	Model_0 received input D_H_R=43.0
+	Model_0 received input Ambient_temperature=7.1
+		 Model {self.model_name} step completed.
+	Model_0 published output Power_PV=2151.343944159391
+************* Requesting time 61200.0 -- Granted time 61200.0 **************
+	current timestep: 61200.0
+	Model_0 received input G_H_R=46.0
+	Model_0 received input D_H_R=28.0
+	Model_0 received input Ambient_temperature=6.6
+		 Model {self.model_name} step completed.
+	Model_0 published output Power_PV=1040.9484443726228
+************* Requesting time 64800.0 -- Granted time 64800.0 **************
+	current timestep: 64800.0
+	Model_0 received input G_H_R=8.0
+	Model_0 received input D_H_R=8.0
+	Model_0 received input Ambient_temperature=5.5
+		 Model {self.model_name} step completed.
+	Model_0 published output Power_PV=76.95064350000963
+************* Requesting time 68400.0 -- Granted time 68400.0 **************
+	current timestep: 68400.0
+	Model_0 received input G_H_R=0.0
+	Model_0 received input D_H_R=0.0
+	Model_0 received input Ambient_temperature=3.8
+		 Model {self.model_name} step completed.
+	Model_0 published output Power_PV=0.0
+************* Requesting time 72000.0 -- Granted time 72000.0 **************
+	current timestep: 72000.0
+	Model_0 received input G_H_R=0.0
+	Model_0 received input D_H_R=0.0
+	Model_0 received input Ambient_temperature=1.4
+		 Model {self.model_name} step completed.
+	Model_0 published output Power_PV=0.0
+************* Requesting time 75600.0 -- Granted time 75600.0 **************
+	current timestep: 75600.0
+	Model_0 received input G_H_R=0.0
+	Model_0 received input D_H_R=0.0
+	Model_0 received input Ambient_temperature=0.3
+		 Model {self.model_name} step completed.
+	Model_0 published output Power_PV=0.0
+************* Requesting time 79200.0 -- Granted time 79200.0 **************
+	current timestep: 79200.0
+	Model_0 received input G_H_R=0.0
+	Model_0 received input D_H_R=0.0
+	Model_0 received input Ambient_temperature=-0.5
+		 Model {self.model_name} step completed.
+	Model_0 published output Power_PV=0.0
+************* Requesting time 82800.0 -- Granted time 82800.0 **************
+	current timestep: 82800.0
+	Model_0 received input G_H_R=0.0
+	Model_0 received input D_H_R=0.0
+	Model_0 received input Ambient_temperature=-1.0
+		 Model {self.model_name} step completed.
+	Model_0 published output Power_PV=0.0
+************* Requesting time 86400.0 -- Granted time 86400.0 **************
+	current timestep: 86400.0
+	Model_0 received input G_H_R=0.0
+	Model_0 received input D_H_R=0.0
+	Model_0 received input Ambient_temperature=-1.0
+		 Model {self.model_name} step completed.
+	Model_0 published output Power_PV=0.0
+		 Model PV.0 finalized with Memory : {'inputs': {'G_H_R': [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 10.0, 58.0, 120.0, 171.0, 186.0, 160.0, 104.0, 46.0, 8.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]}, 'outputs': {'Power_PV': [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 60.34469303966855, 498.0893977590152, 1337.995260258734, 2301.274270774573, 2871.458534030897, 2876.7894166562864, 2151.343944159391, 1040.9484443726228, 76.95064350000963, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]}, 'params': {}}
+	Federate finalized

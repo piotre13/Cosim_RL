@@ -1,0 +1,29 @@
+[2024-06-27 15:55:17.457] [console] [warning] 6752-Y6yGT-c4izB-BBKqh-VKicl::Unable to connect to Publication target Controller/0/tSetMax
+[2024-06-27 15:55:17.457] [console] [warning] 6752-Y6yGT-c4izB-BBKqh-VKicl::Unable to connect to Publication target Controller/0/tSetMax
+[2024-06-27 15:55:17.457] [console] [warning] 6752-Y6yGT-c4izB-BBKqh-VKicl::Unable to connect to Publication target Controller/0/tSetMax
+[2024-06-27 15:55:17.457] [console] [warning] 6752-Y6yGT-c4izB-BBKqh-VKicl::Unable to connect to Publication target Controller/0/tSetMax
+[2024-06-27 15:55:17.457] [console] [warning] 6752-Y6yGT-c4izB-BBKqh-VKicl::Unable to connect to Publication target Controller/0/tSetMin
+[2024-06-27 15:55:17.457] [console] [warning] 6752-Y6yGT-c4izB-BBKqh-VKicl::Unable to connect to Publication target Controller/0/tSetMin
+[2024-06-27 15:55:17.457] [console] [warning] 6752-Y6yGT-c4izB-BBKqh-VKicl::Unable to connect to Publication target Controller/0/tSetMin
+[2024-06-27 15:55:17.457] [console] [warning] 6752-Y6yGT-c4izB-BBKqh-VKicl::Unable to connect to Publication target Controller/0/tSetMin
+[2024-06-27 15:55:17.567] [console] [warning] commWarning||6752-Y6yGT-c4izB-BBKqh-VKicl (1)[operating]::unknown route and no broker, dropping message pub:From (131076) handle(7) size 16 at 86400 to 131073
+[2024-06-27 15:55:17.567] [console] [warning] commWarning||6752-Y6yGT-c4izB-BBKqh-VKicl (1)[operating]::unknown route and no broker, dropping message pub:From (131076) handle(8) size 16 at 86400 to 131073
+[2024-06-27 15:55:17.567] [console] [warning] commWarning||6752-Y6yGT-c4izB-BBKqh-VKicl (1)[operating]::unknown route and no broker, dropping message pub:From (131076) handle(7) size 16 at 86400 to 131073
+[2024-06-27 15:55:17.567] [console] [warning] commWarning||6752-Y6yGT-c4izB-BBKqh-VKicl (1)[operating]::unknown route and no broker, dropping message pub:From (131076) handle(9) size 16 at 86400 to 131073
+[2024-06-27 15:55:17.567] [console] [warning] commWarning||6752-Y6yGT-c4izB-BBKqh-VKicl (1)[operating]::unknown route and no broker, dropping message pub:From (131076) handle(7) size 16 at 86400 to 131073
+[2024-06-27 15:55:17.567] [console] [warning] commWarning||6752-Y6yGT-c4izB-BBKqh-VKicl (1)[operating]::unknown route and no broker, dropping message pub:From (131076) handle(10) size 16 at 86400 to 131073
+[2024-06-27 15:55:17.567] [console] [warning] commWarning||6752-Y6yGT-c4izB-BBKqh-VKicl (1)[operating]::unknown route and no broker, dropping message pub:From (131076) handle(7) size 16 at 86400 to 131073
+[2024-06-27 15:55:17.567] [console] [warning] commWarning||6752-Y6yGT-c4izB-BBKqh-VKicl (1)[operating]::unknown route and no broker, dropping message pub:From (131076) handle(11) size 16 at 86400 to 131073
+[2024-06-27 15:55:17.567] [console] [warning] commWarning||6752-Y6yGT-c4izB-BBKqh-VKicl (1)[operating]::unknown route and no broker, dropping message pub:From (131076) handle(7) size 16 at 86400 to 131073
+[2024-06-27 15:55:17.567] [console] [warning] commWarning||6752-Y6yGT-c4izB-BBKqh-VKicl (1)[operating]::unknown route and no broker, dropping message pub:From (131076) handle(12) size 16 at 86400 to 131073
+[2024-06-27 15:55:17.567] [console] [warning] commWarning||6752-Y6yGT-c4izB-BBKqh-VKicl (1)[operating]::unknown route and no broker, dropping message pub:From (131076) handle(7) size 16 at 86400 to 131073
+[2024-06-27 15:55:17.567] [console] [warning] commWarning||6752-Y6yGT-c4izB-BBKqh-VKicl (1)[operating]::unknown route and no broker, dropping message pub:From (131076) handle(13) size 16 at 86400 to 131073
+[2024-06-27 15:55:17.567] [console] [warning] commWarning||6752-Y6yGT-c4izB-BBKqh-VKicl (1)[operating]::unknown route and no broker, dropping message pub:From (131076) handle(7) size 16 at 86400 to 131073
+[2024-06-27 15:55:17.567] [console] [warning] commWarning||6752-Y6yGT-c4izB-BBKqh-VKicl (1)[operating]::unknown route and no broker, dropping message pub:From (131076) handle(14) size 16 at 86400 to 131073
+[2024-06-27 15:55:17.567] [console] [warning] commWarning||6752-Y6yGT-c4izB-BBKqh-VKicl (1)[operating]::unknown route and no broker, dropping message pub:From (131076) handle(7) size 16 at 86400 to 131073
+[2024-06-27 15:55:17.567] [console] [warning] commWarning||6752-Y6yGT-c4izB-BBKqh-VKicl (1)[operating]::unknown route and no broker, dropping message pub:From (131076) handle(15) size 16 at 86400 to 131073
+[2024-06-27 15:55:17.567] [console] [warning] commWarning||6752-Y6yGT-c4izB-BBKqh-VKicl (1)[operating]::unknown route and no broker, dropping message pub:From (131076) handle(7) size 16 at 86400 to 131073
+[2024-06-27 15:55:17.567] [console] [warning] commWarning||6752-Y6yGT-c4izB-BBKqh-VKicl (1)[operating]::unknown route and no broker, dropping message pub:From (131076) handle(16) size 16 at 86400 to 131073
+[2024-06-27 15:55:17.567] [console] [warning] commWarning||6752-Y6yGT-c4izB-BBKqh-VKicl (1)[operating]::unknown route and no broker, dropping message pub:From (131076) handle(7) size 16 at 86400 to 131073
+[2024-06-27 15:55:17.567] [console] [warning] commWarning||6752-Y6yGT-c4izB-BBKqh-VKicl (1)[operating]::unknown route and no broker, dropping message pub:From (131076) handle(17) size 16 at 86400 to 131073
+[2024-06-27 15:55:17.569] [console] [warning] commWarning||6752-Y6yGT-c4izB-BBKqh-VKicl (1)[operating]::unknown route and no broker, dropping message pub:From (131074) handle(2) size 16 at 86400 to 131072

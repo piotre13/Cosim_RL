@@ -1,0 +1,18 @@
+{
+  "name": "new_test",
+  "broker": true,
+  "federates": [
+    {
+      "directory": "../..",
+      "exec": "python -u Federate_new.py Test1_conf.yaml new_test",
+      "host": "localhost",
+      "name": "test1"
+    },
+    {
+      "directory": "../..",
+      "exec": "python -u Federate_new.py Test2_conf.yaml new_test",
+      "host": "localhost",
+      "name": "test2"
+    }
+  ]
+}
