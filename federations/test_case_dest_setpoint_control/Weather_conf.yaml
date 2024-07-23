@@ -4,28 +4,28 @@ fed_conf:
       start_time: '2015-01-01 00:00:00'
       sim_period: 3600 # in seconds the period that will be set in fed properties
       real_period: 3600 # in seconds
-      end_period: 86400 # in seconds or datetime
+      end_period: 63072000 # in seconds or datetime
       offset: 0.0
   RL_training: true
-  memory : [ glohorzrad, difhorzrad] # always required can be empty lost of list of var_names
+  memory : [ glohorzrad, difhorzrad, drybulb, wind_speed] # always required can be empty lost of list of var_names
 fed_info:
   core_name: weather_core
   core_type: zmq
 fed_flags:
   TERMINATE_ON_ERROR: true
-  SOURCE_ONLY: True # in this case use source only
+  SOURCE_ONLY: False # in this case use source only
 model_conf:
   generic:
-    model_script: Csv_out.py
+    model_script: Csv_out_trainer.py
     class_name: CSV
     n_instances: 1
   model_specific_required:
     inputs_k: [] # need to specify exact names of inputs used inside models and for creating connections
-    outputs_k: ['drybulb', 'glohorzrad', "difhorzrad"] # need to specify exact names of outputs used inside models and for creating connections
+    outputs_k: ['drybulb', 'glohorzrad', "difhorzrad", "wind_speed"] # need to specify exact names of outputs used inside models and for creating connections
 #    params_k : ['csv_file', 'multiplier', 'additioner'] # need to specify exact names of params used inside models and for creating connections
     params:
-      csv_file: ['data/weather_data_bj.csv']
-      multiplier: [{drybulb: 1.0, windspd: 1.0, glohorzrad: 1.0, difhorzrad: 1.0 }]
+      csv_file: ['data/weather5room.csv']
+      multiplier: [{drybulb: 1.0, wind_speed: 1.0, glohorzrad: 1.0, difhorzrad: 1.0, relhum: 1.0 }]
       additioner: [{drybulb: 0.0}]
     init_state: {}
   model_specific_additional: {}
@@ -47,6 +47,11 @@ fed_connections:
         "key": "difhorzrad",
         "type": "double",
         "units": "W/m2",
+      },
+      {
+        "key": "wind_speed",
+        "type": "double",
+        "units": "",
       }
     ]
   end:

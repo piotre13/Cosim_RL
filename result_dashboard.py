@@ -121,22 +121,23 @@ def selection_db(db):
         ret1 =[] #[{'label': s.split('.')[0], 'value': s.split('.')[0]} for s in outputs_db_list]
         ret2 ={}
         for s in outputs_db_list:
-            fed_name = s.split('.')[0]
-            fed_json = os.path.join(res_path,s)
-            data = json.load(open(fed_json))
-            ret1.extend({'label':fed_name+'.'+d, 'value':fed_name+'.'+d} for d in data.keys())
-            for k in data.keys():
-                ret2[fed_name+'.'+k] = {}
-                for var in data[k]['inputs'].keys():
-                    ret2[fed_name+'.'+k][var] = data[k]['inputs'][var]
-                for var in data[k]['outputs'].keys():
-                    ret2[fed_name + '.' + k][var] = data[k]['outputs'][var]
-                # for var in data[k]['messages_out'].keys():
-                #     ret2[fed_name + '.' + k][var] = data[k]['messages_out'][var]
-                # for var in data[k]['messages_in'].keys():
-                #     ret2[fed_name + '.' + k][var] = data[k]['messages_in'][var]
-                for var in data[k]['params'].keys():
-                    ret2[fed_name + '.' + k][var] = data[k]['params'][var]
+            if 'RL' not in s:
+                fed_name = s.split('.')[0]
+                fed_json = os.path.join(res_path,s)
+                data = json.load(open(fed_json))
+                ret1.extend({'label':fed_name+'.'+d, 'value':fed_name+'.'+d} for d in data.keys())
+                for k in data.keys():
+                    ret2[fed_name+'.'+k] = {}
+                    for var in data[k]['inputs'].keys():
+                        ret2[fed_name+'.'+k][var] = data[k]['inputs'][var]
+                    for var in data[k]['outputs'].keys():
+                        ret2[fed_name + '.' + k][var] = data[k]['outputs'][var]
+                    # for var in data[k]['messages_out'].keys():
+                    #     ret2[fed_name + '.' + k][var] = data[k]['messages_out'][var]
+                    # for var in data[k]['messages_in'].keys():
+                    #     ret2[fed_name + '.' + k][var] = data[k]['messages_in'][var]
+                    for var in data[k]['params'].keys():
+                        ret2[fed_name + '.' + k][var] = data[k]['params'][var]
         return [ret1, json.dumps(ret2)]
     else:
         return [[], []]

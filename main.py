@@ -1,6 +1,7 @@
 import os
 import subprocess
 import helics as h
+import time
 
 #helics run --path=test_case1_runner.json
 
@@ -25,7 +26,8 @@ output_path = os.getcwd()
 #run_path = output_path +'\\federations\\test_control\\runner.json'
 # run_path = output_path +'\\federations\\test_case_dest1_RL_test1\\runner.json'
 #run_path = output_path +'\\federations\\new_test\\runner.json'
-run_path = output_path +'\\federations\\test_case_dest1\\runner.json'
+# run_path = output_path +'\\federations\\test_case_dest1\\runner.json'
+run_path = output_path +'\\federations\\test_case_dest_setpoint_control\\runner.json'
 
 
 from subprocess import Popen, PIPE, run
@@ -33,8 +35,12 @@ exec = 'helics'
 args = ['run', '--path='+run_path]
 command = 'helics -v run --path='+run_path
 #p = Popen([exec,*args], stdin=PIPE, stdout=PIPE, stderr=PIPE)
+t_start = time.time()
 result = run(command, stdout=PIPE, stderr=PIPE, text=True)
 print(result.returncode, result.stdout, result.stderr)
+
+
+print(f"Execution took: {time.time()-t_start} s ")
 # p.communicate()
 # p.terminate()
 # p.wait()

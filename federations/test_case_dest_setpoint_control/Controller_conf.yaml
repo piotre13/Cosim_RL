@@ -1,0 +1,57 @@
+fed_name: Controller
+fed_conf:
+  sim_params: # this will also contain the FED_properties inside federate there is a dict key matching
+      start_time: '2015-01-01 00:00:00'
+      sim_period: 3600 # in seconds the period that will be set in fed properties
+      real_period: 3600 # in seconds
+      end_period: 63072000 # in seconds or datetime
+      offset: 0.0
+  RL_training: true
+  memory : [] # possibilities None no memory, [empty list] memorize all
+
+fed_info:
+  core_name: controller_core
+  core_type: zmq
+
+fed_flags:
+  TERMINATE_ON_ERROR: true
+  UNINTERRUPTIBLE: False
+  SOURCE_ONLY: False
+
+
+model_conf:
+  generic:
+    model_script: dummy_models/Controller_dummy.py
+    class_name: Controller
+    n_instances: 1
+
+  model_specific_required:
+    inputs_k: []
+    outputs_k: ['tSetMax','tSetMin']
+    #params_k : ['lat', 'param2'] # todo should use the list of params.keys()
+    params:  {}
+    init_state:
+      out.tSetMax: [20.0]
+      out.tSetMin: [20.0]
+
+  model_specific_additional: {}
+
+fed_connections:
+  pub:
+    0: [ {
+      "key": "tSetMax",
+      "type": "double",
+      "units": "C",
+    },
+      {
+        "key": "tSetMin",
+        "type": "double",
+        "units": "C",
+      } ]
+  end:
+    0: [
+      {
+          "ep_name": "reset_now"
+      }
+    ]
+  inp: {}

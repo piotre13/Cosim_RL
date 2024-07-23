@@ -1,0 +1,140 @@
+fed_name: RLController
+fed_conf:
+  sim_params: # this will also contain the FED_properties inside federate there is a dict key matching
+      start_time: '2015-01-01 00:00:00'
+      sim_period: 3600 # in seconds the period that will be set in fed properties
+      real_period: 3600 # in seconds
+      end_period: 63072000 # in seconds or datetime
+      offset: 0.1
+  RL_training: true
+  training_episodes: 100
+  episode_period : 24
+  memory : [] # possibilities None no memory, [empty list] memorize all
+
+fed_info:
+  core_name: controllerRL_core
+  core_type: zmq
+
+fed_flags:
+  TERMINATE_ON_ERROR: true
+  UNINTERRUPTIBLE: False
+
+
+
+model_conf:
+  generic:
+    model_script: RL_models/DQN.py
+    class_name: DQN_Agent
+    n_instances: 1
+
+  model_specific_required:
+    inputs_k: ['drybulb',"zone.ac_t 8674","zone.load_s 8674","zone.fresh_vent_load_s 8674",'setpoint', 'relhum', 'glohorzrad']
+    outputs_k: ["schedule.ac_t_max 8674","schedule.ac_t_min 8674"]
+    #params_k : ['lat', 'param2'] # todo should use the list of params.keys()
+    params:  {}
+    init_state:
+      out.tSetMax: [20.0]
+      out.tSetMin: [20.0]
+
+  RL_params:
+    EXPLORE: 150000
+#    INITIAL_EPSILON: 1
+#    FINAL_EPSILON: 0.1
+    BATCH_SIZE: 500
+    EPISODES: 30
+    GAMMA: 0.99
+    # fore epsilon greedy exploration
+    EPS_START: 0.9 # initial value of epsilon
+    EPS_END: 0.05 #final value of epsilon
+    EPS_DECAY: 1000 #decay rate of epsilon
+    TAU: 0.005
+    LR: 1e-4
+    REPLAY_MEMORY: 15000
+    observation_vars: [ 'drybulb', 'glohorzrad','wind_speed', 'setpoint' ] # what is known at t before the action is taken (not influenced by action)
+    obs_space:
+      size: 4
+      low: [-20,0,0,14]
+      high: [50,2000,100,26]
+      dtype: [float.32,float32,float.32,float.32]
+    act_space:
+      size: 1
+      low: [-3]
+      high: [3]
+      dtype: [int]
+    reward_vars: ['t_zone', 'load_s'] # what is not known before the action is taken ( influenced by action will be passed at next timestep in cosim)
+    action_vars: ['t_set']
+
+
+
+fed_connections:
+  pub:
+    0: [ {
+      "key": "tset",
+      "type": "double",
+      "units": "C",
+    }
+      ]
+  end:
+    0: [
+      {
+          "ep_name": "reset_now"
+      }
+    ]
+  inp:
+    0: [
+      {
+        "key": "drybulb",
+        "type": "double",
+        "units": "C",
+        "targets": [ "Weather/0/drybulb" ]
+      },
+      {
+        "key": "glohorzrad",
+        "type": "double",
+        "units": "W/m2",
+        "targets": [ "Weather/0/glohorzrad" ]
+      },
+      {
+        "key": "wind_speed",
+        "type": "double",
+        "units": "",
+        "targets": [ "Weather/0/wind_speed" ]
+      },
+      {
+        "key": "setpoint",
+        "type": "double",
+        "units": "C",
+        "targets": [ "Controller/0/tSetMax" ]
+      },
+      {
+        "key": "t_zone",
+        "type": "double",
+        "units": "C",
+        "multi_input_handling_method": "average",
+        "targets": [
+          "Envelope/0/zone.ac_t 8674",
+          "Envelope/0/zone.ac_t 8677",
+          "Envelope/0/zone.ac_t 8680",
+          "Envelope/0/zone.ac_t 8692",
+          "Envelope/0/zone.ac_t 73086"
+        ]
+      },
+      {
+        "key": "load_s",
+        "type": "double",
+        "units": "W",
+        "multi_input_handling_method": "sum",
+        "targets": [
+          "Envelope/0/zone.load_s 8674",
+          "Envelope/0/zone.load_s 8677",
+          "Envelope/0/zone.load_s 8680",
+          "Envelope/0/zone.load_s 8692",
+          "Envelope/0/zone.load_s 73086",
+          "Envelope/0/zone.fresh_vent_load_s 8674",
+          "Envelope/0/zone.fresh_vent_load_s 8677",
+          "Envelope/0/zone.fresh_vent_load_s 8680",
+          "Envelope/0/zone.fresh_vent_load_s 8692",
+          "Envelope/0/zone.fresh_vent_load_s 73086"
+        ]
+      }
+    ]

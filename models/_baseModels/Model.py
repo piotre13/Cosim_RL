@@ -36,9 +36,8 @@ class Model(ABC):
             # memorize all inside memory keys
             for k, var_dict in self._memory.items():
                 for var_name in var_dict:
-                    var_dict[var_name].append(deepcopy(getattr(self,k)[var_name]))
-
-            return
+                    if getattr(self,k)[var_name]!=None:
+                        var_dict[var_name].append(deepcopy(getattr(self,k)[var_name]))
 
         else:
             # memorize only the one asked by simulator model (maybe) iteration

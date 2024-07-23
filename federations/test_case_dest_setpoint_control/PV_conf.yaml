@@ -4,7 +4,7 @@ fed_conf:
       start_time: '2015-01-01 00:00:00'
       sim_period: 3600 # in seconds the period that will be set in fed properties
       real_period: 3600 # in seconds
-      end_period: 86400 # in seconds or datetime
+      end_period: 63072000 # in seconds or datetime
       offset: 0.1
   RL_training: true
   memory : [Power_PV, G_H_R, D_H_R] # possibilities None no memory, [empty list] memorize all
@@ -16,7 +16,6 @@ fed_info:
 fed_flags:
   TERMINATE_ON_ERROR: true
   UNINTERRUPTIBLE: False
-  WAIT_FOR_CURRENT_TIME_UPDATE: False
 
 model_conf:
   generic:
@@ -31,7 +30,7 @@ model_conf:
     params:
       lat: [ 39.8 ]
       long: [ 116.467 ]
-      calc_area: [ 50 ]
+      calc_area: [ 500 ]
       Tilt_angle: [ 0.6981317010 ]
       Azimuth_angle: [ 0.9 ]
       area_ratio: [ 1 ]

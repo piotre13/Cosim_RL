@@ -4,8 +4,8 @@ fed_conf:
       start_time: '2015-01-01 00:00:00'
       sim_period: 3600 # in seconds the period that will be set in fed properties
       real_period: 3600 # in seconds
-      end_period: 86400 # in seconds or datetime
-      offset: 0.2
+      end_period: 63072000 # in seconds or datetime
+      offset: 0.4
   RL_training: true
   memory : [SOC, energy_out, power] # possibilities None no memory, [empty list] memorize all
 
@@ -16,7 +16,6 @@ fed_info:
 fed_flags:
   TERMINATE_ON_ERROR: true
   UNINTERRUPTIBLE: False
-  WAIT_FOR_CURRENT_TIME_UPDATE: False
 
 model_conf:
   generic:
