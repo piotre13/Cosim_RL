@@ -1,0 +1,138 @@
+fed_name: Hvac
+fed_conf:
+  sim_params: # this will also contain the FED_properties inside federate there is a dict key matching
+      start_time: '2015-01-01 00:00:00'
+      sim_period: 3600 # in seconds the period that will be set in fed properties
+      real_period: 3600 # in seconds
+      end_period: 63072000 # in seconds or datetime
+      offset: 0.3
+  RL_training: true
+  memory : [] # possibilities None no memory, [empty list] memorize all
+
+fed_info:
+  core_name: hvac_core
+  core_type: zmq
+
+fed_flags:
+  TERMINATE_ON_ERROR: true
+  UNINTERRUPTIBLE: False
+
+model_conf:
+  generic:
+    model_script: dummy_models/Hvac_dummy.py
+    class_name: Hvac
+    n_instances: 1
+
+  model_specific_required:
+    inputs_k: ["zone.vent_q 8674","zone.vent_q 8677","zone.vent_q 8680","zone.vent_q 8692","zone.vent_q 73086","zone.fresh_vent_load_s 8674","zone.fresh_vent_load_s 8677","zone.fresh_vent_load_s 8680","zone.fresh_vent_load_s 8692","zone.fresh_vent_load_s 73086"]
+    outputs_k: ['electrical_power']
+    #params_k : ['lat', 'param2'] # todo should use the list of params.keys()
+    params: {}
+    init_state: {}
+  model_specific_additional: {}
+
+fed_connections:
+  pub:
+    0: [
+      {
+      "key": "electrical_power",
+      "type": "double",
+      "units": "W",
+      }
+    ]
+  end:
+    0: [
+      {
+          "ep_name": "reset_now"
+      }
+    ]
+  inp:
+    0: [
+
+      {
+        "key": "zone.vent_q 8674",
+        "type": "double",
+        "units": "W",
+        "targets": [
+          "Envelope/0/zone.vent_q 8674",
+        ]
+      },
+
+      {
+        "key": "zone.vent_q 8677",
+        "type": "double",
+        "units": "W",
+        "targets": [
+          "Envelope/0/zone.vent_q 8677",
+        ]
+      },
+
+      {
+        "key": "zone.vent_q 8680",
+        "type": "double",
+        "units": "W",
+        "targets": [
+          "Envelope/0/zone.vent_q 8680",
+        ]
+      },
+
+      {
+        "key": "zone.vent_q 8692",
+        "type": "double",
+        "units": "W",
+        "targets": [
+          "Envelope/0/zone.vent_q 8692",
+        ]
+      },
+      {
+        "key": "zone.vent_q 73086",
+        "type": "double",
+        "units": "W",
+        "targets": [
+          "Envelope/0/zone.vent_q 73086",
+        ]
+      },
+
+      {
+        "key": "zone.fresh_vent_load_s 8674",
+        "type": "double",
+        "units": "W",
+        "targets": [
+          "Envelope/0/zone.fresh_vent_load_s 8674",
+        ]
+      },
+
+      {
+        "key": "zone.fresh_vent_load_s 8677",
+        "type": "double",
+        "units": "W",
+        "targets": [
+          "Envelope/0/zone.fresh_vent_load_s 8677",
+        ]
+      },
+
+      {
+        "key": "zone.fresh_vent_load_s 8680",
+        "type": "double",
+        "units": "W",
+        "targets": [
+          "Envelope/0/zone.fresh_vent_load_s 8680",
+        ]
+      },
+
+      {
+        "key": "zone.fresh_vent_load_s 8692",
+        "type": "double",
+        "units": "W",
+        "targets": [
+          "Envelope/0/zone.fresh_vent_load_s 8692",
+        ]
+      },
+      {
+        "key": "zone.fresh_vent_load_s 73086",
+        "type": "double",
+        "units": "W",
+        "targets": [
+          "Envelope/0/zone.fresh_vent_load_s 73086",
+        ]
+      }]

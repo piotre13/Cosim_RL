@@ -4,7 +4,7 @@ from _baseModels.Model import Model #rember the top level running python script 
 import logging
 logger = logging.getLogger(__name__)
 logger.addHandler(logging.StreamHandler())
-logger.setLevel(logging.DEBUG)
+logger.setLevel(logging.INFO)
 
 class PV(Model):
     def __init__(self, **kwargs):
@@ -15,9 +15,10 @@ class PV(Model):
         self.model = PV_model(**self.params)
 
     def step(self, ts):
-        ts-=1
+        # ts-=1
         self.outputs['Power_PV'] = self.model.step(ts, self.inputs['G_H_R'], self.inputs['D_H_R'], self.inputs['Ambient_temperature'])
-        return super().step(ts)
+        self._fill_memory()
+        # return super().step(ts)
 
     def finalize(self):
         return super().finalize()

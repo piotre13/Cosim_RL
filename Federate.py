@@ -32,19 +32,22 @@ class Federate:
         self._fed_flags = self._config['fed_flags']
         self.fed_properties = self._fed_conf['sim_params']
 
-        #federate
-        self._fed = self.register_federate()
-        self.federation_name = args[-1]
+
 
         #simulation params
         self.start_time = pd.to_datetime(self._fed_conf['sim_params']['start_time'],format='%Y-%m-%d %H:%M:%S') # datetime
         self.start_period = 0 # seconds
+        self.offset = self._fed_conf['sim_params']['offset']
         self.ts = 0 #unitless counter for simulation steps
         self.sim_period = self._fed_conf['sim_params']['sim_period'] #seconds
         self.real_period = self._fed_conf['sim_params']['real_period'] # seconds
         self.current_period = self.start_period
         self.end_period = self._fed_conf['sim_params']['end_period'] # seconds
         self.end_time = self.start_time + pd.to_timedelta(self.end_period) # datetime
+
+        # federate
+        self._fed = self.register_federate()
+        self.federation_name = args[-1]
 
         # connection interfaces
         self.inp_ids, self.pub_ids, self.end_ids = self.register_connections()
@@ -71,8 +74,9 @@ class Federate:
             logger.warning(f"Federate info in yaml config file are empty!\n")
 
         fed = h.helicsCreateCombinationFederate(self._name, fedInfo)
-
         # set properties ******
+        h.helicsFederateInfoSetTimeProperty(fedInfo, h.helics_property_time_period, self.sim_period)
+        h.helicsFederateInfoSetTimeProperty(fedInfo, h.helics_property_time_offset, self.offset)
         if self._fed_properties:
             for prop in self._fed_properties:
                 prop_name = 'HELICS_PROPERTY_{}'.format(prop)
@@ -275,8 +279,10 @@ class Federate:
                     while ep.has_message():
                         msg = ep.get_message()
                         msg_data = json.loads(msg.data)
+                        msg_data['source'] = msg.source
+                        msg_data['destination'] = msg.destination
                         self.in_msgs[mod_num].append(msg_data)
-            logger.debug(f"Received the following messages :\n {pp.pformat(self.in_msgs)}\n")
+            logger.debug(f"Received the following messages :\n {self.in_msgs}\n")
         else:
             logger.debug(f"No endpoints registered for federate\n")
 
@@ -307,7 +313,7 @@ class Federate:
         else:
             logger.debug(f"No value based Output interfaces registered for the federate!\n")
 
-    def _send_messages(self):
+    def _send_messages(self, ep_name):
         ''' DO NOT TOUCH this mesthod it send whatever is in the correct form inside self.out_msg
         correct_form msg buffer :
         {mod_num: [ {msg_dict}, {msg_dict}...],
@@ -322,24 +328,29 @@ class Federate:
         if self.end_ids:
             logger.debug(f"Federate will send the following messages {pp.pformat(self.out_msgs)}\n")
             for mod_num, message_list in self.out_msgs.items():
-                ep = self.end_ids[mod_num]['base_endpoint']
+                ep = self.end_ids[mod_num][ep_name]
                 for msg in message_list:
                     out_msg = ep.create_message()
                     out_msg.data = json.dumps(msg)
-                    out_msg.destination = msg['destination']
+                    if msg['destination']:
+                        out_msg.destination = msg['destination']
+                    else:
+                        out_msg.original_destination = ep.default_destination
+                    out_msg.source = ep.name
                     ep.send_data(out_msg)
+                    # logger.debug(f"MESSAGE SENT: {out_msg} by endpoint: {ep}")
         else:
             logger.debug(f"No endpoints registered for federate\n")
 
     def _check_reset(self):
         if not self.in_msgs:
             return
-        i = 0
-        for model in self._model_instances:
-            if self.in_msgs[i]:
-                if any('reset_now' in key['ep_name'] for key in self.in_msgs[i]):  # todo check loogic
-                    model.reset()  # EACH MODEL MUST HAVE A RESET METHOD
-            i += 1
+        # i = 0
+        # for model in self._model_instances:
+        #     if self.in_msgs[i]:
+        #         if any('reset_now' in key['destination'] for key in self.in_msgs[i]):  # todo check loogic
+        #             model.reset()  # EACH MODEL MUST HAVE A RESET METHOD
+        #     i += 1
 
     def execution(self): # execution base for inp out exchange and message receiver
         # +++++++++++++++++++ enetering execution mode++++++++++++++++++
@@ -352,10 +363,10 @@ class Federate:
 
 
             #++++++++++++++++++ setting time synchronization #no offset
-            requested_period = self.granted_period + self.sim_period
+            requested_period = self.granted_period + self.sim_period + self.offset
             self.granted_period = h.helicsFederateRequestTime(self._fed, requested_period)
-            logger.debug(f"************* Requesting time {requested_period} -- Granted time {self.granted_period} **************\n")
-            self.current_period = h.helicsFederateGetCurrentTime(self._fed)
+            logger.debug(f"************* Requesting time {requested_period} -- Granted time {self.granted_period} **************")
+            self.current_period = h.helicsFederateGetCurrentTime(self._fed) - self.offset
             logger.debug(f"current time: {self.current_period}\n")
             #*****************************************************************************************
 
@@ -363,7 +374,6 @@ class Federate:
             self._receive_messages() # update self.in_msgs class variable
             self._check_reset()
             self._receive_inputs() # update self.in_values class variable
-            self.inputs_to_model()
 
 
             #prepare inputs for model
@@ -388,8 +398,7 @@ class Federate:
             self.outputs_from_model()
 
 
-            #++++++++++++++++++ sending ouytputs & messages
-            self._send_messages()
+            #++++++++++++++++++ sending ouytputs & this federate do not send messages
             self._publish_outputs()
 
         for mod in self._model_instances:
@@ -418,11 +427,18 @@ class Federate:
                         # impose tha value on the model param (not common only with RT param changing
                         getattr(model, 'params')[msg['var_name']]= msg['value']
 
+
+                # empty the buffers to be sure i can use inputs to model even if I only called one of _receive_inputs or _receive_message before
+                self.in_msgs = {mod_num: [] for mod_num in range(len(self._model_instances))}
+
             # Imposing inputs received as classic value based inputs only inputs params must be changed with messages
             if self.in_values:
                 for var_name, value  in self.in_values[i].items():
                     if var_name in model.inputs.keys():
                         getattr(model, 'inputs')[var_name] = value
+
+                # empty the buffers to be sure i can use inputs to model even if I only called one of _receive_inputs or _receive_message before
+                self.in_values = {mod_num: {} for mod_num in range(len(self._model_instances))}
 
             i+=1
 
@@ -439,7 +455,7 @@ class Federate:
                 self.out_values[i][k] = val
             i+=1
 
-    def create_std_message(self):
+    def create_std_message(self): # NOT used
         #for now this will only be used in RL federates all the others sends only values based and can receive the reset command
         std_message = {"source": None,   #must contain the whole var name Federate/modnum/varname
                      "time": None,

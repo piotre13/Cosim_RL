@@ -19,20 +19,17 @@ class Hvac(Model):
                     list_rooms.append(number)
         self.rooms = list_rooms
     def step(self, ts, **kwargs):
-        if kwargs['iter_n']==0:
-            return
-        elif kwargs['iter_n']==1:
+        self.tot_actual =0
 
-            for room in self.rooms:
-                demand = self.inputs['power_load_s %s' % room] + self.inputs['power_fresh_vent_load_s %s' % room]
-                actual = demand
-                self.outputs['actual_power %s' % room] = actual
-        elif kwargs['iter_n']==2:
-            self.outputs['electrical_power'] = self.inputs['power']/3
+        for room in self.rooms:
+            # demand = self.inputs['zone.load_s %s' % room] + self.inputs['zone.fresh_vent_load_s %s' % room] #old one
+            demand = self.inputs["zone.vent_q %s" %room]
+            actual = demand
+            self.tot_actual += actual
 
-        self._fill_memory(itr=kwargs['iter_n'])
+        self.outputs['electrical_power'] = (abs(self.tot_actual)/3)*-1
 
-        return
+        self._fill_memory()
 
     def finalize(self):
         return super().finalize()

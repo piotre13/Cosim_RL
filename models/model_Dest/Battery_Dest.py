@@ -97,6 +97,7 @@ class BESS:
         Energy_now = self.getE()
         Energy_out = (Energy_now - Energy_last) / efficiency
 
+
         return Energy_out
 
     def getE(self):

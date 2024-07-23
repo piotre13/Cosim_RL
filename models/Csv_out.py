@@ -7,7 +7,7 @@ from datetime import datetime
 #TODO add conversions and possibility to change names from what is written in the CSV
 logger = logging.getLogger(__name__)
 logger.addHandler(logging.StreamHandler())
-logger.setLevel(logging.DEBUG)
+logger.setLevel(logging.INFO)
 
 class CSV (Model):
     def __init__(self, **kwargs):
@@ -33,7 +33,7 @@ class CSV (Model):
         if pd.to_timedelta(self.data.index.freq) != pd.to_timedelta(self.datetime_index.freq):
             self.data = self.data.resample(pd.to_timedelta("%s s"%self.real_period)).ffil()
             logger.debug(f"timeseries_data resampled")
-        logger.debug(f"timesereis_data start = {self.data.index[0]}, end = {self.data.index[-1]}, freq = {self.data.index.freq}")
+        logger.debug(f"timeseries_data start = {self.data.index[0]}, end = {self.data.index[-1]}, freq = {self.data.index.freq}")
 
     def step(self, ts, **kwargs):
 
@@ -55,7 +55,7 @@ class CSV (Model):
             #     self.outputs[var]= self.data.loc[ts-1,var]
             self.outputs[var] = tmp
 
-        return super().step(ts)
+        self._fill_memory()
 
     def finalize(self):
         return super().finalize()

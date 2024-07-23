@@ -1,73 +1,155 @@
-fed_name: Battery
+fed_name: Envelope
 fed_conf:
   sim_params: # this will also contain the FED_properties inside federate there is a dict key matching
       start_time: '2015-01-01 00:00:00'
       sim_period: 3600 # in seconds the period that will be set in fed properties
       real_period: 3600 # in seconds
       end_period: 86400 # in seconds or datetime
-      offset: 0.0
+      offset: 0.1
+  iteration:
+    type: step
+    var_order:
+      0: {inp: ["schedule.ac_t_max 8674","schedule.ac_t_min 8674","schedule.ac_t_max 8677","schedule.ac_t_min 8677","schedule.ac_t_max 8680","schedule.ac_t_min 8680","schedule.ac_t_max 8692","schedule.ac_t_min 8692","schedule.ac_t_max 73086","schedule.ac_t_min 73086"], out:["zone.load_s 8674","zone.load_s 8677","zone.load_s 8680","zone.load_s 8692","zone.load_s 73086","zone.fresh_vent_load_s 8674","zone.fresh_vent_load_s 8677","zone.fresh_vent_load_s 8680","zone.fresh_vent_load_s 8692","zone.fresh_vent_load_s 73086"]}
+      1: {inp: ["zone.vent_q 8674","zone.vent_q 8677","zone.vent_q 8680","zone.vent_q 8692","zone.vent_q 73086"], out:["zone.ac_t 8674","zone.ac_t 8677","zone.ac_t 8680","zone.ac_t 8692","zone.ac_t 73086"]}
+#      inputs: [["zone.vent_q 8674","zone.vent_q 8677","zone.vent_q 8680","zone.vent_q 8692","zone.vent_q 73086"]]
+#      outputs: [["zone.load_s 8674","zone.load_s 8677","zone.load_s 8680","zone.load_s 8692","zone.load_s 73086","zone.fresh_vent_load_s 8674","zone.fresh_vent_load_s 8677","zone.fresh_vent_load_s 8680","zone.fresh_vent_load_s 8692","zone.fresh_vent_load_s 73086"]]
   RL_training: true
-  memory : [SOC, energy_out, power] # possibilities None no memory, [empty list] memorize all
+  memory : [] # possibilities None no memory, [empty list] memorize all
 
 fed_info:
-  core_name: battery_core
+  core_name: envelope_core
   core_type: zmq
 
 fed_flags:
   TERMINATE_ON_ERROR: true
   UNINTERRUPTIBLE: False
-  WAIT_FOR_CURRENT_TIME_UPDATE: True
+  WAIT_FOR_CURRENT_TIME_UPDATE: False
+
 
 model_conf:
   generic:
-    model_script: model_Dest/Battery.py
-    class_name: Battery
+    model_script: model_Dest/Envelope.py
+    class_name: Envelope
     n_instances: 1
 
   model_specific_required:
-    inputs_k: ['power']
-    outputs_k: ['energy_out']
+    inputs_k: ["schedule.ac_t_max 8674","schedule.ac_t_min 8674","schedule.ac_t_max 8677","schedule.ac_t_min 8677","schedule.ac_t_max 8680","schedule.ac_t_min 8680","schedule.ac_t_max 8692","schedule.ac_t_min 8692","schedule.ac_t_max 73086","schedule.ac_t_min 73086","zone.vent_q 8674","zone.vent_q 8677","zone.vent_q 8680","zone.vent_q 8692","zone.vent_q 73086"]
+    outputs_k: ["zone.ac_t 8674","zone.ac_t 8677","zone.ac_t 8680","zone.ac_t 8692","zone.ac_t 73086","zone.load_s 8674","zone.load_s 8677","zone.load_s 8680","zone.load_s 8692","zone.load_s 73086","zone.fresh_vent_load_s 8674","zone.fresh_vent_load_s 8677","zone.fresh_vent_load_s 8680","zone.fresh_vent_load_s 8692","zone.fresh_vent_load_s 73086"]
     #params_k : ['lat', 'param2'] # todo should use the list of params.keys()
-    params:
-      rated_capacity: [ 40000 ]
-      maximum_charge_power: [ 8000 ]
-      maximum_discharge_power: [ 8000 ]
-      SOC_upper_limit: [ 0.95 ]
-      SOC_lower_limit: [ 0.25 ]
-      charge_efficiency: [ 1 ]
-      discharge_efficiency: [ 1 ]
-      self_discharge_rate: [ 0 ]
-      SOC: [ 0.25 ]
-    init_state:
-      inp.power: [0.0]
-      out.energy_out: [0.0]
+    params: {}
+    init_state: {}
 
-  model_specific_additional: {}
+  model_specific_additional:
+    required: [ [ zone.load_s, zone.fresh_vent_load_s, zone.ac_t ] ]
+    zone_ids: [ [ 8674, 8677, 8680, 8692, 73086 ] ]
+    casefile: [ "C:\\Users\\Pietro\\Code\\Cosim_RL\\models\\model_Dest\\DestKernel\\5rooms.db" ]
+    #  casefile: ["DestKernel\\5rooms.db"]
+    executable: [ "C:\\Users\\Pietro\\Code\\Cosim_RL\\models\\model_Dest\\DestKernel\\bterminal.exe" ]
+    #  executable: ["DestKernel\\bterminal.exe"]
+    silent: [ true ]
 
 fed_connections:
   pub:
     0: [
       {
-      "key": "energy_out",
-      "type": "double",
-      "units": "Wh",
+        "key": "zone.ac_t 8674",
+        "type": "double",
+        "units": "C",
+      },
+      {
+        "key": "zone.ac_t 8677",
+        "type": "double",
+        "units": "C",
+      },
+      {
+        "key": "zone.ac_t 8680",
+        "type": "double",
+        "units": "C",
+      },
+      {
+        "key": "zone.ac_t 8692",
+        "type": "double",
+        "units": "C",
+      },
+      {
+        "key": "zone.ac_t 73086",
+        "type": "double",
+        "units": "C",
       }
     ]
   end:
     0: [
       {
           "ep_name": "reset_now"
+      },
+      {
+        "ep_name": "actuator"
+      },
+      {
+        "ep_name": "iter_exchange",
+        "default": "Hvac/0/iter_exchange"
       }
     ]
   inp:
     0: [
       {
-      "key": "power",
+      "key": "schedule.ac_t_max 8674",
       "type": "double",
-      "units": "W",
-      "multi_input_handling_method": "sum",
-      "targets": [
-        "PV/0/Power_PV"
-#        "Hvac/0/electrical_power",
-      ]
-      }]
+      "units": "C",
+      "targets": ["Controller/0/tSetMax"]
+    },
+      {
+        "key": "schedule.ac_t_min 8674",
+        "type": "double",
+        "units": "C",
+        "targets": [ "Controller/0/tSetMin" ]
+      },
+      {
+      "key": "schedule.ac_t_max 8677",
+      "type": "double",
+      "units": "C",
+      "targets": ["Controller/0/tSetMax"]
+    },
+      {
+        "key": "schedule.ac_t_min 8677",
+        "type": "double",
+        "units": "C",
+        "targets": [ "Controller/0/tSetMin" ]
+      },
+      {
+      "key": "schedule.ac_t_max 8680",
+      "type": "double",
+      "units": "C",
+      "targets": ["Controller/0/tSetMax"]
+    },
+      {
+        "key": "schedule.ac_t_min 8680",
+        "type": "double",
+        "units": "C",
+        "targets": [ "Controller/0/tSetMin" ]
+      },
+      {
+      "key": "schedule.ac_t_max 8692",
+      "type": "double",
+      "units": "C",
+      "targets": ["Controller/0/tSetMax"]
+    },
+      {
+        "key": "schedule.ac_t_min 8692",
+        "type": "double",
+        "units": "C",
+        "targets": [ "Controller/0/tSetMin" ]
+      },
+      {
+      "key": "schedule.ac_t_max 73086",
+      "type": "double",
+      "units": "C",
+      "targets": ["Controller/0/tSetMax"]
+    },
+      {
+        "key": "schedule.ac_t_min 73086",
+        "type": "double",
+        "units": "C",
+        "targets": [ "Controller/0/tSetMin" ]
+      }
+    ]
