@@ -23,7 +23,7 @@ pp = pprint.PrettyPrinter(indent=4)
 
 logger = logging.getLogger(__name__)
 logger.addHandler(logging.StreamHandler())
-logger.setLevel(logging.DEBUG)
+logger.setLevel(logging.INFO)
 
 
 def normalize (x, min, max):
@@ -165,9 +165,8 @@ class DQN_Agent(RL_Base):
                            'out_network':[]}
 
 
-
-            self.action_space = Discrete(7, start=0, seed=42)  # {-1, 0, 1 #todo should generalize from config using a class that based on a flag choose the right gym space
-            self.actions = [-3,-2, -1, 0, 1, 2, 3] # todo should be generalized like for the observations
+            self.actions = [-3,-2.8,-2.2,-1.8,-1.2,-0.8,-0.4,-0.2, -0.1, 0, 0.1, 0.2, 0.4, 0.8, 1.2, 1.8, 2.2, 2.8, 3.0] # todo should be generalized like for the observations
+            self.action_space = Discrete(len(self.actions), start=0, seed=42)  # {-1, 0, 1 #todo should generalize from config using a class that based on a flag choose the right gym space
             self.n_actions = self.action_space.n # this only because we have discrete set of actions
 
 
@@ -256,13 +255,13 @@ class DQN_Agent(RL_Base):
 
     def predict_action(self):
 
-        if self.observation_dict['on_off'] == 0 :
-            return self.observation_dict['setpoint']  # run the baseline
+        # if self.observation_dict['on_off'] == 0 :
+        #     return self.observation_dict['setpoint']  # run the baseline
 
-        if self.observation_dict['t_zone'] > self.observation_dict['setpoint'] and self.observation_dict['on_off'] == 1: #heating
-            return self.observation_dict['setpoint']  # run the baseline
-        if self.observation_dict['t_zone'] < self.observation_dict['setpoint'] and self.observation_dict['on_off'] == -1: #cooling
-            return self.observation_dict['setpoint']  # run the baseline
+        # if self.observation_dict['t_zone'] > self.observation_dict['setpoint'] and self.observation_dict['on_off'] == 1: #heating
+        #     return self.observation_dict['setpoint']  # run the baseline
+        # if self.observation_dict['t_zone'] < self.observation_dict['setpoint'] and self.observation_dict['on_off'] == -1: #cooling
+        #     return self.observation_dict['setpoint']  # run the baseline
 
         if self.steps_done==0:
             self.steps_done += 1
@@ -309,9 +308,10 @@ class DQN_Agent(RL_Base):
 
         #this must be denormalized!!!! TODO
         self.action = torch.tensor(action_index)
+        self.real_action = action
         self.steps_done += 1
-        # return action + self.observation_dict['setpoint'] # this must be done for the specific case we are treating
-        return self.observation_dict['setpoint']  # run the baseline
+        return action + self.observation_dict['setpoint'] # this must be done for the specific case we are treating
+        # return self.observation_dict['setpoint']  # run the baseline
 
     def evaluate_agent(self, reward_vars):
         '''evaluate performs:
@@ -321,14 +321,14 @@ class DQN_Agent(RL_Base):
         - memory update during training '''
 
         # if self.observation_dict['on_off'] == 0 and self.observation_prev_dict['on_off'] == 0:
-        if self.observation_prev_dict['on_off']==0 or self.steps_done==0:
-            return
-
-        if self.observation_prev_dict['on_off'] == 1 and (self.observation_prev_dict['setpoint']- reward_vars['t_zone'])<0:  #not evaluating when heating and zone temperature already above setpoint
-            return
-
-        elif self.observation_prev_dict['on_off']==-1 and (self.observation_prev_dict['setpoint']- reward_vars['t_zone'])>0: #not evaluating when cooling and zone temperature already above setpoint
-            return
+        # if self.observation_prev_dict['on_off']==0 or self.steps_done==0:
+        #     return
+        #
+        # if self.observation_prev_dict['on_off'] == 1 and (self.observation_prev_dict['setpoint']- reward_vars['t_zone'])<0:  #not evaluating when heating and zone temperature already above setpoint
+        #     return
+        #
+        # elif self.observation_prev_dict['on_off']==-1 and (self.observation_prev_dict['setpoint']- reward_vars['t_zone'])>0: #not evaluating when cooling and zone temperature already above setpoint
+        #     return
 
         logger.debug(f"Agent Evaluation! steps_done = {self.steps_done}")
         inst_reward = self.estimate_reward(reward_vars) # calculating step reward
@@ -382,16 +382,35 @@ class DQN_Agent(RL_Base):
         reward_vars = previous step after action
         '''
 
-        self.penalty_Dt = - 0.8
         tset = self.observation_prev_dict['setpoint']
         text = self.observation_prev_dict['drybulb']
+        t_zone_prev = self.observation_prev_dict['t_zone']
         t_zone = reward_vars['t_zone']
 
-        logger.debug(f"Calculate reward: tset = {tset}, t_ext = {text}, t_zone = {reward_vars['t_zone']}")
-        C1 = (tset-t_zone)**2
+        logger.debug(f"calculating rewards t_zone after action:{t_zone} ---- t_zone pre action :{t_zone_prev}")
+        energy = reward_vars['load_s']
 
-        r = C1 * self.penalty_Dt
-        self.memory['C1_temp'].append(C1)
+        # logger.debug(f"Calculate reward: tset = {tset}, t_ext = {text}, t_zone = {reward_vars['t_zone']}")
+        on_off = self.observation_prev_dict['on_off']
+        hour = self.observation_prev_dict['hour_of_day']
+
+        penalty_comfort = -1
+        penalty_energy = -0.00001
+
+
+        if t_zone_prev>tset or 0<=hour<=6:
+            Dt = 0
+            if 0<=hour<=6:
+                penalty_energy = -0.000001
+        else:
+            Dt = (t_zone-tset)**2
+        # R_comfort = (1 / c) * (Dt)**4
+        R_comfort = Dt
+        R_power = energy #/ abs(tset - text) if abs(tset - text)!=0 else energy
+
+        r = penalty_comfort * R_comfort + penalty_energy * R_power
+        self.memory['C1_temp'].append(penalty_comfort*R_comfort)
+        self.memory['C2_power'].append(penalty_energy*R_power)
 
         return r
 

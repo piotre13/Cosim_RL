@@ -17,7 +17,7 @@ class PV(Model):
     def step(self, ts):
         # ts-=1
         self.outputs['Power_PV'] = self.model.step(ts, self.inputs['G_H_R'], self.inputs['D_H_R'], self.inputs['Ambient_temperature'])
-        self._fill_memory()
+        # self._fill_memory()
         # return super().step(ts)
 
     def finalize(self):

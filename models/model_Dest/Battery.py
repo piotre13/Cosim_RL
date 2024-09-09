@@ -18,10 +18,10 @@ class Battery(Model):
 
     def step(self, ts):
 
-        self.outputs['energy_out'] = self.model.calculatepower(self.inputs['power'], dt=3600)
+        self.outputs['energy_out'] = self.model.calculatepower(self.inputs['power'], dt=self.real_period)
         logger.debug(f"##### ENERGY { self.outputs['energy_out']}")
         self.params['SOC'] = self.model.SOC
-        self._fill_memory()
+        # self._fill_memory()
 
     def finalize(self):
         return super().finalize()
