@@ -7,6 +7,7 @@ from utils import read_yaml, save_json
 import importlib.util
 import pprint
 import json
+import time
 from definitions import *
 import copy
 pp = pprint.PrettyPrinter(indent=4)
@@ -14,7 +15,8 @@ sys.path.append('models/')
 
 logger = logging.getLogger(__name__)
 logger.addHandler(logging.StreamHandler())
-logger.setLevel(logging.DEBUG)
+logger.setLevel(logging.INFO)
+logger.debug(f"executable {sys.executable}")
 
 
 class Federate:
@@ -43,7 +45,8 @@ class Federate:
         self.real_period = self._fed_conf['sim_params']['real_period'] # seconds
         self.current_period = self.start_period
         self.end_period = self._fed_conf['sim_params']['end_period'] # seconds
-        self.end_time = self.start_time + pd.to_timedelta(self.end_period) # datetime
+        self.reset_period = self._fed_conf['sim_params']['reset_period']
+        self.end_time = self.start_time + pd.to_timedelta(self.end_period, unit='s') # datetime
 
         # federate
         self._fed = self.register_federate()
@@ -206,14 +209,26 @@ class Federate:
         kwargs['model_name'] = f"%s/%s/%s"%(self._name,i,class_name)
         kwargs['RL_training'] = self._fed_conf['RL_training']
 
+
         #basic knowledge on simulation
         kwargs['start_time'] = self.start_time #datetime
         kwargs['start_period'] = self.start_period # seconds
         kwargs['sim_period'] = self.sim_period #seconds
         kwargs['real_period'] = self.real_period #seconds
+        kwargs['reset_period'] = self.reset_period
         kwargs['current_period'] = self.current_period #seconds
         kwargs['end_period'] = self.end_period #seconds
         kwargs['end_time'] = self.end_time # datetime
+
+        #training episodes and train end
+        self.training = self._fed_conf['RL_training']
+        self.train_end_period = self._fed_conf['training_episodes']* self._fed_conf['episode_period']
+        self.train_end_ts = int(self.train_end_period / self.real_period)
+
+
+        # pass all the model_specific_additional
+        for k, val in self._model_conf['model_specific_additional'].items():
+            kwargs[k] = val[i]
 
         #required model specific attrs
         kwargs['inputs_list'] = self._model_conf['model_specific_required']['inputs_k']
@@ -240,9 +255,7 @@ class Federate:
         kwargs['init_state'] = {"inputs" : kwargs['inputs'],"outputs" : kwargs['outputs'],"params" : kwargs['params'] }
 
         kwargs['memory'] = self._fed_conf['memory']
-        #pass all the model_specific_additional
-        for k, val in self._model_conf['model_specific_additional'].items():
-            kwargs[k] = val[i]
+
 
 
         return kwargs
@@ -357,17 +370,25 @@ class Federate:
         h.helicsFederateEnterExecutingMode(self._fed)
         logger.info("@@ Entered HELICS execution mode @@ \n")
         self.granted_period = h.helicsFederateGetCurrentTime(self._fed)
+        ts = 0
 
         while self.granted_period < self.end_period: #start the wrapping while loop
 
 
+            t0 = time.time()
+
+            #train finished start testing
+            if ts > self.train_end_ts or self.granted_period > self.train_end_period:      # ridondante
+                self.training = False
+                for mod in self._model_instances:
+                    setattr(mod, 'RL_training', False)
 
             #++++++++++++++++++ setting time synchronization #no offset
             requested_period = self.granted_period + self.sim_period + self.offset
             self.granted_period = h.helicsFederateRequestTime(self._fed, requested_period)
             logger.debug(f"************* Requesting time {requested_period} -- Granted time {self.granted_period} **************")
             self.current_period = h.helicsFederateGetCurrentTime(self._fed) - self.offset
-            logger.debug(f"current time: {self.current_period}\n")
+            logger.info(f"current time: {self.current_period/self.real_period}\n")
             #*****************************************************************************************
 
             #getting inputs & messages
@@ -381,7 +402,8 @@ class Federate:
 
             #++++++++++++++++++ models execution
 
-            ts = int(self.current_period/self.sim_period)
+            # ts = int(self.current_period/self.sim_period)
+            logger.info(f"TS: {ts}")
             for mod in self._model_instances:
                 mod.step(ts)
             # ts_idx_sim = (int(current_ts-self.offset) / self.period) - 1
@@ -400,6 +422,13 @@ class Federate:
 
             #++++++++++++++++++ sending ouytputs & this federate do not send messages
             self._publish_outputs()
+            if not self.training:
+                logger.info("FILLING MEMORY")
+                for mod in self._model_instances:
+                    mod._fill_memory() # memory should not be protected
+
+            logger.info(f"step completed! took : {time.time()-t0} s")
+            ts+=1
 
         for mod in self._model_instances:
             mod.finalize()
@@ -562,7 +591,12 @@ if __name__ == "__main__":
     #       'federations/example_federation/BatteryConfig_init.yaml']
     #fed = ValueFederate(argv)  # only for testing when launching this autonomously
 
+    t0= time.time()
+    name = sys.argv[0].split('_')[0]
     fed = Federate(sys.argv) #giusto da usare quando si runna da helics passando gli argv
+    logger.info(f"Federate creation: {name} took:{time.time()-t0} s")
+
     fed.execution()
+    logger.info(f"Federate execution: {name} took:{time.time()-t0} s")
     #fed = ValueFederate([0,'BatteryConfig_init.yaml', 'example_federation'])
 

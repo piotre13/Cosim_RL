@@ -2,18 +2,25 @@ import logging
 from models._baseModels.Model import Model
 import os
 import random
+import sys
+import shutil
+sys.path.append('C://Users//Pietro//anaconda3//envs//CosimRL-fmu//Lib//site-packages')
+
+import fmpy
 from fmpy import read_model_description, extract, dump
 from fmpy.fmi1 import FMU1Slave
 from fmpy.fmi2 import FMU2Slave
 import time
-
+import pprint
+pp = pprint.PrettyPrinter(indent=4)
 logger = logging.getLogger(__name__)
 logger.addHandler(logging.StreamHandler())
 logger.setLevel(logging.DEBUG)
-
 class FMU (Model):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
+
+        logger.debug(f'kwargs:{pp.pformat(self.__dict__)}')
         self.fmu_path = os.path.join('models\\fmus', f'{kwargs["fmu"]}.fmu') # todo this is hardcoded not good
         self.fmu = None
         self.in_vars = {}
@@ -21,6 +28,9 @@ class FMU (Model):
         self.params_vars = {}
         self.fmu_unpacking()
         self.initialization()
+        if self.reset_period > self.max_sim_period:
+            self.reset_period = self.max_sim_period
+        self.cnt=0
 
 
     def fmu_unpacking(self):
@@ -35,13 +45,16 @@ class FMU (Model):
         # Collect in a dictionaries all the model variables taken from the values reference vrs = {
         # 'variable_name' : value_ref}
         self.vars = {v.name: (v.valueReference, v.type, v.causality, v.variability) for v in self.model_description.modelVariables}
+
         self.params_vars = {v.name: (v.valueReference, v.type) for v in self.model_description.modelVariables if
                             v.causality == 'parameter'}  # extend to different causality
         self.in_vars = {v.name: (v.valueReference, v.type) for v in self.model_description.modelVariables if
                         v.causality == 'input'}
         self.ou_vars = {v.name: (v.valueReference, v.type) for v in self.model_description.modelVariables if
                         v.causality == 'output'}
-        logger.debug(f"\t\t * the FMU {self.fmu_path} has been unpacked and the following vars has been found:\n paramters: {self.params_vars} ****")
+        logger.debug(f"input variables = {pp.pformat(self.in_vars)}")
+        logger.debug(f"output variables = {pp.pformat(self.ou_vars)}")
+        logger.debug(f"parameter variables = {pp.pformat(self.params_vars)}")
         self.unzipdir = extract(self.fmu_path)
 
         self.fmiVersion = self.model_description.fmiVersion
@@ -58,20 +71,24 @@ class FMU (Model):
                                            modelIdentifier=self.model_description.coSimulation.modelIdentifier,
                                            instanceName=self.model_name)
 
-            self.fmu.instantiate(loggingOn=7) # todo for now logging level is fixed must be passed from outside
+            self.fmu.instantiate(loggingOn=True) # todo for now logging level is fixed must be passed from outside
         else:
             raise Exception('The FMU-CS version is not supported. Check the FMU version.')
 
         #*********** Setting vars in Instantiated 
-        self.set_inital_state()
+        # self.set_inital_state() todo must be redesigned with new configs
         #************************************************************************************************************
         
         if self.fmiVersion == '2.0':
             # Setup experiment: set the independent variable time
-            self.fmu.setupExperiment(startTime=0, stopTime=self.end_time)
+            if self.end_period > self.max_sim_period:
+                self.fmu.setupExperiment(startTime=0, stopTime=self.max_sim_period)
+            else:
+                self.fmu.setupExperiment(startTime=0, stopTime=self.end_period)
 
             # Initialization. Set the INPUT values at time = startTime and also variables with initial = exact
             self.fmu.enterInitializationMode()
+
             #todo maybe some setting should be done here even if it has restrictions to  for a variable with variability≠"constant" that has initial="exact", or causality="input"
             status = self.fmu.exitInitializationMode()
             assert status == 0
@@ -80,24 +97,41 @@ class FMU (Model):
             # if start_in_vrs:
             #     self.entities[eid].setReal([self.entity_vrs[eid][x] for x in start_in_vrs.keys()],
             #                                list(start_in_vrs.values()))
-            status = self.fmu.initialize(tStart=0, stopTime=self.end_time)
+            status = self.fmu.initialize(tStart=0, stopTime=self.end_period)
             assert status == 0
             #raise Exception('fmi 1.0 NOT SUPPORTED')
-        time.sleep(10)
-        print('yo')
+
+        logger.debug('@@@@@yo')
     def step(self, ts, **kwargs):
         self.rows = []
-        fmu_time = ts * self.real_period
-        # Set inputs
-        if ts!=0:
+
+        ts=ts-1
+        fmu_time = ts * self.real_period - (self.cnt * self.reset_period) #this is the end_period or in case the end period is more than one year is one year
+
+        if fmu_time == self.reset_period:
+            self.reset()
+            self.cnt+=1
+            fmu_time = 0
+            # time.sleep(5)
+            # Set inputs
+        if ts != 0:
             self.set_inputs()
-        logger.debug(f"###fmu_time = {fmu_time}, self.real period+ {self.real_period}")
+        logger.debug(f"###fmu_time = {fmu_time}, self.real period + {self.real_period}")
         self.fmu.doStep(currentCommunicationPoint=fmu_time, communicationStepSize=self.real_period)
         self.get_outputs()
         #self.rows.append((ts, self.outputs['SOC']))
-        return super().step(ts)
+        # return super().step(ts)
+        # self._fill_memory()  # memory should not be protected
 
+    def reset(self):
+        logger.debug("Resetting")
+        t0= time.time()
+        self.finalize()
+        self.fmu_unpacking()
+        self.initialization()
+        logger.debug(f"resetting took: {time.time()-t0} s")
     def set_inital_state(self):
+        #TODO must be redesigned with new config
         if self.initial_state:
             for kind in self.initial_state:
                 if kind not in ['messages_in', 'messages_out']: # todo for now like this because the messages_in and out are lists...
@@ -155,7 +189,13 @@ class FMU (Model):
         # result = np.array(self.rows, dtype=np.dtype([('time', np.float64), ('SOC', np.float64)]))
         # plot_result(result)
         self.fmu.terminate()
-        return super().finalize()
+        self.fmu.freeInstance()
+        try:
+            shutil.rmtree(self.unzipdir)
+        except PermissionError as e:
+            logger.error(f"Folder could not be removed. {e}")
+
+        # return super().finalize()
 
 
 

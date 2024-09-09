@@ -13,13 +13,54 @@ class CSV (Model):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.data = pd.read_csv(self.params['csv_file']) #now we index at 0 becuase we still using possibility of m,ultiple instances TODO this does not make sense with csv readers
-        self.data = self.data.reset_index()
+
+        if 'DateTime' in self.data.columns:
+            self.data.index = pd.to_datetime(self.data['DateTime'], format ='%Y-%m-%d %H:%M:%S')
+        else:
+            freq = self.time_frequency()
+            end_time = self.start_time + pd.to_timedelta((len(self.data.index)*freq)-freq, unit='s')
+            self.data.index = pd.date_range(self.start_time, end=end_time, freq="%s s" % freq)
+
+        self.original_freq = self.time_frequency()
+
+        if self.original_freq != self.real_period:
+            self.data = self.data.resample(pd.Timedelta(seconds=self.real_period)).interpolate()
+
+
+
+
+
+        #
+        #
+        # if 'DateTime' not in list(self.data.columns):
+        #     if self.reset_period < self.end_period:
+        #         end_time = self.start_time + pd.to_timedelta(self.reset_period-self.real_period, unit='s')
+        #         self.data['DateTime'] = pd.date_range(self.start_time, end=end_time, freq="%s s"%self.real_period)
+        #
+        #     else:
+        #         self.data['DateTime'] = pd.date_range(self.start_time, end=self.end_time, freq="%s s"%self.real_period)
+        #
+        #
+        #
+        # self.data.index = pd.to_datetime(self.data['DateTime'], format ='%Y-%m-%d %H:%M:%S')
+
         # self.datetime_index = pd.date_range(self.start_time, end=self.end_time, freq="%s s"%self.real_period) # for now not used we suppose data are given with correct lenght an
         # self.sim_start_date = self.start_time
         # self.sim_end_date = self.sim_start_date + pd.to_timedelta("%s s"%self.end_period)
         # self.initialization()
         self.replay = 1
         self.index = 0
+        # if self.real_period != 3600:
+        #     self.data = self.data.resample(pd.Timedelta(seconds=self.real_period)).interpolate()
+
+        self.data.columns = map(str.lower, self.data.columns)
+        self.data.reset_index(inplace=True)
+
+        logger.debug(f"data ready: {self.data},\n data lenght: {self.data.shape}")
+
+
+        # self.data = self.data.reset_index()
+
     # def initialization(self):
     #     #convert to lower case all column names
     #     self.data.columns = map(str.lower, self.data.columns)
@@ -38,6 +79,20 @@ class CSV (Model):
     #         logger.debug(f"timeseries_data resampled")
     #     logger.debug(f"timeseries_data start = {self.data.index[0]}, end = {self.data.index[-1]}, freq = {self.data.index.freq}")
 
+    def time_frequency(self):
+        if isinstance(self.data.index, pd.DatetimeIndex):
+            return self.data.index.freq.nanos / 1e9  # convert frequency to seconds
+        else:
+            # Assuming the whole extension of the data is one year
+            total_seconds_in_a_year = 365 * 24 * 60 * 60
+
+            # Estimate frequency based on the number of entries
+            total_entries = len(self.data)
+            estimated_freq = total_seconds_in_a_year / total_entries
+
+            estimated_freq = 3600        #todo hardcoded for testing
+
+            return estimated_freq
     def step(self, ts, **kwargs):
 
         # index = self.sim_start_date + pd.to_timedelta("%s s"%int(ts)*self.real_period)
@@ -45,7 +100,7 @@ class CSV (Model):
         if self.index not in self.data.index:
             self.index = 0
             # index = index - self.replay
-
+        logger.debug(f"data index: {self.index}")
         for var in self.outputs:
             tmp = self.data.loc[self.index,var]
 
@@ -62,9 +117,12 @@ class CSV (Model):
             # else:
             #     self.outputs[var]= self.data.loc[ts-1,var]
             self.outputs[var] = tmp
-            self.index+=1
 
-        self._fill_memory()
+        self.index+=1
+
+        # self._fill_memory()
 
     def finalize(self):
         return super().finalize()
+
+

@@ -10,7 +10,7 @@ sys.path.append('models/')
 
 logger = logging.getLogger(__name__)
 logger.addHandler(logging.StreamHandler())
-logger.setLevel(logging.DEBUG)
+logger.setLevel(logging.INFO)
 #
 #
 # class CustomEnv():
@@ -24,9 +24,8 @@ class Federate_RL_Agent(Federate):
         self.model = None
         super().__init__(args)
 
-        # removing the possibility of multiple model instances todo SBAGLIATO
+        # removing the possibility of multiple model instances
         self.model = self._model_instances[0]
-        self.training = True # todo pass from config
 
 
 
@@ -36,6 +35,16 @@ class Federate_RL_Agent(Federate):
         for k, val in self._model_conf['RL_params'].items():
             kwargs[k]=val
         kwargs['model_name'] = 'DQN_agent'
+        self.action_vars = self._model_conf['RL_params']['action_vars']
+        self.training = self._fed_conf['RL_training']
+        self.train_end_period = self._fed_conf['training_episodes'] * self._fed_conf['episode_period']
+        self.train_end_ts = int(self.train_end_period / self.real_period)
+        kwargs['training'] = self.training
+        kwargs['train_end_period'] = self.train_end_period
+        kwargs['train_end_ts'] = self.train_end_ts
+        kwargs['n_episodes'] = self._fed_conf['training_episodes']
+        kwargs['episode_ts'] = int(self._fed_conf['episode_period']/self._fed_conf['sim_params']['real_period'])
+
         return kwargs
     def execution(self): # execution base for inp out exchange and message receiver
 
@@ -43,15 +52,20 @@ class Federate_RL_Agent(Federate):
         h.helicsFederateEnterExecutingMode(self._fed)
         logger.info("@@ Entered HELICS execution mode @@ \n")
         self.granted_period = h.helicsFederateGetCurrentTime(self._fed)
-        self.ts=0
-        training_step = 0
-        training_step_end = self.model.EPISODES * 24
-
+        self.ts = 0
         while self.granted_period < self.end_period:  # start the wrapping while loop
+
+
+            if self.ts > self.train_end_ts or self.granted_period > self.train_end_period:      # ridondante
+                self.training = False
+                setattr(self.model, 'training', False)
+                logger.info("Started TESTING phase!")
+                # setattr(self.model, '') # model does not have the training flag
+
             # ++++++++++++++++++ setting time synchronization #no offset
             requested_period = self.granted_period + self.sim_period + self.offset
             self.granted_period = h.helicsFederateRequestTime(self._fed, requested_period)
-            logger.debug(
+            logger.info(
                 f"************* Requesting time {requested_period} -- Granted time {self.granted_period} **************")
             self.current_period = h.helicsFederateGetCurrentTime(self._fed) - self.offset
             logger.debug(f"current time: {self.current_period}\n")
@@ -63,24 +77,27 @@ class Federate_RL_Agent(Federate):
 
 
             obs_vars, reward_vars = self.process_inputs()
-            logger.debug(f"OBS_VARS= {obs_vars}")
+            # logger.debug(f"OBS_VARS= {obs_vars}, REWARD_VARS= {reward_vars}")
             # getting federate inputs as observation
             self.model.get_observations(obs_vars)  # get observatioon # normalize
-            self.model.estimate_reward(reward_vars) #reward calculation
+            self.model.evaluate_agent(reward_vars) #reward calculation and agent evaluation during training it evaluates the step before
 
             #reward = self.model.estimate_reward(reward_vars) #get_reward
-            if self.training and self.ts != 0 and training_step<=training_step_end:  # if training and not ts==0
+            if self.training and self.ts != 0: # and training_step<=training_step_end:  # if training and not ts==0
+                #update agent
                 self.model.update_agent(self.ts)  # update agent
-                # self.model.check_training()#check training condition
-                # update agent
-                training_step += 1
-                pass
+                # logger.debug("Agent updated!")
             #getting federate inputs as observation
             action = self.model.predict_action() # predict actions (model call) # normalized
+            logger.debug(f"Action chosen {action}")
 
-            # publish actions  #denormalize
-            self.out_values[0]={} #remove only for debugging
-            self.out_values[0]['tset'] = action #remove only for debugging
+            # publish actions  TODO should add a non HARDCODED way and standard to put actions inside out_values
+            self.out_values[0] = {} #remove only for debugging
+            self.out_values[0][self.action_vars[0]] = action
+            # self.out_values[0]['tset'] = action #remove only for debugging
+            # self.out_values[0]['vent_q']= action
+            # self.out_values[0]['tset_min']= action
+            # self.out_values[0]['tset_max']= action
             logger.debug(f"self.out_values {self.out_values}")
 
             self._publish_outputs()
@@ -94,9 +111,11 @@ class Federate_RL_Agent(Federate):
     def process_inputs(self):
         obs = {}
         reward = {}
+        self.other_inputs = {}
         # only one model
         in_values = self.in_values[0]
         in_msgs = self.in_msgs[0]
+
 
         if in_msgs:
             for msg in in_msgs:
@@ -111,7 +130,9 @@ class Federate_RL_Agent(Federate):
                     obs[var_name] = value
                 if var_name in self.model.reward_vars:
                     reward[var_name] = value
-
+                else:
+                    self.other_inputs[var_name]=value
+        self.model.other_inputs = self.other_inputs
         return obs, reward
 
     def process_action(self):

@@ -4,7 +4,7 @@ import logging
 import time
 logger = logging.getLogger(__name__)
 logger.addHandler(logging.StreamHandler())
-logger.setLevel(logging.DEBUG)
+logger.setLevel(logging.INFO)
 
 class Hvac(Model):
     def __init__(self, **kwargs):
@@ -20,6 +20,9 @@ class Hvac(Model):
         self.rooms = list_rooms
     def step(self, ts, **kwargs):
         self.tot_actual =0
+        if "HeatingLoadTarget" in self.inputs.keys():
+            self.outputs['electrical_power'] = (abs(self.inputs['heating_target']) / 3) * -1
+            return
 
         for room in self.rooms:
             # demand = self.inputs['zone.load_s %s' % room] + self.inputs['zone.fresh_vent_load_s %s' % room] #old one
@@ -29,7 +32,7 @@ class Hvac(Model):
 
         self.outputs['electrical_power'] = (abs(self.tot_actual)/3)*-1
 
-        self._fill_memory()
+        # self._fill_memory()
 
     def finalize(self):
         return super().finalize()

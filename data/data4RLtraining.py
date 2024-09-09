@@ -1,6 +1,12 @@
 import pandas as pd
-
+from matplotlib import pyplot as plt
 data = pd.read_csv("weather5room.csv").set_index("index")
+
+plt.plot(data['drybulb'])
+plt.show()
+plt.close()
+
+
 
 
 start_time= pd.to_datetime('2015-01-01 00:00:00',format='%Y-%m-%d %H:%M:%S')

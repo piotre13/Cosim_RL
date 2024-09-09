@@ -165,9 +165,23 @@ class DQN_Agent(RL_Base):
                            'out_network':[]}
 
 
+            self.actions = np.linspace(self.act_space['low'], self.act_space['high'],self.act_space['n_slots'])#[-3,-2, -1, 0, 1, 2, 3] # todo should be generalized like for the observations
+            #900
+            # self.actions = [0.0, 102.11797698, 204.23595396, 306.35393094, 408.47190792, 510.5898849, 612.70786188,
+            #          714.82583886, 816.94381584, 919.06179282, 1021.1797698, 1123.29774678, 1225.41572376,
+            #          1327.53370074, 1429.65167772, 1531.7696547, 1531.7696547, 3063.5393094, 3063.5393094,
+            #          3829.42413675, 4595.3089641, 4595.3089641, 6127.0786188, 6127.0786188, 7658.8482735, 7658.8482735,
+            #          9190.6179282, 10722.3875829, 12254.1572376, 13785.9268923, 15317.696547, 16849.4662017,
+            #          18381.2358564, 19913.0055111, 21444.7751658, 22976.5448205, 24508.3144752, 26040.0841299,
+            #          27571.8537846, 29103.6234393, 30635.393094, 32167.1627487, 33698.9324034, 35230.7020581,
+            #          36762.4717128, 38294.2413675, 39826.0110222, 41357.7806769, 42889.5503316]
+            #3600
+            self.actions = [0.0, 370.39451813, 740.78903627, 1111.1835544, 1481.57807253, 1851.97259067, 2222.3671088,
+                          2592.76162693, 2963.15614507, 3333.5506632, 6667.1013264, 10000.6519896, 13334.2026528, 16667.753316,
+                          20001.3039792, 23334.8546424, 26668.4053056, 30001.955968, 33335.506632, 36669.0572952,
+                          40002.6079584, 43336.1586216, 46669.7092848, 50003.259948, 53336.810611, 56670.3612744, 60000.0, 63000.5]
 
-            self.action_space = Discrete(7, start=0, seed=42)  # {-1, 0, 1 #todo should generalize from config using a class that based on a flag choose the right gym space
-            self.actions = [-3,-2, -1, 0, 1, 2, 3] # todo should be generalized like for the observations
+            self.action_space = Discrete(len(self.actions), start=0, seed=42)  # {-1, 0, 1 #todo should generalize from config using a class that based on a flag choose the right gym space
             self.n_actions = self.action_space.n # this only because we have discrete set of actions
 
 
@@ -209,15 +223,18 @@ class DQN_Agent(RL_Base):
             self.best_inst_rew = -10000000
             self.best_param = None
             self.cum_reward = []
+            self.set_point = 20
 
 
     def get_observations(self, obs_vars):
         if self.steps_done!=0:
             self.observation_ = self.observation # the new observation self.observation must be used only in predict action, while for the reward we are calculating the previous one
             self.observation_prev_dict = self.observation_dict
+            self.set_point_prev = self.set_point
         # obs_vars = {k:normalize(val,self.n_dict[k][0],self.n_dict[k][1]) for k,val in obs_vars.items()}
         self.observation_dict = {k:val for k,val in obs_vars.items()}
         obs_vars_norm = self.normalize_obs(obs_vars)
+        self.set_point = self.other_inputs['setpoint']
         #add day of the year in observation todo
         #need to tranform obsvars data into a proper format to feed the neural network
         self.observation = torch.tensor([obs_vars_norm[data] for data in obs_vars_norm])
@@ -255,18 +272,6 @@ class DQN_Agent(RL_Base):
         self.replay_memory.push(*transition)
 
     def predict_action(self):
-
-        if self.observation_dict['on_off'] == 0 :
-            return self.observation_dict['setpoint']  # run the baseline
-
-        if self.observation_dict['t_zone'] > self.observation_dict['setpoint'] and self.observation_dict['on_off'] == 1: #heating
-            return self.observation_dict['setpoint']  # run the baseline
-        if self.observation_dict['t_zone'] < self.observation_dict['setpoint'] and self.observation_dict['on_off'] == -1: #cooling
-            return self.observation_dict['setpoint']  # run the baseline
-
-        if self.steps_done==0:
-            self.steps_done += 1
-            return self.observation_dict['setpoint']  # run the baseline
 
 
         sample = random.random()
@@ -311,8 +316,8 @@ class DQN_Agent(RL_Base):
         self.action = torch.tensor(action_index)
         self.steps_done += 1
         # return action + self.observation_dict['setpoint'] # this must be done for the specific case we are treating
-        return self.observation_dict['setpoint']  # run the baseline
-
+        # return self.observation_dict['setpoint']  # run the baseline
+        return action
     def evaluate_agent(self, reward_vars):
         '''evaluate performs:
         - inst reward calculation of previous step
@@ -324,11 +329,6 @@ class DQN_Agent(RL_Base):
         if self.observation_prev_dict['on_off']==0 or self.steps_done==0:
             return
 
-        if self.observation_prev_dict['on_off'] == 1 and (self.observation_prev_dict['setpoint']- reward_vars['t_zone'])<0:  #not evaluating when heating and zone temperature already above setpoint
-            return
-
-        elif self.observation_prev_dict['on_off']==-1 and (self.observation_prev_dict['setpoint']- reward_vars['t_zone'])>0: #not evaluating when cooling and zone temperature already above setpoint
-            return
 
         logger.debug(f"Agent Evaluation! steps_done = {self.steps_done}")
         inst_reward = self.estimate_reward(reward_vars) # calculating step reward
@@ -384,14 +384,34 @@ class DQN_Agent(RL_Base):
 
         self.penalty_Dt = - 0.8
         tset = self.observation_prev_dict['setpoint']
-        text = self.observation_prev_dict['drybulb']
+        # text = self.observation_prev_dict['drybulb']
         t_zone = reward_vars['t_zone']
-
-        logger.debug(f"Calculate reward: tset = {tset}, t_ext = {text}, t_zone = {reward_vars['t_zone']}")
-        C1 = (tset-t_zone)**2
-
+        #
+        # logger.debug(f"Calculate reward: tset = {tset}, t_ext = {text}, t_zone = {reward_vars['t_zone']}")
+        on_off = self.observation_prev_dict['on_off']
+        hour = self.observation_prev_dict['hour_of_day']
+        Dt = tset-t_zone
+        # if on_off == 1:
+        #     if Dt > 0:
+        #         C1 = Dt**2
+        #     else:
+        #         C1 = 0.05 * Dt**2
+        #
+        #     C1 = Dt**2
+        #
+        # elif on_off == -1:
+        #     if Dt > 0:
+        #         C1 = 0.05 * Dt** 2
+        #     else:
+        #         C1 = Dt** 2
+        #
+        #     C1 = Dt**2
+        # else:
+        #     C1 = 1
+        #
+        C1= Dt**2
         r = C1 * self.penalty_Dt
-        self.memory['C1_temp'].append(C1)
+        # self.memory['C1_temp'].append(C1)
 
         return r
 
@@ -399,6 +419,8 @@ class DQN_Agent(RL_Base):
     def update_agent(self, ts):
         # if self.observation_dict['on_off'] == 0 and self.observation_prev_dict['on_off']==0:
         #     return
+        if self.observation_dict['on_off']==0 or self.steps_done==0:
+            return
 
         if ts%self.episode_ts==0: #todo parametrize
             self.learn()
