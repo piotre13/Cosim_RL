@@ -9,7 +9,7 @@ import ast
 pp = pprint.PrettyPrinter(indent=4)
 logger = logging.getLogger(__name__)
 logger.addHandler(logging.StreamHandler())
-logger.setLevel(logging.INFO)
+logger.setLevel(logging.CRITICAL)
 
 
 class Controller(Model):
@@ -89,7 +89,11 @@ class Controller(Model):
         else:
             self.outputs['ac_on_off'] = on_off
         self.outputs['day_of_year'] = self.day_of_year
-        self.outputs['hour_of_day'] = self.hour_of_day
+
+        if self.outputs['tSetMax'] == 16:
+            self.outputs['hour_of_day'] = 0
+        else:
+            self.outputs['hour_of_day'] = 1
 
     def finalize(self):
         return super().finalize()

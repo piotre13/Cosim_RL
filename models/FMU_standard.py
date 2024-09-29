@@ -105,7 +105,7 @@ class FMU (Model):
     def step(self, ts, **kwargs):
         self.rows = []
 
-        ts=ts-1
+
         fmu_time = ts * self.real_period - (self.cnt * self.reset_period) #this is the end_period or in case the end period is more than one year is one year
 
         if fmu_time == self.reset_period:

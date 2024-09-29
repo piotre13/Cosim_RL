@@ -4,7 +4,7 @@ from copy import deepcopy
 from abc import ABC,  abstractmethod
 logger = logging.getLogger(__name__)
 logger.addHandler(logging.StreamHandler())
-logger.setLevel(logging.DEBUG)
+logger.setLevel(logging.CRITICAL)
 
 
 ''' This class must be inherited from every model and is used to ensure that the needed methods are implemented as well as 

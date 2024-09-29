@@ -1,0 +1,72 @@
+fed_conf:
+  RL_training: true
+  episode_period: 86400
+  memory:
+  - glohorzrad
+  - difhorzrad
+  - drybulb
+  - wind_speed
+  - damp
+  sim_params:
+    end_period: 2340576000
+    offset: 0.0
+    real_period: 3600
+    reset_period: 7776000
+    sim_period: 3600
+    start_time: '2015-01-01 00:00:00'
+  training_episodes: 27000
+fed_connections:
+  end:
+    0:
+    - ep_name: reset_now
+  inp: {}
+  pub:
+    0:
+    - key: drybulb
+      type: double
+      units: C
+    - key: damp
+      type: double
+      units: ''
+    - key: glohorzrad
+      type: double
+      units: W/m2
+    - key: difhorzrad
+      type: double
+      units: W/m2
+    - key: wind_speed
+      type: double
+      units: ''
+fed_flags:
+  SOURCE_ONLY: false
+  TERMINATE_ON_ERROR: true
+fed_info:
+  core_name: weather_core
+  core_type: zmq
+fed_name: Weather
+model_conf:
+  generic:
+    class_name: CSV
+    model_script: Csv_out_trainer.py
+    n_instances: 1
+  model_specific_additional: {}
+  model_specific_required:
+    init_state: {}
+    inputs_k: []
+    outputs_k:
+    - drybulb
+    - damp
+    - glohorzrad
+    - difhorzrad
+    - wind_speed
+    params:
+      additioner:
+      - drybulb: 0.0
+      csv_file:
+      - data/weather5room_heating.csv
+      multiplier:
+      - difhorzrad: 1.0
+        drybulb: 1.0
+        glohorzrad: 1.0
+        relhum: 1.0
+        wind_speed: 1.0

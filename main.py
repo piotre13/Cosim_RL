@@ -54,8 +54,8 @@ if __name__ == "__main__":
     output_path = os.getcwd()
 
     # run_path = output_path + '\\federations\\test_case_dest_setpoint_control_FMU\\runner.json'
-    run_path = output_path + '\\federations\\test_case_dest_setpoint_control_Dest\\runner.json'
-    # run_path = output_path + '\\federations\\test_case_dest_setpoint_control_Dest_ventQ\\runner.json'
+    # run_path = output_path + '\\federations\\test_case_dest_setpoint_control_Dest\\runner.json'
+    run_path = output_path + '\\federations\\test_case_dest_setpoint_control_Dest_ventQ\\runner.json'
 
 
 
@@ -70,14 +70,24 @@ if __name__ == "__main__":
     #     "episode_seconds":86400,
     #     "unit_train_test_seconds":7776000} # when using years 31536000
 
+    #use this with setpoint federations
+    # RL_config_Dest = {
+    #     "training": True,
+    #     "training_duration":300,
+    #     "testing_duration": 1,
+    #     "episode_duration": 1,
+    #     "episode_seconds": 86400,
+    #     "unit_train_test_seconds": 7776000}  # 90days
 
+
+    #use this for ventQ federations
     RL_config_Dest = {
         "training": True,
-        "training_duration": 100,
+        "training_duration": 3000,
         "testing_duration": 1,
-        "episode_duration": 2,
+        "episode_duration": 10,
         "episode_seconds": 86400,
-        "unit_train_test_seconds": 7776000}  # when using years 31536000
+        "unit_train_test_seconds": 2592000} #30days
 
     prepare_federation(RL_config_Dest, run_path)
     main_run(run_path) # main simulation run!!!

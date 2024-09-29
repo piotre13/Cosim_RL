@@ -7,7 +7,7 @@ from datetime import datetime
 #TODO add conversions and possibility to change names from what is written in the CSV
 logger = logging.getLogger(__name__)
 logger.addHandler(logging.StreamHandler())
-logger.setLevel(logging.INFO)
+logger.setLevel(logging.CRITICAL)
 
 class CSV (Model):
     def __init__(self, **kwargs):
@@ -81,7 +81,7 @@ class CSV (Model):
 
     def time_frequency(self):
         if isinstance(self.data.index, pd.DatetimeIndex):
-            return self.data.index.freq.nanos / 1e9  # convert frequency to seconds
+            return pd.infer_freq(self.data.index)  # convert frequency to seconds
         else:
             # Assuming the whole extension of the data is one year
             total_seconds_in_a_year = 365 * 24 * 60 * 60
@@ -97,6 +97,7 @@ class CSV (Model):
 
         # index = self.sim_start_date + pd.to_timedelta("%s s"%int(ts)*self.real_period)
         #do not stop if index is larger than data but start again
+        logger.debug(f"data len = {len(self.data.index)}")
         if self.index not in self.data.index:
             self.index = 0
             # index = index - self.replay

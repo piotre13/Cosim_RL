@@ -1,0 +1,48 @@
+{
+  "name": "test_case_dest_setpoint_control_Dest_ventQ",
+  "broker": true,
+  "federates": [
+    {
+      "directory": "../..",
+      "exec": "python -u Federate.py Weather_conf.yaml test_case_dest_setpoint_control_Dest_ventQ",
+      "host": "localhost",
+      "name": "Weather"
+    },
+    {
+      "directory": "../..",
+      "exec": "python -u Federate.py PV_conf.yaml test_case_dest_setpoint_control_Dest_ventQ",
+      "host": "localhost",
+      "name": "PV"
+    },
+    {
+      "directory": "../..",
+      "exec": "python -u Federate.py Battery_conf.yaml test_case_dest_setpoint_control_Dest_ventQ",
+      "host": "localhost",
+      "name": "Battery"
+    },
+    {
+      "directory": "../..",
+      "exec": "python -u Federate.py Controller_conf.yaml test_case_dest_setpoint_control_Dest_ventQ",
+      "host": "localhost",
+      "name": "Controller"
+    },
+    {
+      "directory": "../..",
+      "exec": "python -u Federate.py EnvelopePdemand_conf.yaml test_case_dest_setpoint_control_Dest_ventQ",
+      "host": "localhost",
+      "name": "Envelope"
+    },
+    {
+      "directory": "../..",
+      "exec": "python -u Federate.py Hvac_conf.yaml test_case_dest_setpoint_control_Dest_ventQ",
+      "host": "localhost",
+      "name": "Hvac"
+    },
+    {
+      "directory": "../..",
+      "exec": "python -u Federate_RL.py RLagent_conf.yaml test_case_dest_setpoint_control_Dest_ventQ",
+      "host": "localhost",
+      "name": "RLagent"
+    }
+  ]
+}

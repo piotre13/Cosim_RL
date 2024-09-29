@@ -1,0 +1,74 @@
+fed_conf:
+  RL_training: true
+  episode_period: 86400
+  memory:
+  - SOC
+  - energy_out
+  - power
+  sim_params:
+    end_period: 63072000
+    offset: 0.4
+    real_period: 3600
+    sim_period: 3600
+    start_time: '2015-01-01 00:00:00'
+  training_episodes: 365
+fed_connections:
+  end:
+    0:
+    - ep_name: reset_now
+  inp:
+    0:
+    - key: power
+      multi_input_handling_method: sum
+      targets:
+      - PV/0/Power_PV
+      - Hvac/0/electrical_power
+      type: double
+      units: W
+  pub:
+    0:
+    - key: energy_out
+      type: double
+      units: Wh
+fed_flags:
+  TERMINATE_ON_ERROR: true
+  UNINTERRUPTIBLE: false
+fed_info:
+  core_name: battery_core
+  core_type: zmq
+fed_name: Battery
+model_conf:
+  generic:
+    class_name: Battery
+    model_script: model_Dest/Battery.py
+    n_instances: 1
+  model_specific_additional: {}
+  model_specific_required:
+    init_state:
+      inp.power:
+      - 0.0
+      out.energy_out:
+      - 0.0
+    inputs_k:
+    - power
+    outputs_k:
+    - energy_out
+    params:
+      SOC:
+      - 0.25
+      SOC_lower_limit:
+      - 0.25
+      SOC_upper_limit:
+      - 0.95
+      charge_efficiency:
+      - 1
+      discharge_efficiency:
+      - 1
+      maximum_charge_power:
+      - 8000
+      maximum_discharge_power:
+      - 8000
+      rated_capacity:
+      - 40000
+      self_discharge_rate:
+      - 0

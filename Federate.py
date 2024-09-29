@@ -15,7 +15,7 @@ sys.path.append('models/')
 
 logger = logging.getLogger(__name__)
 logger.addHandler(logging.StreamHandler())
-logger.setLevel(logging.INFO)
+logger.setLevel(logging.CRITICAL)
 logger.debug(f"executable {sys.executable}")
 
 
@@ -46,8 +46,8 @@ class Federate:
         self.current_period = self.start_period
         self.end_period = self._fed_conf['sim_params']['end_period'] # seconds
         self.reset_period = self._fed_conf['sim_params']['reset_period']
-        self.end_time = self.start_time + pd.to_timedelta(self.end_period, unit='s') # datetime
-
+        # self.end_time = self.start_time + pd.to_timedelta(self.end_period, unit='s') # datetime
+        self.end_time = self.start_time + pd.to_timedelta(self.reset_period, unit='s')
         # federate
         self._fed = self.register_federate()
         self.federation_name = args[-1]
@@ -80,6 +80,12 @@ class Federate:
         # set properties ******
         h.helicsFederateInfoSetTimeProperty(fedInfo, h.helics_property_time_period, self.sim_period)
         h.helicsFederateInfoSetTimeProperty(fedInfo, h.helics_property_time_offset, self.offset)
+        h.helicsFederateInfoSetTimeProperty(fedInfo, h.helics_property_time_stoptime, self.end_period)
+        print(h.helics_time_maxtime)
+        print(self.end_period)
+        h.helics_time_maxtime = self.end_period
+        # h.helicsFederateInfoSetTimeProperty(fedInfo, h.helics_time_maxtime, self.end_period)
+
         if self._fed_properties:
             for prop in self._fed_properties:
                 prop_name = 'HELICS_PROPERTY_{}'.format(prop)
@@ -372,8 +378,12 @@ class Federate:
         self.granted_period = h.helicsFederateGetCurrentTime(self._fed)
         ts = 0
 
+
+
         while self.granted_period < self.end_period: #start the wrapping while loop
 
+            if (ts/int(self.end_period/self.real_period))*100 in [10, 20, 30, 40 ,50 ,60, 70, 80, 90, 100]:
+                print(f"Simulation progress == {int((ts/int(self.end_period/self.real_period))*100)} %")
 
             t0 = time.time()
 

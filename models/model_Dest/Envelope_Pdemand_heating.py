@@ -43,13 +43,13 @@ class Envelope (Model):
         self.memory = [] # this is need beause we perform a change in params and later also in input outputs so that we can refresh the memroy to be compliant with new (room specific) keys
 
         self.commands = {
-            'init': ["set run.time_step = %s"%self.real_period, "require zone.ac_t zone.load_s zone.fresh_vent_load_s zone.load_dehumi zone.fresh_vent_load_dehumi", "prepare"],
+            'init': ["require zone.ac_t zone.load_s zone.fresh_vent_load_s zone.load_dehumi zone.fresh_vent_load_dehumi", "prepare"],
             'out_heating': ["out zone.ac_t %s" % self.zone_ids, "out zone.load_s %s" % self.zone_ids,
                             "out zone.fresh_vent_load_s %s" % self.zone_ids],
             'out_cooling': ["out zone.ac_t %s" % self.zone_ids, "out zone.load_s %s" % self.zone_ids,
                             "out zone.fresh_vent_load_s %s" % self.zone_ids, "out zone.load_dehumi %s" % self.zone_ids,
                             "out zone.fresh_vent_load_dehumi %s" % self.zone_ids],
-            'run0': ["in schedule.ac_t_max %s = %s", "in schedule.ac_t_min %s = %s","in zone.ac_on_off %s = %s", "run 0"],
+            'run0': ["in schedule.ac_t_max %s = %s", "in schedule.ac_t_min %s = %s", "run 0"],
             'run1': ["in zone.vent_q %s = %s", "in zone.ac_on_off %s = %s", "run 1"]
         }
         self.start()
@@ -57,20 +57,9 @@ class Envelope (Model):
 
         self.in_vars_t_air = ['zone.vent_q','zone.ac_on_off']
 
-        # self.heating_season = [[0,2160],[6480,8761]] # todo this should become an input froma controller/scehduler
-        # self.cooling_season = [[2160,6480]] # todo this should become an input froma controller/scehduler
-        # self.heating_season = [[0, 2184], [7440, 8761]]
-        # self.cooling_season = [[3264, 6216]]
-        self.heating_season = [[0,2520],[6960, 8760]]
-        self.cooling_season = [[2520,6960]]
-        # self.limit_heating = 100000000 # per zone [14020.6806, 3320.6274359999998, 3175.690968, 6741.66276, 2815.0116479999997]
-        self.limit_heating = [14020.6806, 3320.6274359999998, 3175.690968, 6741.66276, 2815.0116479999997]
-        # self.limit_heating = [1402000000.6806, 33200000000.6274359999998, 3175000000000.690968, 67410000000000000.66276, 2815000000000.0116479999997]
-
-        self.limit_cooling = 40000000 # per zone
-
-        self.room_temp=[10.0, 10.0, 10.0, 10.0, 10.0]
-
+        # self.heating_season = [[0,2160],[6480,8761]] # todo this is hardcoded should be passed as a config parmas
+        # self.cooling_season = [[2160,6480]] # todo this is hardcoded should be passed as a config parmas
+        self.heating_season = [[0,8761]]
         logger.info(f"params of model = {self.params}")
         logger.info(f"memory or model = {self.memory}")
 
@@ -103,72 +92,103 @@ class Envelope (Model):
         self.fixed_outputs = len(cmd_list)
 
     def step(self, ts, **kwargs):
-        if ts > int(self.reset_period/self.real_period):
-            if ts % int(self.reset_period/self.real_period) == 1: # todo should be not hardcoded and esxpress the reset position with the ts we want to reset
+        if ts > 2158:
+            if ts % 2159 == 1: # todo should be not hardcoded and esxpress the reset position with the ts we want to reset
                 #restart
                 self.terminate()
                 self.start()
-                logger.info("RESTART!!")
-            ts = ts % int(self.reset_period/self.real_period)
+            ts = ts % 2159
             logger.info(f"$$$$$ ts = {ts}")
-        #
-        # hour = int(ts/(3600/self.real_period))
-        # season = None
-        # if any(hour in range(per[0],per[1]) for per in self.heating_season):
-        #     season = 'heating'
-        # elif any(hour in range(per[0],per[1]) for per in self.cooling_season):
-        #     season = 'cooling'
-        # else:
-        #     season = 'mid_season'
-        #     # raise ValueError(f'ts not in any season nor heating nor cooling ts value = {ts}')
-        #
-        logger.debug(f"mean temperature : {sum(self.room_temp)/len(self.room_temp)}   setpoint: {self.inputs['schedule.ac_t_max 8680']}")
-
-        # if sum(self.room_temp)/len(self.room_temp) < self.inputs['schedule.ac_t_max 8680']:
-        mod_run = 0
-        inps = self.prepare_varnames(
-            {k: val for k, val in self.inputs.items() if any(i in k for i in self.in_vars_p_demand)})
-        cmd_list = []
-        for name in inps:
-            cmd = f"in {name} = {inps[name]}"
-            cmd_list.append(cmd)
-        cmd_list.append(self.commands['run0'][-2]%(self.zone_ids,[1,1,1,1,1])) # todo test
-        cmd_list.append(f"run {mod_run}")
-        self.cmd_send(cmd_list)
-        out_dict = self.read_stdout(self.fixed_outputs)
-        self.read_outputs(out_dict, mode=0)
-        self.vent_q = {}
-        vent_q_list = []
-        load_req = 0
-        for k_variable, val_tuple in out_dict.items():  # they should always have same order
-            if 'load_s' in k_variable:
-                for zone_id, val in zip(val_tuple[0], val_tuple[1]):
-                    if zone_id not in self.vent_q.keys():  # todo add conversion if needed
-                        self.vent_q[zone_id] = val * self.real_period
-                    else:
-                        self.vent_q[zone_id] += val * self.real_period
 
 
-        i=0
-        for k, val in self.vent_q.items():
+        season = None
+        if any(ts in range(per[0],per[1]) for per in self.heating_season):
+            season = 'heating'
+        elif any(ts in range(per[0],per[1]) for per in self.cooling_season):
+            season = 'cooling'
+        else:
+            raise ValueError(f'ts not in any season nor heating nor cooling ts value = {ts}')
 
-            if val < 0:
-                self.vent_q[k] = 0.0
-                vent_q_list.append(0.0)
-            elif val > self.limit_heating[i]:
-                self.vent_q[k] = self.limit_heating[i]
-                vent_q_list.append(self.limit_heating[i])
-            else:
-                vent_q_list.append(val)
-            i+=1
-        load_req = sum([val for k,val in self.vent_q.items()])
-        # else:
-        #     vent_q_list=[0,0,0,0,0]
-        #     load_req = 0
-        #     self.vent_q = {}
-        #
-        #     for zone in self.zone_ids:
-        #         self.vent_q[str(zone)]=0
+
+
+
+        # mod_run = 0
+        # inps = self.prepare_varnames(
+        #     {k: val for k, val in self.inputs.items() if any(i in k for i in self.in_vars_p_demand)})
+        # cmd_list = []
+        # for name in inps:
+        #     cmd = f"in {name} = {inps[name]}"
+        #     cmd_list.append(cmd)
+        # cmd_list.append(f"run {mod_run}")
+        # self.cmd_send(cmd_list)
+        # out_dict = self.read_stdout(self.fixed_outputs)
+        # self.read_outputs(out_dict, mode =0)
+        # self.vent_q = {}
+        # vent_q_list = []
+        # for k_variable, val_tuple in out_dict.items():  # they should always have same order
+        #     if 'load_s' in k_variable:
+        #         for zone_id, val in zip(val_tuple[0], val_tuple[1]):
+        #             if zone_id not in self.vent_q.keys():  # todo add conversion if needed
+        #                 self.vent_q[zone_id] = val *3600
+        #             else:
+        #                 self.vent_q[zone_id] += val *3600
+
+        if season == 'heating': #no negative values
+            mod_run = 0
+            inps = self.prepare_varnames(
+                {k: val for k, val in self.inputs.items() if any(i in k for i in self.in_vars_p_demand)})
+            cmd_list = []
+            for name in inps:
+                cmd = f"in {name} = {inps[name]}"
+                cmd_list.append(cmd)
+            cmd_list.append(f"run {mod_run}")
+            self.cmd_send(cmd_list)
+            out_dict = self.read_stdout(self.fixed_outputs)
+            self.read_outputs(out_dict, mode=0)
+            self.vent_q = {}
+            vent_q_list = []
+            for k_variable, val_tuple in out_dict.items():  # they should always have same order
+                if 'load_s' in k_variable:
+                    for zone_id, val in zip(val_tuple[0], val_tuple[1]):
+                        if zone_id not in self.vent_q.keys():  # todo add conversion if needed
+                            self.vent_q[zone_id] = val * 3600
+                        else:
+                            self.vent_q[zone_id] += val * 3600
+            for k, val in self.vent_q.items():
+                if val < 0:
+                    self.vent_q[k] = 0.0
+                    vent_q_list.append(0.0)
+                else:
+                    vent_q_list.append(val)
+
+        elif season == 'cooling': # no positive values
+            # self.cmd_send(self.commands['out_cooling'])
+            mod_run = 0
+            inps = self.prepare_varnames(
+                {k: val for k, val in self.inputs.items() if any(i in k for i in self.in_vars_p_demand)})
+            cmd_list = []
+            for name in inps:
+                cmd = f"in {name} = {inps[name]}"
+                cmd_list.append(cmd)
+            cmd_list.append(f"run {mod_run}")
+            self.cmd_send(cmd_list)
+            out_dict = self.read_stdout(self.fixed_outputs)
+            self.read_outputs(out_dict, mode=0)
+            self.vent_q = {}
+            vent_q_list = []
+            for k_variable, val_tuple in out_dict.items():  # they should always have same order
+                if 'load_s' in k_variable or 'dehumi' in k_variable:
+                    for zone_id, val in zip(val_tuple[0], val_tuple[1]):
+                        if zone_id not in self.vent_q.keys():  # todo add conversion if needed
+                            self.vent_q[zone_id] = val * 3600
+                        else:
+                            self.vent_q[zone_id] += val * 3600
+            for k, val in self.vent_q.items():
+                if val > 0:
+                    self.vent_q[k] = 0.0
+                    vent_q_list.append(0.0)
+                else:
+                    vent_q_list.append(val)
 
         # new commands generic
         cmds_run1 = ["in zone.vent_q [8674, 8677, 8680, 8692, 73086] = %s",
@@ -177,7 +197,6 @@ class Envelope (Model):
         self.cmd_send(cmd_list)
         out_dict = self.read_stdout(self.fixed_outputs)
         self.read_outputs(out_dict, mode = 1)
-        self.outputs['load_req'] = load_req
 
 
 
@@ -194,7 +213,7 @@ class Envelope (Model):
         self.proc.stdin.flush()
     def read_outputs(self, out_dict, mode):
         #this is only for publish and maybe memory todo check this logic if i want to add something to be used i must also add the publication or can i avoid it?
-        self.room_temp = []
+
         for k_variable, val_tuple in out_dict.items():
             for zone_id, val in zip(val_tuple[0], val_tuple[1]):
                 name = k_variable + ' ' + zone_id
@@ -207,7 +226,6 @@ class Envelope (Model):
                     self.params[name] = val
                 elif mode == 1 and 'ac_t' in k_variable:
                     self.outputs[name] = val
-                    self.room_temp.append(val)
                 elif mode == 1 :
                     name = "zone.vent_q "+ zone_id
                     self.outputs[name] = self.vent_q[zone_id]

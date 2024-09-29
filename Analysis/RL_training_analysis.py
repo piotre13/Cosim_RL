@@ -14,7 +14,9 @@ def moving_average(x, w):
 
 
 # baseline =  read_json("old_tests/baseline\\RLController.json")
-data = read_json("C:\\Users\\Pietro\\Code\\Cosim_RL\\federations\\test_case_dest_setpoint_control_Dest\\results\\RLController.json")
+data = read_json("C:\\Users\\Pietro\\Code\\Cosim_RL\\federations\\test_case_dest_setpoint_control_Dest_ventQ\\results\\RLController.json")
+# data = read_json("C:\\Users\\Pietro\\Code\\Cosim_RL\\Analysis\\finalfinal\\dest_setpoint_myrew_gamma0.9\\RLController.json")
+
 # envelope_bas = read_json("C:\\Users\\Pietro\\Code\\Cosim_RL\\federations\\test_case_dest_setpoint_control_Dest\\results\\Envelope.json")
 # envelope = read_json("scenarios_test\\niceone\\Envelope.json")
 #
@@ -106,7 +108,7 @@ data = read_json("C:\\Users\\Pietro\\Code\\Cosim_RL\\federations\\test_case_dest
 
 
 cum_reward = data['DQN_agent']['cum_reward'][1:]
-cum_rew_avg = moving_average(cum_reward,48)
+cum_rew_avg = moving_average(cum_reward,30)[30:-30]
 reward = data['DQN_agent']['reward'][1:]
 C1 = np.array(data['DQN_agent']['C1_temp'][1:])
 C2 = np.array(data['DQN_agent']['C2_power'][1:])
@@ -120,8 +122,8 @@ plt.legend()
 plt.show()
 plt.close()
 
-
-tmp = np.where(C1>63)
+#
+# tmp = np.where(C1>63)
 
 
 
@@ -221,7 +223,7 @@ print('stocazz')
 
 
 
-plt.plot(cum_reward, label= 'cum_reward')
+plt.plot(cum_reward[:-30], label= 'cum_reward')
 plt.plot(cum_rew_avg, label='CUM_AVG_reward')
 plt.legend()
 plt.show()
@@ -233,10 +235,7 @@ plt.show()
 plt.close()
 
 
-plt.plot(C1, label='C1')
-plt.legend()
-plt.show()
-plt.close()
+
 #
 # plt.plot(C2, label= 'C2')
 # plt.legend()

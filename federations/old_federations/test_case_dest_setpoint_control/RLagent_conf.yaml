@@ -1,0 +1,185 @@
+fed_conf:
+  RL_training: true
+  episode_period: 86400
+  memory: []
+  sim_params:
+    end_period: 63072000
+    offset: 0.1
+    real_period: 3600
+    sim_period: 3600
+    start_time: '2015-01-01 00:00:00'
+  training_episodes: 365
+fed_connections:
+  end:
+    0:
+    - ep_name: reset_now
+  inp:
+    0:
+    - key: drybulb
+      targets:
+      - Weather/0/drybulb
+      type: double
+      units: C
+    - key: glohorzrad
+      targets:
+      - Weather/0/glohorzrad
+      type: double
+      units: W/m2
+    - key: wind_speed
+      targets:
+      - Weather/0/wind_speed
+      type: double
+      units: ''
+    - key: setpoint
+      targets:
+      - Controller/0/tSetMax
+      type: double
+      units: C
+    - key: on_off
+      targets:
+      - Controller/0/ac_on_off
+      type: double
+      units: ''
+    - key: day_of_year
+      targets:
+      - Controller/0/day_of_year
+      type: double
+      units: ''
+    - key: hour_of_day
+      targets:
+      - Controller/0/hour_of_day
+      type: double
+      units: ''
+    - key: t_zone
+      multi_input_handling_method: average
+      targets:
+      - Envelope/0/zone.ac_t 8674
+      - Envelope/0/zone.ac_t 8677
+      - Envelope/0/zone.ac_t 8680
+      - Envelope/0/zone.ac_t 8692
+      - Envelope/0/zone.ac_t 73086
+      type: double
+      units: C
+    - key: load_s_old
+      multi_input_handling_method: sum
+      targets:
+      - Envelope/0/zone.vent_q 8674
+      - Envelope/0/zone.vent_q 8677
+      - Envelope/0/zone.vent_q 8680
+      - Envelope/0/zone.vent_q 8692
+      - Envelope/0/zone.vent_q 73086
+      type: double
+      units: W
+    - key: load_s
+      targets:
+      - Envelope/0/load_req
+      type: double
+      units: W
+  pub:
+    0:
+    - key: tset
+      type: double
+      units: C
+fed_flags:
+  TERMINATE_ON_ERROR: true
+  UNINTERRUPTIBLE: false
+fed_info:
+  core_name: controllerRL_core
+  core_type: zmq
+fed_name: RLController
+model_conf:
+  RL_params:
+    BATCH_SIZE: 500
+    EPISODES: 30
+    EPS_DECAY: 500
+    EPS_END: 0.05
+    EPS_START: 0.9
+    GAMMA: 0.99
+    LR: 1e-4
+    REPLAY_MEMORY: 15000
+    TAU: 0.005
+    act_space:
+      dtype:
+      - int
+      high:
+      - 3
+      low:
+      - -3
+      size: 1
+    action_vars:
+    - t_set
+    obs_space:
+      day_of_year:
+        range:
+        - 0
+        - 365
+        type: discrete
+      drybulb:
+        range:
+        - -30
+        - 50
+        type: continous
+      glohorzrad:
+        range:
+        - 0
+        - 2000
+        type: continous
+      hour_of_day:
+        range:
+        - 0
+        - 24
+        type: discrete
+      on_off:
+        range:
+        - 0
+        - 1
+        type: binary
+      setpoint:
+        range:
+        - 10
+        - 30
+        type: continous
+      t_zone:
+        range:
+        - 10
+        - 30
+        type: continous
+      wind_speed:
+        range:
+        - 0
+        - 100
+        type: continous
+    observation_vars:
+    - drybulb
+    - glohorzrad
+    - wind_speed
+    - on_off
+    - setpoint
+    - t_zone
+    - hour_of_day
+    - day_of_year
+    reward_vars:
+    - t_zone
+    - load_s
+  generic:
+    class_name: DQN_Agent
+    model_script: RL_models/DQN.py
+    n_instances: 1
+  model_specific_required:
+    init_state:
+      out.tSetMax:
+      - 20.0
+      out.tSetMin:
+      - 20.0
+    inputs_k:
+    - drybulb
+    - zone.ac_t 8674
+    - zone.load_s 8674
+    - zone.fresh_vent_load_s 8674
+    - setpoint
+    - relhum
+    - glohorzrad
+    outputs_k:
+    - schedule.ac_t_max 8674
+    - schedule.ac_t_min 8674
+    params: {}

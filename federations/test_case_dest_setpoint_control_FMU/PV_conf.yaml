@@ -1,0 +1,102 @@
+fed_conf:
+  RL_training: true
+  episode_period: 172800
+  memory:
+  - Power_PV
+  - G_H_R
+  - D_H_R
+  reset_period: 7776000
+  sim_params:
+    end_period: 1562976000
+    offset: 0.1
+    real_period: 600
+    reset_period: 7776000
+    sim_period: 600
+    start_time: '2015-01-01 00:00:00'
+  training_episodes: 9000
+fed_connections:
+  end:
+    0:
+    - ep_name: reset_now
+  inp:
+    0:
+    - key: G_H_R
+      targets:
+      - Weather/0/glohorzrad
+      type: double
+      units: W/m2
+    - key: D_H_R
+      targets:
+      - Weather/0/difhorzrad
+      type: double
+      units: W/m2
+    - key: Ambient_temperature
+      targets:
+      - Weather/0/drybulb
+      type: double
+      units: C
+  pub:
+    0:
+    - key: Power_PV
+      type: double
+      units: W
+fed_flags:
+  TERMINATE_ON_ERROR: true
+  UNINTERRUPTIBLE: false
+fed_info:
+  core_name: pv_core
+  core_type: zmq
+fed_name: PV
+model_conf:
+  generic:
+    class_name: PV
+    model_script: model_Dest/PV.py
+    n_instances: 1
+  model_specific_additional: {}
+  model_specific_required:
+    init_state:
+      inp.Ambient_temperature:
+      - 10.0
+      inp.D_H_R:
+      - 0.0
+      inp.G_H_R:
+      - 0.0
+      out.Power_PV:
+      - 0.0
+    inputs_k:
+    - G_H_R
+    - D_H_R
+    - Ambient_temperature
+    outputs_k:
+    - Power_PV
+    params:
+      Azimuth_angle:
+      - 0.9
+      NOCT:
+      - 45
+      Power_rated_pv:
+      - 410
+      Reflectance:
+      - 0.2
+      SVF_hori:
+      - 1
+      Tilt_angle:
+      - 0.698131701
+      area_ratio:
+      - 1
+      calc_area:
+      - 500
+      eta_pv_stc:
+      - 0.21
+      lat:
+      - 39.8
+      length:
+      - 2.05
+      long:
+      - 116.467
+      solar_constant:
+      - 1353
+      std_long:
+      - 120
+      width:
+      - 1.02
