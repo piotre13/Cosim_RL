@@ -1,0 +1,155 @@
+fed_conf:
+  RL_training: true
+  episode_period: 864000
+  memory:
+  - vent_q
+  - zone.ac_t 8674
+  sim_params:
+    end_period: 7778592000
+    offset: 0.2
+    real_period: 3600
+    reset_period: 2592000
+    sim_period: 3600
+    start_time: '2015-01-01 00:00:00'
+  training_episodes: 9000
+fed_connections:
+  end:
+    0:
+    - ep_name: reset_now
+  inp:
+    0:
+    - key: ac_on_off
+      targets:
+      - Controller/0/ac_on_off
+      type: double
+      units: ''
+    - key: schedule.ac_t_max 8674
+      targets:
+      - Controller/0/tSetMax
+      type: double
+      units: C
+    - key: schedule.ac_t_min 8674
+      targets:
+      - Controller/0/tSetMin
+      type: double
+      units: C
+    - key: schedule.ac_t_max 8677
+      targets:
+      - Controller/0/tSetMax
+      type: double
+      units: C
+    - key: schedule.ac_t_min 8677
+      targets:
+      - Controller/0/tSetMin
+      type: double
+      units: C
+    - key: schedule.ac_t_max 8680
+      targets:
+      - Controller/0/tSetMax
+      type: double
+      units: C
+    - key: schedule.ac_t_min 8680
+      targets:
+      - Controller/0/tSetMin
+      type: double
+      units: C
+    - key: schedule.ac_t_max 8692
+      targets:
+      - Controller/0/tSetMax
+      type: double
+      units: C
+    - key: schedule.ac_t_min 8692
+      targets:
+      - Controller/0/tSetMin
+      type: double
+      units: C
+    - key: schedule.ac_t_max 73086
+      targets:
+      - Controller/0/tSetMax
+      type: double
+      units: C
+    - key: schedule.ac_t_min 73086
+      targets:
+      - Controller/0/tSetMin
+      type: double
+      units: C
+    - key: vent_q
+      targets:
+      - RLController/0/vent_q
+      type: double
+      units: Wh
+  pub:
+    0:
+    - key: zone.ac_t 8674
+      type: double
+      units: C
+    - key: zone.ac_t 8677
+      type: double
+      units: C
+    - key: zone.ac_t 8680
+      type: double
+      units: C
+    - key: zone.ac_t 8692
+      type: double
+      units: C
+    - key: zone.ac_t 73086
+      type: double
+      units: C
+fed_flags:
+  TERMINATE_ON_ERROR: true
+  UNINTERRUPTIBLE: false
+fed_info:
+  core_name: envelope_core
+  core_type: zmq
+fed_name: Envelope
+model_conf:
+  generic:
+    class_name: Envelope
+    model_script: model_Dest/Envelope_ventQ.py
+    n_instances: 1
+  model_specific_additional:
+    casefile:
+    - C:\Users\Pietro\Code\Cosim_RL\models\model_Dest\DestKernel\5rooms.db
+    executable:
+    - C:\Users\Pietro\Code\Cosim_RL\models\model_Dest\DestKernel\bterminal.exe
+    required:
+    - - zone.load_s
+      - zone.fresh_vent_load_s
+      - zone.ac_t
+    silent:
+    - true
+    zone_ids:
+    - - 8674
+      - 8677
+      - 8680
+      - 8692
+      - 73086
+  model_specific_required:
+    init_state: {}
+    inputs_k:
+    - schedule.ac_t_max 8674
+    - schedule.ac_t_min 8674
+    - schedule.ac_t_max 8677
+    - schedule.ac_t_min 8677
+    - schedule.ac_t_max 8680
+    - schedule.ac_t_min 8680
+    - schedule.ac_t_max 8692
+    - schedule.ac_t_min 8692
+    - schedule.ac_t_max 73086
+    - schedule.ac_t_min 73086
+    - vent_q
+    outputs_k:
+    - zone.ac_t 8674
+    - zone.ac_t 8677
+    - zone.ac_t 8680
+    - zone.ac_t 8692
+    - zone.ac_t 73086
+    params:
+      zone.fresh_vent_load_dehumi:
+      - 0.0
+      zone.fresh_vent_load_s:
+      - 0.0
+      zone.load_dehumi:
+      - 0.0
+      zone.load_s:
+      - 0.0

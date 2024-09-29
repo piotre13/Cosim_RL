@@ -23,7 +23,7 @@ pp = pprint.PrettyPrinter(indent=4)
 
 logger = logging.getLogger(__name__)
 logger.addHandler(logging.StreamHandler())
-logger.setLevel(logging.INFO)
+logger.setLevel(logging.DEBUG)
 
 
 def normalize (x, min, max):
@@ -153,22 +153,35 @@ class DQN_Agent(RL_Base):
 
             logger.debug(f"Model class variables from Base class: {pp.pformat(self.__dict__)}")
 
-            self.memory = {"reward":[],
-                            "cum_reward":[],
-                           'eps_th':[],
-                           'C1_temp':[],
-                           'C2_power':[],
-                           'best_reward':[],
-                           'action_exp':[],
+            self.memory = {"reward": [],
+                           "cum_reward": [],
+                           'eps_th': [],
+                           'R_preheating': [],
+                           'R_comfort': [],
+                           'R_energy': [],
+                           'best_reward': [],
+                           'action_exp': [],
                            'action_opt': [],
-                           'raw_actions':[],
-                           'out_network':[]}
+                           'raw_actions': [],
+                           'out_network': []}
 
 
-            # self.actions = [-3,-2.8,-2.2,-1.8,-1.2,-0.8,-0.4,-0.2, -0.1, 0, 0.1, 0.2, 0.4, 0.8, 1.2, 1.8, 2.2, 2.8, 3.0] # todo should be generalized like for the observations
-            # self.actions = [-3, -2, -1.5, -1, -0.5, 0, 0.5, 1, 1.5, 2, 3, 4] # todo should be generalized like for the observations
-            self.actions = [-3, -1, 0,  1, 3] # todo should be generalized like for the observations
-            # self.actions = [ -0.3, -0.2, -0.1, 0, 0.1, 0.2, 0.3] # todo should be generalized like for the observations
+            self.actions = np.linspace(self.act_space['low'], self.act_space['high'],self.act_space['n_slots'])#[-3,-2, -1, 0, 1, 2, 3] # todo should be generalized like for the observations
+            #900
+            # self.actions = [0.0, 102.11797698, 204.23595396, 306.35393094, 408.47190792, 510.5898849, 612.70786188,
+            #          714.82583886, 816.94381584, 919.06179282, 1021.1797698, 1123.29774678, 1225.41572376,
+            #          1327.53370074, 1429.65167772, 1531.7696547, 1531.7696547, 3063.5393094, 3063.5393094,
+            #          3829.42413675, 4595.3089641, 4595.3089641, 6127.0786188, 6127.0786188, 7658.8482735, 7658.8482735,
+            #          9190.6179282, 10722.3875829, 12254.1572376, 13785.9268923, 15317.696547, 16849.4662017,
+            #          18381.2358564, 19913.0055111, 21444.7751658, 22976.5448205, 24508.3144752, 26040.0841299,
+            #          27571.8537846, 29103.6234393, 30635.393094, 32167.1627487, 33698.9324034, 35230.7020581,
+            #          36762.4717128, 38294.2413675, 39826.0110222, 41357.7806769, 42889.5503316]
+            #3600
+            self.actions = [0.0, 370.39451813, 740.78903627, 1111.1835544, 1481.57807253, 1851.97259067, 2222.3671088,
+                          2592.76162693, 2963.15614507, 3333.5506632, 6667.1013264, 10000.6519896, 13334.2026528, 16667.753316,
+                          20001.3039792, 23334.8546424, 26668.4053056, 30001.955968, 33335.506632, 36669.0572952,
+                          40002.6079584, 43336.1586216, 46669.7092848, 50003.259948, 53336.810611, 56670.3612744, 60000.0, 63000.5]
+
             self.action_space = Discrete(len(self.actions), start=0, seed=42)  # {-1, 0, 1 #todo should generalize from config using a class that based on a flag choose the right gym space
             self.n_actions = self.action_space.n # this only because we have discrete set of actions
 
@@ -207,19 +220,23 @@ class DQN_Agent(RL_Base):
             self.best_model = None
             self.switch_tobestmodel = False # questo serve solo fino a che non ho embeddato tutti i trigger dovuti al cambio tra training e testing in una callback (non fa nulla che evitare che il best model sia fissato piiu di una volta)
             self.training = True
-            self.best_reward = -100000000000
-            self.best_inst_rew = -10000000000
+            self.best_reward = -10000000
+            self.best_inst_rew = -10000000
             self.best_param = None
             self.cum_reward = []
+            self.set_point = 20
+            self.real_action = 0
 
 
     def get_observations(self, obs_vars):
         if self.steps_done!=0:
             self.observation_ = self.observation # the new observation self.observation must be used only in predict action, while for the reward we are calculating the previous one
             self.observation_prev_dict = self.observation_dict
+            self.set_point_prev = self.set_point
         # obs_vars = {k:normalize(val,self.n_dict[k][0],self.n_dict[k][1]) for k,val in obs_vars.items()}
         self.observation_dict = {k:val for k,val in obs_vars.items()}
         obs_vars_norm = self.normalize_obs(obs_vars)
+        self.set_point = self.other_inputs['setpoint']
         #add day of the year in observation todo
         #need to tranform obsvars data into a proper format to feed the neural network
         self.observation = torch.tensor([obs_vars_norm[data] for data in obs_vars_norm])
@@ -258,18 +275,6 @@ class DQN_Agent(RL_Base):
 
     def predict_action(self):
 
-        # if self.observation_dict['on_off'] == 0 :
-        #     return self.observation_dict['setpoint']  # run the baseline
-
-        # if self.observation_dict['t_zone'] > self.observation_dict['setpoint'] and self.observation_dict['on_off'] == 1: #heating
-        #     return self.observation_dict['setpoint']  # run the baseline
-        # if self.observation_dict['t_zone'] < self.observation_dict['setpoint'] and self.observation_dict['on_off'] == -1: #cooling
-        #     return self.observation_dict['setpoint']  # run the baseline
-
-        if self.steps_done==0:
-            self.steps_done += 1
-            return 20.0  # run the baseline
-
 
         sample = random.random()
         eps_threshold = self.EPS_END + (self.EPS_START - self.EPS_END) * math.exp(-1 * self.steps_done / self.EPS_DECAY)
@@ -297,11 +302,12 @@ class DQN_Agent(RL_Base):
                 self.memory['action_opt'].append(action)
 
 
+
+
         else:
             action_index = self.action_space.sample()
             action = self.actions[action_index]
             self.memory['action_exp'].append(action)
-
             logger.debug(f"Action casually chosen: {action}")
 
 
@@ -311,12 +317,9 @@ class DQN_Agent(RL_Base):
         self.action = torch.tensor(action_index)
         self.real_action = action
         self.steps_done += 1
-        # return action + 20 #+ self.observation_dict['setpoint'] # this must be done for the specific case we are treating
-        # return action + self.observation_dict['t_zone'] # this must be done for the specific case we are treating
+        # return action + self.observation_dict['setpoint'] # this must be done for the specific case we are treating
         # return self.observation_dict['setpoint']  # run the baseline
-        # return action*20 + 20
-        # return action*self.observation_dict['setpoint'] + self.observation_dict['setpoint']
-        return action + self.observation_dict['setpoint']
+        return action
     def evaluate_agent(self, reward_vars):
         '''evaluate performs:
         - inst reward calculation of previous step
@@ -325,14 +328,9 @@ class DQN_Agent(RL_Base):
         - memory update during training '''
 
         # if self.observation_dict['on_off'] == 0 and self.observation_prev_dict['on_off'] == 0:
-        if self.steps_done<2:
-            return
-        #
-        # if self.observation_prev_dict['on_off'] == 1 and (self.observation_prev_dict['setpoint']- reward_vars['t_zone'])<0:  #not evaluating when heating and zone temperature already above setpoint
+        # if self.observation_prev_dict['on_off']==0 or self.steps_done==0:
         #     return
-        #
-        # elif self.observation_prev_dict['on_off']==-1 and (self.observation_prev_dict['setpoint']- reward_vars['t_zone'])>0: #not evaluating when cooling and zone temperature already above setpoint
-        #     return
+
 
         logger.debug(f"Agent Evaluation! steps_done = {self.steps_done}")
         inst_reward = self.estimate_reward(reward_vars) # calculating step reward
@@ -350,13 +348,12 @@ class DQN_Agent(RL_Base):
             # self.steps_done += 1  # should be update for each episode, no need to explore too much
 
             #saving best model based on the best episopde reward todo e' giusto salvaree basandosi sullo score (aka cum reward per episode) piuttosto che sulla instantaneous reward?
-            if self.best_reward < self.memory['cum_reward'][-1] and self.training and self.steps_done>(self.train_end_ts)*0.6: # todo how to get the best model
+            if self.best_reward < self.memory['cum_reward'][-1] and self.training: # todo how to get the best model
                 self.best_reward = self.memory['cum_reward'][-1]
                 self.memory['best_reward'].append(self.best_reward)
-                # torch.save(self.policy_model.state_dict(),
-                #            'best_model_%s' % self.GAMMA)  # saves into a file but we eant to keep becasue the testing happen without stopping the cosim
+                torch.save(self.policy_model.state_dict(),
+                           'best_model_%s' % self.GAMMA)  # saves into a file but we eant to keep becasue the testing happen without stopping the cosim
                 self.best_model = self.policy_model.state_dict()
-                logger.debug("POLICY NETWORK UPDATED")
 
 
         # logger.debug(f"reward{self.reward}, reward type {type(self.reward)}")
@@ -398,47 +395,65 @@ class DQN_Agent(RL_Base):
         # on_off = self.observation_prev_dict['on_off']
         hour = self.observation_prev_dict['hour_of_day']
 
+        # penalty_comfort = -1
+        # penalty_energy = -0.0001
+        #
+        #
+        #
+        #
+        # # if 0<hour<6:
+        # #     R_comfort = 0
+        # # else:
+        #
+        # R_comfort = abs(t_zone-tset)
+        #
+        # R_power = energy/((t_zone-text)**2)
+        #
+        #
+        # # if t_zone_prev>tset or 0<=hour<=6 :
+        # #     Dt = 0
+        # #     if 0<=hour<=6:
+        # #         penalty_energy = -0.000001
+        # # else:
+        # #     Dt = (t_zone-tset)**2
+        # # # R_comfort = (1 / c) * (Dt)**4
+        # # R_comfort = Dt
+        # # R_power = energy #/ abs(tset - text) if abs(tset - text)!=0 else energy
+        # #
+        #
+        # r = penalty_comfort * R_comfort + penalty_energy * R_power
+        reward = 0
 
-        R_comfort = 0
-        R_energy = 0
-        penalty_comfort = -1
-        penalty_energy = -0.00001
-
-        if 7<=hour<=20:
-            R_comfort = abs(t_zone-tset)
-            try:
-                R_energy = energy/abs(text-tset)
-            except:
-                R_energy=1
-        elif 4<=hour<=6:
-            R_comfort = 0
-            try:
-                R_energy = energy/abs(text-self.real_action)
-            except:
-                R_energy = 1
+        # Reward for maintaining comfort
+        comfort_reward = 1 - abs(t_zone - 20)  # Reward for being close to setpoint
+        if 0<=hour<=3 or 21<=hour<=23:
+            comfort_reward = 0
+        # Reward for preheating during periods of lower energy costs
+        if 4<=hour<=6:  # Example threshold for preheating
+            preheating_reward = max(0, 3 + self.real_action)  # Encourage preheating
         else:
-            R_comfort=0
-            try:
-                R_energy = energy/abs(text-tset)
-            except:
-                R_energy =1
+            preheating_reward = 0
 
-        r = penalty_comfort * R_comfort + penalty_energy * R_energy
+        # Penalize excessive energy consumption
+        energy_penalty = -0.000001 * energy  # Penalize energy consumption
 
-
-        logger.debug(f"calculating rewards t_zone after action:{t_zone} ---- t_zone pre action :{t_zone_prev}, at hour = {hour}, energy=  {energy}, with action {self.real_action}")
-        logger.debug(f"REWARD: {r}, C1temp = {penalty_comfort*R_comfort}, C2power = {penalty_energy*R_energy}")
-        self.memory['C1_temp'].append(penalty_comfort*R_comfort)
-        self.memory['C2_power'].append(penalty_energy*R_energy)
+        # Total reward
+        r = comfort_reward + preheating_reward + energy_penalty
+        # logger.debug(f"calculating rewards t_zone after action:{t_zone} ---- t_zone pre action :{t_zone_prev}, at hour = {hour}, energy=  {energy}, with action {self.real_action}")
+        # logger.debug(f"REWARD: {r}, C1temp = {penalty_comfort*R_comfort}, C2power = {penalty_energy*R_power}")
+        self.memory['R_comfort'].append(comfort_reward)
+        self.memory['R_energy'].append(energy_penalty)
+        self.memory['R_preheating'].append(preheating_reward)
 
         return r
+
 
 
     def update_agent(self, ts):
         # if self.observation_dict['on_off'] == 0 and self.observation_prev_dict['on_off']==0:
         #     return
-        if not self.training:
-            return
+        # if self.observation_dict['on_off']==0 or self.steps_done==0:
+        #     return
 
         if ts%self.episode_ts==0: #todo parametrize
             self.learn()

@@ -1,0 +1,101 @@
+fed_conf:
+  RL_training: true
+  episode_period: 86400
+  memory: []
+  sim_params:
+    end_period: 63072000
+    offset: 0.3
+    real_period: 3600
+    sim_period: 3600
+    start_time: '2015-01-01 00:00:00'
+  training_episodes: 365
+fed_connections:
+  end:
+    0:
+    - ep_name: reset_now
+  inp:
+    0:
+    - key: zone.vent_q 8674
+      targets:
+      - Envelope/0/zone.vent_q 8674
+      type: double
+      units: W
+    - key: zone.vent_q 8677
+      targets:
+      - Envelope/0/zone.vent_q 8677
+      type: double
+      units: W
+    - key: zone.vent_q 8680
+      targets:
+      - Envelope/0/zone.vent_q 8680
+      type: double
+      units: W
+    - key: zone.vent_q 8692
+      targets:
+      - Envelope/0/zone.vent_q 8692
+      type: double
+      units: W
+    - key: zone.vent_q 73086
+      targets:
+      - Envelope/0/zone.vent_q 73086
+      type: double
+      units: W
+    - key: zone.fresh_vent_load_s 8674
+      targets:
+      - Envelope/0/zone.fresh_vent_load_s 8674
+      type: double
+      units: W
+    - key: zone.fresh_vent_load_s 8677
+      targets:
+      - Envelope/0/zone.fresh_vent_load_s 8677
+      type: double
+      units: W
+    - key: zone.fresh_vent_load_s 8680
+      targets:
+      - Envelope/0/zone.fresh_vent_load_s 8680
+      type: double
+      units: W
+    - key: zone.fresh_vent_load_s 8692
+      targets:
+      - Envelope/0/zone.fresh_vent_load_s 8692
+      type: double
+      units: W
+    - key: zone.fresh_vent_load_s 73086
+      targets:
+      - Envelope/0/zone.fresh_vent_load_s 73086
+      type: double
+      units: W
+  pub:
+    0:
+    - key: electrical_power
+      type: double
+      units: W
+fed_flags:
+  TERMINATE_ON_ERROR: true
+  UNINTERRUPTIBLE: false
+fed_info:
+  core_name: hvac_core
+  core_type: zmq
+fed_name: Hvac
+model_conf:
+  generic:
+    class_name: Hvac
+    model_script: dummy_models/Hvac_dummy.py
+    n_instances: 1
+  model_specific_additional: {}
+  model_specific_required:
+    init_state: {}
+    inputs_k:
+    - zone.vent_q 8674
+    - zone.vent_q 8677
+    - zone.vent_q 8680
+    - zone.vent_q 8692
+    - zone.vent_q 73086
+    - zone.fresh_vent_load_s 8674
+    - zone.fresh_vent_load_s 8677
+    - zone.fresh_vent_load_s 8680
+    - zone.fresh_vent_load_s 8692
+    - zone.fresh_vent_load_s 73086
+    outputs_k:
+    - electrical_power
+    params: {}

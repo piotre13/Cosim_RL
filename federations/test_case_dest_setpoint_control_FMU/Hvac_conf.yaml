@@ -1,0 +1,49 @@
+fed_conf:
+  RL_training: true
+  episode_period: 172800
+  memory: []
+  reset_period: 7776000
+  sim_params:
+    end_period: 1562976000
+    offset: 0.3
+    real_period: 600
+    reset_period: 7776000
+    sim_period: 600
+    start_time: '2015-01-01 00:00:00'
+  training_episodes: 9000
+fed_connections:
+  end:
+    0:
+    - ep_name: reset_now
+  inp:
+    0:
+    - key: heating_target
+      targets:
+      - Envelope/0/HeatingLoadTarget
+      type: double
+      units: W
+  pub:
+    0:
+    - key: electrical_power
+      type: double
+      units: W
+fed_flags:
+  TERMINATE_ON_ERROR: true
+  UNINTERRUPTIBLE: false
+fed_info:
+  core_name: hvac_core
+  core_type: zmq
+fed_name: Hvac
+model_conf:
+  generic:
+    class_name: Hvac
+    model_script: dummy_models/hvac_caseA.py
+    n_instances: 1
+  model_specific_additional: {}
+  model_specific_required:
+    init_state: {}
+    inputs_k:
+    - heating_target
+    outputs_k:
+    - electrical_power
+    params: {}

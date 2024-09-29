@@ -10,7 +10,7 @@ sys.path.append('models/')
 
 logger = logging.getLogger(__name__)
 logger.addHandler(logging.StreamHandler())
-logger.setLevel(logging.INFO)
+logger.setLevel(logging.CRITICAL)
 #
 #
 # class CustomEnv():
@@ -54,12 +54,15 @@ class Federate_RL_Agent(Federate):
         self.granted_period = h.helicsFederateGetCurrentTime(self._fed)
         self.ts = 0
         while self.granted_period < self.end_period:  # start the wrapping while loop
+            if (self.ts/int(self.end_period/self.real_period))*100 in [10, 20, 30, 40 ,50 ,60, 70, 80, 90, 100]:
+                print(f"Simulation progress == {int((self.ts/int(self.end_period/self.real_period))*100)} %")
+                logger.critical(f"TS:{self.ts}")
 
-
+            logger.debug("==============================================================================================================================")
             if self.ts > self.train_end_ts or self.granted_period > self.train_end_period:      # ridondante
                 self.training = False
                 setattr(self.model, 'training', False)
-                logger.info("Started TESTING phase!")
+                # logger.info("Started TESTING phase!")
                 # setattr(self.model, '') # model does not have the training flag
 
             # ++++++++++++++++++ setting time synchronization #no offset
@@ -68,7 +71,7 @@ class Federate_RL_Agent(Federate):
             logger.info(
                 f"************* Requesting time {requested_period} -- Granted time {self.granted_period} **************")
             self.current_period = h.helicsFederateGetCurrentTime(self._fed) - self.offset
-            logger.debug(f"current time: {self.current_period}\n")
+            # logger.debug(f"current time: {self.current_period}\n")
             # *****************************************************************************************
 
             # getting inputs & messages
@@ -89,7 +92,7 @@ class Federate_RL_Agent(Federate):
                 # logger.debug("Agent updated!")
             #getting federate inputs as observation
             action = self.model.predict_action() # predict actions (model call) # normalized
-            logger.debug(f"Action chosen {action}")
+            # logger.debug(f"Action chosen {action}")
 
             # publish actions  TODO should add a non HARDCODED way and standard to put actions inside out_values
             self.out_values[0] = {} #remove only for debugging
@@ -98,11 +101,12 @@ class Federate_RL_Agent(Federate):
             # self.out_values[0]['vent_q']= action
             # self.out_values[0]['tset_min']= action
             # self.out_values[0]['tset_max']= action
-            logger.debug(f"self.out_values {self.out_values}")
+            # logger.debug(f"self.out_values {self.out_values}")
 
             self._publish_outputs()
 
             self.ts+=1
+            logger.debug("==============================================================================================================================")
 
         self.destroy_federate()
 

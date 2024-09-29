@@ -1,0 +1,132 @@
+fed_conf:
+  RL_training: true
+  episode_period: 172800
+  memory: []
+  reset_period: 7776000
+  sim_params:
+    end_period: 1562976000
+    offset: 0.1
+    real_period: 600
+    reset_period: 7776000
+    sim_period: 600
+    start_time: '2015-01-01 00:00:00'
+  training_episodes: 9000
+fed_connections:
+  end:
+    0:
+    - ep_name: reset_now
+  inp:
+    0:
+    - key: drybulb
+      targets:
+      - Weather/0/drybulb
+      type: double
+      units: C
+    - key: relhum
+      targets:
+      - Weather/0/relhum
+      type: double
+      units: ''
+    - key: glohorzrad
+      targets:
+      - Weather/0/glohorzrad
+      type: double
+      units: W/m2
+    - key: setpoint
+      targets:
+      - Controller/0/tSetMax
+      type: double
+      units: C
+    - key: on_off
+      targets:
+      - Controller/0/ac_on_off
+      type: double
+      units: ''
+    - key: hour_of_day
+      targets:
+      - Controller/0/hour_of_day
+      type: double
+      units: ''
+    - key: t_zone
+      targets:
+      - Envelope/0/TBuilding
+      type: double
+      units: C
+    - key: load_s
+      targets:
+      - Envelope/0/HeatingLoadTarget
+      type: double
+      units: W
+  pub:
+    0:
+    - key: tset
+      type: double
+      units: C
+fed_flags:
+  TERMINATE_ON_ERROR: true
+  UNINTERRUPTIBLE: false
+fed_info:
+  core_name: controllerRL_core
+  core_type: zmq
+fed_name: RLController
+model_conf:
+  RL_params:
+    BATCH_SIZE: 500
+    EPISODES: 30
+    EPS_DECAY: 500
+    EPS_END: 0.05
+    EPS_START: 0.9
+    GAMMA: 0.99
+    LR: 1e-4
+    REPLAY_MEMORY: 15000
+    TAU: 0.005
+    act_space:
+      dtype:
+      - int
+      high:
+      - 3
+      low:
+      - -3
+      size: 1
+    action_vars:
+    - tset
+    obs_space:
+      drybulb:
+        range:
+        - -30
+        - 50
+        type: continous
+      setpoint:
+        range:
+        - 10
+        - 30
+        type: continous
+      t_zone:
+        range:
+        - 10
+        - 30
+        type: continous
+    observation_vars:
+    - drybulb
+    - setpoint
+    - t_zone
+    reward_vars:
+    - t_zone
+    - load_s
+  generic:
+    class_name: DQN_Agent
+    model_script: RL_models/DQN_FMU.py
+    n_instances: 1
+  model_specific_required:
+    init_state:
+      out.tSetMax:
+      - 20.0
+      out.tSetMin:
+      - 20.0
+    inputs_k:
+    - drybulb
+    - setpoint
+    outputs_k:
+    - schedule.ac_t_max 8674
+    - schedule.ac_t_min 8674
+    params: {}

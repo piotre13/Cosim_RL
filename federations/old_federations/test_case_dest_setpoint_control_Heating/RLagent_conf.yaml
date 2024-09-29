@@ -4,11 +4,11 @@ fed_conf:
       start_time: '2015-01-01 00:00:00'
       sim_period: 3600 # in seconds the period that will be set in fed properties
       real_period: 3600 # in seconds
-      end_period: 63072000 # in seconds or datetime
+      end_period: 28512000 #126144000 # in seconds or datetime
       offset: 0.1
   RL_training: true
-  training_episodes: 100
-  episode_period : 24
+  training_episodes: 300 #1095
+  episode_period: 86400 # in seconds
   memory : [] # possibilities None no memory, [empty list] memorize all
 
 fed_info:
@@ -54,7 +54,7 @@ model_conf:
     obs_space:
       size: 4
       low: [-20,0,0,14]
-      high: [50,2000,100,26]
+      high: [50,2000,100,28]
       dtype: [float.32,float32,float.32,float.32]
     act_space:
       size: 1
@@ -125,16 +125,11 @@ fed_connections:
         "units": "W",
         "multi_input_handling_method": "sum",
         "targets": [
-          "Envelope/0/zone.load_s 8674",
-          "Envelope/0/zone.load_s 8677",
-          "Envelope/0/zone.load_s 8680",
-          "Envelope/0/zone.load_s 8692",
-          "Envelope/0/zone.load_s 73086",
-          "Envelope/0/zone.fresh_vent_load_s 8674",
-          "Envelope/0/zone.fresh_vent_load_s 8677",
-          "Envelope/0/zone.fresh_vent_load_s 8680",
-          "Envelope/0/zone.fresh_vent_load_s 8692",
-          "Envelope/0/zone.fresh_vent_load_s 73086"
+          "Envelope/0/zone.vent_q 8674",
+          "Envelope/0/zone.vent_q 8677",
+          "Envelope/0/zone.vent_q 8680",
+          "Envelope/0/zone.vent_q 8692",
+          "Envelope/0/zone.vent_q 73086"
         ]
       }
     ]

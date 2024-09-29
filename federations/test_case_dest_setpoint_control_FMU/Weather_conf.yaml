@@ -1,0 +1,72 @@
+fed_conf:
+  RL_training: true
+  episode_period: 172800
+  memory:
+  - glohorzrad
+  - difhorzrad
+  - drybulb
+  - wind_speed
+  reset_period: 7776000
+  sim_params:
+    end_period: 1562976000
+    offset: 0
+    real_period: 600
+    reset_period: 7776000
+    sim_period: 600
+    start_time: '2015-01-01 00:00:00'
+  training_episodes: 9000
+fed_connections:
+  end:
+    0:
+    - ep_name: reset_now
+  inp: {}
+  pub:
+    0:
+    - key: drybulb
+      type: double
+      units: C
+    - key: glohorzrad
+      type: double
+      units: W/m2
+    - key: difhorzrad
+      type: double
+      units: W/m2
+    - key: wind_speed
+      type: double
+      units: ''
+    - key: relhum
+      type: double
+      units: ''
+fed_flags:
+  SOURCE_ONLY: false
+  TERMINATE_ON_ERROR: true
+fed_info:
+  core_name: weather_core
+  core_type: zmq
+fed_name: Weather
+model_conf:
+  generic:
+    class_name: CSV
+    model_script: Csv_out_trainer.py
+    n_instances: 1
+  model_specific_additional: {}
+  model_specific_required:
+    init_state: {}
+    inputs_k: []
+    outputs_k:
+    - drybulb
+    - glohorzrad
+    - difhorzrad
+    - wind_speed
+    - relhum
+    params:
+      additioner:
+      - drybulb: 0.0
+      csv_file:
+      - data/meteo_frassinetto_winter90d.csv
+      multiplier:
+      - difhorzrad: 1.0
+        drybulb: 1.0
+        glohorzrad: 1.0
+        relhum: 1.0
+        wind_speed: 1.0

@@ -23,7 +23,7 @@ pp = pprint.PrettyPrinter(indent=4)
 
 logger = logging.getLogger(__name__)
 logger.addHandler(logging.StreamHandler())
-logger.setLevel(logging.INFO)
+logger.setLevel(logging.DEBUG)
 
 
 def normalize (x, min, max):
@@ -156,8 +156,9 @@ class DQN_Agent(RL_Base):
             self.memory = {"reward":[],
                             "cum_reward":[],
                            'eps_th':[],
-                           'C1_temp':[],
-                           'C2_power':[],
+                           'R_preheating':[],
+                           'R_comfort':[],
+                           'R_energy':[],
                            'best_reward':[],
                            'action_exp':[],
                            'action_opt': [],
@@ -398,38 +399,55 @@ class DQN_Agent(RL_Base):
         # on_off = self.observation_prev_dict['on_off']
         hour = self.observation_prev_dict['hour_of_day']
 
+        # penalty_comfort = -1
+        # penalty_energy = -0.0001
+        #
+        #
+        #
+        #
+        # # if 0<hour<6:
+        # #     R_comfort = 0
+        # # else:
+        #
+        # R_comfort = abs(t_zone-tset)
+        #
+        # R_power = energy/((t_zone-text)**2)
+        #
+        #
+        # # if t_zone_prev>tset or 0<=hour<=6 :
+        # #     Dt = 0
+        # #     if 0<=hour<=6:
+        # #         penalty_energy = -0.000001
+        # # else:
+        # #     Dt = (t_zone-tset)**2
+        # # # R_comfort = (1 / c) * (Dt)**4
+        # # R_comfort = Dt
+        # # R_power = energy #/ abs(tset - text) if abs(tset - text)!=0 else energy
+        # #
+        #
+        # r = penalty_comfort * R_comfort + penalty_energy * R_power
+        reward = 0
 
-        R_comfort = 0
-        R_energy = 0
-        penalty_comfort = -1
-        penalty_energy = -0.00001
-
-        if 7<=hour<=20:
-            R_comfort = abs(t_zone-tset)
-            try:
-                R_energy = energy/abs(text-tset)
-            except:
-                R_energy=1
-        elif 4<=hour<=6:
-            R_comfort = 0
-            try:
-                R_energy = energy/abs(text-self.real_action)
-            except:
-                R_energy = 1
+        # Reward for maintaining comfort
+        comfort_reward = 1 - abs(t_zone - 20)  # Reward for being close to setpoint
+        if 0<=hour<=3 or 21<=hour<=23:
+            comfort_reward = 0
+        # Reward for preheating during periods of lower energy costs
+        if 4<=hour<=6:  # Example threshold for preheating
+            preheating_reward = max(0, 3 + self.real_action)  # Encourage preheating
         else:
-            R_comfort=0
-            try:
-                R_energy = energy/abs(text-tset)
-            except:
-                R_energy =1
+            preheating_reward = 0
 
-        r = penalty_comfort * R_comfort + penalty_energy * R_energy
+        # Penalize excessive energy consumption
+        energy_penalty = -0.000001 * energy  # Penalize energy consumption
 
-
-        logger.debug(f"calculating rewards t_zone after action:{t_zone} ---- t_zone pre action :{t_zone_prev}, at hour = {hour}, energy=  {energy}, with action {self.real_action}")
-        logger.debug(f"REWARD: {r}, C1temp = {penalty_comfort*R_comfort}, C2power = {penalty_energy*R_energy}")
-        self.memory['C1_temp'].append(penalty_comfort*R_comfort)
-        self.memory['C2_power'].append(penalty_energy*R_energy)
+        # Total reward
+        r = comfort_reward + preheating_reward + energy_penalty
+        # logger.debug(f"calculating rewards t_zone after action:{t_zone} ---- t_zone pre action :{t_zone_prev}, at hour = {hour}, energy=  {energy}, with action {self.real_action}")
+        # logger.debug(f"REWARD: {r}, C1temp = {penalty_comfort*R_comfort}, C2power = {penalty_energy*R_power}")
+        self.memory['R_comfort'].append(comfort_reward)
+        self.memory['R_energy'].append(energy_penalty)
+        self.memory['R_preheating'].append(preheating_reward)
 
         return r
 

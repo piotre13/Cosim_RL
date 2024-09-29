@@ -4,9 +4,11 @@ fed_conf:
       start_time: '2015-01-01 00:00:00'
       sim_period: 3600 # in seconds the period that will be set in fed properties
       real_period: 3600 # in seconds
-      end_period: 63072000 # in seconds or datetime
+      end_period: 28512000 #126144000 # in seconds or datetime
       offset: 0.0
   RL_training: true
+  training_episodes: 300 #1095
+  episode_period: 86400 # in seconds
   memory : [] # possibilities None no memory, [empty list] memorize all
 
 fed_info:
@@ -21,7 +23,7 @@ fed_flags:
 
 model_conf:
   generic:
-    model_script: dummy_models/Controller_dummy.py
+    model_script: dummy_models/Controller_dummy20.py
     class_name: Controller
     n_instances: 1
 
