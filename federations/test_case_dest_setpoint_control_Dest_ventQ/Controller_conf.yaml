@@ -3,15 +3,16 @@ fed_conf:
   episode_period: 864000
   memory:
   - hour_of_day
+  - tSetMax
   reset_period: 7776000
   sim_params:
-    end_period: 7778592000
+    end_period: 5184000
     offset: 0
     real_period: 3600
     reset_period: 2592000
     sim_period: 3600
     start_time: '2015-01-01 00:00:00'
-  training_episodes: 9000
+  training_episodes: 3
 fed_connections:
   end:
     0:

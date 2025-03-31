@@ -1,6 +1,6 @@
 import os
 import sys
-sys.path.append("C:\\Users\\Pietro\\Code\\Cosim_RL\\models\\RL_models")
+sys.path.append("/home/pietrorm/Documents/CODE/Cosim_RL/models/RL_models")
 import torch as T
 import torch.nn.functional as F
 import numpy as np
@@ -17,7 +17,7 @@ pp = pprint.PrettyPrinter(indent=4)
 
 logger = logging.getLogger(__name__)
 logger.addHandler(logging.StreamHandler())
-logger.setLevel(logging.CRITICAL)
+logger.setLevel(logging.DEBUG)
 
 
 def normalize (x, min, max):
@@ -65,7 +65,7 @@ class SAC_agent(RL_Base):
         self.best_model = None
         self.switch_tobestmodel = False # questo serve solo fino a che non ho embeddato tutti i trigger dovuti al cambio tra training e testing in una callback (non fa nulla che evitare che il best model sia fissato piiu di una volta)
         self.training = True
-        self.best_reward = -10000000
+        self.best_reward = -10000000000
         self.best_inst_rew = -10000000
         self.best_param = None
         self.cum_reward = [self.best_reward]
@@ -113,7 +113,7 @@ class SAC_agent(RL_Base):
         state = self.observation_
         next_state = self.observation
         reward = self.reward
-        action = self.action
+        action = self.real_action
         done = done# todo update the logic for the reset
         logger.debug("---------------- UPDATING MEMORY")
         logger.debug(f"\n Updating the replay memory with the following information:\n"
@@ -168,8 +168,8 @@ class SAC_agent(RL_Base):
         if self.steps_done < 2:
             return
 
-        if self.steps_done%720 == 0:
-            done = True
+        # if self.steps_done%720 == 0:
+
 
         inst_reward = self.estimate_reward(reward_vars) #*-1  # calculating step reward
         self.reward = inst_reward
@@ -178,15 +178,20 @@ class SAC_agent(RL_Base):
 
 
         if len(self.cum_reward) == self.episode_ts:  # here an episode has been completed
+            done = True
             # self.memory['cum_reward'].append(sum(self.cum_reward)/len(self.cum_reward)) # todo MEAN
             self.memory['cum_reward'].append(sum(self.cum_reward))  # todo SUM
             self.cum_reward = []
 
-            # saving best model based on the best episopde reward
+
+
             avg_score = np.mean(np.array(self.memory['cum_reward'][-100:]))
+
+            # saving best model based on the best episopde reward
             # done = True # TODO should coincide with the reset?
             # if self.best_reward < self.memory['cum_reward'][-1] and self.training and self.steps_done > (
             # self.train_end_ts) * 0.6:  # todo how to get the best model
+            logger.debug(f"average_score of cumulative reward: {avg_score}")
             if self.best_reward < avg_score and self.training and self.steps_done>0:# and self.steps_done > (self.train_end_ts) * 0.6:
                 # self.best_reward = self.memory['cum_reward'][-1]
                 self.best_reward = avg_score
@@ -201,6 +206,9 @@ class SAC_agent(RL_Base):
                 #            'best_model_%s' % self.GAMMA)  # saves into a file but we eant to keep becasue the testing happen without stopping the cosim
                 self.sac.save_models()
                 logger.info("BEST MODEL SAVED")
+                logger.debug(f"Best model saved with reward: {self.best_reward}")
+                logger.debug(f"Switched to best model: {self.switch_tobestmodel}")
+                logger.debug(f"Training phase: {self.training}")
 
         # logger.debug(f"reward{self.reward}, reward type {type(self.reward)}")
         if self.training and not self.steps_done < 2:  # push in replay memory only during training
@@ -213,13 +221,9 @@ class SAC_agent(RL_Base):
             self.sac.load_models()
             self.switch_tobestmodel = True
 
-
         logger.debug(f"--------------- EVALUATE AGENT")
         logger.debug(f"Instantaneous Reward = {self.reward} type={type(self.reward)}")
-        logger.debug (f"Training phase: {self.training}")
-        logger.debug (f"Switched to best model: {self.switch_tobestmodel}")
-        logger.debug (f"Cumulative reward list: {self.cum_reward}")
-        logger.debug (f"Best Score: {self.best_reward}")
+        logger.debug(f"cum_reward len:{len(self.cum_reward)}, cum_reward = {self.cum_reward}")
         logger.debug(f"------------------------------")
 
     def estimate_reward(self, reward_vars):
@@ -240,7 +244,7 @@ class SAC_agent(RL_Base):
 
 
         penalty_comfort = -1e-1
-        penalty_energy = -1e-2
+        penalty_energy = -1e-3
         #
         # if hour == 1:
         #     if t_zone>21:
@@ -254,8 +258,10 @@ class SAC_agent(RL_Base):
 
         R_comfort = abs(t_zone-tset)
         R_energy = energy/3600
+        # if hour !=1:
+        #     R_comfort = 0
 
-        r = penalty_comfort * R_comfort + penalty_energy * R_energy
+        r = penalty_comfort * R_comfort #+ penalty_energy * R_energy
 
         # r = penalty_comfort * (t_zone-20)**2
 

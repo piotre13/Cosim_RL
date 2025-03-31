@@ -1,0 +1,55 @@
+fed_conf:
+  memory:
+  - glohorzrad
+  - difhorzrad
+  - drybulb
+  - wind_speed
+  sim_params:
+    end_period: 2505600.0
+    offset: 0
+    real_period: 900
+    sim_period: 900
+    start_time: '2015-01-01 00:00:00'
+fed_connections:
+  end: {}
+  inp: {}
+  pub:
+    0:
+    - key: t_ext
+      type: double
+      units: C
+    - key: t_dewpoint
+      type: double
+      units: C
+    - key: humidity
+      type: double
+      units: None
+fed_flags:
+  SOURCE_ONLY: true
+  TERMINATE_ON_ERROR: true
+fed_info:
+  core_name: weather_core
+  core_type: zmq
+fed_name: Weather
+model_conf:
+  generic:
+    class_name: CSV
+    model_script: Csv_reader.py
+    n_instances: 1
+  model_specific_additional: {}
+  model_specific_required:
+    init_state: {}
+    inputs_k: []
+    outputs_k:
+    - humidity
+    - t_ext
+    - t_dewpoint
+    params:
+      additioner:
+      - t_ext: 0.0
+      csv_file:
+      - data/meteo_mosaik.csv
+      multiplier:
+      - humidity: 1.0
+      - t_ext: 1.0
+      - t_dewpoint: 1.0

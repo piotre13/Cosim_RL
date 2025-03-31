@@ -15,7 +15,7 @@ sys.path.append('models/')
 
 logger = logging.getLogger(__name__)
 logger.addHandler(logging.StreamHandler())
-logger.setLevel(logging.CRITICAL)
+logger.setLevel(logging.DEBUG)
 logger.debug(f"executable {sys.executable}")
 
 

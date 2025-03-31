@@ -12,53 +12,54 @@ def moving_average(x, w):
     return np.convolve(x, kernel, 'same')
 
 
-casestudy = "dest_setpoint_myrew_gamma0.95"
+casestudy = "/home/pietrorm/Documents/CODE/Cosim_RL/federations/test_case_dest_setpoint_control_Dest_ventQ/results"
 
 weather = read_json(os.path.join(casestudy,'Weather.json'))['Weather/0/CSV']
 env_data =read_json(os.path.join(casestudy,'Envelope.json'))['Envelope/0/Envelope']
 rlagent =read_json(os.path.join(casestudy,'RLController.json'))['DQN_agent']
-baseline = read_json("baselineDest\\Envelope.json")['Envelope/0/Envelope']
-t1B = baseline['outputs']['zone.ac_t 8674']
-t2B = baseline['outputs']['zone.ac_t 8677']
-t3B = baseline['outputs']['zone.ac_t 8680']
-t4B = baseline['outputs']['zone.ac_t 8692']
-t5B = baseline['outputs']['zone.ac_t 73086']
-q1B = baseline['outputs']['zone.vent_q 8674']
-q2B = baseline['outputs']['zone.vent_q 8677']
-q3B = baseline['outputs']['zone.vent_q 8680']
-q4B = baseline['outputs']['zone.vent_q 8692']
-q5B = baseline['outputs']['zone.vent_q 73086']
-
-q_totB = [sum(x) for x in zip(*[q1B,q2B,q3B,q4B,q5B])]
-
-
-
-#learning curves
-
-cum_reward = rlagent['cum_reward']
-cum_rew_avg = moving_average(cum_reward,300)
-
-
-
-#******************************Learning******************************************************************************************************
-fig, ax = plt.subplots()
-fig.set_size_inches(6, 4)  # Set the figure size
-# Plotting the data with customizations
-ax.plot(cum_reward[:-300], color='grey', label='cumulative reward')
-ax.plot(cum_rew_avg[:-300], color='orange', linestyle='--', label='rolling mean')
-# Adding labels and legend
-ax.set_xlabel('number episodes', fontsize=12)
-ax.set_ylabel('cumulative reward value', fontsize=12)
-ax.legend()
-# Set grid and ticks
-ax.grid(True, linestyle='--', alpha=0.6)
-ax.tick_params(axis='both', which='major', labelsize=10)
-# Save the plot as a high-quality image for publication
-plt.tight_layout()
-# plt.show()
-plt.savefig(f'cum_reward_{casestudy}.png', dpi=300)  # Save the plot as a PNG with high resolution
-plt.clf()
-plt.close()
+casestudy='temporary'
+#baseline = read_json("baselineDest\\Envelope.json")['Envelope/0/Envelope']
+# t1B = baseline['outputs']['zone.ac_t 8674']
+# t2B = baseline['outputs']['zone.ac_t 8677']
+# t3B = baseline['outputs']['zone.ac_t 8680']
+# t4B = baseline['outputs']['zone.ac_t 8692']
+# t5B = baseline['outputs']['zone.ac_t 73086']
+# q1B = baseline['outputs']['zone.vent_q 8674']
+# q2B = baseline['outputs']['zone.vent_q 8677']
+# q3B = baseline['outputs']['zone.vent_q 8680']
+# q4B = baseline['outputs']['zone.vent_q 8692']
+# q5B = baseline['outputs']['zone.vent_q 73086']
+#
+# q_totB = [sum(x) for x in zip(*[q1B,q2B,q3B,q4B,q5B])]
+#
+#
+#
+# #learning curves
+#
+# cum_reward = rlagent['cum_reward']
+# cum_rew_avg = moving_average(cum_reward,300)
+#
+#
+#
+# #******************************Learning******************************************************************************************************
+# fig, ax = plt.subplots()
+# fig.set_size_inches(6, 4)  # Set the figure size
+# # Plotting the data with customizations
+# ax.plot(cum_reward[:-300], color='grey', label='cumulative reward')
+# ax.plot(cum_rew_avg[:-300], color='orange', linestyle='--', label='rolling mean')
+# # Adding labels and legend
+# ax.set_xlabel('number episodes', fontsize=12)
+# ax.set_ylabel('cumulative reward value', fontsize=12)
+# ax.legend()
+# # Set grid and ticks
+# ax.grid(True, linestyle='--', alpha=0.6)
+# ax.tick_params(axis='both', which='major', labelsize=10)
+# # Save the plot as a high-quality image for publication
+# plt.tight_layout()
+# # plt.show()
+# plt.savefig(f'cum_reward_{casestudy}.png', dpi=300)  # Save the plot as a PNG with high resolution
+# plt.clf()
+# plt.close()
 #************************************************************************************************************************************
 
 
@@ -73,20 +74,20 @@ t4 = env_data['outputs']['zone.ac_t 8692']
 t5 = env_data['outputs']['zone.ac_t 73086']
 
 
-q1 = env_data['outputs']['zone.vent_q 8674']
-q2 = env_data['outputs']['zone.vent_q 8677']
-q3 = env_data['outputs']['zone.vent_q 8680']
-q4 = env_data['outputs']['zone.vent_q 8692']
-q5 = env_data['outputs']['zone.vent_q 73086']
+# q1 = env_data['outputs']['zone.vent_q 8674']
+# q2 = env_data['outputs']['zone.vent_q 8677']
+# q3 = env_data['outputs']['zone.vent_q 8680']
+# q4 = env_data['outputs']['zone.vent_q 8692']
+# q5 = env_data['outputs']['zone.vent_q 73086']
 
-q_tot = [sum(x) for x in zip(*[q1,q2,q3,q4,q5])]
+#q_tot = [sum(x) for x in zip(*[q1,q2,q3,q4,q5])]
 
 
 
 #plot temperatures
 room_temps=[t1,t2,t3,t4,t5]
 
-num_days = 2
+num_days = 15
 start = 2
 start_hour = start * 24
 hours_per_day = 24
@@ -131,8 +132,8 @@ ax.legend(ncol = num_days, loc='upper left')
 ax.set_xticks(hour_ticks)
 # Set the xtick labels
 ax.set_xticklabels(hour_labels * num_days, rotation=45)
-ax3.plot(q_tot[start_hour:start_hour+num_days*24], color='red', label='Energy RL')
-ax3.plot(q_totB[start_hour:start_hour+num_days*24], color='blue', label='Energy baseline')
+#ax3.plot(q_tot[start_hour:start_hour+num_days*24], color='red', label='Energy RL')
+#ax3.plot(q_totB[start_hour:start_hour+num_days*24], color='blue', label='Energy baseline')
 ax3.set_xlabel('Time (hours)')
 ax3.set_ylabel('Energy (W/h)')
 # ax3.set_title('Energy consumption profile')
@@ -156,7 +157,7 @@ plt.close()
 fig, (ax, ax3) = plt.subplots(2, 1, figsize=(10, 8))
 cmap = plt.get_cmap('inferno')  # Choose a colormap (e.g., 'viridis')
 # Plotting the first temperature profile
-ax.plot(x, t1B[start_hour:start_hour+num_days*24], color = 'blue',label='room 3 -  baseline')
+#ax.plot(x, t1B[start_hour:start_hour+num_days*24], color = 'blue',label='room 3 -  baseline')
 ax.plot(x, t1[start_hour:start_hour+num_days*24], color = 'red',label='room 3 -  RL')
 ax.axhspan(19, 21.0, color='orange', alpha=0.5, label = "acceptable range")
 
@@ -186,8 +187,8 @@ ax.legend(ncol = 4, loc='upper center', bbox_to_anchor=(0.5, 1.15))
 ax.set_xticks(hour_ticks)
 # Set the xtick labels
 ax.set_xticklabels(hour_labels * num_days, rotation=45)
-ax3.plot(q1[start_hour:start_hour+num_days*24], color='red', label='Energy RL room 1')
-ax3.plot(q1B[start_hour:start_hour+num_days*24], color='blue', label='Energy baseline room 1')
+#ax3.plot(q1[start_hour:start_hour+num_days*24], color='red', label='Energy RL room 1')
+#ax3.plot(q1B[start_hour:start_hour+num_days*24], color='blue', label='Energy baseline room 1')
 ax3.set_xlabel('Time (hours)')
 ax3.set_ylabel('Energy (W/h)')
 # ax3.set_title('Energy consumption profile')
@@ -247,7 +248,7 @@ ax.legend(ncol=4, loc='upper left',framealpha=1)
 
 
 
-ax3.plot(q_tot, color='red', label='Energy RL')
+#ax3.plot(q_tot, color='red', label='Energy RL')
 ax3.set_xlabel('Time (hours)')
 ax3.set_ylabel('Energy (W/h)')
 # ax3.set_title('Energy consumption profile')

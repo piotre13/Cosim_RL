@@ -1,3 +1,3 @@
 
-FEDERATIONS_dir = "C:\\Users\\Pietro\\Code\\Cosim_RL\\federations"
-MODELS_basedir = "C:\\Users\\Pietro\\Code\\Cosim_RL\\models"
+FEDERATIONS_dir = "/home/pietrorm/Documents/CODE/Cosim_RL/federations"
+MODELS_basedir = "/home/pietrorm/Documents/CODE/Cosim_RL/models"

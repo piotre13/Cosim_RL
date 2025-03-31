@@ -14,7 +14,7 @@ def moving_average(x, w):
 
 
 # baseline =  read_json("old_tests/baseline\\RLController.json")
-data = read_json("C:\\Users\\Pietro\\Code\\Cosim_RL\\federations\\test_case_dest_setpoint_control_Dest_ventQ\\results\\RLController.json")
+data = read_json("../federations/dest_ventq_new/results/RLController.json")
 # data = read_json("C:\\Users\\Pietro\\Code\\Cosim_RL\\Analysis\\finalfinal\\dest_setpoint_myrew_gamma0.9\\RLController.json")
 
 # envelope_bas = read_json("C:\\Users\\Pietro\\Code\\Cosim_RL\\federations\\test_case_dest_setpoint_control_Dest\\results\\Envelope.json")

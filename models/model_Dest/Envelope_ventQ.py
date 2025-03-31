@@ -85,7 +85,7 @@ class Envelope (Model):
 
         logger.debug(f"## args for run {args} ##")
 
-        self.proc = subprocess.Popen(args=args, stdout=subprocess.PIPE, stdin=subprocess.PIPE)
+        self.proc = subprocess.Popen(args=args, stdout=subprocess.PIPE, stdin=subprocess.PIPE, stderr=subprocess.PIPE,text=True)
 
         # send command for require and outputs TOdo hardcoded generalize
         cmd_list = self.commands['init']

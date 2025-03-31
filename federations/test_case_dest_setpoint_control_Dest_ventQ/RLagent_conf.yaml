@@ -3,13 +3,13 @@ fed_conf:
   episode_period: 864000
   memory: []
   sim_params:
-    end_period: 7778592000
+    end_period: 5184000
     offset: 0.1
     real_period: 3600
     reset_period: 2592000
     sim_period: 3600
     start_time: '2015-01-01 00:00:00'
-  training_episodes: 9000
+  training_episodes: 3
 fed_connections:
   end:
     0:
@@ -86,7 +86,7 @@ fed_info:
 fed_name: RLController
 model_conf:
   RL_params:
-    BATCH_SIZE: 7200
+    BATCH_SIZE: 3000
     EPISODES: 30
     EPS_DECAY: null
     EPS_END: 0.05

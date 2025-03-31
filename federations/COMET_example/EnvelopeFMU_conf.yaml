@@ -1,0 +1,64 @@
+fed_conf:
+  memory: []
+  sim_params:
+    end_period: 2505600.0
+    offset: 0
+    real_period: 600
+    sim_period: 600
+    start_time: '2015-01-01 00:00:00'
+fed_connections:
+  end: {}
+  inp:
+    0:
+    - key: Tbulb
+      targets:
+      - Weather/0/t_ext
+      type: double
+      units: C
+    - key: Tdew
+      targets:
+      - Weather/0/t_dewpoint
+      type: double
+      units: C
+    - key: RH
+      targets:
+      - Weather/0/humidity
+      type: double
+      units: None
+  pub:
+    0:
+    - key: Tamb
+      type: double
+      units: C
+    - key: TRooMea
+      type: double
+      units: W
+fed_flags:
+  TERMINATE_ON_ERROR: true
+  UNINTERRUPTIBLE: false
+fed_info:
+  core_name: envelope_core
+  core_type: zmq
+fed_name: Envelope
+model_conf:
+  generic:
+    class_name: FMU
+    model_script: FMU_model.py
+    n_instances: 1
+  model_specific_additional:
+    fmu:
+    - building_tia_linux
+    max_sim_period:
+    - 31536000
+  model_specific_required:
+    init_state: {}
+    inputs_k:
+    - Tbulb
+    - Tdew
+    - RH
+    - Peo
+    - Q
+    outputs_k:
+    - Tamb
+    - TRooMea
+    params: {}

@@ -99,7 +99,7 @@ app.layout = html.Div(className='container-fluid', children=
               [Input('tabs', 'value')])
 def update_list_scenario(tab):
     if tab == 'data':
-        path = 'C:\\Users\\Pietro\\Code\\Cosim_RL\\federations'
+        path = '/home/pietrorm/Documents/CODE/Cosim_RL/federations'
         outputs_db_list = os.listdir(path)
         return [directory for directory in outputs_db_list if os.path.isdir(os.path.join(path, directory))]
     else:
@@ -113,7 +113,7 @@ def update_list_scenario(tab):
 def selection_db(db):
 
     if db is not None:
-        path = 'C:\\Users\\Pietro\\Code\\Cosim_RL\\federations'
+        path = '/home/pietrorm/Documents/CODE/Cosim_RL/federations'
         res_path = os.path.join(path, db, 'results')
 
         #return [[{'label': s, 'value': s} for s in entities_attrs_dict.keys()], ent_json]

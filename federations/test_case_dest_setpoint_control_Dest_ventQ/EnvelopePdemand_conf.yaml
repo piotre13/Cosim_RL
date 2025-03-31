@@ -5,13 +5,13 @@ fed_conf:
   - vent_q
   - zone.ac_t 8674
   sim_params:
-    end_period: 7778592000
+    end_period: 5184000
     offset: 0.2
     real_period: 3600
     reset_period: 2592000
     sim_period: 3600
     start_time: '2015-01-01 00:00:00'
-  training_episodes: 9000
+  training_episodes: 3
 fed_connections:
   end:
     0:
@@ -105,13 +105,13 @@ fed_name: Envelope
 model_conf:
   generic:
     class_name: Envelope
-    model_script: model_Dest/Envelope_ventQ.py
+    model_script: model_Dest/Envelope_ventQ_linux.py
     n_instances: 1
   model_specific_additional:
     casefile:
-    - C:\Users\Pietro\Code\Cosim_RL\models\model_Dest\DestKernel\5rooms.db
+    - /home/pietrorm/Documents/CODE/Cosim_RL/models/model_Dest/DestKernel/5rooms.db
     executable:
-    - C:\Users\Pietro\Code\Cosim_RL\models\model_Dest\DestKernel\bterminal.exe
+    - /home/pietrorm/Documents/CODE/Cosim_RL/models/model_Dest/DestKernel/bterminal_older
     required:
     - - zone.load_s
       - zone.fresh_vent_load_s

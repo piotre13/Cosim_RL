@@ -35,6 +35,8 @@ def main_run(run_path):
     exec = 'helics'
     args = ['run', '--path='+run_path]
     command = 'helics -v run --path='+run_path
+
+    command = ["helics", "-v", "run", "--path=%s"%run_path]
     #p = Popen([exec,*args], stdin=PIPE, stdout=PIPE, stderr=PIPE)
     t_start = time.time()
     print(f"Starting simulation! federation: {run_path}")
@@ -55,8 +57,10 @@ if __name__ == "__main__":
 
     # run_path = output_path + '\\federations\\test_case_dest_setpoint_control_FMU\\runner.json'
     # run_path = output_path + '\\federations\\test_case_dest_setpoint_control_Dest\\runner.json'
-    run_path = output_path + '\\federations\\test_case_dest_setpoint_control_Dest_ventQ\\runner.json'
+    #run_path = output_path + '/federations/test_case_dest_setpoint_control_Dest_ventQ/runner.json'
+#    run_path = output_path + '/federations/dest_ventq_new/runner.json'
 
+    run_path = output_path + '/federations/gym_env_test/runner.json'
 
 
     #training dur in years
@@ -81,13 +85,22 @@ if __name__ == "__main__":
 
 
     #use this for ventQ federations
+    # RL_config_Dest = {
+    #     "training": True,
+    #     "training_duration": 50,
+    #     "testing_duration": 1,
+    #     "episode_duration": 15,
+    #     "episode_seconds": 86400,
+    #     "unit_train_test_seconds": 2592000} #30days
+
     RL_config_Dest = {
         "training": True,
-        "training_duration": 3000,
-        "testing_duration": 1,
-        "episode_duration": 10,
-        "episode_seconds": 86400,
-        "unit_train_test_seconds": 2592000} #30days
+        "episode_hours": 24*10, #in hours
+        "number_of_episodes": 200,
+        "test_hours": 24*30, #in hours
+        }
 
-    prepare_federation(RL_config_Dest, run_path)
+
+
+    #prepare_federation(RL_config_Dest, run_path)
     main_run(run_path) # main simulation run!!!

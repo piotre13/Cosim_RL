@@ -1,0 +1,30 @@
+{
+  "name": "gym_env_test",
+  "broker": true,
+  "federates": [
+    {
+      "directory": "../..",
+      "exec": "python -u Federate.py Weather_conf.yaml gym_env_test",
+      "host": "localhost",
+      "name": "Weather"
+    },
+    {
+      "directory": "../..",
+      "exec": "python -u Federate.py Controller_conf.yaml gym_env_test",
+      "host": "localhost",
+      "name": "Controller"
+    },
+    {
+      "directory": "../..",
+      "exec": "python -u Federate.py EnvelopePdemand_conf.yaml gym_env_test",
+      "host": "localhost",
+      "name": "Envelope"
+    },
+    {
+      "directory": "../..",
+      "exec": "python -u gym_test.py",
+      "host": "localhost",
+      "name": "RLagent"
+    }
+  ]
+}

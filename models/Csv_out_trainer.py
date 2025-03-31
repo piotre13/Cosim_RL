@@ -7,7 +7,7 @@ from datetime import datetime
 #TODO add conversions and possibility to change names from what is written in the CSV
 logger = logging.getLogger(__name__)
 logger.addHandler(logging.StreamHandler())
-logger.setLevel(logging.CRITICAL)
+logger.setLevel(logging.DEBUG)
 
 class CSV (Model):
     def __init__(self, **kwargs):

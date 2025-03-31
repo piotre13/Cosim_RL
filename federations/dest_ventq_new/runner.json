@@ -1,0 +1,30 @@
+{
+  "name": "dest_ventq_new",
+  "broker": true,
+  "federates": [
+    {
+      "directory": "../..",
+      "exec": "python -u Federate.py Weather_conf.yaml dest_ventq_new",
+      "host": "localhost",
+      "name": "Weather"
+    },
+    {
+      "directory": "../..",
+      "exec": "python -u Federate.py Controller_conf.yaml dest_ventq_new",
+      "host": "localhost",
+      "name": "Controller"
+    },
+    {
+      "directory": "../..",
+      "exec": "python -u Federate.py EnvelopePdemand_conf.yaml dest_ventq_new",
+      "host": "localhost",
+      "name": "Envelope"
+    },
+    {
+      "directory": "../..",
+      "exec": "python -u Federate_RL.py RLagent_conf.yaml dest_ventq_new",
+      "host": "localhost",
+      "name": "RLagent"
+    }
+  ]
+}
