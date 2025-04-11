@@ -1,15 +1,15 @@
 fed_conf:
   RL_training: true
-  episode_period: 1296000
+  episode_period: 172800
   memory: []
   sim_params:
-    end_period: 132192000
-    offset: 0.1
+    end_period: 65664000
+    offset: 1
     real_period: 3600
     reset_period: 2592000
     sim_period: 3600
     start_time: '2015-01-01 00:00:00'
-  training_episodes: 100
+  training_episodes: 365
 rl_conf:
   training: true
   training_episodes: 100
@@ -37,7 +37,7 @@ fed_connections:
       - Weather/0/glohorzrad
       type: double
       units: W/m2
-    - key: setpoint
+    - key: t_set
       targets:
       - Controller/0/tSetMax
       type: double
@@ -45,11 +45,6 @@ fed_connections:
     - key: day_night
       targets:
       - Controller/0/ac_on_off
-      type: double
-      units: ''
-    - key: day_of_year
-      targets:
-      - Controller/0/day_of_year
       type: double
       units: ''
     - key: hour_of_day
@@ -64,12 +59,6 @@ fed_connections:
       units: C
   pub:
     0:
-    - key: tset_max
-      type: double
-      units: C
-    - key: tset_min
-      type: double
-      units: C
     - key: vent_q
       type: double
       units: Wh
@@ -83,29 +72,30 @@ fed_name: RLController
 observation_space:
   type: Dict
   spaces:
-    dry_bulb:
+    drybulb:
       type: Box
       low: -20.0
       high: 50.0
-      shape: (1,)
       dtype: float32
     humidity:
       type: Box
       low: 0.0
       high: 100.0
-      shape: (1,)
       dtype: float32
     solar_radiation:
       type: Box
       low: 0.0
       high: 1000.0
-      shape: (1,)
       dtype: float32
     t_zone:
       type: Box
       low: 0.0
       high: 50.0
-      shape: (1,)
+      dtype: float32
+    t_set:
+      type: Box
+      low: 16.0
+      high: 21.0
       dtype: float32
     day_night:
       type: Discrete
@@ -114,5 +104,4 @@ action_space:
   type: Box
   low: 0.0
   high: 30000.0
-  shape: (1,)
   dtype: float32

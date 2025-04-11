@@ -3,7 +3,7 @@ import sys
 import helics as h
 import logging
 import pandas as pd
-from utils import read_yaml, save_json
+from utils import read_yaml, save_json, setup_logger
 import importlib.util
 import pprint
 import json
@@ -13,11 +13,15 @@ import copy
 pp = pprint.PrettyPrinter(indent=4)
 sys.path.append('models/')
 
-logger = logging.getLogger(__name__)
-logger.addHandler(logging.StreamHandler())
-logger.setLevel(logging.DEBUG)
-logger.debug(f"executable {sys.executable}")
+# logger = logging.getLogger(__name__)
+# handler = logging.StreamHandler()
+# handler.setFormatter(ScriptColorFormatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s'))
+# logger.addHandler(handler)
+# logger.setLevel(logging.DEBUG)
+# logger.debug(f"executable {sys.executable}")
 
+logger = setup_logger(__name__)
+logger.info("Federate started")
 
 class Federate:
     def __init__(self, args):

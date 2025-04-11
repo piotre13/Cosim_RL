@@ -1,16 +1,16 @@
 fed_conf:
   RL_training: true
-  episode_period: 1296000
+  episode_period: 172800
   memory:
   - drybulb
   sim_params:
-    end_period: 132192000
+    end_period: 65664000
     offset: 0.0
     real_period: 3600
     reset_period: 2592000
     sim_period: 3600
     start_time: '2015-01-01 00:00:00'
-  training_episodes: 100
+  training_episodes: 365
 fed_connections:
   end:
     0:

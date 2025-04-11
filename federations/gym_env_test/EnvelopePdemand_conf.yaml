@@ -1,78 +1,23 @@
 fed_conf:
   RL_training: true
-  episode_period: 1296000
+  episode_period: 172800
   memory:
   - vent_q
   - zone.ac_t 8674
   sim_params:
-    end_period: 132192000
+    end_period: 65664000
     offset: 0
     real_period: 3600
     reset_period: 2592000
     sim_period: 3600
     start_time: '2015-01-01 00:00:00'
-  training_episodes: 100
+  training_episodes: 365
 fed_connections:
   end:
     0:
     - ep_name: reset_now
   inp:
     0:
-    - key: ac_on_off
-      targets:
-      - Controller/0/ac_on_off
-      type: double
-      units: ''
-    - key: schedule.ac_t_max 8674
-      targets:
-      - Controller/0/tSetMax
-      type: double
-      units: C
-    - key: schedule.ac_t_min 8674
-      targets:
-      - Controller/0/tSetMin
-      type: double
-      units: C
-    - key: schedule.ac_t_max 8677
-      targets:
-      - Controller/0/tSetMax
-      type: double
-      units: C
-    - key: schedule.ac_t_min 8677
-      targets:
-      - Controller/0/tSetMin
-      type: double
-      units: C
-    - key: schedule.ac_t_max 8680
-      targets:
-      - Controller/0/tSetMax
-      type: double
-      units: C
-    - key: schedule.ac_t_min 8680
-      targets:
-      - Controller/0/tSetMin
-      type: double
-      units: C
-    - key: schedule.ac_t_max 8692
-      targets:
-      - Controller/0/tSetMax
-      type: double
-      units: C
-    - key: schedule.ac_t_min 8692
-      targets:
-      - Controller/0/tSetMin
-      type: double
-      units: C
-    - key: schedule.ac_t_max 73086
-      targets:
-      - Controller/0/tSetMax
-      type: double
-      units: C
-    - key: schedule.ac_t_min 73086
-      targets:
-      - Controller/0/tSetMin
-      type: double
-      units: C
     - key: vent_q
       targets:
       - RLController/0/vent_q
@@ -127,16 +72,6 @@ model_conf:
   model_specific_required:
     init_state: {}
     inputs_k:
-    - schedule.ac_t_max 8674
-    - schedule.ac_t_min 8674
-    - schedule.ac_t_max 8677
-    - schedule.ac_t_min 8677
-    - schedule.ac_t_max 8680
-    - schedule.ac_t_min 8680
-    - schedule.ac_t_max 8692
-    - schedule.ac_t_min 8692
-    - schedule.ac_t_max 73086
-    - schedule.ac_t_min 73086
     - vent_q
     outputs_k:
     - zone.ac_t 8674

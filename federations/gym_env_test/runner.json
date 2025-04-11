@@ -22,7 +22,7 @@
     },
     {
       "directory": "../..",
-      "exec": "python -u gym_test.py",
+      "exec": "python -u Federate_RL_gym.py RLagent_conf.yaml gym_env_test SAC_stablebaseline_main",
       "host": "localhost",
       "name": "RLagent"
     }

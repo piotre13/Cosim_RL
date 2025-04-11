@@ -22,7 +22,7 @@ class FederateBase:
     def __init__(self, args):
 
         #configs:
-        self._config = read_yaml(os.path.join(FEDERATIONS_dir, args[-1], args[-2]))
+        self._config = read_yaml(os.path.join(FEDERATIONS_dir, args[2], args[1]))
         self._name = self._config['fed_name']
         self._connections = self._config['fed_connections']
         self._fed_conf = self._config['fed_conf']
@@ -405,6 +405,20 @@ class FederateBase:
         file_name = self._fed.name +'.json'
         file_path = os.path.join(path, file_name)
         save_json(file_path, fed_res)
+
+    def finalize(self):
+        status = h.helicsFederateDisconnect(self._fed)
+        h.helicsFederateDestroy(self._fed)
+        logger.info("Federate finalized\n")
+
+    def save_fed_memory(self):
+        '''this is used by the federates that have their own memory and not using the model instances memory'''
+        path = os.path.join(FEDERATIONS_dir, self.federation_name, 'results')
+        os.makedirs(path, exist_ok=True)
+        file_name = self._fed.name + '.json'
+        file_path = os.path.join(path, file_name)
+        save_json(file_path, self.memory)
+
 
     def _destroy_federate(self):
         """
