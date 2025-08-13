@@ -1,0 +1,38 @@
+{
+    // Hide large files and logs from VS Code explorer
+    "files.exclude": {
+        "**/*.log": true,
+        "**/results/*.json": true,
+        "federations/*/results/": true,
+        "**/__pycache__": true,
+        "**/*.pyc": true,
+        "**/*.tmp": true,
+        "**/*.cache": true
+    },
+    
+    // Exclude from file watcher (improves performance)
+    "files.watcherExclude": {
+        "**/*.log": true,
+        "**/results/**": true,
+        "federations/**/results/**": true,
+        "**/__pycache__/**": true,
+        "**/*.tmp": true,
+        "**/*.cache": true
+    },
+    
+    // Exclude from search
+    "search.exclude": {
+        "**/*.log": true,
+        "**/results/*.json": true,
+        "federations/*/results/": true,
+        "**/__pycache__": true
+    },
+    
+    // Git settings
+    "git.ignoreLimitWarning": true,
+    "git.detectSubmodules": false,
+    
+    // Show git decorations
+    "explorer.decorations.badges": true,
+    "explorer.decorations.colors": true
+}

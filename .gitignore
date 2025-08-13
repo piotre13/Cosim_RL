@@ -1,1 +1,28 @@
 /user_guide_examples/
+
+# Log files
+*.log
+
+# Large result files
+results/*.json
+federations/*/results/
+federations/*/*.log
+
+# Temporary and cache files
+*.tmp
+*.cache
+__pycache__/
+*.pyc
+*.pyo
+
+# Large data files (>50MB typically)
+*.zip
+*.tar.gz
+*.rar
+*.7z
+
+# Model checkpoints and weights
+*.h5
+*.pkl
+*.model
+best_model.zip
